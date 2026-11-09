@@ -10,7 +10,7 @@
 /* Marke wie in jedem Werkzeug: Zeichen, Name in der Titelschrift, Unterzeile in Gold */
 button.wo-marke-w{border:0;background:none;padding:0;cursor:pointer;text-align:left;font:inherit}
 .kopf .wo-marke-w b,.ms-kopf .wo-marke-w b{font:var(--wo-titel-g) 19px/1.1 var(--wo-titel);letter-spacing:.02em;text-transform:none;color:var(--wo-weiss)}
-.kopf .wo-marke-w small,.ms-kopf .wo-marke-w small{font:400 13px/1.4 var(--wo-mono);letter-spacing:.2em;text-transform:none;color:var(--wo-gold)}
+.kopf .wo-marke-w small,.ms-kopf .wo-marke-w small{font:400 13px/1.4 var(--wo-mono);letter-spacing:.03em;text-transform:none;color:var(--wo-gold)}
 .ms-kopf .ws-marke{margin-right:auto;flex:none}
 .ms-kopf .ws-marke~.ms-suche{margin-left:0}
 /* Runde Knöpfe in beiden Köpfen wie .wo-kn--rund im Kopf des Pakets */
@@ -25,7 +25,7 @@ button.wo-marke-w{border:0;background:none;padding:0;cursor:pointer;text-align:l
 #start .ms-nav button span{font:500 14.5px/1.3 var(--wo-sans);letter-spacing:0;color:var(--wo-tinte)}
 #start .ms-nav button.an span{font:var(--wo-titel-g) 19px/1.2 var(--wo-titel);color:var(--wo-weiss)}
 #start .ms-nav>button[data-ansicht="start"]:not(.an) span{color:var(--wo-weiss)}   /* «Übersicht» ist immer eine dunkle Taste (hell.css): Schrift hell, auch wenn ein anderer Bereich offen ist (Demo-Check 21.10.2026) */
-#start .ms-nav button em{font:400 13px/1 var(--wo-mono);letter-spacing:.06em;color:var(--wo-leise)}
+#start .ms-nav button em{font:400 13px/1 var(--wo-mono);letter-spacing:.03em;color:var(--wo-leise)}
 #start .ms-marke{display:none}
 
 /* Startbilder: Werte von .wo-sb im Rahmen «Die Bühne» */
@@ -70,7 +70,7 @@ button.wo-marke-w{border:0;background:none;padding:0;cursor:pointer;text-align:l
 @media (max-width:900px){.kopf .wo-marke-w small{display:none}.kopf .wo-marke-w b{font-size:17px}}
 @media (max-width:600px){.kopf .wo-marke-w>span{display:none}}
 /* Kleine Handys (320 px): Kopf der Arbeitsfläche in einer Zeile, ohne Überstand (runde Knöpfe 30 px, engere Abstände, «Speichern» knapper) */
-@media (max-width:360px){.kopf{padding:0 6px}.kopf .kopf__werk{gap:3px}.kopf .kopf__werk .rund{width:30px;height:30px}.kopf #btnNeu{padding:0 8px}.kopf #btnSpeichern{padding-left:12px;letter-spacing:.06em;gap:6px}}
+@media (max-width:360px){.kopf{padding:0 6px}.kopf .kopf__werk{gap:3px}.kopf .kopf__werk .rund{width:30px;height:30px}.kopf #btnNeu{padding:0 8px}.kopf #btnSpeichern{padding-left:12px;letter-spacing:.03em;gap:6px}}
 
 /* M21 (Robert 18.10.2026, Carlton La Maison: «nicht so krass reaktiv … sanfter … luxuriöser und edler»): keine Kachel kippt mehr zur Maus;
    sie hebt sich langsam wenige Pixel, ein feiner Messingrand bleibt das Zeichen. Gilt für Kampagnen, Mail-Vorlagen, Vorlagen und Arten. */

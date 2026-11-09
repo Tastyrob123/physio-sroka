@@ -1,6 +1,6 @@
 /* Drucksachen-Studio · Eigene Fotos: hochladen, im Browser behalten (IndexedDB), wie Hausfotos verwenden.
    Jedes Foto wird beim Hochladen auf höchstens 3600 px Kantenlänge gebracht (genug für A3 mit über 200 dpi) und als JPEG gespeichert,
-   dazu eine Miniatur für die Auswahl. Im Studio heissen sie «eigen-…» und stehen in M.bilder wie die Fotos des Hauses (Gruppe «Eigene Fotos»). */
+   dazu eine Miniatur für die Auswahl. Im Studio heissen sie «eigen-…» und stehen in M.bilder wie die Fotos der Website (Gruppe «Eigene Fotos»). */
 (function () {
   const DS = window.DS;
   const HAUS = new URLSearchParams(location.search).get('haus') || 'sroka';

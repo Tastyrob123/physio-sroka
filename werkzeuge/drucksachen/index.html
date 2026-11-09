@@ -24,7 +24,7 @@
 .startfehler>div{max-width:440px;padding:32px;border:1px solid rgba(185,166,128,.5);border-radius:14px;text-align:center}.startfehler b{font:400 22px "Cormorant Garamond",Georgia,serif;color:#b1996a}
 .startfehler a{display:inline-block;margin:6px;padding:9px 18px;border-radius:999px;background:#b1996a;color:#080706;text-decoration:none}</style>
 <script>if(!/[?&](demo|hilfe)/.test(location.search))document.documentElement.classList.add('start-gleich')</script>
-<script>/* Rückfall, falls das Studio nicht startet: die Startseite zeigt sich spätestens nach 5 s (start.js setzt «bereit» sonst selbst, sobald die Fotos da sind) */
+<script>/* Rückfall, falls die Werkstatt nicht startet: die Startseite zeigt sich spätestens nach 5 s (start.js setzt «bereit» sonst selbst, sobald die Fotos da sind) */
 addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=document.getElementById('start');if(s)s.classList.add('bereit')},5000)});</script>
 <link rel="stylesheet" href="lib/auswahl.css?v=36-gv1">
 <link rel="stylesheet" href="studio.css?v=63-gv1">
@@ -45,7 +45,7 @@ addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=docum
     <button class="rund" id="btnVerwerfen" data-tip="Verwerfen" aria-label="Entwurf verwerfen"><svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4.5h4V7M7 7l1 13h8l1-13M10.5 11v5.5M13.5 11v5.5"/></svg></button>
     <span class="kopf__trenn"></span>
     <button class="kn kn--klein kn--ohne neu" id="btnNeu"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span>Übersicht</span></button>
-    <button class="rund" data-livre="1" data-tip="Das Markenbuch" aria-label="Das Markenbuch im Studio öffnen" hidden><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg></button>
+    <button class="rund" data-livre="1" data-tip="Das Markenbuch" aria-label="Das Markenbuch in der Werkstatt öffnen" hidden><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg></button>
     <button class="rund hilfe" id="btnHilfe" data-tip="Hilfe" aria-label="Hilfe"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6M12 17.2v.1"/></svg></button>
     <button class="kn kn--klein kn--ohne pruef" id="btnPruefen"><span class="pruef__zahl" id="pruefZahl">0</span><span class="pruef__t">Druckprüfung</span></button>
     <div class="ausgabe">
@@ -279,7 +279,7 @@ function zu(){s.classList.remove('leiste-auf');k.setAttribute('aria-expanded','f
 k.addEventListener('click',function(e){e.stopPropagation();var auf=!s.classList.contains('leiste-auf');s.classList.toggle('leiste-auf',auf);k.setAttribute('aria-expanded',String(auf));});
 s.addEventListener('click',function(e){if(!s.classList.contains('leiste-auf'))return;if(e.target.closest('.ms-leiste [data-ansicht],.ms-leiste [data-akt],.ms-leiste .ms-fuss button'))return setTimeout(zu,0);if(!e.target.closest('.ms-leiste'))zu();});
 addEventListener('keydown',function(e){if(e.key==='Escape')zu();});})();</script>
-<script>/* «Zur Werkbank» (R19): nur wenn aus der Werkbank geöffnet. Online liegt Drucksachen & Feed auf der Adresse des Hauses (werkzeuge/imprimerie/),
+<script>/* «Zur Werkbank» (R19): nur wenn aus der Werkbank geöffnet. Online liegt Drucksachen auf der Adresse der Praxis (werkzeuge/imprimerie/),
    lokal auf eigenem Server: dann data-fremd, die Werkbank-Adresse kommt aus dem Link. */
 (function(){var s=document.createElement('script');s.src='zur-werkbank.js?v=1-gv1-rw1108';s.defer=true;s.setAttribute('data-ueber','.ms-fuss');document.body.appendChild(s);})();</script>
 </body>

@@ -554,7 +554,7 @@
       const f = i.text ? tx(c, 'text', i.text, cw, 1.75 * c.s8, c.T.text, { ausr: 'l', x: x0, slot: 'text', deck: .85 }) : null;
       const yF = f ? c.h - r - 2.6 * c.s8 - f.h : c.h - r - 2.6 * c.s8;
       if (f) { f.y = +yF.toFixed(2); c.el.push(f); }
-      const kopfY = t.y + t.h + 2 * c.s8, sp = [0, .42, .76].map(k => x0 + k * cw), namen = ['Tag', 'Datum', 'Uhrzeit'];
+      const kopfY = t.y + t.h + 2 * c.s8, sp = [0, .38, .7].map(k => x0 + k * cw), namen = ['Tag', 'Datum', 'Uhrzeit'];
       namen.forEach((n, k) => { const e = tx(c, 'mono', n, cw * .3, 1.75 * c.s8, c.T.mono, { ausr: 'l', x: sp[k], slot: 'kopf' + k }); e.y = +kopfY.toFixed(2); c.el.push(e); });
       const top = kopfY + 3.4 * c.s8, n = 4, gap = (yF - 2 * c.s8 - top) / n;
       for (let k = 1; k <= n; k++) c.el.push(linie(c, cw, { x: x0, y: +(top + gap * k).toFixed(2), staerke: .15, farbe: c.T.linie, deck: .7 }));

@@ -13,9 +13,9 @@
 .start.ms .ms-kopf::after{content:'';position:absolute;inset:0;z-index:-1;background:url('haeuser/sroka/tapete-ui-dunkel.webp') 0 0/360px auto;opacity:.45;pointer-events:none}
 .start.ms .ms-kopf-zeichen{display:block;width:42px;height:42px;color:#cdb78b;filter:drop-shadow(0 1px 0 rgba(20,18,15,.9)) drop-shadow(0 3px 8px rgba(0,0,0,.55))}
 .ms-kopf-name{display:block;min-width:200px;margin-right:auto}
-.ms-kopf-name b{display:block;font:400 15px/1.1 var(--caps);letter-spacing:.24em;text-transform:none;
+.ms-kopf-name b{display:block;font:400 15px/1.1 var(--caps);letter-spacing:.03em;text-transform:none;
   background:linear-gradient(180deg,#e5ddce 0%,#ccbfa7 34%,#ac9972 52%,#86734e 62%,#c0b193 80%,#dacfba 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 rgba(0,0,0,.6))}
-.ms-kopf-name small{display:block;margin-top:6px;font:13px/1 var(--mono);letter-spacing:.26em;text-transform:none;color:rgba(220,209,189,.7)}
+.ms-kopf-name small{display:block;margin-top:6px;font:13px/1 var(--mono);letter-spacing:.03em;text-transform:none;color:rgba(220,209,189,.7)}
 .start.ms .ms-frei{display:none}
 .start.ms .ms-suche{margin-right:auto;background:linear-gradient(180deg,#0e0d0b,#14120f);color:rgba(220,209,189,.8);box-shadow:inset 0 2px 5px rgba(0,0,0,.55),0 0 0 1px rgba(185,166,128,.25)}
 .start.ms .ms-suche input[type=search]{color:#f3ece0}

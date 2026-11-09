@@ -1,5 +1,5 @@
 /* Drucksachen-Studio · Start wie bei Canva (Robert 11.10.2026: «erst gefragt werden, was möchtest du erstellen»).
-   Schritt 1: Was möchten Sie erstellen? (Arten mit lebendiger Vorschau im Hausstil, zuletzt bearbeitet)
+   Schritt 1: Was möchten Sie erstellen? (Arten mit lebendiger Vorschau in der Praxisstil, zuletzt bearbeitet)
    Schritt 2: Wie möchten Sie beginnen? Beschreiben (die KI entwirft) · eine Vorlage dieser Art · leeres Blatt. Format wählbar. */
 (function () {
   const DS = window.DS;
@@ -172,8 +172,8 @@
     let z = $('#vbAlle');
     if (!z) {
       z = document.createElement('div'); z.id = 'vbAlle'; z.className = 'vb__alle'; f.parentNode.insertBefore(z, f);
-      z.innerHTML = `<button class="kn kn--mehr" data-st="alle"><span>Alle Vorlagen des Hauses durchsuchen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>`;
-      fetch(DS.M.basis + 'vorlagen/index.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).then(ix => { const n = ix.reduce((m, x) => m + (x.zahl || 0), 0); if (n) z.querySelector('span').textContent = `Alle ${n.toLocaleString('de-CH')} Vorlagen des Hauses durchsuchen`; }).catch(() => { });
+      z.innerHTML = `<button class="kn kn--mehr" data-st="alle"><span>Alle Vorlagen der Praxis durchsuchen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>`;
+      fetch(DS.M.basis + 'vorlagen/index.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).then(ix => { const n = ix.reduce((m, x) => m + (x.zahl || 0), 0); if (n) z.querySelector('span').textContent = `Alle ${n.toLocaleString('de-CH')} Vorlagen der Praxis durchsuchen`; }).catch(() => { });
     }
   }
   /* Die Gesamtzahl der fertigen Vorlagen sichtbar machen (Robert 12.10.2026: «Ich müsste doch hier 3000 Vorlagen drin haben»): in der Leiste
@@ -260,13 +260,13 @@
   }
   function neuKarte(i) {
     const n = document.createElement('button'); n.className = 'mk mk--neu'; n.dataset.akt = 'neu'; n.style.setProperty('--i', i);
-    n.innerHTML = `<span class="mk__k"><span class="mk__plus">${PLUS}</span></span><b class="mk__name">Neues Medium</b><em class="mk__info">Beschreiben oder Vorlage wählen</em>`;
+    n.innerHTML = `<span class="mk__k"><span class="mk__plus">${PLUS}</span></span><b class="mk__name">Neue Drucksache</b><em class="mk__info">Beschreiben oder Vorlage wählen</em>`;
     return n;
   }
-  /* E-Mails aus dem Newsletter-Baukasten (mail.html, localStorage «ds-mails») stehen mit in Meine Medien (Robert 12.10.2026) */
+  /* E-Mails aus dem Newsletter-Baukasten (mail.html, localStorage «ds-mails») stehen mit in Meine Drucksachen (Robert 12.10.2026) */
   const mailsLesen = () => { try { return JSON.parse(localStorage.getItem('ds-mails') || '[]'); } catch (e) { return []; } };
   const mailsSchreiben = l => { try { localStorage.setItem('ds-mails', JSON.stringify(l)); } catch (e) { } };
-  /* Meine Medien und Zuletzt bearbeitet: Blätter frei auf Blau wie alle Listen (Robert 12.10.2026, 04:10 «überall»), mit Umbenennen, Kopie, PDF, Löschen darunter */
+  /* Meine Drucksachen und Zuletzt bearbeitet: Blätter frei auf Blau wie alle Listen (Robert 12.10.2026, 04:10 «überall»), mit Umbenennen, Kopie, PDF, Löschen darunter */
   function medienStueck(attr, i, blaetter, H, name, info, aktionen) {
     const b = stueckKarte(attr, i, blaetter, H, name, info, null, 'stueck--doc');
     const d = document.createElement('div'); d.className = b.className; d.style.cssText = b.style.cssText; Object.assign(d.dataset, b.dataset); d.tabIndex = 0; d.setAttribute('role', 'button');
@@ -331,7 +331,7 @@
     const docs = sichtbareDocs().filter(freigabe).sort((a, b) => b.geaendert - a.geaendert);
     const z = $('#fgZahl'); if (z) z.textContent = docs.length;
     box.innerHTML = '';
-    if (!docs.length) { box.innerHTML = '<p class="fg-leer">Noch nichts freigegeben. In «Meine Medien» beim Überfahren einer Drucksache auf das Siegel tippen und die Abteilungen wählen.</p>'; return; }
+    if (!docs.length) { box.innerHTML = '<p class="fg-leer">Noch nichts freigegeben. In «Meine Drucksachen» beim Überfahren einer Drucksache auf das Siegel tippen und die Bereiche wählen.</p>'; return; }
     K.ABTEILUNGEN.forEach(a => {
       const l = docs.filter(d => d.freigabe.abteilungen.includes(a.k)); if (!l.length) return;
       const sek = document.createElement('section'); sek.className = 'fg-abt';
@@ -340,23 +340,18 @@
       requestAnimationFrame(() => reihen(r));
     });
   }
-  /* Beispiele (Robert 16.10.2026: «6 Stück als Beispiel, damit man sieht, wie das aussieht»): sechs Drucksachen aus echten Vorlagen des Hauses,
-     gemischt in Art und Format, deutlich als Beispiel markiert. Sie stehen in «Zuletzt bearbeitet» und «Meine Medien», solange das Haus nichts Eigenes
+  /* Beispiele (Robert 16.10.2026: «6 Stück als Beispiel, damit man sieht, wie das aussieht»): sechs Drucksachen aus echten Vorlagen der Praxis,
+     gemischt in Art und Format, deutlich als Beispiel markiert. Sie stehen in «Zuletzt bearbeitet» und «Meine Drucksachen», solange die Praxis nichts Eigenes
      gespeichert hat; danach verschwinden sie aus den Listen. Einmal je Browser angelegt (Merker ds-<haus>-beispiele2). */
   const istBeispiel = d => !!(d && d.beispiel);
   const eigeneDocs = () => Object.values(st().alleDocs()).filter(d => !istBeispiel(d));
   const sichtbareDocs = () => { const alle = Object.values(st().alleDocs()); return alle.some(d => !istBeispiel(d)) ? alle.filter(d => !istBeispiel(d)) : alle; };
   function beispieleAnlegen() {
-    const schl = `ds-${st().haus}-beispiele2`; try { if (localStorage.getItem(schl)) return; } catch (e) { return; }
-    const abt = k => (K.ABTEILUNGEN.find(a => a.k === k) || { vorlagen: [] }).vorlagen, H = K.HINWEISE.find(x => /Geschlossene Gesellschaft/.test(x.n));
-    const wc = K.ANLAESSE.find(a => /GaultMillau/.test(a.t)) || K.ANLAESSE[0], mot = wc ? K.motive(wc) : [];
-    const B = [
-      H && { x: H, fg: ['gruppen', 'empfang'] },
-      { x: abt('experiences').find(v => /^Menükarte des Abends$/.test(v.n)), fg: ['experiences'] },
-      { x: mot.find(v => /Plakat/.test(v.n)), kontext: wc && wc.t },
-      { x: abt('gutschein').find(v => /^Gutschein$/.test(v.n)) },
-      { x: abt('accords').find(v => /^Accords mets et vins$/.test(v.n)), fg: ['accords'] },
-      { x: mot.find(v => v.format === 'insta') || mot.find(v => /Instagram/.test(v.n)), kontext: wc && wc.t },
+    const schl = `ds-${st().haus}-beispiele3`; try { if (localStorage.getItem(schl)) return; } catch (e) { return; }
+    const abt = k => (K.ABTEILUNGEN.find(a => a.k === k) || { vorlagen: [] }).vorlagen;
+        const B = [   // Physio Sroka: sechs Beispiele aus den Bereichen der Praxis
+      { x: abt('empfang')[0] }, { x: abt('behandlung')[0] }, { x: abt('bewertungen')[0] },
+      { x: abt('empfang')[1] }, { x: abt('behandlung')[2] },
     ].filter(b => b && b.x);
     const alle = docsLesen(), heute = new Date().toLocaleDateString('de-CH', { day: 'numeric', month: 'long', year: 'numeric' });
     Object.keys(alle).forEach(k => { if (alle[k].beispiel && !freigabe(alle[k]) || (alle[k].beispiel && alle[k].freigabe && alle[k].freigabe.wer === 'Beispiel')) delete alle[k]; });   // die drei vom Morgen
@@ -371,8 +366,8 @@
   function neuStueck() {
     const f = DS.FORMATE.a5h, [W, H] = groesse(f, GROSS());
     const p = document.createElement('span'); p.className = 'papier papier--vorn papier--neu'; p.style.width = W + 'px'; p.style.height = H + 'px';
-    p.innerHTML = `<span class="papier__neu"><span class="papier__z">${DS.zeichenSvg(DS.M, 'currentColor')}</span>${DS.M.zierde ? `<span class="papier__zier">${DS.zierdeSvg(DS.M, 'currentColor')}</span>` : ''}<b>Neues Medium</b><small>Flyer, Karte, Aushang, Beitrag</small></span><span class="papier__plus">${PLUS}</span>`;
-    return stueckKarte({ akt: 'neu' }, 0, [p], H, 'Neues Medium', 'Beschreiben oder Vorlage wählen', null);
+    p.innerHTML = `<span class="papier__neu"><span class="papier__z">${DS.zeichenSvg(DS.M, 'currentColor')}</span>${DS.M.zierde ? `<span class="papier__zier">${DS.zierdeSvg(DS.M, 'currentColor')}</span>` : ''}<b>Neue Drucksache</b><small>Karte, Blatt, Aushang, Brief</small></span><span class="papier__plus">${PLUS}</span>`;
+    return stueckKarte({ akt: 'neu' }, 0, [p], H, 'Neue Drucksache', 'Beschreiben oder Vorlage wählen', null);
   }
   async function mailAktion(akt, id, karte) {
     const S = st(), l = mailsLesen(), m = l.find(x => x.id === id); if (!m) return;
@@ -387,7 +382,7 @@
       const k = JSON.parse(JSON.stringify(m)); k.id = 'm' + Date.now().toString(36); k.name = (m.name || 'E-Mail') + ' (Kopie)'; if (k.doc) k.doc.name = k.name; k.geaendert = Date.now();
       l.unshift(k); mailsSchreiben(l); zeichneBibliothek(); filtern(); S.melde('Kopie angelegt.');
     } else if (akt === 'loeschen') {
-      const ja = await S.dialog(`<h2>Löschen?</h2><p>«${esc(m.name || 'E-Mail')}» wird aus Ihren E-Mails entfernt.</p>`, [{ t: 'Behalten', v: false }, { t: 'Löschen', v: true, haupt: true }]);
+      const ja = await S.dialog(`<h2>Löschen?</h2><p>«${esc(m.name || 'E-Mail')}» wird aus deinen E-Mails entfernt.</p>`, [{ t: 'Behalten', v: false }, { t: 'Löschen', v: true, haupt: true }]);
       if (ja === true) { karte.classList.add('weg'); setTimeout(() => { mailsSchreiben(mailsLesen().filter(x => x.id !== id)); zeichneBibliothek(); waehleAnsicht(ansicht); }, 420); }
     }
   }
@@ -395,7 +390,7 @@
     const docs = sichtbareDocs().sort((a, b) => b.geaendert - a.geaendert), nurBeispiele = docs.length && docs.every(istBeispiel);
     const alle = docs.map(d => ({ t: d.geaendert, el: i => docStueck(d, i) })).concat(mailsLesen().map(m => ({ t: m.geaendert, el: i => mailKarte(m, i) }))).sort((a, b) => b.t - a.t);
     $('#meineZahl').textContent = alle.length;
-    $('#meineSatz').textContent = nurBeispiele ? `${alle.length} Beispiele aus den Vorlagen des Hauses. Sobald Sie selbst etwas speichern, machen sie Platz.` : alle.length ? `${alle.length} ${alle.length === 1 ? 'Medium' : 'Medien'}, gespeichert in diesem Browser` : 'Noch keine Medien angelegt';
+    $('#meineSatz').textContent = nurBeispiele ? `${alle.length} Beispiele aus den Vorlagen der Praxis. Sobald du selbst etwas speicherst, machen sie Platz.` : alle.length ? `${alle.length} ${alle.length === 1 ? 'Medium' : 'Drucksachen'}, gespeichert in diesem Browser` : 'Noch keine Drucksachen angelegt';
     const box = $('#bibliothek'); box.innerHTML = ''; box.className = 'atelier wv ms-buehne kv-buehne';
     box.appendChild(neuStueck());
     alle.forEach((x, i) => box.appendChild(x.el(i + 1)));
@@ -406,7 +401,7 @@
     $('#startZu').hidden = !(st().doc() && !st().doc().platzhalter);
   }
 
-  /* ---------- Katalog des Hauses: Abteilungen, Anlässe & Events, Hinweise, Newsletter (Daten in katalog.js) ---------- */
+  /* ---------- Katalog der Praxis: Abteilungen, Anlässe & Events, Hinweise, Newsletter (Daten in katalog.js) ---------- */
   const K = window.DSKATALOG || { ABTEILUNGEN: [], HINWEISE: [], ANLAESSE: [], motive: () => [], NEWSLETTER: [] };
   const PFEIL_SVG = '<svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
   const WO = { haus: 'Im Haus', stadt: 'In der Region', region: 'In der Region' };
@@ -419,7 +414,7 @@
       <span class="wo__k"><span class="wo__bild" style="background-image:url('${DS.bildUrl(DS.M, foto, true)}')"></span><span class="wo__licht"></span>${ev ? `<span class="wo__datum">${laeuft ? 'Läuft · ' : ''}${esc(a.z)}</span>` : ''}</span>
       <span class="wo__n"><span><b>${esc(a.t)}</b><small>${ev ? WO[a.wo] + ' · ' : ''}${zahl} Vorlagen</small></span><i>${PFEIL_SVG}</i></span></div>`;
   }
-  /* Eine fertige Vorlage als Karte: echte Vorschau, Klick öffnet sie im Studio (ohne KI, ohne Kosten) */
+  /* Eine fertige Vorlage als Karte: echte Vorschau, Klick öffnet sie in der Werkstatt (ohne KI, ohne Kosten) */
   let kvListe = [];
   function kvDoc(x, kontext) {
     const seiten = [{ vorlage: x.vorlage, ton: x.ton, inhalt: x.inhalt }];
@@ -482,9 +477,12 @@
       const spalten = getComputedStyle(box).gridTemplateColumns.split(' ').filter(Boolean).length; if (spalten < 2 || !k.length) return;
       const unten = Math.max(...k.map(e => e.offsetTop)), letzte = k.filter(e => e.offsetTop === unten);
       const breite = (box.clientWidth - (spalten - 1) * parseFloat(getComputedStyle(box).columnGap || 0)) / spalten;
-      const belegt = letzte.reduce((s, e) => s + Math.round((e.offsetWidth + parseFloat(getComputedStyle(box).columnGap || 0)) / (breite + parseFloat(getComputedStyle(box).columnGap || 0))), 0);
-      if (belegt >= spalten || letzte.some(e => e.offsetWidth > breite * 1.5)) return;
-      letzte.forEach((e, i) => { e.style.gridColumn = 'span ' + (Math.floor(spalten / letzte.length) + (i === letzte.length - 1 ? spalten % letzte.length : 0)); e.dataset.reihe = 1; });
+      const gap = parseFloat(getComputedStyle(box).columnGap || 0), zellen = e => Math.round((e.offsetWidth + gap) / (breite + gap));
+      /* Physio Sroka 09.11.2026: Kacheln, die von oben in die letzte Reihe ragen (grosse Kachel über zwei Reihen), belegen dort auch Zellen */
+      const fremd = k.filter(e => !letzte.includes(e) && e.offsetTop < unten && e.offsetTop + e.offsetHeight > unten + 1).reduce((m, e) => m + zellen(e), 0);
+      const frei = spalten - fremd, belegt = letzte.reduce((m, e) => m + zellen(e), 0);
+      if (belegt >= frei || letzte.some(e => e.offsetWidth > breite * 1.5)) return;
+      letzte.forEach((e, i) => { e.style.gridColumn = 'span ' + (Math.floor(frei / letzte.length) + (i === letzte.length - 1 ? frei % letzte.length : 0)); e.dataset.reihe = 1; });
     };
     los(); if (!box.__reihe) { box.__reihe = 1; addEventListener('resize', () => requestAnimationFrame(los)); }
   }
@@ -541,10 +539,10 @@
   function zeigeUmfang(code) {
     if (!Z) return zeigeWeg('alle');
     const [was, k] = code.split(':'); let u = null;
-    if (was === 'abteilung') { const a = K.ABTEILUNGEN.find(x => x.k === k), z = Z.abteilung[k]; if (a && z) u = { titel: a.t, bereiche: z.bereiche, satz: `Alle Vorlagen für ${a.t}. Suchen Sie nach einem Wort oder grenzen Sie nach Art und Grund ein.` }; }
+    if (was === 'abteilung') { const a = K.ABTEILUNGEN.find(x => x.k === k), z = Z.abteilung[k]; if (a && z) u = { titel: a.t, bereiche: z.bereiche, satz: `Alle Vorlagen für ${a.t}. Such nach einem Wort oder grenzen Sie nach Art und Grund ein.` }; }
     if (was === 'anlass') { const a = K.ANLAESSE.find(x => x.k === k), z = Z.anlass[k]; if (a && z) u = { titel: a.t, q: z.q, satz: `Vorlagen aus der Bibliothek, in denen «${z.q}» vorkommt. Das Suchwort lässt sich ändern.` }; }
-    if (was === 'hinweise') u = { titel: 'Hinweise im Haus', arten: Z.hinweise.arten, satz: 'Störungen, Aushänge, Hinweiskarten und Türhänger für jeden Bereich des Hauses.' };
-    if (was === 'anlaesse') u = { titel: 'Festtage und Ausflüge', bereiche: Z.anlaesse.bereiche, satz: 'Vorlagen für die Festtage im Haus und für Ausflüge in die Region.' };
+    if (was === 'hinweise') u = { titel: 'Hinweise in der Praxis', arten: Z.hinweise.arten, satz: 'Störungen, Aushänge, Hinweiskarten und Türhänger für jeden Bereich der Praxis.' };
+    if (was === 'anlaesse') u = { titel: 'Festtage und Ausflüge', bereiche: Z.anlaesse.bereiche, satz: 'Vorlagen für die Festtage in der Praxis und für Ausflüge in die Region.' };
     zeigeWeg('alle', u);
   }
   const lnk = (umfang, text) => `<button class="kn kn--mehr" data-umfang="${umfang}"><span>${text}</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>`;
@@ -567,15 +565,15 @@
     offen = { typ, a }; detailVon = typ === 'event' ? (ansicht === 'start' ? 'start' : 'events') : (ansicht === 'start' ? 'start' : 'abteilungen');
     const ev = typ === 'event', liste = ev ? K.motive(a) : a.vorlagen, foto = ev ? a.fotos[0] : a.foto;
     const bib = Z ? (ev ? Z.anlass[a.k] : Z.abteilung[a.k]) : null, mehr = bib ? bib.n : 0;
-    const zurueck = { start: 'Übersicht', events: 'Anlässe & Events', abteilungen: 'Abteilungen' }[detailVon];
+    const zurueck = { start: 'Übersicht', events: 'Anlässe & Events', abteilungen: 'Bereiche' }[detailVon];
     $('#msDetail').innerHTML = `<button class="ms-lnk ms-lnk--zurueck" data-ansicht="${detailVon}"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg><span>${zurueck}</span></button>
       <div class="kd">
         <div class="wo kd__bild"><span class="wo__k"><span class="wo__bild" style="background-image:url('${DS.bildUrl(DS.M, foto, false)}')"></span><span class="wo__licht"></span>${ev ? `<span class="wo__datum">${esc(a.z)}</span>` : ''}</span></div>
         <div class="kd__text">${ev ? `<em class="kd__wo">${WO[a.wo]} · ${esc(a.ort)}</em>` : ''}<h1>${esc(a.t)}</h1><p>${esc(a.satz)}</p>
-          <div class="kd__zahl"><b>${zahlDE(liste.length + mehr)}</b><span>${ev ? 'Motive, fertig gesetzt im Stil des Hauses: Plakat, Flyer, Aushang, Tischaufsteller, Karte, Beitrag, Story und E-Mail-Kopf' : 'Vorlagen für diese Abteilung, fertig gesetzt im Stil des Hauses'}</span></div>
+          <div class="kd__zahl"><b>${zahlDE(liste.length + mehr)}</b><span>${ev ? 'Motive, fertig gesetzt im Stil der Praxis: Plakat, Flyer, Aushang, Tischaufsteller, Karte, Beitrag, Story und E-Mail-Kopf' : 'Vorlagen für diese Abteilung, fertig gesetzt im Stil der Praxis'}</span></div>
           <div class="ms-feld ms-feld--klein"><span class="ms-feld__ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/></svg></span><textarea id="kampFrei" rows="1" placeholder="Etwas anderes für ${esc(a.t)} …"></textarea><button class="kn knopf--voll glanz-kn" data-st="kfrei"><span>Fünf Entwürfe</span><i>${PFEIL_SVG}</i></button></div></div>
       </div>
-      <div class="ms-zeile"><h2>${ev ? 'Die Motive' : 'Die Vorlagen'}</h2><span class="ms-leise">Antippen öffnet die Vorlage im Studio, Texte in [Klammern] vor dem Druck ersetzen</span></div>
+      <div class="ms-zeile"><h2>${ev ? 'Die Motive' : 'Die Vorlagen'}</h2><span class="ms-leise">Antippen öffnet die Vorlage in der Werkstatt, Texte in [Klammern] vor dem Druck ersetzen</span></div>
       <div class="ms-raster" id="detailRaster"></div>
       ${mehr ? `<div class="vb__alle"><button class="kn kn--mehr" data-umfang="${ev ? 'anlass' : 'abteilung'}:${a.k}"><span>${zahlDE(mehr)} weitere Vorlagen ${ev ? 'zu' : 'für'} ${esc(a.t)} ansehen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button></div>` : ''}`;
     waehleAnsicht('detail');
@@ -586,14 +584,14 @@
     $('#startSchnell').innerHTML = ARTEN.filter(a => !a.leer).slice(0, 8).map((a, i) => { const f = DS.FORMATE[a.format], k = 46 / Math.max(f.b, f.h);
       return `<button class="sf" data-art="${a.key}" style="--i:${i}"><span class="sf__f"><span style="width:${Math.round(f.b * k)}px;height:${Math.round(f.h * k)}px"></span></span><b>${esc(a.name)}</b><small>${esc(f.name)}</small></button>`; }).join('');
   }
-  /* Fotos des Hauses */
+  /* Fotos der Website */
   let fotoGruppe = 'Alle', fotoF = { s: 'alle', f: 'alle', h: 'alle' };
   function zeichneFotos() {
     const M = DS.M, B = M.bilder || [], T = DS.LIVRE_TEXT, L = !!M.livre;
     const gr = ['Alle', ...(L ? Object.values(T.b).filter(g => B.some(b => b.gruppe === g)) : [...new Set(B.map(b => b.gruppe))])];
     $('#fotoZahl').textContent = B.length;
-    $('#fotoSatz').textContent = L ? `${B.length} Fotos aus dem Markenbuch des Hauses: ${B.filter(b => b.herkunft === 'haus').length} vom Haus, ${B.filter(b => b.herkunft === 'frei').length} frei lizenziert, ${B.filter(b => b.ki).length} mit KI erzeugt. Ein Foto wählen, das Studio baut das Medium darum herum.`
-      : `${B.length} Fotos des Hauses. Ein Foto wählen, das Studio baut das Medium darum herum.`;
+    $('#fotoSatz').textContent = L ? `${B.length} Fotos aus dem Markenbuch der Praxis: ${B.filter(b => b.herkunft === 'haus').length} vom Haus, ${B.filter(b => b.herkunft === 'frei').length} frei lizenziert, ${B.filter(b => b.ki).length} mit KI erzeugt. Ein Foto wählen, die Werkstatt baut die Drucksache darum herum.`
+      : `${B.length} Fotos der Website. Ein Foto wählen, die Werkstatt baut die Drucksache darum herum.`;
     const reihe = (art, titel, werte) => `<div class="fo-reihe"><span class="fo-reihe__t">${titel}</span>${[['alle', 'Alle'], ...werte].map(([k, t]) => `<button data-f${art}="${k}" class="${fotoF[art] === k ? 'an' : ''}">${esc(t)}</button>`).join('')}</div>`;
     $('#fotoGruppen').innerHTML = `<div class="fo-reihe">${L ? '<span class="fo-reihe__t">Bereich</span>' : ''}${gr.map(g => `<button data-fgruppe="${esc(g)}" class="${g === fotoGruppe ? 'an' : ''}">${esc(g)}</button>`).join('')}</div>`
       + (L ? reihe('s', 'Saison', Object.entries(T.s)) + reihe('f', 'Format', Object.entries(T.f).filter(([k]) => B.some(b => b.format === k))) + reihe('h', 'Herkunft', Object.entries(T.h)) : '');
@@ -605,22 +603,21 @@
     document.querySelectorAll('#fotoRaster .fo').forEach(f => { const p = (fotoGruppe === 'Alle' || f.dataset.gruppe === fotoGruppe) && ['s', 'f', 'h'].every(k => fotoF[k] === 'alle' || f.dataset[k] === fotoF[k]) && W.every(w => f.dataset.alt.includes(w)); f.hidden = !p; if (p) n++; });
     return n;
   }
-  /* Marke des Hauses: was das Studio weiss */
+  /* Marke der Praxis: was die Werkstatt weiss */
   function zeichneMarke() {
     const M = DS.M, F = M.farben || {}, N = M.farbnamen || {}, S = M.schriften || {};
     const rolle = { titel: 'DS-titel', kapitale: 'DS-kapitale', text: 'DS-text', kursiv: 'DS-kursiv', mono: 'DS-mono' };
     const L = M.livre, LS = DS.livreSeite();
     const livreFarben = L ? `<div class="mb__p"><h3>Farben</h3><div class="mb__farben">${L.farben.map(c => `<span title="${esc(c.r || '')}"><i style="background:${c.h}"></i><b>${esc(c.n)}</b><small>${esc(c.h)}</small></span>`).join('')}</div></div>` : '';
     const livreDateien = L ? `<div class="mb__p mb__p--dateien"><h3>Logo, Zeichen, Wortmarke, Tapete</h3><div class="mb__dateien">${L.dateien.filter(d => d.var && d.var.length && d.var[0].dateien.some(x => /\.(svg|png|webp|jpe?g)$/i.test(x))).map(d => { const v = d.var[0], datei = v.dateien.find(x => x.endsWith('.svg')) || v.dateien[0]; return `<a class="mb__datei ${v.grund === 'dunkel' ? 'mb__datei--d' : ''}" href="${DS.livreUrl('dateien/')}${encodeURIComponent(v.dateien[v.dateien.length - 1])}" download><span${d.k === 'tapete' ? ` style="background-image:url('${DS.livreUrl('dateien/')}${encodeURIComponent(datei)}')"` : ''}>${d.k === 'tapete' ? '' : `<img src="${DS.livreUrl('dateien/')}${encodeURIComponent(datei)}" alt="" loading="lazy">`}</span><b>${esc({ logo: 'Logo', quer: 'Logo quer', zeichen: 'Zeichen', zeiger: 'Zeiger', name: 'Wortmarke', website: 'Original', wortmarke: 'Wortmarke', tapete: 'Tapete', zierde: 'Zierde «xx»', zeichnungen: 'Zeichnungen', ehre: 'Auszeichnungen', farben: 'Farben', schriften: 'Schriften' }[d.k] || d.k)}</b><small>${d.var.length} ${d.var.length === 1 ? 'Fassung' : 'Fassungen'}</small></a>`; }).join('')}</div></div>` : '';
-    $('#msMarke').innerHTML = `<div class="ms-titel"><h1>Marke des Hauses</h1><span class="ms-leise">${L ? 'Aus dem Markenbuch des Hauses. ' : ''}Jedes Medium entsteht aus diesen Farben, Schriften, Zeichen und Fotos. Niemand muss sie kennen, das Studio hält sich daran.</span></div>
-      <a class="mb-livre" href="${LS}" target="_blank" rel="noopener"><span class="mb-livre__z">${DS.zeichenSvg(M, 'currentColor')}</span><span><b>Das Markenbuch öffnen</b><small>Alle ${L ? L.fotos.length : (M.bilder || []).length} Fotos in jeder Grösse, Logos, Farben und Tapete</small></span><i>${PFEIL_SVG}</i></a>
+    $('#msMarke').innerHTML = `<div class="ms-titel"><h1>Marke der Praxis</h1><span class="ms-leise">${L ? 'Aus dem Markenbuch der Praxis. ' : ''}Jede Drucksache entsteht aus diesen Farben, Schriften, Zeichen und Fotos. Niemand muss sie kennen, die Werkstatt hält sich daran.</span></div>
       <div class="mb">
         <div class="mb__p mb__p--zeichen"><span class="mb__z">${DS.zeichenSvg(M, 'currentColor')}</span><b>${esc(M.voll || M.name)}</b><small>${esc(M.zeile || '')}</small></div>
         ${L ? livreFarben : `<div class="mb__p"><h3>Farben</h3><div class="mb__farben">${Object.entries(F).map(([k, c]) => `<span><i style="background:${c}"></i><b>${esc(N[k] || k)}</b><small>${c}</small></span>`).join('')}</div></div>`}
         ${livreDateien}
-        <div class="mb__p"><h3>Schriften</h3>${Object.entries(S).map(([k, s]) => `<div class="mb__s"><span style="font-family:'${rolle[k] || 'DS-text'}',serif${k === 'kursiv' ? ';font-style:italic' : ''}">Aa</span><b>${esc(s.familie)}</b><small>${esc(s.wofuer || '')}</small></div>`).join('')}</div>
-        <div class="mb__p"><h3>Tapete</h3><div class="mb__tapete"><span style="background-image:url('${M.basis}tapete-dunkel.webp')"></span><span style="background-image:url('${M.basis}tapete-hell.webp')"></span></div><small class="mb__fuss">Dunkle Flächen nur in Nuit, immer mit der Tapete.</small></div>
-        <div class="mb__p"><h3>Regeln des Hauses</h3><ul>${(M.regeln || []).map(r => DS.regelSichtbar(r)).filter(Boolean).map(r => `<li>${esc(r)}</li>`).join('')}</ul></div>
+        <div class="mb__p"><h3>Schriften</h3>${Object.entries(S).map(([k, s]) => `<div class="mb__s"><span style="font-family:'${rolle[k] || 'DS-text'}',serif">Aa</span><b>${esc(s.familie)}</b><small>${esc(s.wofuer || '')}</small></div>`).join('')}</div>
+        <div class="mb__p"><h3>Tapete</h3><div class="mb__tapete"><span style="background-image:url('${M.basis}tapete-dunkel.webp')"></span><span style="background-image:url('${M.basis}tapete-hell.webp')"></span></div><small class="mb__fuss">Dunkle Flächen nur in Nacht, immer mit der Tapete aus dem Zeichen.</small></div>
+        <div class="mb__p"><h3>Regeln der Praxis</h3><ul>${(M.regeln || []).map(r => DS.regelSichtbar(r)).filter(Boolean).map(r => `<li>${esc(r)}</li>`).join('')}</ul></div>
         <div class="mb__p"><h3>Angaben</h3><dl>${[['Adresse', M.adr], ['Telefon', M.tel], ['E-Mail', M.mail], ['Website', M.web]].filter(x => x[1]).map(([l, v]) => `<dt>${l}</dt><dd>${esc(v)}</dd>`).join('')}</dl><button class="ms-lnk" data-ansicht="fotos"><span>${(M.bilder || []).length} Fotos ansehen</span>${PFEIL_SVG}</button></div>
       </div>`;
   }
@@ -668,7 +665,7 @@
     if (a === 'hinweise' || a === 'newsletter') zeichneListe(a);
     if (a === 'marke') zeichneMarke();
     if (a === 'freigegeben') zeichneFreigegeben();
-    $('#startSuche').placeholder = a === 'neu' ? 'Arten suchen: Menü, Tischkarte, Gutschein …' : a === 'fotos' || a === 'livre' ? 'Fotos suchen: Saal, Teller, Dessert …' : `In Ihren ${zahl} Medien suchen …`;
+    $('#startSuche').placeholder = a === 'neu' ? 'Arten suchen: Visitenkarte, Übungsblatt, Aushang …' : a === 'fotos' || a === 'livre' ? 'Fotos suchen: Behandlung, Übung, Hände …' : `In deinen ${zahl} Drucksachen suchen …`;
     filtern();
   }
   async function bibliothekAktion(akt, id, karte) {
@@ -682,7 +679,7 @@
     } else if (akt === 'kopie') { S.kopie(id); zeichneBibliothek(); filtern(); S.melde('Kopie angelegt.'); }
     else if (akt === 'freigeben') return freigabeDialog(id);
     else if (akt === 'loeschen') {
-      const ja = await S.dialog(`<h2>Löschen?</h2><p>«${esc(d.name)}» wird aus Ihren Drucksachen entfernt.</p>`, [{ t: 'Behalten', v: false }, { t: 'Löschen', v: true, haupt: true }]);
+      const ja = await S.dialog(`<h2>Löschen?</h2><p>«${esc(d.name)}» wird aus deinen Drucksachen entfernt.</p>`, [{ t: 'Behalten', v: false }, { t: 'Löschen', v: true, haupt: true }]);
       if (ja === true) { karte.classList.add('weg'); setTimeout(() => { S.loeschen(id); zeichneBibliothek(); waehleAnsicht(ansicht); }, 420); }
     } else if (akt === 'pdf') {
       S.melde('PDF wird gesetzt …', 60000);
@@ -705,11 +702,11 @@
     catch (e) { BIB[art] = null; }
     return BIB[art];
   }
-  /* Galerie (12.10.2026, rund 3000 Vorlagen im Haus): eine Art oder «Alle Vorlagen» über alle Arten, mit Suche und den Filtern Bereich, Grund, Art.
+  /* Galerie (12.10.2026, rund 3000 Vorlagen in der Praxis): eine Art oder «Alle Vorlagen» über alle Arten, mit Suche und den Filtern Bereich, Grund, Art.
      Gezeichnet wird in Blöcken: nur die Treffer, zwölf Blätter je Block, der nächste Block kurz bevor man ihn erreicht. Die Vorschau eines Blatts wird erst
      gesetzt, wenn es ins Bild kommt und nicht mehr schnell gescrollt wird; Blöcke weit ausserhalb des Bilds werden geleert und halten nur ihre Höhe. */
   const ALLE = { key: 'alle', name: 'Alle Vorlagen', alle: true, format: 'a5h', formate: [], vorlagen: [] };
-  const BEREICHE = ["Empfang", "Expériences", "Accords", "Am Tisch", "Gruppen", "Gutschein", "Zeiten", "Auszeichnungen", "Team", "Savièse", "Feed", "Hinweise im Haus", "Anlässe & Events"];
+  const BEREICHE = ["Empfang", "Expériences", "Accords", "Am Tisch", "Gruppen", "Gutschein", "Zeiten", "Auszeichnungen", "Team", "Savièse", "Feed", "Hinweise in der Praxis", "Anlässe & Events"];
   const PORTION = 12, TON = { dunkel: 'Nuit', hell: 'Papier', creme: 'Sable' };
   let vFilter = { bereich: 'alle', ton: 'alle', art: 'alle', q: '' }, beobachter = null, fern = null, waechter = null, vAlle = [], vTreffer = [], vDa = 0, vLauf = 0;
   async function ladeAlle() {
@@ -731,7 +728,7 @@
     const w = $('#startWeg'); w.hidden = false;
     const fOpt = wahl.formate.map(k => `<option value="${k}" ${k === fk ? 'selected' : ''}>${DS.FORMATE[k].name} · ${DS.FORMATE[k].b} × ${DS.FORMATE[k].h} mm</option>`).join('');
     w.innerHTML = `<button class="start__zurueck" data-st="zurueck"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg>Zurück</button>${mitFotoKopf()}
-      <div class="weg__kopf"><div><h1>${esc(wahl.name)}</h1><p class="start__satz">${wahl.satz ? esc(wahl.satz) : wahl.alle ? 'Alle Vorlagen des Hauses an einem Ort. Suchen Sie nach einem Wort oder grenzen Sie nach Bereich, Art und Grund ein.' : wahl.leer ? 'Wählen Sie ein Format, dann geht es los.' : 'Beschreiben Sie in einem Satz, was Sie brauchen, oder nehmen Sie unten eine der Vorlagen.'}</p></div>
+      <div class="weg__kopf"><div><h1>${esc(wahl.name)}</h1><p class="start__satz">${wahl.satz ? esc(wahl.satz) : wahl.alle ? 'Alle Vorlagen der Praxis an einem Ort. Such nach einem Wort oder grenzen Sie nach Bereich, Art und Grund ein.' : wahl.leer ? 'Wählen Sie ein Format, dann geht es los.' : 'Beschreiben Sie in einem Satz, was Sie brauchen, oder nehmen Sie unten eine der Vorlagen.'}</p></div>
         ${wahl.alle ? '' : `<label class="start__format">Format<select id="startFormat">${fOpt}</select></label>`}</div>
       ${wahl.leer || wahl.alle ? '' : `<div class="start__direkt start__direkt--weg">
         <span class="start__direkt-ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
@@ -740,7 +737,7 @@
       </div><p class="start__fehler" id="startFehler" hidden></p>`}
       <div class="vb__kopf" id="vbKopf"></div>
       <div class="vb__liste" id="startVorlagen"></div>
-      <p class="start__nichts" id="vbNichts" hidden>Dazu gibt es noch keine Vorlage. Nehmen Sie einen Filter zurück oder beschreiben Sie oben, was Sie brauchen.</p>`;
+      <p class="start__nichts" id="vbNichts" hidden>Dazu gibt es noch keine Vorlage. Nimm einen Filter zurück oder beschreib oben, was du brauchst.</p>`;
     zeichneVorlagen();
     $('#start .ms-haupt').scrollTo({ top: 0 });
     const sf = w.querySelector('#startFormat'); if (sf) sf.addEventListener('change', e => { fk = e.target.value; zeichneVorlagen(); });
@@ -764,7 +761,7 @@
     kopf.innerHTML = wahl.leer ? '' : `<div class="vb__zeile"><h2>${vAlle.length.toLocaleString('de-CH')} Vorlagen</h2><span id="vbZahl"></span>
         <label class="start__suche vb__suche"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input type="search" id="vbSuche" placeholder="In den Vorlagen suchen …" value="${esc(vFilter.q)}"></label></div>
       <div class="vb__wahl">${wahl.alle ? `<label class="start__format vb__feld">Art<select id="vbArt"><option value="alle">Alle Arten</option>${ARTEN.filter(a => arten[a.key]).map(a => `<option value="${a.key}">${esc(a.name)} · ${arten[a.key]}</option>`).join('')}</select></label>` : ''}
-        <label class="start__format vb__feld">Bereich des Hauses<select id="vbBereich"></select></label>
+        <label class="start__format vb__feld">Bereich der Praxis<select id="vbBereich"></select></label>
         <div class="vb__toene">${[['alle', 'Jeder Grund'], ['dunkel', 'Nuit'], ['hell', 'Papier'], ['creme', 'Sable']].map(([k, t]) => `<button data-ton="${k}" class="${vFilter.ton === k ? 'an' : ''}">${t}</button>`).join('')}</div></div>`;
     zeichneBereiche();
     const su = kopf.querySelector('#vbSuche'); if (su) { let t; su.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { vFilter.q = su.value; filterVorlagen(); }, 140); }); }
@@ -780,7 +777,7 @@
     if (vFilter.bereich !== 'alle' && !z[vFilter.bereich]) vFilter.bereich = 'alle';
     sb.innerHTML = `<option value="alle">Alle Bereiche</option>` + namen.map(b => `<option value="${esc(b)}" ${vFilter.bereich === b ? 'selected' : ''}>${esc(b)} · ${z[b]}</option>`).join('');
     sb.closest('.vb__feld').hidden = !namen.length;
-    if (sb._gw) sb._gw.k.querySelector('.hwahl-wert').textContent = sb.options[sb.selectedIndex].textContent;   // Liste im Hausstil (lib/auswahl.js) nachziehen
+    if (sb._gw) sb._gw.k.querySelector('.hwahl-wert').textContent = sb.options[sb.selectedIndex].textContent;   // Liste in der Praxisstil (lib/auswahl.js) nachziehen
   }
   /* Treffer neu bestimmen und die Galerie von vorn zeichnen */
   function filterVorlagen() {
@@ -895,7 +892,7 @@
     if (/KEINE-VORLAGE/.test(f)) return 'Dazu passt keine fertige Vorlage. Wähl unten eine Art, die Vorlagen kosten nichts.';
     if (/KI-FREIGABE/.test(f)) return 'Die KI ist für dieses Haus noch nicht freigeschaltet. Mit einer Vorlage geht es sofort weiter, die Vorlagen kosten nichts.';
     if (/Guthaben/.test(f)) return 'KI-Guthaben aufgebraucht. Mit einer Vorlage geht es ohne KI weiter, die Vorlagen kosten nichts.';
-    if (!navigator.onLine || /Failed to fetch|NetworkError|Load failed|network/i.test(f)) return 'Keine Verbindung zum Internet. Ihr Satz steht noch im Feld. Vorlagen, Bearbeiten und PDF gehen auch ohne Internet.';   // Prüfung 16.10.2026
+    if (!navigator.onLine || /Failed to fetch|NetworkError|Load failed|network/i.test(f)) return 'Keine Verbindung zum Internet. Dein Satz steht noch im Feld. Vorlagen, Bearbeiten und PDF gehen auch ohne Internet.';   // Prüfung 16.10.2026
     if (/GRENZE/.test(f)) return 'Zu viele Entwürfe in kurzer Zeit. In einer Stunde geht es wieder, mit einer Vorlage sofort.';
     return ''; };
   async function entwirf() {
@@ -910,7 +907,7 @@
     zeigeEntwuerfe(r, text, { titel: art.name, zurueck: () => { wahl = art; fk = format; zeigeWeg(art.key); $('#startAuftrag').value = text; }, nochmal: () => { wahl = art; fk = format; zeigeWeg(art.key); $('#startAuftrag').value = text; entwirf(); } });
   }
 
-  /* Direkt beschreiben auf der Startseite: ohne Art, das Studio wählt Format und Aufbau */
+  /* Direkt beschreiben auf der Startseite: ohne Art, die Werkstatt wählt Format und Aufbau */
   async function entwirfFrei(text) {
     text = (text || $('#startDirekt').value).trim();
     if (text.length < 4) { const f = $('#startDirekt'); f.focus(); f.closest('.start__direkt').classList.add('wackel'); setTimeout(() => f.closest('.start__direkt').classList.remove('wackel'), 600); return; }
@@ -939,8 +936,8 @@
     const w = $('#startWeg'); w.hidden = false;
     const f = DS.FORMATE[r.docs[0].formatKey] || DS.FORMATE.a5h;
     w.innerHTML = `<button class="start__zurueck" data-st="zurueckWeg"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg>${esc(k.titel)}</button>
-      <h1>${r.docs.length === 1 ? 'Ihr Entwurf' : (r.docs.length === 5 ? 'Fünf' : r.docs.length) + ' Entwürfe'}</h1>
-      <p class="start__satz">«${esc(text)}» · ${esc(f.name)}. Wählen Sie den Entwurf, der Ihnen am besten gefällt. Darin ändern Sie danach jeden Text, jedes Foto und jede Farbe.</p>
+      <h1>${r.docs.length === 1 ? 'Deine Vorlage' : (r.docs.length === 5 ? 'Fünf' : r.docs.length) + ' Vorlagen'}</h1>
+      <p class="start__satz">«${esc(text)}» · ${esc(f.name)}. Wähl die Vorlage, die dir am besten gefällt. Darin änderst du danach jeden Text, jedes Foto und jede Farbe.</p>
       ${r.hinweise.length ? `<div class="start__hinweise"><b>Bitte noch ansehen</b><ul>${r.hinweise.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
       <div class="atelier atelier--entwuerfe" id="startEntwuerfe"></div>
       <div class="start__nochmal"><button class="kn kn--klein kn--ohne" data-st="nochmal"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg><span>Fünf neue Entwürfe</span></button></div>`;
@@ -1027,7 +1024,7 @@
       if (b && b.dataset.st === 'nochmal') return kontext && kontext.nochmal();
       if (b && b.dataset.st === 'direkt') return entwirfFrei();
       if (b && b.dataset.st === 'frei') return frei();
-      if (b && b.dataset.st === 'kfrei') { const t = $('#kampFrei').value.trim(); if (t.length < 4) { $('#kampFrei').focus(); return; } const a = offen.a; return entwirfFrei(`${t}. ${offen.typ === 'event' ? 'Anlass' : 'Abteilung'}: ${a.t}${a.z ? ', ' + a.z : ''}. ${a.satz}`); }
+      if (b && b.dataset.st === 'kfrei') { const t = $('#kampFrei').value.trim(); if (t.length < 4) { $('#kampFrei').focus(); return; } const a = offen.a; return entwirfFrei(`${t}. ${offen.typ === 'event' ? 'Anlass' : 'Bereich'}: ${a.t}${a.z ? ', ' + a.z : ''}. ${a.satz}`); }
       const en = e.target.closest('[data-entwurf]');
       if (en) { const d = entwuerfe[+en.dataset.entwurf]; d.name = d.name + (d.variante ? ' · ' + d.variante : ''); st().oeffne(d); st().zeigeHinweise(d.hinweise); zu(); return; }
       const ft = e.target.closest('.vb__toene [data-ton]'); if (ft) { vFilter.ton = ft.dataset.ton; document.querySelectorAll('.vb__toene [data-ton]').forEach(x => x.classList.toggle('an', x === ft)); return filterVorlagen(); }
@@ -1091,7 +1088,7 @@
     return true;
   }
   /* Auswahl aus fünf Entwürfen auch vom Studio aus (Feld «Entwerfen» links) */
-  function auswahl(r, text, nochmal) { zeige(); zeigeEntwuerfe(r, text, { titel: 'Zurück zum Studio', zurueck: () => zu(), nochmal }); $('#startZu').hidden = false; }
+  function auswahl(r, text, nochmal) { zeige(); zeigeEntwuerfe(r, text, { titel: 'Zurück zur Werkstatt', zurueck: () => zu(), nochmal }); $('#startZu').hidden = false; }
 
   /* Ohne KI (Physio Sroka, GitHub Pages ohne Server): die Art, deren Wörter am besten zum Satz passen, mit ihren Aufbauten und Gründen als Entwürfe */
   const TONNAME = { dunkel: 'Nacht', hell: 'Licht', creme: 'Sand' };
@@ -1113,6 +1110,6 @@
     });
     return { name: best.name, format: fk, varianten, hinweise: ['Ohne KI: die passendsten fertigen Vorlagen zu deinem Satz. Texte und Fotos änderst du direkt auf dem Blatt.'] };
   }
-  window.DSStart = { ohneKi, zeige, zu, auswahl, offen: () => !$('#start').hidden, entwuerfe: () => entwuerfe };
+  window.DSStart = { ohneKi, arten: () => ARTEN, inhalt, zeige, zu, auswahl, offen: () => !$('#start').hidden, entwuerfe: () => entwuerfe };
   if (window.DSStudio) los(); else document.addEventListener('ds:bereit', los, { once: true });
 })();

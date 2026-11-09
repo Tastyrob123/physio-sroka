@@ -28,7 +28,7 @@
     });
   }
 
-  /* Ersatzfoto, wenn ein Entwurf ein unbekanntes Foto nennt: ein Foto des Hauses (vorher fest «haus-aare», ein Foto des Grand Beau-Rivage, Prüfung 16.10.2026) */
+  /* Ersatzfoto, wenn ein Entwurf ein unbekanntes Foto nennt: ein Foto der Praxis (vorher fest «haus-aare», ein Foto des Grand Beau-Rivage, Prüfung 16.10.2026) */
   DS.ersatzFoto = M => (M.bildIndex['start'] ? 'start' : ((M.bilder.find(b => !b.eigen) || M.bilder[0] || {}).key));
   /* ---------- Ablage ---------- */
   const alleDocs = () => lies(LS.docs, {});
@@ -43,7 +43,7 @@
     if (da && ST.stand && (da.geaendert || 0) > ST.stand) {
       const k = JSON.parse(JSON.stringify(ST.doc)); k.id = 'd' + Date.now().toString(36); k.name = (k.name || 'Drucksache') + ' (zweites Fenster)'; ST.doc = k;
       $('#docName').value = k.name;
-      setTimeout(() => melde(`KONFLIKT · Diese Drucksache wurde in einem anderen Fenster geändert. Nichts ist überschrieben: Ihre Fassung steht als «${k.name}» in Meine Medien.`, 12000), 0);
+      setTimeout(() => melde(`KONFLIKT · Diese Drucksache wurde in einem anderen Fenster geändert. Nichts ist überschrieben: deine Fassung steht als «${k.name}» in «Meine Drucksachen».`, 12000), 0);
     }
     ST.doc.geaendert = Date.now(); ST.stand = ST.doc.geaendert;
     d[ST.doc.id] = ST.doc;
@@ -75,7 +75,7 @@
     const d = ST.doc, gespeichert = !!alleDocs()[d.id];
     const seit = Date.now() - (parseInt(String(d.id).slice(1), 36) || Date.now());
     const lange = gespeichert && (seit > 10 * 60000 || ST.hist.length >= 10);
-    const a = await dialog(`<h2>Diesen Entwurf verwerfen?</h2><p class="leise">${gespeichert ? 'Er wird aus Ihren Drucksachen entfernt.' : 'Er ist noch nicht gespeichert und verschwindet einfach.'}${lange ? ' Sie haben länger daran gearbeitet. Wenn Sie ihn noch brauchen könnten, behalten Sie ihn als Kopie.' : ''}</p>`,
+    const a = await dialog(`<h2>Diesen Entwurf verwerfen?</h2><p class="leise">${gespeichert ? 'Er wird aus deinen Drucksachen entfernt.' : 'Er ist noch nicht gespeichert und verschwindet einfach.'}${lange ? ' Sie haben länger daran gearbeitet. Wenn Sie ihn noch brauchen könnten, behalten Sie ihn als Kopie.' : ''}</p>`,
       [{ t: 'Behalten', v: false }, ...(lange ? [{ t: 'Stattdessen als Kopie behalten', v: 'kopie' }] : []), { t: 'Verwerfen', v: true, haupt: true }]);
     if (!a) return;
     const alle = alleDocs();
@@ -83,7 +83,7 @@
     delete alle[d.id]; schreib(LS.docs, alle);
     oeffne(leer('a5h', true)); zeichneAblage();
     if (window.DSStart) DSStart.zeige('meine');
-    melde(a === 'kopie' ? 'Als Kopie in Ihren Drucksachen behalten.' : 'Entwurf verworfen.');
+    melde(a === 'kopie' ? 'Als Kopie in deinen Drucksachen behalten.' : 'Entwurf verworfen.');
   }
   function zurueck() { if (document.activeElement && document.activeElement.id === 'eText') document.activeElement.blur();   // erst das Tippen abschliessen (löst «change» aus), dann zurück
     if (eTextVor) { ST.hist.push(eTextVor); eTextVor = null; }   // Tippen im Feld «Inhalt» ohne Verlassen des Felds
@@ -199,7 +199,7 @@
         <div class="gruppe"><label>Format</label><select id="eFormat">${Object.entries(DS.FORMATE).map(([k, f]) => `<option value="${k}" ${k === ST.doc.formatKey ? 'selected' : ''}>${f.name} · ${f.b} × ${f.h} mm</option>`).join('')}</select>
           <p class="klein">Beim Wechsel wird jede Seite im neuen Format neu gesetzt. Texte und Fotos bleiben.</p></div>
         ${q ? `<div class="gruppe"><button class="knopf knopf--voll" data-tu="neuSetzen" style="height:42px">Seite neu setzen<i><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></i></button>
-          <p class="klein">Setzt die Seite mit Ihren geänderten Texten und Fotos neu, Abstände stimmen danach wieder.</p></div>` : ''}
+          <p class="klein">Setzt die Seite mit deinen geänderten Texten und Fotos neu, Abstände stimmen danach wieder.</p></div>` : ''}
         <div class="gruppe"><label>Aufbau</label><select id="eVorlage"><option value="">${q ? '' : 'Frei gestaltet'}</option>${Object.entries(DS.VORLAGEN).map(([k, v]) => `<option value="${k}" ${q && q.vorlage === k ? 'selected' : ''}>${v.name}</option>`).join('')}</select></div>
         <div class="gruppe"><label>Grund</label><div class="segment" id="eTon">${[['dunkel', 'Nuit'], ['hell', 'Papier'], ['creme', 'Sable']].map(([k, t]) => `<button data-ton="${k}" class="${q && q.ton === k ? 'an' : ''}">${t}</button>`).join('')}</div>
           <div style="margin-top:10px">${farbKnoepfe(s.grund, 'grund')}</div>
@@ -345,7 +345,7 @@
   async function umsetzenSeite(neu) {
     const s = seite();
     const q = s.quelle || { vorlage: 'deckel', ton: 'dunkel', inhalt: ausSeiteInhalt(s) };
-    if (s.frei && !(await frag('Die Seite wird mit dem neuen Aufbau neu gesetzt. Texte und Fotos bleiben, Ihre Verschiebungen auf dieser Seite gehen dabei verloren.'))) return zeichne();
+    if (s.frei && !(await frag('Die Seite wird mit dem neuen Aufbau neu gesetzt. Texte und Fotos bleiben, deine Verschiebungen auf dieser Seite gehen dabei verloren.'))) return zeichne();
     ST.auftritt = true;
     aendern(() => { ST.doc.seiten[ST.seite] = DS.setze(ST.M, ST.doc.formatKey, neu.vorlage || q.vorlage, neu.ton || q.ton, q.inhalt, q.stil); }, false);
     ST.sel = null; zeichne();
@@ -377,7 +377,7 @@
     const k = Math.pow(Math.sqrt(f.b * f.h / (105 * 148)), .8), id = DS.neueId(), w = f.b * .7, x = (f.b - w) / 2, y = f.h * .4;
     const E = {
       titel: { typ: 'text', rolle: 'titel', text: 'Neuer Titel', gr: 8 * k, farbe: T.titel, ausr: 'c', x, y, w, ...DS.STIL.titel },
-      text: { typ: 'text', rolle: 'text', text: 'Ihr Text', gr: 2.8 * k, farbe: T.text, ausr: 'c', x, y, w, ...DS.STIL.text },
+      text: { typ: 'text', rolle: 'text', text: 'Dein Text', gr: 2.8 * k, farbe: T.text, ausr: 'c', x, y, w, ...DS.STIL.text },
       zeile: { typ: 'text', rolle: 'mono', text: 'Eine Zeile', gr: 1.9 * k, farbe: T.mono, ausr: 'c', x, y, w, ...DS.STIL.mono },
       bild: (() => { const bb = ST.M.bildIndex[bildKey || DS.ersatzFoto(ST.M)] || { w: 3, h: 2 }; let w = f.b * .7, h = w * bb.h / bb.w; if (h > f.h * .7) { h = f.h * .7; w = h * bb.w / bb.h; } return { typ: 'bild', bild: bildKey || DS.ersatzFoto(ST.M), x: (f.b - w) / 2, y: (f.h - h) / 2, w, h, fx: .5, fy: .5, zoom: 1 }; })(),
       zeichen: { typ: 'zeichen', x: (f.b - 18 * k) / 2, y: f.h * .2, w: 18 * k, farbe: T.zeichen },
@@ -563,7 +563,7 @@
       const inFeld = /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) || ST.modus === 'text';
       const cmd = e.metaKey || e.ctrlKey;
       if (cmd && e.key.toLowerCase() === 'z' && !inFeld) { e.preventDefault(); e.shiftKey ? vor() : zurueck(); return; }
-      if (cmd && e.key.toLowerCase() === 's' && ST.doc && $('#start').hidden) { e.preventDefault(); if (document.activeElement && document.activeElement.id === 'eText') document.activeElement.blur(); if (ST.modus === 'text') textEnde(); speichern(); melde('Gespeichert. Die Drucksache liegt in Meine Medien.'); return; }   // ⌘S (R09): statt «Seite sichern» des Browsers
+      if (cmd && e.key.toLowerCase() === 's' && ST.doc && $('#start').hidden) { e.preventDefault(); if (document.activeElement && document.activeElement.id === 'eText') document.activeElement.blur(); if (ST.modus === 'text') textEnde(); speichern(); melde('Gespeichert. Die Drucksache liegt in «Meine Drucksachen».'); return; }   // ⌘S (R09): statt «Seite sichern» des Browsers
       if (inFeld) return;
       if (e.key === 'Escape') { if (ST.modus === 'ausschnitt') { ST.modus = null; zeichne(); } else if (ST.sel || ST.seitePanel) { ST.sel = null; ST.seitePanel = false; zeichne(); } }
       const el = ST.sel && elById(ST.sel); if (!el) return;
@@ -634,7 +634,7 @@
     try {
       const keys = await DS.eigene.hinzu(ST.M, dateien, t => melde(t, 30000));
       if (!keys.length) { melde('Keine Bilddatei gefunden. Bitte JPG, PNG oder HEIC wählen.'); return; }
-      melde((keys.length === 1 ? 'Foto hinzugefügt. Es liegt unter «Eigene Fotos».' : `${keys.length} Fotos hinzugefügt. Sie liegen unter «Eigene Fotos».`) + (keys.fluechtig ? ' Dieser Browser legt Fotos nicht ab (privates Fenster?): es bleibt nur, bis Sie Drucksachen & Feed schliessen. Für immer: als Arbeitsdatei sichern.' : ''), keys.fluechtig ? 10000 : 4000);
+      melde((keys.length === 1 ? 'Foto hinzugefügt. Es liegt unter «Eigene Fotos».' : `${keys.length} Fotos hinzugefügt. Sie liegen unter «Eigene Fotos».`) + (keys.fluechtig ? ' Dieser Browser legt Fotos nicht ab (privates Fenster?): es bleibt nur, bis Sie Drucksachen schliessen. Für immer: als Arbeitsdatei sichern.' : ''), keys.fluechtig ? 10000 : 4000);
       ST.fotoGruppe = DS.eigene.GRUPPE; ST.fotoLage = 'alle'; $('#fotoSuche').value = '';
       if (aufsBlatt) {
         const el = ST.sel && elById(ST.sel);
@@ -687,7 +687,7 @@
       if (w) {
         e.stopPropagation();
         const k = w.dataset.weg, benutzt = Object.values(alleDocs()).some(d => d.seiten.some(s => s.el.some(x => x.bild === k)));
-        dialog(`<h2>Foto entfernen?</h2><p>«${esc(ST.M.bildIndex[k].alt)}» wird aus Ihren eigenen Fotos gelöscht.${benutzt ? ' Es steckt in mindestens einer Drucksache, dort bleibt dann eine leere Fläche.' : ''}</p>`, [{ t: 'Behalten', v: false }, { t: 'Entfernen', v: true, haupt: true }])
+        dialog(`<h2>Foto entfernen?</h2><p>«${esc(ST.M.bildIndex[k].alt)}» wird aus deinen eigenen Fotos gelöscht.${benutzt ? ' Es steckt in mindestens einer Drucksache, dort bleibt dann eine leere Fläche.' : ''}</p>`, [{ t: 'Behalten', v: false }, { t: 'Entfernen', v: true, haupt: true }])
           .then(async ja => { if (!ja) return; await DS.eigene.loeschen(ST.M, k); zeichneFotos(); zeichne(); });
         return;
       }
@@ -717,9 +717,9 @@
       try { const doc = JSON.parse(await f.text());
         if (doc && !doc.seiten && typeof doc === 'object' && Object.values(doc).length && Object.values(doc).every(x => x && Array.isArray(x.seiten) && x.format)) {   // Sicherung aller Drucksachen (pruefung.html)
           const d = alleDocs(); let n = 0; for (const x of Object.values(doc)) { if (!d[x.id] || (d[x.id].geaendert || 0) < (x.geaendert || 0)) { d[x.id] = x; n++; } }
-          if (!schreib(LS.docs, d)) throw 0; zeichneAblage(); melde(n ? `${n} Drucksachen aus der Sicherung eingelesen. Sie stehen in Meine Medien.` : 'Alle Drucksachen der Sicherung sind schon da.', 6000); e.target.value = ''; return; }
+          if (!schreib(LS.docs, d)) throw 0; zeichneAblage(); melde(n ? `${n} Drucksachen aus der Sicherung eingelesen. Sie stehen in «Meine Drucksachen».` : 'Alle Drucksachen der Sicherung sind schon da.', 6000); e.target.value = ''; return; }
         if (!Array.isArray(doc.seiten) || !doc.format || !doc.seiten.every(s => s && Array.isArray(s.el))) throw 0; if (doc.eigeneFotos) { await DS.eigene.einlesen(ST.M, doc.eigeneFotos); delete doc.eigeneFotos; } doc.id = 'd' + Date.now().toString(36); oeffne(doc); melde('Arbeitsdatei geöffnet.'); }
-      catch (x) { melde('Diese Datei ist keine Arbeitsdatei des Studios.'); }
+      catch (x) { melde('Diese Datei ist keine Arbeitsdatei der Werkstatt.'); }
       e.target.value = '';
     });
   }
@@ -730,16 +730,15 @@
     return d;
   }
 
-  /* ---------- Entwerfen über die KI ---------- */
+  /* ---------- Entwerfen: ohne KI, passende Vorlagen (Physio Sroka) ---------- */
   const IDEEN = [
-    'Ein A5-Flyer für die Expériences, vorne ein Foto, hinten die Adresse',
-    'Die Menükarte des Abends in sieben Services',
-    'Plakat A3 für die 18 Punkte im GaultMillau',
-    'Bon cadeau für die Expérience en 6 services, quer',
-    'Ansichtskarte mit dem Plan von Savièse',
-    'Einladung zu einem Familienfest, quadratisch',
-    'Aushang: Horaires und Fermetures, A4',
-    'Karte für Allergien und Régimes am Tisch',
+    'Ein Übungsblatt für Rücken und Nacken',
+    'Eine Visitenkarte mit beiden Standorten',
+    'Eine Terminkarte für die nächsten Termine',
+    'Ein Aushang mit den Öffnungszeiten an der Tür',
+    'Ein Faltblatt über die Praxis',
+    'Eine Karte für Bewertungen in Hemmingen',
+    'Briefpapier mit Umschlag',
   ];
   async function entwerfen(o = {}) {
     if (o instanceof Event) o = {};
@@ -751,8 +750,8 @@
     $('#entwurfHinweise').hidden = true; btn.disabled = true;
     const lader = $('#lader'), fl = $('#flaeche').getBoundingClientRect();
     Object.assign(lader.style, { left: fl.left + 'px', top: fl.top + 'px', width: fl.width + 'px', height: fl.height + 'px' });
-    const ZEILEN = ['Den Auftrag lesen', 'Format und Aufbau wählen', 'Fotos des Hauses aussuchen', 'Texte im Ton des Hauses schreiben', 'Fakten mit den Unterlagen abgleichen', 'Nach den Regeln des Hauses setzen'];
-    $('#laderText').textContent = o.varianten ? 'Fünf Entwürfe entstehen' : 'Das Studio entwirft';
+    const ZEILEN = ['Den Auftrag lesen', 'Format und Aufbau wählen', 'Fotos der Website aussuchen', 'Texte im Ton der Praxis schreiben', 'Fakten mit den Unterlagen abgleichen', 'Nach den Regeln der Praxis setzen'];
+    $('#laderText').textContent = o.varianten ? 'Fünf Entwürfe entstehen' : 'Die Werkstatt entwirft';
     if (o.varianten) ZEILEN.splice(1, 0, 'Fünf verschiedene Gestaltungen anlegen');
     let zi = 0; $('#laderZeile').textContent = ZEILEN[0]; lader.hidden = false;
     const zuhr = setInterval(() => { const z = $('#laderZeile'); z.style.opacity = 0; setTimeout(() => { zi = (zi + 1) % ZEILEN.length; z.textContent = ZEILEN[zi]; z.style.opacity = 1; }, 450); }, 3000);
@@ -804,7 +803,7 @@
       <div class="dna__farben">${Object.entries(M.farben).map(([k, v]) => `<div><span style="background:${v}"></span>${esc(M.farbnamen[k])}<br>${v}</div>`).join('')}</div>
       ${Object.entries(M.schriften).map(([k, s]) => `<div class="dna__schrift" style="font-family:'DS-${k}';font-size:${k === 'titel' ? 22 : k === 'mono' ? 12 : 15}px;${k === 'mono' || k === 'kapitale' ? 'text-transform:uppercase;letter-spacing:.16em' : ''}">${esc(M.name)}<small style="font-family:'DS-text';text-transform:none;letter-spacing:0">${esc(s.familie)} · ${esc(s.wofuer)}</small></div>`).join('')}
       <ul>${M.regeln.map(r => DS.regelSichtbar(r)).filter(Boolean).map(r => `<li>${esc(r)}</li>`).join('')}</ul>
-      <p class="klein">${M.bilder.length} Fotos des Hauses mit Beschreibung, dazu der Wortlaut der Website und der Unterlagen (Karten, Treatment-Menü, Veranstaltungen).</p>`;
+      <p class="klein">${M.bilder.length} Fotos der Website mit Beschreibung, dazu der Wortlaut der Website und der Unterlagen (Karten, Treatment-Menü, Veranstaltungen).</p>`;
   }
 
   /* ---------- Speichern als Datei ---------- */
@@ -846,13 +845,13 @@
   async function start() {
     const M = await DS.ladeMarke(HAUS);
     ST.M = M;
-    document.title = `Drucksachen & Feed · ${M.name}`;
+    document.title = `Drucksachen · ${M.name}`;
     $('#kopfName').textContent = M.name;
     $('#kopfZeichen').innerHTML = DS.zeichenSvg(M, 'currentColor');
     $('#inselZeichen').innerHTML = DS.zeichenSvg(M, 'currentColor');
     $('#laderZeichen').innerHTML = `<span class="lader__a">${DS.zeichenSvg(M, 'currentColor')}</span><span class="lader__b">${DS.zeichenSvg(M, 'currentColor')}</span>`;   /* wie beim Buchen auf der Website: das Zeichen füllt sich von unten mit Gold */
     const opt = Object.entries(DS.FORMATE).map(([k, f]) => `<option value="${k}">${f.name} · ${f.art}</option>`).join('');
-    $('#auftragFormat').innerHTML = '<option value="">Das Studio wählt passend</option>' + opt;
+    $('#auftragFormat').innerHTML = '<option value="">Die Werkstatt wählt passend</option>' + opt;
     $('#vorlageFormat').innerHTML = opt; $('#vorlageFormat').value = 'a5h';
     $('#ideen').innerHTML = IDEEN.map(t => `<button>${esc(t)}</button>`).join('');
     $('#ideen').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { $('#auftrag').value = b.textContent; $('#auftrag').focus(); } });
@@ -918,5 +917,5 @@
       zeigeHinweise(l) { const h = $('#entwurfHinweise'); if (!l || !l.length) { h.hidden = true; return; } h.hidden = false; h.innerHTML = `<b>Bitte noch ansehen</b><ul>${l.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`; zeigeTab('entwerfen'); } };
     document.dispatchEvent(new Event('ds:bereit'));
   }
-  start().catch(e => { console.error(e); document.body.insertAdjacentHTML('beforeend', `<div class="meldung">Das Studio konnte nicht starten: ${esc(e.message)}</div>`); });
+  start().catch(e => { console.error(e); document.body.insertAdjacentHTML('beforeend', `<div class="meldung">Die Werkstatt konnte nicht starten: ${esc(e.message)}</div>`); });
 })();

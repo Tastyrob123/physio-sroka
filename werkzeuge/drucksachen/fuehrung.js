@@ -11,28 +11,30 @@
   const PLAY = '<svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg>';
 
   /* ---------- Schritte der Führung ---------- */
+  /* Physio Sroka: Wortlaut in der Du-Form (Sylvia nutzt die Werkstatt selbst), ohne KI. Filme je Schritt nur, wenn sie in hilfe/ liegen (FILME), sonst ohne. */
+  const FILME = window.DS_FILME || {};
   const SCHRITTE = [
     { ziel: '#btnNeu', film: 'schritt-neu', titel: 'Übersicht und neue Drucksache',
-      text: 'Über «Übersicht» kommen Sie zur Startseite. Dort liegen alle Ihre Drucksachen zum Öffnen, Umbenennen, Kopieren oder als PDF. Oben beschreiben Sie in einem Satz, was neu entstehen soll, und das Studio legt fünf Entwürfe an. Sie nehmen den, der Ihnen am besten gefällt.' },
-    { ziel: '#auftrag', film: 'schritt-1', vor: () => tab('entwerfen'), titel: 'Sagen, was Sie brauchen',
-      text: 'Schreiben Sie hier in einem Satz, welche Drucksache entstehen soll, zum Beispiel «Ein Flyer für die Expériences». Farben, Schriften, Fotos und Angaben des Hauses kennt das Studio schon.',
-      extra: { t: 'Beispiel einsetzen', tu: () => { $('#auftrag').value = 'Ein A5-Flyer für die Expériences, vorne ein Foto, hinten die Adresse'; } } },
-    { ziel: '#btnEntwerfen', film: 'schritt-2', titel: 'Fünf Entwürfe, einer gewinnt',
-      text: 'Ein Klick, und nach etwa zwanzig Sekunden stehen fünf Entwürfe nebeneinander: gleiche Angaben, verschiedene Gestaltung. Sie klicken den schönsten an und arbeiten darin weiter. Gefällt keiner, holen Sie fünf neue.' },
+      text: 'Über «Übersicht» kommst du zur Startseite. Dort liegen alle deine Drucksachen zum Öffnen, Umbenennen, Kopieren oder als PDF, dazu alle Arten: Visitenkarte, Terminkarte, Übungsblatt, Aushang, Faltblatt, Briefpapier, Umschlag und die Karten für Bewertungen.' },
+    { ziel: '#auftrag', film: 'schritt-1', vor: () => tab('entwerfen'), titel: 'Sagen, was du brauchst',
+      text: 'Schreib hier in einem Satz, welche Drucksache entstehen soll, zum Beispiel «ein Übungsblatt für Rücken und Nacken». Eine KI läuft hier nicht: die Werkstatt sucht dazu die passenden fertigen Vorlagen im Stil der Praxis.',
+      extra: { t: 'Beispiel einsetzen', tu: () => { $('#auftrag').value = 'Ein Übungsblatt für Rücken und Nacken'; } } },
+    { ziel: '#btnEntwerfen', film: 'schritt-2', titel: 'Vorlagen zur Wahl',
+      text: 'Ein Klick, und die passenden Vorlagen stehen nebeneinander: gleiche Angaben, verschiedene Gestaltung. Du klickst die schönste an und arbeitest darin weiter.' },
     { ziel: '#wirt', film: 'schritt-3', titel: 'Das Blatt',
-      text: 'Hier liegt Ihre Drucksache. Einmal klicken wählt einen Teil aus, mit gedrückter Maus verschieben Sie ihn. Doppelklick auf einen Text, und Sie schreiben direkt hinein. Der dunkle Rand ist der Beschnitt: Was dort liegt, schneidet die Druckerei ab.' },
+      text: 'Hier liegt deine Drucksache. Einmal klicken wählt einen Teil aus, mit gedrückter Maus verschiebst du ihn, er rastet an Mitte und Kanten ein. Doppelklick auf einen Text, und du schreibst direkt hinein. Der dunkle Rand ist der Beschnitt: Was dort liegt, schneidet die Druckerei ab.' },
     { ziel: '#rechts', film: 'schritt-4', titel: 'Anpassen',
-      text: 'Rechts ändern Sie, was Sie ausgewählt haben: Schrift, Grösse, Farbe oder das Foto. Ist nichts ausgewählt, stellen Sie hier das Format und den Aufbau der ganzen Seite um. Es gibt nur die Farben und Schriften des Hauses, so bleibt alles im Stil.' },
+      text: 'Rechts änderst du, was du ausgewählt hast: Schrift, Grösse, Farbe oder das Foto. Ist nichts ausgewählt, stellst du hier Format, Aufbau und Grund der ganzen Seite um. Es gibt nur die Farben und Schriften der Website, so bleibt alles im Stil.' },
     { ziel: '#werkzeug', film: 'schritt-5', titel: 'Etwas hinzufügen',
-      text: 'Ein neuer Titel, ein Text, ein Foto, das Zeichen des Hauses oder eine Linie: ein Klick, und es liegt auf dem Blatt. Oben rechts in dieser Leiste wechseln Sie zwischen Vorder- und Rückseite.' },
+      text: 'Ein neuer Titel, ein Text, ein Foto, das Zeichen der Praxis oder eine Linie: ein Klick, und es liegt auf dem Blatt. Oben rechts in dieser Leiste wechselst du zwischen den Seiten.' },
     { ziel: '.reiter', film: 'schritt-6', titel: 'Vorlagen, Fotos und Ablage',
-      text: 'Unter «Fotos» liegen alle Bilder des Hauses, nach Bereichen sortiert, dazu Ihre eigenen: hochladen oder einfach aufs Blatt ziehen. Unter «Vorlagen» finden Sie fertige Aufbauten, in der «Ablage» alles, was Sie gemacht haben. Gespeichert wird von selbst.' },
+      text: 'Unter «Fotos» liegen die Bilder der Website und die QR-Codes, dazu deine eigenen: hochladen oder einfach aufs Blatt ziehen, sie bleiben nur in diesem Browser. Unter «Vorlagen» findest du fertige Aufbauten, in der «Ablage» alles, was du gemacht hast. Gespeichert wird von selbst.' },
     { ziel: '#btnZurueck', film: 'schritt-7', titel: 'Ein Schritt zurück',
       text: 'Etwas verrutscht oder gelöscht? Dieser Pfeil macht den letzten Schritt rückgängig, der daneben holt ihn zurück. Auf der Tastatur geht das mit ⌘ Z.' },
     { ziel: '#btnPruefen', film: 'schritt-8', titel: 'Die Druckprüfung',
-      text: 'Das Studio prüft für Sie, ob alles druckbereit ist: offene Lücken wie [Preis], Text zu nah am Rand, Fotos, die zu unscharf würden. Steht hier eine Null, ist alles in Ordnung. Ein Klick zeigt, was noch fehlt.' },
+      text: 'Die Werkstatt prüft für dich, ob alles druckbereit ist: Text zu nah am Rand, Fotos, die zu unscharf würden, Flächen ohne Beschnitt. Steht hier eine Null, ist alles in Ordnung. Ein Klick zeigt, was noch fehlt.' },
     { ziel: '#btnSpeichern', film: 'schritt-9', titel: 'Druckfertig speichern',
-      text: 'Zum Schluss speichern Sie die Drucksache als PDF für die Druckerei. Beschnitt, Schriften und Fotos sind schon richtig eingestellt, Sie geben die Datei einfach weiter. Für Instagram gibt es hier auch ein Bild.' },
+      text: 'Zum Schluss speicherst du die Drucksache als PDF für die Druckerei, auf Wunsch mit Schnittmarken. Beschnitt, Schriften und Fotos sind schon richtig eingestellt. Als Arbeitsdatei kannst du sie sichern und später weiterbearbeiten.' },
   ];
 
   /* ---------- Begrüssung ---------- */
@@ -40,17 +42,17 @@
     const M = window.DS && DS.M;
     schicht(`<div class="hk hk--gross" role="dialog" aria-modal="true" aria-label="Willkommen">
       <div class="hk__zeichen">${M ? DS.zeichenSvg(M, 'currentColor') : ''}</div>
-      <h2>Willkommen bei Drucksachen & Feed</h2>
-      <p class="hk__unter">Flyer, Karten, Aushänge und Gutscheine im Stil ${M ? (M.artikel || 'der ' + M.name) : 'des Hauses'}, ganz ohne Grafikprogramm.</p>
+      <h2>Willkommen in den Drucksachen</h2>
+      <p class="hk__unter">Karten, Blätter, Aushänge und Briefe im Stil ${M ? (M.artikel || 'der ' + M.name) : 'der Praxis'}, ganz ohne Grafikprogramm.</p>
       <div class="hk__drei">
-        <div><span class="hk__bild"><svg viewBox="0 0 48 48"><path d="M10 34h28M10 26h20M10 18h28"/><path d="m33 30 7-7 3 3-7 7-4 1z"/></svg></span><b>Sagen</b><p>In einem Satz beschreiben, was Sie brauchen.</p></div>
-        <div><span class="hk__bild"><svg viewBox="0 0 48 48"><rect x="6" y="14" width="10" height="14" rx="1.5"/><rect x="19" y="10" width="10" height="14" rx="1.5"/><rect x="32" y="14" width="10" height="14" rx="1.5"/><path d="m20 33 4 4 7-8"/></svg></span><b>Wählen</b><p>Fünf Entwürfe im Stil des Hauses, Sie nehmen den schönsten.</p></div>
+        <div><span class="hk__bild"><svg viewBox="0 0 48 48"><path d="M10 34h28M10 26h20M10 18h28"/><path d="m33 30 7-7 3 3-7 7-4 1z"/></svg></span><b>Sagen</b><p>In einem Satz beschreiben, was du brauchst.</p></div>
+        <div><span class="hk__bild"><svg viewBox="0 0 48 48"><rect x="6" y="14" width="10" height="14" rx="1.5"/><rect x="19" y="10" width="10" height="14" rx="1.5"/><rect x="32" y="14" width="10" height="14" rx="1.5"/><path d="m20 33 4 4 7-8"/></svg></span><b>Wählen</b><p>Fertige Vorlagen im Stil der Praxis, du nimmst die schönste.</p></div>
         <div><span class="hk__bild"><svg viewBox="0 0 48 48"><rect x="11" y="8" width="26" height="34" rx="2"/><path d="M17 16h14M17 22h10"/><path d="m27 30 9 3-4 1.5-1.5 4z"/></svg></span><b>Anpassen</b><p>Texte, Fotos und Format direkt auf dem Blatt ändern.</p></div>
         <div><span class="hk__bild"><svg viewBox="0 0 48 48"><path d="M14 18V8h20v10"/><rect x="8" y="18" width="32" height="14" rx="3"/><path d="M14 28h20v12H14z"/><path d="M19 33h10M19 37h6"/></svg></span><b>Drucken</b><p>Als PDF speichern und der Druckerei geben.</p></div>
       </div>
       <div class="hk__knoepfe">
         <button class="knopf knopf--voll" data-hk="fuehrung">Kurze Führung starten${PFEIL}</button>
-        <button class="hk__video" data-hk="video">${PLAY}<span>Demo-Video ansehen</span></button>
+        ${FILME.demo ? `<button class="hk__video" data-hk="video">${PLAY}<span>Demo-Video ansehen</span></button>` : ''}
       </div>
       <button class="hk__leise" data-hk="los">Gleich loslegen</button>
     </div>`, true);
@@ -101,8 +103,8 @@
       addEventListener('resize', setze); document.addEventListener('keydown', taste);
     }
     const k = ebene.querySelector('.hk--tour');
-    const film = `hilfe/${s.film}`;
-    k.innerHTML = `<div class="hk__film"><video src="${film}.mp4" poster="${film}.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+    const film = FILME[s.film] ? `hilfe/${s.film}` : '';
+    k.innerHTML = `${film ? `<div class="hk__film"><video src="${film}.webm" autoplay muted loop playsinline preload="auto"></video></div>` : ''}
       <div class="hk__fort"><span style="width:${(nr + 1) / SCHRITTE.length * 100}%"></span></div>
       <small>Schritt ${nr + 1} von ${SCHRITTE.length}</small>
       <h3>${s.titel}</h3><p>${s.text}</p>
@@ -114,10 +116,12 @@
         <button class="knopf" data-hk="weiter">${nr === SCHRITTE.length - 1 ? 'Fertig' : 'Weiter'}${PFEIL}</button>
       </div>`;
     const v = k.querySelector('video');
-    v.addEventListener('error', () => k.querySelector('.hk__film').remove());
-    v.addEventListener('loadedmetadata', setze);
-    v.play().catch(() => { });
-    k.querySelector('.hk__film').addEventListener('click', () => v.paused ? v.play() : v.pause());
+    if (v) {
+      v.addEventListener('error', () => k.querySelector('.hk__film').remove());
+      v.addEventListener('loadedmetadata', setze);
+      v.play().catch(() => { });
+      k.querySelector('.hk__film').addEventListener('click', () => v.paused ? v.play() : v.pause());
+    }
     setze();
     k.querySelector('[data-hk="weiter"]').focus({ preventScroll: true });
   }
@@ -150,10 +154,10 @@
     schicht(`<div class="hk hk--gross" role="dialog" aria-modal="true">
       <div class="hk__zeichen">${DS.zeichenSvg(DS.M, 'currentColor')}</div>
       <h2>Mehr braucht es nicht</h2>
-      <p class="hk__unter">Sagen, wählen, anpassen, drucken. Alle Ihre Drucksachen finden Sie oben unter «Übersicht». Führung und Video finden Sie jederzeit unter «Hilfe».</p>
+      <p class="hk__unter">Sagen, wählen, anpassen, drucken. Alle deine Drucksachen findest du oben unter «Übersicht», die Führung jederzeit unter «Hilfe».</p>
       <div class="hk__knoepfe">
         <button class="knopf knopf--voll" data-hk="los">Loslegen${PFEIL}</button>
-        <button class="hk__video" data-hk="video">${PLAY}<span>Demo-Video ansehen</span></button>
+        ${FILME.demo ? `<button class="hk__video" data-hk="video">${PLAY}<span>Demo-Video ansehen</span></button>` : ''}
       </div>
     </div>`, true);
   }
@@ -161,16 +165,16 @@
   /* ---------- Video ---------- */
   async function video() {
     let kapitel = [];
-    try { kapitel = await (await fetch('hilfe/kapitel.json', { cache: 'no-store' })).json(); } catch (e) { }
+    kapitel = FILME.kapitel || [];
     const fmt = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
     schicht(`<div class="hk hk--video" role="dialog" aria-modal="true" aria-label="Demo-Video">
-      <div class="hk__kopf"><h2>So arbeitet das Studio</h2><button class="hk__x" data-hk="los" aria-label="Schliessen"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
-      <video src="hilfe/demo.mp4" poster="hilfe/demo-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="hk__kopf"><h2>So arbeitet die Werkstatt</h2><button class="hk__x" data-hk="los" aria-label="Schliessen"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <video src="hilfe/demo.webm" controls playsinline preload="metadata"></video>
       ${kapitel.length ? `<div class="hk__kapitel">${kapitel.map(k => `<button data-hk="kapitel" data-t="${k.t}"><b>${k.titel}</b><span>${fmt(k.t)}</span></button>`).join('')}</div>` : ''}
-      <div class="hk__knoepfe hk__knoepfe--zeile"><button class="leicht" data-hk="fuehrung">Führung am Studio starten</button><button class="knopf" data-hk="los">Selbst ausprobieren${PFEIL}</button></div>
+      <div class="hk__knoepfe hk__knoepfe--zeile"><button class="leicht" data-hk="fuehrung">Führung starten</button><button class="knopf" data-hk="los">Selbst ausprobieren${PFEIL}</button></div>
     </div>`, true);
     const v = ebene.querySelector('video');
-    v.addEventListener('error', () => { v.replaceWith(Object.assign(document.createElement('p'), { className: 'hk__unter', textContent: 'Das Video konnte nicht geladen werden. Die Führung am Studio zeigt dasselbe Schritt für Schritt.' })); });
+    v.addEventListener('error', () => { v.replaceWith(Object.assign(document.createElement('p'), { className: 'hk__unter', textContent: 'Das Video konnte nicht geladen werden. Die Führung zeigt dasselbe Schritt für Schritt.' })); });
     v.play().catch(() => { });
     document.addEventListener('keydown', taste);
   }
@@ -179,8 +183,8 @@
   function hilfeMenue() {
     schicht(`<div class="hk hk--menue" role="dialog" aria-modal="true" aria-label="Hilfe">
       <div class="hk__kopf"><h2>Hilfe</h2><button class="hk__x" data-hk="los" aria-label="Schliessen"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
-      <button class="hk__zeile" data-hk="video"><span class="hk__ic">${PLAY}</span><span><b>Demo-Video ansehen</b><small>Zwei Minuten: ein Flyer vom Satz bis zum PDF</small></span></button>
-      <button class="hk__zeile" data-hk="fuehrung"><span class="hk__ic"><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span><span><b>Führung am Studio</b><small>Zehn kurze Schritte, direkt an den Knöpfen</small></span></button>
+      ${FILME.demo ? `<button class="hk__zeile" data-hk="video"><span class="hk__ic">${PLAY}</span><span><b>Demo-Video ansehen</b><small>Eine Visitenkarte vom Öffnen bis zum PDF</small></span></button>` : ''}
+      <button class="hk__zeile" data-hk="fuehrung"><span class="hk__ic"><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span><span><b>Führung in der Werkstatt</b><small>Zehn kurze Schritte, direkt an den Knöpfen</small></span></button>
       <h3>Auf der Tastatur</h3>
       <dl class="hk__tasten">
         <dt>Doppelklick</dt><dd>Text schreiben oder Foto-Ausschnitt schieben</dd>
@@ -198,7 +202,7 @@
   function los() {
     $('#btnHilfe').addEventListener('click', hilfeMenue);
     const q = new URLSearchParams(location.search);
-    if (q.get('hilfe') === 'video') video();
+    if (q.get('hilfe') === 'video' && FILME.demo) video();
     else if (q.get('hilfe') === 'fuehrung') starte(0);
     /* Station 12, 8.11.2026 (Fehlerbuch 218): die Begrüssung öffnet nur auf Klick («Hilfe»), nie von selbst */
   }

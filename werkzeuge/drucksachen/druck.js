@@ -99,7 +99,7 @@
       } else if (el.typ === 'flaeche') {
         if (el.tapete) ops.push({ art: 'raster', x: el.x, y: el.y, w: el.w, h: el.h, deck, ...(await tapetenBild(M, el.tapete, DS.farbe(M, el.farbe), el.x, el.y, el.w, el.h, el.r, 240)) });
         else ops.push({ art: 'pfad', d: rr(el.x, el.y, el.w, el.h, el.r), fill: DS.farbe(M, el.farbe), deck });
-      } else if (el.typ === 'linie' && el.zierde && M.zierde) {   // Zierde «xx» des Hauses als Linienzug in mm (PDF und Bild gleich)
+      } else if (el.typ === 'linie' && el.zierde && M.zierde) {   // Zierde «xx» der Praxis als Linienzug in mm (PDF und Bild gleich)
         const z = M.zierde, kx = el.w / z.vb[2], ky = el.h / z.vb[3];
         for (const d0 of z.pfade) ops.push({ art: 'pfad', d: d0.replace(/(-?[\d.]+) (-?[\d.]+)/g, (m, x, y) => `${(el.x + x * kx).toFixed(3)} ${(el.y + y * ky).toFixed(3)}`), stroke: DS.farbe(M, el.farbe), breite: z.strich * kx, deck });
       } else if (el.typ === 'linie') {
@@ -129,7 +129,7 @@
     const { PDFDocument, rgb, cmyk } = PDFLib;
     const pdf = await PDFDocument.create();
     pdf.registerFontkit(fontkit);
-    pdf.setTitle(doc.name); pdf.setAuthor(M.name); pdf.setCreator('Drucksachen & Feed · Tasty Studios'); pdf.setProducer('Drucksachen & Feed');
+    pdf.setTitle(doc.name); pdf.setAuthor(M.name); pdf.setCreator('Drucksachen · Tasty Studios'); pdf.setProducer('Drucksachen');
     const B = DS.B, R = o.marken ? 10 : 0, f = doc.format;
     const fonts = {}, zeichensatz = {};
     const font = async rolle => {
@@ -221,7 +221,7 @@
         const h = DS.elHoehe(M, el), kurz = el.typ === 'text' ? `«${el.text.replace(/\s+/g, ' ').slice(0, 34)}${el.text.length > 34 ? '…' : ''}»` : { bild: 'Foto', flaeche: 'Fläche', linie: 'Linie', rahmen: 'Rahmen', zeichen: 'Zeichen' }[el.typ];
         if (el.typ === 'bild' && M.bildIndex[el.bild]) {   // Kennzeichnung wie in «Markenbuch»
           const bi = M.bildIndex[el.bild];
-          if (bi.ki) out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}Foto mit KI erzeugt («${bi.alt}»): zeigt kein echtes Gericht oder Getränk des Hauses. Für Werbung nur mit Hinweis oder nach einem echten Foto.` });
+          if (bi.ki) out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}Foto mit KI erzeugt («${bi.alt}»): zeigt kein echtes Gericht oder Getränk der Praxis. Für Werbung nur mit Hinweis oder nach einem echten Foto.` });
           else if (bi.herkunft === 'frei') out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}Foto frei lizenziert (${bi.quelle}): Urheber und Lizenz beim Foto oder im Impressum nennen.` });
         }
         if (el.typ === 'text') {

@@ -1,0 +1,74 @@
+[
+ [
+  "01",
+  "01-anfrage",
+  "Antwort auf eine Terminanfrage",
+  "Kommt nach einer Anfrage über die Website: ein erster Termin zum Bestätigen, dazu, was man mitbringt."
+ ],
+ [
+  "02",
+  "02-bestaetigung",
+  "Terminbestätigung",
+  "Bestätigt den vereinbarten Termin und lädt ein, den Fragebogen vorher auszufüllen."
+ ],
+ [
+  "03",
+  "03-erinnerung",
+  "Erinnerung am Vortag",
+  "Eine kurze Erinnerung am Tag davor, mit der Nummer für den Fall, dass etwas dazwischenkommt."
+ ],
+ [
+  "04",
+  "04-uebungen",
+  "Ihre Übungen für zu Hause",
+  "Kommt nach dem ersten Termin, mit dem Übungsplan im Anhang und dem Weg zu den Übungen auf der Website."
+ ],
+ [
+  "05",
+  "05-verschieben",
+  "Termin verschieben",
+  "Wenn Du einen Termin verschieben musst: ein neuer Vorschlag, freundlich und kurz."
+ ],
+ [
+  "06",
+  "06-absage",
+  "Absage bestätigen",
+  "Wenn ein Patient absagt: kurz bestätigt, mit dem Weg zu einem neuen Termin."
+ ],
+ [
+  "07",
+  "07-rechnung",
+  "Rechnung",
+  "Die Rechnung für Privatpatienten im Anhang, mit dem Hinweis zur Krankenversicherung und Beihilfe."
+ ],
+ [
+  "08",
+  "08-bewertung",
+  "Bitte um eine Bewertung",
+  "Nach einer abgeschlossenen Behandlung: eine leise Bitte um ein paar Worte bei Google."
+ ],
+ [
+  "09",
+  "09-hausbesuch",
+  "Hausbesuch bestätigen",
+  "Bestätigt einen Hausbesuch mit Tag, Uhrzeit und Adresse."
+ ],
+ [
+  "10",
+  "10-unternehmen",
+  "Anfrage eines Unternehmens",
+  "Antwort an eine Firma, die ein Seminar zu Stressbewältigung möchte: drei Fragen und die Bitte um ein Telefonat."
+ ],
+ [
+  "11",
+  "11-geschlossen",
+  "Praxis geschlossen",
+  "Vor Urlaub oder Feiertagen an alle Patienten: wann die Praxis zu ist und wie man trotzdem anfragt."
+ ],
+ [
+  "12",
+  "12-englisch",
+  "Antwort auf Englisch",
+  "Die Antwort auf eine Anfrage auf Englisch, mit dem Weg zur englischen Seite."
+ ]
+]

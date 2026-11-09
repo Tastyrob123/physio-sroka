@@ -41,7 +41,9 @@
     var zeilen = z.positionen.filter(function (p) { return p.leistung.trim() || p.datum.trim() || zahl(p.preis); });
     var bloecke = zeilen.length ? zeilen.map(function (p) {
       return '<div class="re-zeile"><span>' + esc(p.datum) + '</span><span>' + esc(p.leistung) + '</span><span class="z">' + esc(p.anzahl) + '</span><span class="z">' + euro.format(zahl(p.preis)) + '</span><span class="z">' + euro.format(betrag(p)) + '</span></div>';
-    }) : ['<div class="re-zeile re-zeile--leer"><span>Noch keine Leistung eingetragen.</span></div>'];
+    }) : ['Physiotherapie nach Bobath', 'CranioSacral-Therapie', 'Hausbesuch'].map(function (l) {   // leeres Blatt zeigt, wie es aussieht: Leistungen der Website, Preise trägt Sylvia selbst ein (keine erfundenen Preise)
+      return '<div class="re-zeile re-zeile--beispiel"><span>Beispiel</span><span>' + l + '</span><span class="z">1</span><span class="z re-frei">Preis eintragen</span><span class="z re-frei">–</span></div>';
+    });
     var schluss = '<footer class="re-schluss"><div class="re-summe"><span>Summe</span><b>' + euro.format(summe()) + '</b></div>'
       + '<p class="re-ust">Umsatzsteuerfrei nach § 4 Nr. 14 UStG.</p><p class="re-bitte">Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer.</p><p class="re-gruss">Mit freundlichen Grüßen<span>Sylvia Sroka</span></p>'   /* gestalteter Schluss (F95) */
       + '<div class="re-unten"><div><p class="sr-b-zeile">Steuernummer</p>' + (z.steuernummer.trim() ? '<p>' + esc(z.steuernummer.trim()) + '</p>' : '<span class="re-luecke"></span>') + '</div>'

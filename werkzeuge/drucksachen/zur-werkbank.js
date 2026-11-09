@@ -186,7 +186,7 @@
       '<style>' +
       ':host{direction:ltr}' +
       'a{position:relative;overflow:hidden;isolation:isolate;box-sizing:border-box;display:inline-flex;align-items:center;gap:11px;height:44px;padding:0 20px 0 5px;border-radius:999px;' +
-      'font:400 11.5px/1 "ZW Mono","DM Mono",ui-monospace,"SF Mono",Menlo,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",monospace;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
+      'font:400 13px/1 "ZW Mono","DM Mono",ui-monospace,"SF Mono",Menlo,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",monospace;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
       'color:#2c2922;background:linear-gradient(180deg,#fbf8f3 0%,#e6dbc6 46%,#cebfa1 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
       'box-shadow:inset 0 1px 0 #fff,inset 0 -3px 0 rgba(113,96,61,.32),inset 0 0 0 1px rgba(154,132,88,.62),0 0 0 1px rgba(27,25,21,.28),0 12px 22px -12px rgba(27,25,21,.6);' +
       'transition:transform .55s cubic-bezier(.32,.72,0,1)}' +
@@ -199,7 +199,7 @@
       '@media (hover:hover){a:hover{transform:translateY(-2px)}a:hover i{transform:translateX(-2px) scale(1.05)}a:hover::after{transform:translateX(360%) skewX(-18deg);transition:transform 1s cubic-bezier(.16,1,.3,1)}}' +
       'a:active{transform:translateY(1px) scale(.985)}' +
       'a:focus-visible{outline:2px solid #d7c49e;outline-offset:3px}' +
-      '@media (max-width:560px){a{height:40px;gap:9px;padding:0 16px 0 4px;font-size:10.5px}i{width:32px;height:32px}:host([lang="zh"]) a,:host([lang="ko"]) a,:host([lang="ar"]) a{font-size:12px}}' +
+      '@media (max-width:560px){a{height:40px;gap:9px;padding:0 16px 0 4px;font-size:13px}i{width:32px;height:32px}:host([lang="zh"]) a,:host([lang="ko"]) a,:host([lang="ar"]) a{font-size:13px}}' +
       '@media (prefers-reduced-motion:reduce){a,i,a::after{transition:none!important}}' +
       '</style>' +
       '<a part="knopf" href="' + ziel.replace(/"/g, '&quot;') + '"><i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M13 8H3.5M7.5 4 3.5 8l4 4"/></svg></i><span' + (sp === 'ar' ? ' dir="rtl"' : '') + '>' + TEXT[sp] + '</span></a>';

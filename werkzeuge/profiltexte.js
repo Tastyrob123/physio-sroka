@@ -83,6 +83,7 @@
     { t: 'Auf Bewertungen antworten', s: 'Kurz und freundlich antworten, ohne Angaben zur Behandlung. Auch dort gilt die Schweigepflicht.', links: [], quellen: [] }
   ];
 
+  var ZEILENFOTOS = ['echt-fenster-a', 'termin-ankommen', 'termin-untersuchen', 'echt-gespraech', 'echt-cranio', 'termin-behandeln', 'echt-bobath', 'echt-neurologie', 'echt-haende-halten', 'uebung-atem', 'echt-alltag', 'echt-ruhe', 'echt-yoga', 'termin-ueben'], zn = 0;
   /* ---------- nachgezeichnete Stellen (keine Bildschirmfotos): nur die Bezeichnungen, die die Hilfe nennt ---------- */
   function skizze(art) {
     var feld = function (t, an) { return '<div class="pt-sk__feld' + (an ? ' pt-sk__an' : '') + '"><span>' + t + '</span>' + (an ? '<i>hier einfügen</i>' : '') + '</div>'; };
@@ -139,6 +140,7 @@
         + '<section class="sr-karte"><div class="sr-karte__kopf"><div><h2>Nicht belegt</h2><p>Darum steht es im Werkzeug nicht als Tatsache.</p></div></div><ul class="pt-nicht"><li>Eine Adresse, die den Profil-Editor von Google direkt öffnet. Deshalb führt der Link über die Google Suche «mein Unternehmen».</li><li>Die genaue Klickfolge für Fotos bei Google.</li><li>Die Adresse der Anmeldeseite von jameda und Zeichengrenzen der jameda-Felder.</li><li>Ein jameda-Feld «Behandlungsschwerpunkte» und welche Felder nur in bezahlten Paketen frei sind.</li></ul></section>';
       WZ.titel('Quellen', 'Profiltexte');
     } else {
+      zn = 0;
       var n = Object.keys(BEREICHE).reduce(function (m, k) { return m + BEREICHE[k].texte.length; }, 0);
       r.innerHTML = WO.startbild({ werkzeug: 'profile', art: 'voll', foto: WZ.foto('echt-haende-halten').url, h1: '<span data-wo-gruss>' + WO.gruss() + '</span> <em>Wohin kommt welcher Text?</em>',
           satz: n + ' fertige Texte für Google und jameda. Zu jedem steht das genaue Feld, der Weg dorthin Schritt für Schritt, ein Link, die Zeichengrenze und eine Skizze der Stelle.',
@@ -146,7 +148,8 @@
         + '<div class="wo-lage">' + Object.keys(BEREICHE).map(function (k) { var B2 = BEREICHE[k]; return '<div class="wo-lg"><i class="wo-lg__z">' + WO.ic(k === 'jameda' ? 'person' : 'welt') + '</i><span class="wo-mk">' + B2.texte.length + ' Texte</span><b>' + esc(B2.titel) + '</b><p>' + esc(B2.unter) + '.</p><a class="wo-lk" href="#" data-gehe="' + k + '">Texte und Wege</a></div>'; }).join('') + '</div>'
         + '<h2 class="wo-zw">Alle Texte <em>und ihr Ort</em></h2><div class="sr-liste">' + Object.keys(BEREICHE).map(function (k) {
           return BEREICHE[k].texte.map(function (x) {
-            return '<div class="sr-zeile"><div class="sr-zeile__b"><img src="' + esc(WZ.foto(BEREICHE[k].foto).url) + '" alt=""></div><div class="sr-zeile__t"><b>' + esc(x.titel) + ' · ' + esc(BEREICHE[k].titel) + '</b><small>' + esc(x.feld) + ' · ' + (x.grenze ? laenge(x.text) + ' von ' + x.grenze + ' Zeichen' : esc(x.grenzeSatz.split('.')[0])) + '</small></div>'
+            var fz = ZEILENFOTOS[(zn++) % ZEILENFOTOS.length];   // jede Zeile ihr eigenes Foto (Prüfpunkt 5: nicht dasselbe Bild in jeder Zeile)
+            return '<div class="sr-zeile"><div class="sr-zeile__b"><img src="' + esc(WZ.foto(fz).url) + '" alt=""></div><div class="sr-zeile__t"><b>' + esc(x.titel) + ' · ' + esc(BEREICHE[k].titel) + '</b><small>' + esc(x.feld) + ' · ' + (x.grenze ? laenge(x.text) + ' von ' + x.grenze + ' Zeichen' : esc(x.grenzeSatz.split('.')[0])) + '</small></div>'
               + '<div class="sr-zeile__k">' + WO.knopf('Ansehen', 'pfeil', 'hell', { klein: true, attr: 'data-gehe="' + k + '" data-ziel="t-' + k + '-' + x.k + '"' }) + '</div></div>';
           }).join('');
         }).join('') + '</div>';

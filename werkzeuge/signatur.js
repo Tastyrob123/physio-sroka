@@ -52,7 +52,7 @@
   function zeige() {
     var code = html();
     $('#raum').innerHTML = WO.startbild({ werkzeug: 'druck', art: 'buehne', foto: WZ.foto('echt-gespraech').url, zier: esc('Drucksachen · E-Mail-Signatur'),
-        h1: 'Deine <em>E-Mail-Signatur</em>', satz: 'Ohne Bild, damit sie in jedem E-Mail-Programm gleich aussieht. Standort wählen, «Signatur kopieren» und im E-Mail-Programm bei den Signaturen einfügen.',
+        h1: 'Deine <em class="sr-nw">E-Mail-Signatur</em>', satz: 'Ohne Bild, damit sie in jedem E-Mail-Programm gleich aussieht. Standort wählen, «Signatur kopieren» und im E-Mail-Programm bei den Signaturen einfügen.',
         knoepfe: WO.knopf('Signatur kopieren', 'kopie', 'gold', { attr: 'data-kopiere="signatur"' }) + WO.knopf('Zur Werkstatt', 'druck', 'glas', { href: WO_HAUS.wege.druck }) })
       + '<section class="sr-karte sg-karte"><div class="sr-karte__kopf"><div><h2>Vorschau</h2><p>So erscheint die Signatur unter jeder E-Mail.</p></div></div>'
       + '<div class="sg-wahl" role="group" aria-label="Standort">' + WAHL.map(function (x) {

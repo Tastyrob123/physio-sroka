@@ -24,8 +24,17 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 4. Übungsplan, Rechnung, Profiltexte, Übersicht in den Rahmen
 5. Prüfskript erweitern, prüfen, Bilder ansehen
 
+- Rechnung im Rahmen (`werkzeuge/rechnung.html|js|css`, Commit 5d5fd83).
+- Profiltexte mit Bezug und Übersicht im Rahmen (`werkzeuge/profiltexte.*`, `werkzeuge/index.html`, `uebersicht.js`, Commit b796d07).
+
 ## Nächster genauer Schritt
-Rechnung in den Rahmen (rechnung.html neu mit gemeinsam.js, Logik aus alter Fassung: Standort, Steuernummer, Bank, Positionen, Summe, localStorage `sroka-werkzeuge-rechnung`), dann Profiltexte, dann index.html, dann Prüfskript.
+Prüfskript `pruefen/werkzeuge.js` auf die neue Fassung umschreiben (alte Fassung prüft alte Wähler), Chromium + WebKit, 1440/390, dann laufen lassen, Fehler beheben, Bilder ansehen, Fehlerbuch 10a abhaken.
+
+## Entscheidungen der Nacht
+- (Folgesitzung 09.11. abends) Kein Unteragent mehr offen: Recherche Profiltexte liegt in `pruefen/quellen-profiltexte.md`, alle Bauschritte sind committet. Nichts neu zu starten.
+
+## Wartet auf Roberts Wort
+- nichts
 
 ## Zweig
 `claude/sroka-werkzeuge-umbau-6cdhaj`

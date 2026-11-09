@@ -1,0 +1,109 @@
+/* gemeinsam.css · Bausteine der Praxis-Werkzeuge, die der Rahmen (rahmen/grund.css) nicht hat: Arbeitsfläche mit Blatt daneben, Karten mit Feldern,
+   Listen mit Bild, Fenster, Quittungen, die Blätter im Stil der Werkstatt (Licht, Goldrahmen, Zeichen, Cormorant, Manrope) und der Druck.
+   Werte nur aus dem Kleid (kleid/sroka.css). Keine Schrift unter 13 px, nichts fett, nichts kursiv. Vorsilbe sr- (Fehlerbuch Abschnitt 9: je Werkzeug ein Vorsatz). */
+.wo-app{--sr-luft:34px}
+.wo-raum>*+*{margin-top:var(--sr-luft)}
+.wo-raum>.wo-sb+*{margin-top:34px}
+.sr-zw{font:500 clamp(28px,2.4vw,36px)/1.1 var(--wo-titel);margin:0 0 18px;color:var(--wo-tinte)}
+.sr-zw em{font-style:normal;color:var(--wo-akzent)}
+.sr-leise{color:var(--wo-leise);font-size:15px;line-height:1.55;margin:0}
+.wo-app [hidden]{display:none!important}
+
+/* Arbeitsfläche: links die Eingaben, rechts das Blatt (klebt mit, F182) */
+.sr-arbeit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:28px;align-items:start}
+.sr-arbeit__blatt{position:sticky;top:96px}
+.sr-arbeit__blatt .sr-blattkopf{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.sr-arbeit__blatt .sr-blattkopf b{font:500 22px/1.1 var(--wo-titel)}
+.sr-arbeit__blatt .sr-blattkopf small{font-size:13px;color:var(--wo-leise)}
+@media (max-width:1180px){.sr-arbeit{grid-template-columns:minmax(0,1fr)}.sr-arbeit__blatt{position:static}}
+
+/* Karten mit Feldern (Platte auf hellem Raum) */
+.sr-karte{position:relative;padding:28px 28px 26px;border-radius:var(--wo-r1);background:linear-gradient(180deg,var(--wo-weiss),var(--wo-blatt));box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px var(--wo-linie),0 26px 40px -32px rgba(0,0,0,.45)}
+.sr-karte+.sr-karte{margin-top:20px}
+.sr-karte__kopf{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.sr-karte__kopf h2,.sr-karte__kopf h3{font:500 26px/1.12 var(--wo-titel);margin:0}
+.sr-karte__kopf p{margin:6px 0 0;color:var(--wo-leise);font-size:14.5px}
+.sr-felder{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px}
+.sr-felder .sr-breit{grid-column:1/-1}
+.sr-felder textarea,.wo-feld textarea{min-height:96px;resize:vertical;line-height:1.5}
+.sr-knoepfe{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+@media (max-width:640px){.sr-felder{grid-template-columns:minmax(0,1fr)}.sr-karte{padding:22px 18px}}
+
+/* Listen mit Bild (F81: jeder Eintrag sein Bild, 104 × 78, am Handy 72 × 54) */
+.sr-liste{display:flex;flex-direction:column;gap:10px}
+.sr-zeile{display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:16px;align-items:center;padding:10px 12px 10px 10px;border-radius:var(--wo-r2);background:var(--wo-weiss);box-shadow:inset 0 0 0 1px var(--wo-linie)}
+.sr-zeile__b{width:104px;height:78px;border-radius:12px;overflow:hidden;background:var(--wo-papier2);display:grid;place-items:center;color:var(--wo-akzent)}
+.sr-zeile__b img{width:100%;height:100%;object-fit:cover}
+.sr-zeile__b .wo-zeichen{width:54px}
+.sr-zeile__t b{display:block;font:500 21px/1.15 var(--wo-titel)}
+.sr-zeile__t small{display:block;margin-top:3px;font-size:13.5px;color:var(--wo-leise)}
+.sr-zeile__k{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.sr-rund{width:40px;height:40px;flex:none;display:grid;place-items:center;border:0;border-radius:50%;cursor:pointer;color:var(--wo-tinte);background:transparent;box-shadow:inset 0 0 0 1px var(--wo-linie)}
+.sr-rund .wo-ic{width:17px;height:17px}
+.sr-rund:hover{box-shadow:inset 0 0 0 1px var(--wo-akzent)}
+.sr-rund[disabled]{opacity:.35;cursor:default}
+@media (max-width:640px){.sr-zeile{grid-template-columns:72px minmax(0,1fr)}.sr-zeile__b{width:72px;height:54px}.sr-zeile__k{grid-column:1/-1;justify-content:flex-start}}
+
+/* Kacheln mit Bild im Raster: Raster nach Menge, keine Restreihe (F185, F243) */
+.sr-raster{display:grid;gap:18px;grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}
+@media (max-width:1100px){.sr-raster{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.sr-raster{grid-template-columns:minmax(0,1fr)}}
+.sr-raster>.wo-ag:last-child:nth-child(odd){grid-column:auto}
+
+/* Fenster */
+.sr-fenster{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:24px 16px;overflow:auto;background:rgba(14,13,11,.62)}
+.sr-fenster__karte{position:relative;width:min(640px,100%);max-height:none;margin:auto;padding:34px 32px 30px;border-radius:var(--wo-r1);background:var(--wo-papier);box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+.sr-fenster__karte--breit{width:min(980px,100%)}
+.sr-fenster__karte h2{font:500 32px/1.1 var(--wo-titel);margin:0 0 6px}
+.sr-fenster__karte>p{color:var(--wo-leise);margin:0 0 20px;font-size:15px}
+.sr-fenster__x{position:absolute;top:16px;right:16px;width:40px;height:40px;border:0;border-radius:50%;display:grid;place-items:center;cursor:pointer;background:transparent;box-shadow:inset 0 0 0 1px var(--wo-linie);color:var(--wo-tinte)}
+html.sr-fenster-auf{overflow:hidden}
+@media (max-width:640px){.sr-fenster__karte{padding:28px 18px 22px}}
+
+/* Fotoauswahl: ganze Kacheln 4:3, mindestens 150 px (F119) */
+.sr-fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.sr-fotos button{position:relative;display:block;padding:0;border:0;border-radius:14px;overflow:hidden;cursor:pointer;background:var(--wo-papier2);aspect-ratio:4/3;box-shadow:inset 0 0 0 1px var(--wo-linie)}
+.sr-fotos button img{width:100%;height:100%;object-fit:cover;display:block}
+.sr-fotos button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--wo-g3)}
+.sr-fotos button span{position:absolute;inset:auto 0 0 0;padding:8px 10px;font-size:13px;line-height:1.3;color:#fff;text-align:left;background:linear-gradient(0deg,rgba(14,13,11,.8),transparent)}
+.sr-fotos .sr-foto-leer{display:grid;place-items:center;color:var(--wo-leise);font-size:14px}
+
+/* Quittungen unten rechts über der Leiste */
+.sr-meldungen{position:fixed;right:28px;bottom:96px;z-index:70;display:flex;flex-direction:column;gap:10px;align-items:flex-end;pointer-events:none}
+.sr-meldungen .wo-quittung{pointer-events:auto;max-width:min(520px,calc(100vw - 32px));margin:0}
+.sr-quittung--fehler i{background:var(--wo-punkt)!important}
+@media (max-width:900px){.sr-meldungen{left:16px;right:16px;bottom:150px}}
+
+/* Rand: Weg zurück zur Übersicht */
+.sr-weg-zurueck{margin-top:6px}
+
+/* ================= Blätter im Stil der Werkstatt ================= */
+.sr-stapel{width:210mm;display:flex;flex-direction:column;gap:18px}
+.sr-huelle{position:relative;overflow:hidden}
+.sr-blatt{position:relative;width:210mm;height:297mm;overflow:hidden;background:#f3eee5;color:#1b1915;font:400 10pt/1.5 Manrope,system-ui,sans-serif;box-shadow:0 30px 50px -30px rgba(0,0,0,.55),0 0 0 1px rgba(27,25,21,.08);border-radius:2px}
+.sr-blatt__rahmen{position:absolute;inset:9mm;border:.25mm solid rgba(177,153,106,.75);border-radius:3.5mm;pointer-events:none}
+.sr-blatt__in{position:absolute;left:20mm;right:20mm;top:18mm;bottom:28mm;overflow:hidden}
+.sr-blatt__fuss{position:absolute;left:20mm;right:20mm;bottom:15mm;display:flex;justify-content:space-between;gap:6mm;font-size:8pt;line-height:1.45;color:#6b5a38;letter-spacing:.02em}
+.sr-blatt__nr{white-space:nowrap}
+.sr-blatt h1,.sr-blatt h2,.sr-blatt h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;margin:0;color:#1b1915;letter-spacing:-.005em}
+.sr-blatt .sr-b-zeichen{display:block;width:22mm;height:auto;margin:0 auto 4mm;color:#b1996a}
+.sr-blatt .sr-b-zeile{font-size:9pt;letter-spacing:.04em;color:#8a7348;text-align:center;margin:0}
+.sr-blatt .sr-b-titel{font-size:30pt;line-height:1.05;text-align:center;margin:2.5mm 0 0}
+.sr-blatt .sr-b-strich{width:16mm;height:.3mm;background:#b1996a;margin:5mm auto}
+.sr-blatt .sr-b-satz{text-align:center;max-width:140mm;margin:0 auto;font-size:10.5pt;color:#3b362e}
+.sr-blatt .sr-b-kopfzeile{display:flex;justify-content:space-between;align-items:center;gap:6mm;padding-bottom:3mm;margin-bottom:5mm;border-bottom:.2mm solid rgba(177,153,106,.6);font-size:9pt;color:#8a7348}
+.sr-blatt .sr-b-kopfzeile svg{width:12mm;height:auto;color:#b1996a}
+.sr-blatt p{margin:0}
+@media screen{.sr-huelle .sr-stapel{transform-origin:0 0}}
+
+/* ================= Druck: nur die Blätter, A4 ohne Rand ================= */
+#sr-druckbereich{display:none}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important;margin:0!important;padding:0!important;min-height:0!important}
+  html.sr-druckt body{display:block!important;padding:0!important}
+  html.sr-druckt body>*:not(#sr-druckbereich){display:none!important}
+  #sr-druckbereich{display:block;width:210mm}
+  #sr-druckbereich .sr-blatt{box-shadow:none;border-radius:0;break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #sr-druckbereich .sr-blatt:last-child{break-after:auto;page-break-after:auto}
+}

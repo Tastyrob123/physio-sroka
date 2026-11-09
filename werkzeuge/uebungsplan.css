@@ -1,0 +1,43 @@
+/* uebungsplan.css · was nur der Übungsplan braucht: das Übungsblatt (im Stil der Werkstatt) und kleine Stücke der Eingabe. Vorsilbe ub-. */
+.ub-unter{margin-top:14px}
+.ub-gsatz{margin:-8px 0 18px}
+.ub-karte .wo-ag__b{aspect-ratio:16/9}
+.ub-karte .wo-ag__t b{font:500 24px/1.15 var(--wo-titel)}
+.ub-schritte{font-size:14px;line-height:1.5;color:rgba(243,238,229,.75)}
+.ub-karte__kn{margin-top:12px}
+.ub-atitel{flex:1;min-width:0}
+.ub-atitel input{font:500 22px/1.2 var(--wo-titel)!important}
+.ub-runter .wo-ic{transform:rotate(180deg)}
+.ub-unten{margin-top:20px}
+.ub-fotokopf{font:500 24px/1.2 var(--wo-titel);margin:24px 0 8px}
+.ub-hoch{cursor:pointer;border-radius:14px;aspect-ratio:4/3;background:var(--wo-weiss);box-shadow:inset 0 0 0 1px var(--wo-akzent);color:var(--wo-tinte)!important;text-align:center;padding:10px}
+#ue-oft-frei{margin-top:8px}
+
+/* Das Blatt */
+.ub-blatt .ub-kopf{text-align:center;margin-bottom:7mm}
+.ub-blatt .ub-datum{font-size:9pt;color:#6d665b;letter-spacing:.02em}
+.ub-blatt .ub-ziel{margin:5mm auto 0;max-width:140mm;padding:4mm 6mm;border-radius:3mm;background:rgba(233,225,212,.85)}
+.ub-blatt .ub-ziel p:last-child{font-size:10.5pt;margin-top:1mm}
+.ub-blatt .ub-abschnitt{font-size:17pt;line-height:1.1;margin:6mm 0 3mm;padding-bottom:2mm;border-bottom:.25mm solid rgba(177,153,106,.6)}
+.ub-blatt .ub-uebung{display:grid;grid-template-columns:44mm minmax(0,1fr);gap:6mm;align-items:start;padding:3.5mm 0 4mm;border-bottom:.15mm solid rgba(27,25,21,.12)}
+.ub-blatt .ub-uebung--ohne{grid-template-columns:minmax(0,1fr)}
+.ub-blatt .ub-foto{width:44mm;height:33mm;border-radius:2.5mm;overflow:hidden;background:#e9e1d4}
+.ub-blatt .ub-foto img{width:100%;height:100%;object-fit:cover;display:block}
+.ub-blatt h3{font-size:15pt;line-height:1.15;display:flex;align-items:baseline;gap:2.5mm}
+.ub-blatt .ub-nr{flex:none;display:inline-grid;place-items:center;width:6mm;height:6mm;border-radius:50%;background:#b1996a;color:#fff;font:400 8.5pt/1 Manrope,sans-serif;transform:translateY(-.6mm)}
+.ub-blatt .ub-menge{margin-top:1mm;font-size:9.5pt;color:#8a7348;letter-spacing:.02em}
+.ub-blatt ol{margin:2mm 0 0;padding-left:5mm;font-size:10pt;line-height:1.5}
+.ub-blatt ol li+li{margin-top:.8mm}
+.ub-blatt .ub-hinweis{margin-top:2mm;font-size:9.5pt;color:#3b362e;padding-left:3mm;border-left:.5mm solid #b1996a}
+.ub-blatt .ub-schluss{margin-top:7mm;text-align:center}
+.ub-blatt .ub-notiz{text-align:left;padding:5mm 6mm;border-radius:3mm;background:rgba(233,225,212,.85);margin-bottom:5mm}
+.ub-blatt .ub-notiz p:last-child{margin-top:1.5mm;font-size:10.5pt}
+.ub-blatt .ub-wichtig{font-size:9.5pt;color:#6d665b;max-width:140mm;margin:0 auto}
+.ub-blatt .ub-gruss{margin-top:4mm;font:500 16pt/1 'Cormorant Garamond',Georgia,serif;color:#1b1915}
+
+/* Übungen im Abschnitt: Knöpfe als eigene Zeile unter dem Namen, nie über Bild oder Text (F137) */
+.ub-abschnitt-karte .sr-zeile{grid-template-columns:104px minmax(0,1fr);row-gap:8px}
+.ub-abschnitt-karte .sr-zeile .sr-zeile__k{grid-column:2;justify-content:flex-start}
+.ub-abschnitt-karte .sr-karte__kopf .sr-zeile__k{flex:none}
+.wo-wahl{flex-wrap:nowrap}
+@media (max-width:640px){.ub-abschnitt-karte .sr-zeile{grid-template-columns:72px minmax(0,1fr)}.ub-abschnitt-karte .sr-zeile .sr-zeile__k{grid-column:1/-1}.wo-wahl{flex-wrap:wrap}}

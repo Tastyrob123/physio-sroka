@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.png">
+<title>Übungsplan · Werkzeuge · Sylvia Sroka</title>
+<link rel="stylesheet" href="werkzeuge.css">
+</head>
+<body class="w-seite">
+<header class="w-kopf tapete-dunkel">
+  <div class="w-leiste">
+    <a class="w-marke" href="../index.html" data-zeichen><span>Sylvia Sroka</span></a>
+    <nav class="w-wege" aria-label="Wege">
+      <a href="index.html">Alle Werkzeuge</a>
+      <a href="../index.html">Zur Website</a>
+    </nav>
+  </div>
+  <h1>Übungsplan</h1>
+  <p class="w-satz">Übungen anklicken, Namen und Datum eintragen, die Menge anpassen. Die Vorschau zeigt das Blatt so, wie es gedruckt wird.</p>
+</header>
+
+<main class="w-inhalt sand">
+  <div class="w-arbeit">
+    <div class="w-eingabe">
+      <section class="w-karte">
+        <h2>Für wen</h2>
+        <div class="w-felder">
+          <label class="w-feld breit"><span>Name der Patientin oder des Patienten</span><input type="text" id="name" autocomplete="off" placeholder="Vor- und Nachname"></label>
+          <div class="w-feld breit"><label for="datum">Datum</label><div class="w-mit-knopf"><input type="text" id="datum" inputmode="numeric" autocomplete="off" placeholder="TT.MM.JJJJ"><button type="button" class="w-klein-knopf" id="heute">Heute</button></div></div>
+          <div class="w-feld breit"><span id="standort-name">Standort im Kopf des Blatts</span>
+            <div class="w-wahl" role="group" aria-labelledby="standort-name">
+              <button type="button" data-standort="hannover" aria-pressed="true">Hannover</button>
+              <button type="button" data-standort="hemmingen" aria-pressed="false">Hemmingen</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="w-karte">
+        <h2>Übungen</h2>
+        <p class="leise">Gruppe aufklappen und Übungen anklicken. Die Menge lässt sich danach für jede Übung ändern.</p>
+        <div class="w-gruppen" id="gruppen"><p class="w-leise">Übungen werden geladen.</p></div>
+      </section>
+
+      <section class="w-karte">
+        <h2>Hinweis</h2>
+        <p class="leise">Steht oben auf dem Blatt, zum Beispiel worauf besonders zu achten ist.</p>
+        <div class="w-feld"><textarea id="notiz" rows="4" aria-label="Hinweis" placeholder="Freier Hinweis für dieses Blatt"></textarea></div>
+        <div class="w-knoepfe">
+          <button type="button" class="knopf" id="drucken" data-pfeil>Drucken oder als PDF sichern</button>
+          <button type="button" class="knopf zweit" id="leeren" data-pfeil>Neu beginnen</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="w-vorschau">
+      <div class="w-massstab" data-massstab>
+        <article class="w-blatt w-a4" id="blatt" aria-label="Vorschau des Übungsplans"></article>
+      </div>
+      <p class="w-verkleinert" hidden>Verkleinert, damit das Blatt auf den Schirm passt. Gedruckt wird in A4.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="w-fuss">
+  <a class="w-marke" href="../index.html" data-zeichen>Physiotherapie Sylvia Sroka</a>
+  <nav><a href="index.html">Alle Werkzeuge</a><a href="../index.html">Zur Website</a></nav>
+</footer>
+
+<script src="zeichen.js"></script>
+<script src="uebungen-daten.js"></script>
+<script src="praxis.js"></script>
+<script>
+(function () {
+  'use strict';
+  var esc = W.esc;
+  var daten = null;
+  var zustand = { standort: 'hannover', gewaehlt: {} };
+  var HAKEN = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
+  var AUF = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
+  var $ = function (id) { return document.getElementById(id); };
+
+  function laden() {
+    var ersatz = window.UEBUNGEN_ERSATZ || null;
+    if (location.protocol === 'file:') return Promise.resolve(ersatz);
+    return fetch('../daten/uebungen.json', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(function () { return ersatz; });
+  }
+
+  function gruppenZeigen() {
+    var html = '';
+    daten.gruppen.forEach(function (g, i) {
+      html += '<details class="w-gruppe" data-gruppe="' + esc(g.id) + '"' + (i === 0 ? ' open' : '') + '>' +
+        '<summary><img src="../' + esc(g.bild) + '" alt=""><div><h3>' + esc(g.name) + '</h3><span class="w-zahl-gewaehlt"></span></div><span class="w-auf">' + AUF + '</span></summary>' +
+        '<p class="w-satz-gruppe">' + esc(g.satz) + '</p><div class="w-liste">';
+      g.uebungen.forEach(function (u) {
+        html += '<div class="w-uebung-zeile" data-uebung="' + esc(u.id) + '">' +
+          '<button type="button" class="w-uebung" aria-pressed="false"><span class="w-punkt">' + HAKEN + '</span><span><span class="w-uname">' + esc(u.name) + '</span><span class="w-umenge">' + esc(u.menge) + '</span></span></button>' +
+          '<label class="w-menge"><span>Menge</span><input type="text" value="' + esc(u.menge) + '" data-menge="' + esc(u.id) + '" autocomplete="off"></label></div>';
+      });
+      html += '</div></details>';
+    });
+    $('gruppen').innerHTML = html;
+  }
+
+  function finde(id) {
+    for (var i = 0; i < daten.gruppen.length; i++) {
+      var g = daten.gruppen[i];
+      for (var j = 0; j < g.uebungen.length; j++) if (g.uebungen[j].id === id) return { g: g, u: g.uebungen[j] };
+    }
+    return null;
+  }
+
+  function zaehlen() {
+    document.querySelectorAll('.w-gruppe').forEach(function (d) {
+      var n = d.querySelectorAll('.w-uebung-zeile.an').length;
+      d.querySelector('.w-zahl-gewaehlt').textContent = n === 0 ? 'Keine gewählt' : n === 1 ? '1 Übung gewählt' : n + ' Übungen gewählt';
+    });
+  }
+
+  function blattZeigen() {
+    var name = $('name').value.trim();
+    var datum = $('datum').value.trim();
+    var notiz = $('notiz').value.trim();
+    var html = W.briefkopf(zustand.standort);
+    html += '<div class="w-plan-titel"><h2>Ihre Übungen für zu Hause</h2>' + (datum ? '<p>' + esc(datum) + '</p>' : '') + '</div>';
+    if (name) html += '<p class="w-plan-fuer">Für ' + esc(name) + '</p>';
+    if (notiz) html += '<div class="w-plan-notiz">' + esc(notiz) + '</div>';
+    var liste = '';
+    daten.gruppen.forEach(function (g) {
+      g.uebungen.forEach(function (u) {
+        if (!(u.id in zustand.gewaehlt)) return;
+        var menge = zustand.gewaehlt[u.id] || u.menge;
+        liste += '<section class="w-plan-uebung"><p class="w-pu-gruppe">' + esc(g.name) + '</p><div><h3>' + esc(u.name) + '</h3><p class="w-pu-menge">' + esc(menge) + '</p><ul class="w-pu-schritte">' +
+          u.schritte.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div></section>';
+      });
+    });
+    html += liste ? '<div class="w-plan-liste">' + liste + '</div>' : '<p class="w-plan-leer">Noch keine Übung gewählt. Klicken Sie links eine Übung an.</p>';
+    html += '<div class="w-plan-hinweis"><span class="w-ph-zeichen" data-zeichen></span><p>' + esc(daten.hinweis) + '</p></div>';
+    var s = W.PRAXIS.standorte[zustand.standort];
+    html += '<p class="w-plan-fuss">Fragen zu den Übungen? Rufen Sie mich an: ' + esc(s.telefon) + ' oder schreiben Sie an ' + esc(W.PRAXIS.email) + '.</p>';
+    var blatt = $('blatt');
+    blatt.innerHTML = html;
+    W.einsetzen(blatt);
+    W.massstab();
+  }
+
+  function verbinden() {
+    $('gruppen').addEventListener('click', function (e) {
+      var knopf = e.target.closest('.w-uebung');
+      if (!knopf) return;
+      var zeile = knopf.parentNode;
+      var id = zeile.getAttribute('data-uebung');
+      var an = !(id in zustand.gewaehlt);
+      if (an) zustand.gewaehlt[id] = zeile.querySelector('[data-menge]').value.trim();
+      else delete zustand.gewaehlt[id];
+      zeile.classList.toggle('an', an);
+      knopf.setAttribute('aria-pressed', String(an));
+      zaehlen();
+      blattZeigen();
+    });
+    $('gruppen').addEventListener('input', function (e) {
+      var id = e.target.getAttribute('data-menge');
+      if (!id) return;
+      if (id in zustand.gewaehlt) zustand.gewaehlt[id] = e.target.value.trim();
+      e.target.closest('.w-uebung-zeile').querySelector('.w-umenge').textContent = e.target.value.trim() || finde(id).u.menge;
+      blattZeigen();
+    });
+    ['name', 'datum', 'notiz'].forEach(function (id) { $(id).addEventListener('input', blattZeigen); });
+    $('heute').addEventListener('click', function () { $('datum').value = W.heute(); blattZeigen(); });
+    document.querySelectorAll('[data-standort]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        zustand.standort = b.getAttribute('data-standort');
+        document.querySelectorAll('[data-standort]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        blattZeigen();
+      });
+    });
+    $('drucken').addEventListener('click', function () { W.drucken($('blatt'), 'A4', '14mm 16mm 14mm'); });
+    $('leeren').addEventListener('click', function () {
+      $('name').value = ''; $('notiz').value = ''; $('datum').value = W.heute();
+      zustand.gewaehlt = {};
+      gruppenZeigen(); zaehlen(); blattZeigen();
+    });
+    W.standardDruck = function () { W.druckVorbereiten($('blatt'), 'A4', '14mm 16mm 14mm'); };
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    $('datum').value = W.heute();
+    laden().then(function (d) {
+      if (!d || !d.gruppen) {
+        $('gruppen').innerHTML = '<p class="w-fehler">Die Übungen konnten nicht geladen werden. Bitte die Datei daten/uebungen.json prüfen.</p>';
+        return;
+      }
+      daten = d;
+      gruppenZeigen();
+      zaehlen();
+      verbinden();
+      blattZeigen();
+    });
+  });
+})();
+</script>
+</body>
+</html>

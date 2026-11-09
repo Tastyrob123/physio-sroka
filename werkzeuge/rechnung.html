@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.png">
+<title>Rechnung · Werkzeuge · Sylvia Sroka</title>
+<link rel="stylesheet" href="werkzeuge.css">
+</head>
+<body class="w-seite">
+<header class="w-kopf tapete-dunkel">
+  <div class="w-leiste">
+    <a class="w-marke" href="../index.html" data-zeichen><span>Sylvia Sroka</span></a>
+    <nav class="w-wege" aria-label="Wege">
+      <a href="index.html">Alle Werkzeuge</a>
+      <a href="../index.html">Zur Website</a>
+    </nav>
+  </div>
+  <h1>Rechnung</h1>
+  <p class="w-satz">Eine Vorlage für Privatpatienten. Die Summe rechnet sich von selbst. Ihre Eingaben merkt sich nur dieser Browser.</p>
+</header>
+
+<main class="w-inhalt sand">
+  <div class="w-arbeit">
+    <div class="w-eingabe">
+      <section class="w-karte">
+        <h2>Praxis</h2>
+        <p class="leise">Von welchem Standort geht die Rechnung aus?</p>
+        <div class="w-wahl" role="group" aria-label="Standort">
+          <button type="button" data-standort="hannover" aria-pressed="true">Hannover</button>
+          <button type="button" data-standort="hemmingen" aria-pressed="false">Hemmingen</button>
+        </div>
+        <div class="w-felder">
+          <label class="w-feld breit"><span>Steuernummer</span><input type="text" id="steuernummer" data-feld="steuernummer" autocomplete="off" placeholder="Leer lassen oder ausfüllen"></label>
+          <label class="w-feld breit"><span>Bankverbindung</span><textarea id="bank" data-feld="bank" rows="3" placeholder="Kontoinhaberin, IBAN, BIC, Bank"></textarea></label>
+        </div>
+      </section>
+
+      <section class="w-karte">
+        <h2>Patient und Rechnung</h2>
+        <div class="w-felder">
+          <label class="w-feld breit"><span>Name</span><input type="text" id="patient" data-feld="patient" autocomplete="off" placeholder="Vor- und Nachname"></label>
+          <label class="w-feld breit"><span>Anschrift</span><textarea id="anschrift" data-feld="anschrift" rows="3" placeholder="Straße und Hausnummer&#10;Postleitzahl und Ort"></textarea></label>
+          <label class="w-feld"><span>Rechnungsnummer</span><input type="text" id="nummer" data-feld="nummer" autocomplete="off" placeholder="zum Beispiel 2026-001"></label>
+          <div class="w-feld"><label for="datum">Rechnungsdatum</label><div class="w-mit-knopf"><input type="text" id="datum" data-feld="datum" inputmode="numeric" autocomplete="off" placeholder="TT.MM.JJJJ"><button type="button" class="w-klein-knopf" id="heute">Heute</button></div></div>
+          <label class="w-feld breit"><span>Zusatz, zum Beispiel Diagnose oder Verordnung</span><textarea id="zusatz" data-feld="zusatz" rows="2" placeholder="Freiwillig"></textarea></label>
+        </div>
+      </section>
+
+      <section class="w-karte">
+        <h2>Leistungen</h2>
+        <p class="leise">Preise tragen Sie selbst ein. Kommabeträge wie 45,50 sind möglich.</p>
+        <div class="w-positionen" id="positionen"></div>
+        <div class="w-knoepfe">
+          <button type="button" class="knopf zweit klein" id="hinzu" data-pfeil>Leistung hinzufügen</button>
+        </div>
+        <div class="w-summe-zeile"><span>Summe</span><output id="summe">0,00 €</output></div>
+      </section>
+
+      <section class="w-karte">
+        <h2>Fertig</h2>
+        <p class="leise">Drucken Sie die Rechnung aus oder sichern Sie sie im Druckfenster als PDF.</p>
+        <div class="w-knoepfe">
+          <button type="button" class="knopf" id="drucken" data-pfeil>Drucken oder als PDF sichern</button>
+          <button type="button" class="knopf zweit" id="neu" data-pfeil>Neue Rechnung</button>
+        </div>
+        <p class="w-gemerkt" id="gemerkt">Neue Rechnung leert Patient, Nummer und Leistungen. Standort, Steuernummer und Bankverbindung bleiben.</p>
+      </section>
+    </div>
+
+    <div class="w-vorschau">
+      <div class="w-massstab" data-massstab>
+        <article class="w-blatt w-a4" id="blatt" aria-label="Vorschau der Rechnung"></article>
+      </div>
+      <p class="w-verkleinert" hidden>Verkleinert, damit das Blatt auf den Schirm passt. Gedruckt wird in A4.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="w-fuss">
+  <a class="w-marke" href="../index.html" data-zeichen>Physiotherapie Sylvia Sroka</a>
+  <nav><a href="index.html">Alle Werkzeuge</a><a href="../index.html">Zur Website</a></nav>
+</footer>
+
+<script src="zeichen.js"></script>
+<script src="praxis.js"></script>
+<script>
+(function () {
+  'use strict';
+  var esc = W.esc;
+  var SCHLUESSEL = 'sroka-werkzeuge-rechnung';
+  var KREUZ = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
+  var $ = function (id) { return document.getElementById(id); };
+  var euro = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
+
+  function leerePosition() { return { datum: '', leistung: '', anzahl: '1', preis: '' }; }
+  var z = W.holen(SCHLUESSEL) || {};
+  z.standort = z.standort === 'hemmingen' ? 'hemmingen' : 'hannover';
+  if (!Array.isArray(z.positionen) || !z.positionen.length) z.positionen = [leerePosition()];
+  if (!z.datum) z.datum = W.heute();
+
+  function zahl(t) {
+    t = String(t || '').trim().replace(/\s|€/g, '');
+    if (!t) return 0;
+    if (t.indexOf(',') >= 0) t = t.replace(/\./g, '').replace(',', '.');
+    var n = parseFloat(t);
+    return isFinite(n) ? n : 0;
+  }
+  function betrag(p) { return Math.round(zahl(p.anzahl) * zahl(p.preis) * 100) / 100; }
+  function summe() { return z.positionen.reduce(function (s, p) { return s + betrag(p); }, 0); }
+
+  function speichern() {
+    var ok = W.merken(SCHLUESSEL, z);
+    if (!ok) $('gemerkt').textContent = 'Dieser Browser erlaubt kein Merken. Die Eingaben gehen beim Schließen verloren.';
+  }
+
+  function positionenZeigen() {
+    $('positionen').innerHTML = z.positionen.map(function (p, i) {
+      return '<div class="w-position" data-i="' + i + '">' +
+        '<label class="w-feld datum"><span>Datum</span><input type="text" inputmode="numeric" data-p="datum" value="' + esc(p.datum) + '" placeholder="TT.MM.JJJJ" autocomplete="off"></label>' +
+        '<label class="w-feld leistung"><span>Leistung</span><input type="text" data-p="leistung" value="' + esc(p.leistung) + '" placeholder="zum Beispiel Krankengymnastik" autocomplete="off"></label>' +
+        '<label class="w-feld"><span>Anzahl</span><input type="text" inputmode="decimal" data-p="anzahl" value="' + esc(p.anzahl) + '" autocomplete="off"></label>' +
+        '<label class="w-feld"><span>Einzelpreis in €</span><input type="text" inputmode="decimal" data-p="preis" value="' + esc(p.preis) + '" placeholder="0,00" autocomplete="off"></label>' +
+        '<button type="button" class="w-entfernen" data-weg aria-label="Leistung entfernen">' + KREUZ + '</button>' +
+        '<p class="w-betrag">Betrag ' + euro.format(betrag(p)) + '</p></div>';
+    }).join('');
+  }
+
+  function blattZeigen() {
+    var s = W.PRAXIS.standorte[z.standort];
+    var html = W.briefkopf(z.standort);
+    html += '<div class="w-r-oben"><div><p class="w-r-absender">' + esc(W.PRAXIS.name) + ' · ' + esc(s.strasse) + ' · ' + esc(s.plzOrt) + '</p>' +
+      '<p class="w-r-empfaenger">' + esc([z.patient, z.anschrift].filter(function (x) { return x && x.trim(); }).join('\n')) + '</p></div>' +
+      '<dl class="w-r-daten"><dt>Rechnungsnummer</dt><dd>' + esc(z.nummer || '') + '</dd><dt>Rechnungsdatum</dt><dd>' + esc(z.datum || '') + '</dd><dt>Ort</dt><dd>' + esc(s.ort) + '</dd></dl></div>';
+    html += '<h2 class="w-r-titel">Rechnung</h2>';
+    if (z.zusatz && z.zusatz.trim()) html += '<p class="w-r-zusatz">' + esc(z.zusatz.trim()) + '</p>';
+    var zeilen = z.positionen.filter(function (p) { return p.leistung.trim() || p.datum.trim() || zahl(p.preis); });
+    html += '<table class="w-r-tabelle"><thead><tr><th>Datum</th><th>Leistung</th><th class="z">Anzahl</th><th class="z">Einzelpreis</th><th class="z">Betrag</th></tr></thead><tbody>';
+    html += zeilen.length ? zeilen.map(function (p) {
+      return '<tr><td class="d">' + esc(p.datum) + '</td><td>' + esc(p.leistung) + '</td><td class="z">' + esc(p.anzahl) + '</td><td class="z">' + euro.format(zahl(p.preis)) + '</td><td class="z">' + euro.format(betrag(p)) + '</td></tr>';
+    }).join('') : '<tr class="w-r-leer"><td colspan="5">Noch keine Leistung eingetragen.</td></tr>';
+    html += '</tbody><tfoot><tr><td colspan="3"></td><td class="z">Summe</td><td class="z w-r-summe">' + euro.format(summe()) + '</td></tr></tfoot></table>';
+    html += '<div class="w-r-schluss"><p class="w-r-ust">Umsatzsteuerfrei nach § 4 Nr. 14 UStG.</p>';
+    html += '<p class="w-r-zusatz">Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer.</p>';
+    html += '<div class="w-r-unten">' +
+      '<div><h4>Steuernummer</h4>' + (z.steuernummer && z.steuernummer.trim() ? '<p>' + esc(z.steuernummer.trim()) + '</p>' : '<span class="w-r-luecke"></span>') + '</div>' +
+      '<div><h4>Bankverbindung</h4>' + (z.bank && z.bank.trim() ? '<p>' + esc(z.bank.trim()) + '</p>' : '<span class="w-r-luecke"></span><span class="w-r-luecke"></span>') + '</div>' +
+      '<div><h4>Kontakt</h4><p>Telefon ' + esc(s.telefon) + '\n' + esc(W.PRAXIS.email) + '</p></div></div></div>';
+    var blatt = $('blatt');
+    blatt.innerHTML = html;
+    W.einsetzen(blatt);
+    $('summe').textContent = euro.format(summe());
+    W.massstab();
+  }
+
+  function felderFuellen() {
+    document.querySelectorAll('[data-feld]').forEach(function (el) { el.value = z[el.getAttribute('data-feld')] || ''; });
+    document.querySelectorAll('[data-standort]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-standort') === z.standort)); });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    felderFuellen();
+    positionenZeigen();
+    blattZeigen();
+
+    document.querySelectorAll('[data-feld]').forEach(function (el) {
+      el.addEventListener('input', function () { z[el.getAttribute('data-feld')] = el.value; speichern(); blattZeigen(); });
+    });
+    document.querySelectorAll('[data-standort]').forEach(function (b) {
+      b.addEventListener('click', function () { z.standort = b.getAttribute('data-standort'); felderFuellen(); speichern(); blattZeigen(); });
+    });
+    $('heute').addEventListener('click', function () { z.datum = W.heute(); $('datum').value = z.datum; speichern(); blattZeigen(); });
+    $('positionen').addEventListener('input', function (e) {
+      var feld = e.target.getAttribute('data-p');
+      if (!feld) return;
+      var reihe = e.target.closest('.w-position');
+      var p = z.positionen[+reihe.getAttribute('data-i')];
+      p[feld] = e.target.value;
+      reihe.querySelector('.w-betrag').textContent = 'Betrag ' + euro.format(betrag(p));
+      speichern(); blattZeigen();
+    });
+    $('positionen').addEventListener('click', function (e) {
+      if (!e.target.closest('[data-weg]')) return;
+      var i = +e.target.closest('.w-position').getAttribute('data-i');
+      z.positionen.splice(i, 1);
+      if (!z.positionen.length) z.positionen.push(leerePosition());
+      positionenZeigen(); speichern(); blattZeigen();
+    });
+    $('hinzu').addEventListener('click', function () {
+      var letzte = z.positionen[z.positionen.length - 1];
+      var neu = leerePosition();
+      if (letzte) neu.leistung = letzte.leistung;
+      z.positionen.push(neu);
+      positionenZeigen(); speichern(); blattZeigen();
+      var felder = $('positionen').querySelectorAll('[data-p="datum"]');
+      felder[felder.length - 1].focus();
+    });
+    $('neu').addEventListener('click', function () {
+      ['patient', 'anschrift', 'nummer', 'zusatz'].forEach(function (k) { z[k] = ''; });
+      z.datum = W.heute();
+      z.positionen = [leerePosition()];
+      felderFuellen(); positionenZeigen(); speichern(); blattZeigen();
+    });
+    $('drucken').addEventListener('click', function () { W.drucken($('blatt'), 'A4', '14mm 16mm 14mm'); });
+    W.standardDruck = function () { W.druckVorbereiten($('blatt'), 'A4', '14mm 16mm 14mm'); };
+  });
+})();
+</script>
+</body>
+</html>

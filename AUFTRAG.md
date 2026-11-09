@@ -1,0 +1,25 @@
+# Auftrag (Robert, 09.11.2026, aus der ersten Sitzung übernommen)
+
+Baue im Ordner werkzeuge/ die Praxis-Werkzeuge (Demo) für die Physiotherapie-Privatpraxis Sylvia Sroka. Lies zuerst README.md, CLAUDE.md, seite.css, index.src.html und daten/uebungen.json, damit alles im Stil der Website ist. Führe UEBERGABE-LIMIT.md ab dem ersten Schritt und nach jedem Schritt nach und pushe sie.
+
+Rahmen: nur statische Dateien (HTML, CSS, JS), kein Server, keine externen Dienste, keine Kosten, nichts veröffentlichen, GitHub Pages NICHT einschalten. Ändere NICHT index.html, index.src.html, ueber-mich.*, seite.css, seite.js oder bau.py (dort wird parallel gearbeitet). Eigene Gestaltung in werkzeuge/werkzeuge.css, die seite.css und ../schrift/schrift.css einbindet. Bilder und Zeichen aus ../media/ (Zeichen: media/zeichen.svg, inline einsetzen, Farbe über currentColor). Überschriften Cormorant Garamond 500, Text Manrope, Farben aus :root in seite.css (nacht, licht, gold), runde Ecken, Knöpfe im Stil .knopf mit rundem Pfeil-Knauf. Nie fett, nie kursiv, keine Emojis, keine Etiketten über Überschriften, keine Nummernlisten als Schmuck. Keine Auswahlfelder des Browsers (kein select, kein date-Feld): Auswahl immer als eigene, gestaltete Knöpfe oder Klappkarten. Am Handy (390 px) ohne Überlauf nutzbar.
+
+Werkzeuge:
+1. werkzeuge/index.html: Übersicht «Ihre Werkzeuge» mit je einer Tafel pro Werkzeug (Name, ein Satz, Knopf «Öffnen»). Keine Bildschirmfotos. Rückweg zur Website (../index.html).
+2. werkzeuge/uebungsplan.html: Übungen aus ../daten/uebungen.json je Gruppe anklicken, Patientenname, Datum, freies Hinweisfeld, Menge je Übung änderbar. Druckansicht A4 im Praxisstil: Kopf mit Zeichen und Praxisdaten, gewählte Übungen mit Schritten, der Hinweis aus der JSON-Datei. Knopf «Drucken oder als PDF sichern» (window.print), eigene Druck-CSS.
+3. werkzeuge/rechnung.html: Rechnungsvorlage für Privatpatienten. Praxisdaten vorbelegt, Standort Hannover oder Hemmingen als eigene Auswahl. Patient, Rechnungsnummer, Rechnungsdatum, Positionen (Datum, Leistung, Anzahl, Einzelpreis) hinzufügen und entfernen, Summe automatisch, Felder Steuernummer und Bankverbindung leer zum Ausfüllen, Satz «Umsatzsteuerfrei nach § 4 Nr. 14 UStG». KEINE Preise vorbelegen. Eingaben nur im Browser merken (localStorage, mit try/catch). Druckansicht A4.
+4. werkzeuge/drucksachen.html: Visitenkarte 85 × 55 mm (Vorder- und Rückseite), Terminkarte (Vorderseite Zeichen und Name, Rückseite Zeilen für die nächsten Termine), Briefpapier A4, E-Mail-Signatur als HTML mit Kopier-Knopf, Bewertungskarte A6 je Standort mit QR-Code. QR-Ziel Hannover: https://www.google.com/maps/search/?api=1&query=Physiotherapie%20Sylvia%20Sroka%20Dieterichsstra%C3%9Fe%2025%20Hannover , Hemmingen: https://www.google.com/maps/search/?api=1&query=Physio%20Rosenpark%20Berliner%20Stra%C3%9Fe%2016%20Hemmingen . QR-Codes lokal als SVG-Dateien erzeugen (z. B. Python qrcode), kein externer Dienst. Jede Drucksache in echter Größe zeigen und einzeln druckbar (passende @page-Größe).
+5. werkzeuge/profiltexte.html: fertige Texte mit Kopier-Knopf: Google-Unternehmensprofil je Standort (Beschreibung höchstens 750 Zeichen, Vorschlag Kategorien, Leistungen, Öffnungszeiten), Jameda «Über mich» und «Behandlungsschwerpunkte» neu, dazu eine kurze Liste, was Sylvia selbst tun muss (Profil beanspruchen, Fotos hochladen, Bewertungskarte auslegen). Ich-Form, ruhig und klar, keine Werbesprache, keine Heilversprechen.
+
+Fakten, NUR diese verwenden, nichts dazuerfinden:
+- Sylvia Sroka, Privatpraxis Physiotherapie, Dieterichsstraße 25, 30159 Hannover, Telefon 0511 260 74 14, Fax 0511 260 74 13, info@physio-sroka.de
+- Zweiter Standort: Physio Rosenpark, Praxis für Physio- und Körperpsychotherapie, Berliner Straße 16, 30966 Hemmingen, Telefon 0511 234 46 67, Fax 0511 655 06 827
+- Öffnungszeiten Montag bis Freitag 8 bis 19 Uhr, Termine nach Vereinbarung, Hausbesuche nach Absprache
+- Behandelt nur Privatpatienten (keine gesetzliche Krankenversicherung)
+- Physiotherapeutin seit 1986, Schwerpunkt neurologisch schwer und schwerst betroffene Menschen; bildet sich fort zu Wachkoma, Bandscheibenvorfall, Schlaganfall, Parkinson, MS, ALS, Querschnitt
+- Heilpraktikerin für Physiotherapie und Psychotherapie, CranioSacral-Therapeutin, Stressmanagement- und Entspannungstherapeutin, Achtsamkeitstrainerin
+- Bietet Körperpsychotherapie und Gesprächstherapie, Begleitung bei Überforderung (zum Beispiel bei der Pflege eines Angehörigen), Bobath, Massagen, Behandlung, Seminare und Prävention, auch Betreuung von Mitarbeitern
+- Seit 2009 Inhaberin des Physio Rosenpark; freiberuflich für The Balance Luxury Rehab auf Mallorca
+- Sprachen Deutsch, Englisch, Spanisch
+
+Prüfen, bevor du «Fertig.» schreibst: jedes Werkzeug selbst bedienen (Playwright, falls vorhanden, sonst Node mit jsdom oder ein headless Browser), jede Funktion einmal anklicken, Druckansicht als PDF erzeugen und auf Seitenumbrüche ansehen, 1440 und 390 px ohne Überlauf, keine Konsolenfehler. Committe und pushe alles. Schreib zum Schluss in UEBERGABE-LIMIT.md oben «Fertig.» mit der Liste der Werkzeuge, ihren Pfaden und was geprüft wurde.

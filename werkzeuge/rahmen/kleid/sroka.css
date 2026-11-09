@@ -115,3 +115,7 @@
 }
 /* Nie fett (Auftrag): die Vorlage lässt <b> in der Quittung beim Browser-Standard 700 */
 :where(.wo-app) :where(b,strong){font-weight:500}
+/* Keine Schrift unter 13 px (F01): die Vorlage setzt den Kartentext am Handy auf 12 px */
+@media (max-width:640px){.wo-ag__t>span{font-size:13px}}
+/* Zahl im Rand mittig in der Pille (F181, F10) */
+.wo-re .wo-zahl{display:inline-grid;place-items:center;height:24px;padding:0 9px;line-height:1}

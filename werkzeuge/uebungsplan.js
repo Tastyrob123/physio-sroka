@@ -40,8 +40,8 @@
   function verkleinern(datei) {
     return new Promise(function (ok, nein) {
       var r = new FileReader();
-      r.onload = function () { var i = new Image(); i.onload = function () { var m = 1200, k = Math.min(1, m / Math.max(i.width, i.height)), c = document.createElement('canvas'); c.width = Math.round(i.width * k); c.height = Math.round(i.height * k); c.getContext('2d').drawImage(i, 0, 0, c.width, c.height); ok(c.toDataURL('image/jpeg', .84)); }; i.onerror = function () { nein(new Error('Diese Datei ist kein Bild, das der Browser lesen kann.')); }; i.src = r.result; };
-      r.onerror = function () { nein(new Error('Die Datei liess sich nicht lesen.')); };
+      r.onload = function () { var i = new Image(); i.addEventListener('load', function () { var m = 1200, k = Math.min(1, m / Math.max(i.width, i.height)), c = document.createElement('canvas'); c.width = Math.round(i.width * k); c.height = Math.round(i.height * k); c.getContext('2d').drawImage(i, 0, 0, c.width, c.height); ok(c.toDataURL('image/jpeg', .84)); }, { once: true }); i.addEventListener('error', function () { nein(new Error('Diese Datei ist kein Bild, das der Browser lesen kann.')); }, { once: true }); i.src = r.result; };
+      r.onerror = function () { nein(new Error('Die Datei ließ sich nicht lesen.')); };
       r.readAsDataURL(datei);
     });
   }
@@ -54,11 +54,11 @@
     return { id: WZ.id(), patient: '', datum: WZ.heute(), standort: 'hannover', ziel: '', notiz: '', abschnitte: [{ id: WZ.id(), titel: 'Woche 1 und 2', uebungen: [] }], geaendert: Date.now() };
   }
   function ausBibliothek(u, g) {
-    return { id: WZ.id(), name: u.name, schritte: u.schritte.slice(), menge: u.menge, haeufig: '2 Mal am Tag', hinweis: '', foto: g && g.bild ? { art: 'web', key: g.bild.replace(/^media\//, '').replace(/\.jpg$/, '') } : null, quelle: u.id };
+    return { id: WZ.id(), name: u.name, schritte: u.schritte.slice(), menge: u.menge, haeufig: '2 Mal am Tag', hinweis: '', foto: g && g.bild && g.uebungen[0] === u ? { art: 'web', key: g.bild.replace(/^media\//, '').replace(/\.jpg$/, '') } : null, quelle: u.id };
   }
   function beispiel() {
     var p = neuePlan(), B = ST.bib, g = function (id) { return B.gruppen.filter(function (x) { return x.id === id; })[0]; }, u = function (gid, uid) { var gg = g(gid); return ausBibliothek(gg.uebungen.filter(function (x) { return x.id === uid; })[0], gg); };
-    p.patient = 'Beispiel: Frau Muster'; p.beispiel = true;
+    p.patient = 'Frau Muster'; p.beispiel = true;   // Kennzeichnung nur über p.beispiel (Leiste), nie auf dem Blatt (F184)
     p.ziel = 'Den Rücken im Alltag beweglich halten und den Nacken entlasten.';
     p.notiz = 'Üben Sie lieber jeden Tag ein wenig als einmal lange. Wenn eine Übung zieht oder schmerzt, lassen Sie sie weg und sprechen Sie mich beim nächsten Termin darauf an.';
     var a1 = p.abschnitte[0]; a1.uebungen = [u('ruecken', 'katze-kuh'), u('ruecken', 'becken-kippen'), u('atem', 'bauchatmung')];
@@ -163,16 +163,16 @@
   }
   function bibliothek(r) {
     var B = ST.bib, offen = ST.offen && ST.offen.abschnitte;
-    r.innerHTML = WO.startbild({ werkzeug: 'uebungen', art: 'buehne', foto: WZ.foto('uebung-ruecken').url, h1: 'Übungen <em>der Website</em>',
+    r.innerHTML = WO.startbild({ werkzeug: 'uebungen', art: 'buehne', foto: WZ.foto('termin-ueben').url, h1: 'Übungen <em>der Website</em>',
       satz: offen ? 'Ein Klick auf «In den Plan» legt eine Kopie in «' + esc(ST.offen.patient || 'den offenen Plan') + '». Dort schreibst du sie frei um.' : 'Die Übungen aus «Übungen für zu Hause». Öffne einen Plan oder leg einen neuen an, dann kommen sie mit einem Klick hinein.',
       knoepfe: offen ? WO.knopf('Zurück zum Plan', 'links', 'gold', { attr: 'data-gehe="plan"' }) : WO.knopf('Neuer Plan', 'plus', 'gold', { attr: 'data-gehe="neu"' }) })
       + B.gruppen.map(function (g) {
-        return '<h2 class="wo-zw">' + esc(g.name) + '</h2><p class="sr-leise ub-gsatz">' + esc(g.satz || '') + '</p><div class="sr-raster" style="--n:' + g.uebungen.length + '">'
+        /* Gruppenfoto einmal je Gruppe, die Übungen als Zeilen daneben (F120: kein Foto zweimal, F185/F205: keine Restreihe, Text breit genug) */
+        return '<h2 class="wo-zw">' + esc(g.name) + '</h2><p class="sr-leise ub-gsatz">' + esc(g.satz || '') + '</p><div class="ub-gruppe"><div class="ub-gruppe__b"><img src="' + esc(H.site + g.bild) + '" alt=""></div><div class="ub-gruppe__l">'
           + g.uebungen.map(function (u) {
-            return '<div class="wo-ag ub-karte"><span class="wo-ag__b"><img src="' + esc(H.site + g.bild) + '" alt=""></span><span class="wo-ag__t"><i class="wo-ag__z">' + WO.ic('blatt') + '</i><b>' + esc(u.name) + '</b><span>' + esc(u.menge) + '</span>'
-              + '<span class="ub-schritte">' + u.schritte.map(esc).join(' ') + '</span>'
-              + '<span class="ub-karte__kn">' + WO.knopf(offen ? 'In den Plan' : 'Mit neuem Plan', 'plus', 'gold', { klein: true, attr: 'data-nimm="' + g.id + '|' + u.id + '"' }) + '</span></span></div>';
-          }).join('') + '</div>';
+            return '<div class="ub-bk"><div class="ub-bk__t"><b>' + esc(u.name) + '</b><small>' + esc(u.menge) + '</small><p class="ub-schritte">' + u.schritte.map(esc).join(' ') + '</p></div>'
+              + '<div class="ub-bk__k">' + WO.knopf(offen ? 'In den Plan' : 'Mit neuem Plan', 'plus', 'gold', { klein: true, attr: 'data-nimm="' + g.id + '|' + u.id + '"' }) + '</div></div>';
+          }).join('') + '</div></div>';
       }).join('');
   }
   function planAnsicht(r) {
@@ -247,7 +247,7 @@
           var b = document.createElement('button'); b.type = 'button'; b.dataset.foto = 'eigen:' + k; b.innerHTML = '<img src="' + url + '" alt=""><span>Eigenes Foto</span>';
           var box = f.querySelector('#ue-fotos'); box.insertBefore(b, f.querySelector('.ub-hoch').nextSibling);
           [].forEach.call(box.querySelectorAll('button[data-foto]'), function (x) { x.setAttribute('aria-pressed', x === b); });
-          if (!ok) WZ.meldung('Foto nur für diese Sitzung', 'Dieser Browser legt keine Fotos ab (zum Beispiel im privaten Fenster). Das Foto steht auf dem Blatt, bis du die Seite schliesst.');
+          if (!ok) WZ.meldung('Foto nur für diese Sitzung', 'Dieser Browser legt keine Fotos ab (zum Beispiel im privaten Fenster). Das Foto steht auf dem Blatt, bis du die Seite schließt.');
         });
       }).catch(function (x) { WZ.meldung('Foto nicht übernommen', x.message, { fehler: true }); });
     });
@@ -265,8 +265,8 @@
   function bibFenster(aid) {
     var B = ST.bib;
     var f = WZ.fenster('<h2>Aus der Bibliothek</h2><p>Eine Übung der Website als Ausgang. Sie kommt als Kopie in den Abschnitt «' + esc(abschnitt(aid).titel || 'ohne Titel') + '», danach schreibst du sie frei um.</p>'
-      + B.gruppen.map(function (g) { return '<h3 class="ub-fotokopf">' + esc(g.name) + '</h3><div class="sr-liste">' + g.uebungen.map(function (u) {
-        return '<div class="sr-zeile"><div class="sr-zeile__b"><img src="' + esc(H.site + g.bild) + '" alt=""></div><div class="sr-zeile__t"><b>' + esc(u.name) + '</b><small>' + esc(u.menge) + '</small></div><div class="sr-zeile__k">' + WO.knopf('Hinein', 'plus', 'gold', { klein: true, attr: 'data-bibnimm="' + g.id + '|' + u.id + '"' }) + '</div></div>'; }).join('') + '</div>'; }).join(''), { breit: true });
+      + B.gruppen.map(function (g) { return '<h3 class="ub-fotokopf ub-fotokopf--bild"><img src="' + esc(H.site + g.bild) + '" alt="">' + esc(g.name) + '</h3><div class="sr-liste">' + g.uebungen.map(function (u) {
+        return '<div class="sr-zeile ub-zeile-ohne"><div class="sr-zeile__t"><b>' + esc(u.name) + '</b><small>' + esc(u.menge) + '</small></div><div class="sr-zeile__k">' + WO.knopf('Hinein', 'plus', 'gold', { klein: true, attr: 'data-bibnimm="' + g.id + '|' + u.id + '"' }) + '</div></div>'; }).join('') + '</div>'; }).join(''), { breit: true });
     f.addEventListener('click', function (ev) {
       var b = ev.target.closest('[data-bibnimm]'); if (!b) return;
       var x = b.dataset.bibnimm.split('|'); nimm(x[0], x[1], aid); WZ.zu();
@@ -380,5 +380,6 @@
   }
   fetch('../daten/uebungen.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .catch(function () { return window.UEBUNGEN_ERSATZ; })
-    .then(function (B) { if (!B) throw new Error('Die Übungen der Website kamen nicht an.'); los(B); });
+    .then(function (B) { if (!B) throw new Error('Die Übungen der Website kamen nicht an.'); los(B); })
+    .catch(function (e) { window.__srFehler = (e && e.message) || 'Die Übungspläne starten nicht.'; });   // F171: die Startfehler-Seite zeigt den Grund
 })();

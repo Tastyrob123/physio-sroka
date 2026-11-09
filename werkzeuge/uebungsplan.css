@@ -41,3 +41,22 @@
 .ub-abschnitt-karte .sr-karte__kopf .sr-zeile__k{flex:none}
 .wo-wahl{flex-wrap:nowrap}
 @media (max-width:640px){.ub-abschnitt-karte .sr-zeile{grid-template-columns:72px minmax(0,1fr)}.ub-abschnitt-karte .sr-zeile .sr-zeile__k{grid-column:1/-1}.wo-wahl{flex-wrap:wrap}}
+
+/* Bibliothek: je Gruppe ein Foto, die Übungen als Zeilen daneben (Fehlerbuch F120, F185, F205) */
+.ub-gruppe{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:18px;align-items:stretch;margin-bottom:8px}
+.ub-gruppe__b{position:relative;min-height:260px;border-radius:var(--wo-r1);overflow:hidden;box-shadow:0 0 0 1px rgba(177,153,106,.4)}
+.ub-gruppe__b img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ub-gruppe__l{display:flex;flex-direction:column;gap:10px}
+.ub-bk{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 20px;border-radius:var(--wo-r2);background:var(--wo-weiss);box-shadow:inset 0 0 0 1px var(--wo-linie)}
+.ub-bk__t b{display:block;font:500 22px/1.15 var(--wo-titel)}
+.ub-bk__t small{display:block;margin-top:3px;font-size:13.5px;color:var(--wo-akzent)}
+.ub-bk .ub-schritte{margin:6px 0 0;font-size:14px;line-height:1.5;color:var(--wo-leise)}
+@media (max-width:900px){.ub-gruppe{grid-template-columns:minmax(0,1fr)}.ub-gruppe__b{min-height:0;aspect-ratio:16/9}}
+@media (max-width:640px){.ub-bk{grid-template-columns:minmax(0,1fr);padding:16px}}
+/* Fenster «Aus der Bibliothek»: Foto einmal im Gruppenkopf, Zeilen ohne Bild */
+.ub-fotokopf--bild{display:flex;align-items:center;gap:12px}
+.ub-fotokopf--bild img{width:72px;height:54px;border-radius:10px;object-fit:cover;flex:none}
+.sr-zeile.ub-zeile-ohne{grid-template-columns:minmax(0,1fr) auto;padding-left:18px}
+@media (max-width:640px){.sr-zeile.ub-zeile-ohne{grid-template-columns:minmax(0,1fr) auto}.ub-zeile-ohne .sr-zeile__k{grid-column:auto}}
+/* Ziffernkreis auf dem Blatt wächst bei zweistelligen Nummern mit (F10) */
+.ub-blatt .ub-nr{width:auto;min-width:6mm;padding:0 1.3mm;border-radius:3mm}

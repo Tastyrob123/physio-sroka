@@ -16,7 +16,7 @@
   WZ.kopf({ werkzeug: 'zentrale', unter: 'Werkzeuge', titel: 'Übersicht', stand: 'Vier Werkzeuge', markeHref: H.wege.zentrale });
   WZ.rand([{ eintraege: [{ text: 'Übersicht', an: true, href: H.wege.zentrale }] }, { titel: 'Werkzeuge', eintraege: W.map(function (w) { return { text: WO.name(w.k), href: H.wege[w.k] + '?von=uebersicht' }; }) }]);
   var l = document.getElementById('leiste'); if (l) l.remove();
-  document.getElementById('raum').innerHTML = WO.startbild({ werkzeug: 'zentrale', art: 'voll', zier: esc('Physiotherapie Sylvia Sroka · Hannover und Hemmingen'),
+  document.getElementById('raum').innerHTML = WO.startbild({ werkzeug: 'zentrale', art: 'buehne', zier: esc('Physiotherapie Sylvia Sroka · Hannover und Hemmingen'),
       h1: '<span data-wo-gruss>' + WO.gruss() + '</span> <em>Womit fangen wir an?</em>',
       satz: 'Vier Werkzeuge für die Praxis, gestaltet wie die Website. Alles, was du hier einträgst, bleibt in diesem Browser; nichts wird verschickt, nichts kostet etwas.',
       knoepfe: WO.knopf(H.akk.uebungen, 'pfeil', 'gold', { href: H.wege.uebungen + '?von=uebersicht' }) + WO.knopf('Zur Website', 'welt', 'glas', { href: H.wege.website }) })

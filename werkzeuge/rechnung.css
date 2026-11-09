@@ -39,3 +39,5 @@
 .re-blatt .re-unten .sr-b-zeile{text-align:left}
 .re-blatt .re-luecke{display:block;height:6mm;border-bottom:.2mm solid rgba(27,25,21,.45)}
 .re-blatt .re-luecke--kurz{display:inline-block;width:28mm;height:4mm}
+.re-blatt .re-gruss{margin-top:6mm;font-size:10pt;color:#3b362e}
+.re-blatt .re-gruss span{display:block;margin-top:2mm;font:500 16pt/1.1 'Cormorant Garamond',Georgia,serif;color:#1b1915}

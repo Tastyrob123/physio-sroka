@@ -68,13 +68,13 @@
   ];
   var BEREICHE = {
     hannover: { titel: 'Google, Hannover', unter: 'Unternehmensprofil der Privatpraxis Sylvia Sroka, Dieterichsstraße 25', foto: 'echt-fenster-a', texte: google('hannover') },
-    hemmingen: { titel: 'Google, Hemmingen', unter: 'Unternehmensprofil des Physio Rosenpark, Berliner Straße 16', foto: 'echt-cranio', texte: google('hemmingen') },
+    hemmingen: { titel: 'Google, Hemmingen', unter: 'Unternehmensprofil von Physio Rosenpark, Berliner Straße 16', foto: 'echt-cranio', texte: google('hemmingen') },
     jameda: { titel: 'jameda', unter: 'Profil auf jameda, für beide Standorte', foto: 'echt-haende-halten', texte: JAM }
   };
   var SELBST = [
     { t: 'Profile beanspruchen', s: 'Auf business.google.com/add das Unternehmen suchen. Gibt es den Eintrag schon, «Inhaberschaft für dieses Unternehmen geltend machen» oder «Zugriff anfordern»; Google bestätigt per Telefon, SMS, E-Mail, Postkarte oder Videoanruf. Hannover und Hemmingen sind zwei Profile.', links: [ADD], quellen: [Q.anspruch, Q.bestaetigen, Q.standorte] },
     { t: 'Texte einfügen', s: 'Beschreibung, Kategorien, Leistungen und Öffnungszeiten aus den Bereichen links kopieren, jeder Text sagt, wohin er kommt.', links: [], quellen: [Q.bearbeiten] },
-    { t: 'Fotos hochladen', s: 'Eigene Fotos von Eingang, Behandlungsraum und ein Porträt. JPG oder PNG, 10 KB bis 5 MB, empfohlen 720 × 720 Pixel, ohne starke Filter. Keine Patienten zeigen, ausser sie haben schriftlich zugestimmt. Fotos erscheinen erst, wenn das Profil bestätigt ist.', links: [MEIN], quellen: [Q.fotos, Q.fototipps] },
+    { t: 'Fotos hochladen', s: 'Eigene Fotos von Eingang, Behandlungsraum und ein Porträt. JPG oder PNG, 10 KB bis 5 MB, empfohlen 720 × 720 Pixel, ohne starke Filter. Keine Patienten zeigen, außer sie haben schriftlich zugestimmt. Fotos erscheinen erst, wenn das Profil bestätigt ist.', links: [MEIN], quellen: [Q.fotos, Q.fototipps] },
     { t: 'Karte für Bewertungen auslegen', s: 'Die Karten aus den Drucksachen drucken. Ihr QR-Code öffnet die Praxis in Google Maps. Ist das Profil bestätigt, gibt es unter «Rezensionen lesen» beim Teilen-Symbol von «Mehr Rezensionen erhalten» einen eigenen Link mit QR-Code (nur am Computer); er kann den Code der Karte ersetzen. Für Bewertungen nie eine Gegenleistung anbieten, das verbietet Google.', links: [{ t: 'Drucksachen öffnen', u: 'drucksachen/index.html', hier: true }], quellen: [Q.rezension] },
     { t: 'Auf Bewertungen antworten', s: 'Kurz und freundlich antworten, ohne Angaben zur Behandlung. Auch dort gilt die Schweigepflicht.', links: [], quellen: [] }
   ];

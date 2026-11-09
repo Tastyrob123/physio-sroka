@@ -60,7 +60,7 @@
     o = o || {};
     var box = $('#meldung'); if (!box) { box = document.createElement('div'); box.id = 'meldung'; box.className = 'sr-meldungen'; box.setAttribute('aria-live', 'polite'); document.body.appendChild(box); }
     var q = document.createElement('div'); q.className = 'wo-quittung' + (o.fehler ? ' sr-quittung--fehler' : ''); q.setAttribute('role', 'status');
-    q.innerHTML = '<i>' + WO.ic(o.fehler ? 'x' : 'haken') + '</i><span><b>' + esc(titelT) + '</b>' + esc(satz || '') + '</span>' + (o.zurueck ? '<a href="#" data-zurueck>Rückgängig</a>' : '') + '<button type="button" aria-label="Schliessen">' + WO.ic('x') + '</button>';
+    q.innerHTML = '<i>' + WO.ic(o.fehler ? 'x' : 'haken') + '</i><span><b>' + esc(titelT) + '</b>' + esc(satz || '') + '</span>' + (o.zurueck ? '<a href="#" data-zurueck>Rückgängig</a>' : '') + '<button type="button" aria-label="Schließen">' + WO.ic('x') + '</button>';
     box.appendChild(q);
     while (box.children.length > 3) box.removeChild(box.firstChild);
     var weg = function () { if (q.parentNode) q.parentNode.removeChild(q); };
@@ -74,7 +74,7 @@
     o = o || {};
     zu();
     var f = document.createElement('div'); f.id = 'fenster'; f.className = 'sr-fenster'; f.setAttribute('role', 'dialog'); f.setAttribute('aria-modal', 'true');
-    f.innerHTML = '<div class="sr-fenster__karte' + (o.breit ? ' sr-fenster__karte--breit' : '') + '"><button type="button" class="sr-fenster__x" aria-label="Schliessen">' + WO.ic('x') + '</button>' + inhalt + '</div>';
+    f.innerHTML = '<div class="sr-fenster__karte' + (o.breit ? ' sr-fenster__karte--breit' : '') + '"><button type="button" class="sr-fenster__x" aria-label="Schließen">' + WO.ic('x') + '</button>' + inhalt + '</div>';
     document.body.appendChild(f); document.documentElement.classList.add('sr-fenster-auf');
     f.addEventListener('click', function (e) { if (e.target === f || e.target.closest('.sr-fenster__x')) zu(); });
     var erstes = f.querySelector('input,textarea,button:not(.sr-fenster__x)'); if (erstes) setTimeout(function () { erstes.focus({ preventScroll: true }); }, 30);
@@ -152,4 +152,35 @@
     return k;
   }
   window.WZ.blaetter = blaetter; window.WZ.drucken = drucken; window.WZ.massstab = massstab;
+})();
+
+/* Auftritt beim Hereinscrollen (Fehlerbuch F241): Karten, Zeilen und Kacheln unter dem ersten Bildschirm schweben 40 px an ihren Platz,
+   nur transform, gestaffelt höchstens vier, nicht bei reduzierter Bewegung, nie auf den Blättern (die werden für den Druck geklont). */
+(function () {
+  'use strict';
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var WAHL = '.sr-karte, .sr-zeile, .wo-ag, .ub-bk, .wo-lg';
+  var io = new IntersectionObserver(function (es) {
+    var n = 0;
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target; io.unobserve(el);
+      el.style.transitionDelay = (Math.min(n++, 3) * 70) + 'ms';
+      el.classList.add('sr-da');
+    });
+  }, { rootMargin: '0px 0px -8% 0px' });
+  function beobachte(wurzel) {
+    [].forEach.call((wurzel || document).querySelectorAll(WAHL), function (el) {
+      if (el.__srAuf || el.closest('.sr-blatt, #fenster, #sr-druckbereich')) return;
+      el.__srAuf = 1;
+      if (el.getBoundingClientRect().top < innerHeight) return;   // im ersten Bildschirm: steht sofort
+      el.classList.add('sr-auf'); io.observe(el);
+    });
+  }
+  function los() {
+    var raum = document.getElementById('raum'); if (!raum) return;
+    beobachte(raum);
+    new MutationObserver(function () { beobachte(raum); }).observe(raum, { childList: true, subtree: true });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', los); else los();
 })();

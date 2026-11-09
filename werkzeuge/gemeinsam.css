@@ -20,7 +20,8 @@
 /* Karten mit Feldern (Platte auf hellem Raum) */
 .sr-karte{position:relative;padding:28px 28px 26px;border-radius:var(--wo-r1);background:linear-gradient(180deg,var(--wo-weiss),var(--wo-blatt));box-shadow:inset 0 1px 0 #fff,inset 0 0 0 1px var(--wo-linie),0 26px 40px -32px rgba(0,0,0,.45)}
 .sr-karte+.sr-karte{margin-top:20px}
-.sr-karte__kopf{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.sr-karte__kopf{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px 16px;margin-bottom:18px}
+.sr-karte__kopf>div{min-width:0;flex:1 1 180px}
 .sr-karte__kopf h2,.sr-karte__kopf h3{font:500 26px/1.12 var(--wo-titel);margin:0}
 .sr-karte__kopf p{margin:6px 0 0;color:var(--wo-leise);font-size:14.5px}
 .sr-felder{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px}
@@ -85,7 +86,8 @@ html.sr-fenster-auf{overflow:hidden}
 .sr-blatt__in{position:absolute;left:20mm;right:20mm;top:18mm;bottom:28mm;overflow:hidden}
 .sr-blatt__fuss{position:absolute;left:20mm;right:20mm;bottom:15mm;display:flex;justify-content:space-between;gap:6mm;font-size:8pt;line-height:1.45;color:#6b5a38;letter-spacing:.02em}
 .sr-blatt__nr{white-space:nowrap}
-.sr-blatt h1,.sr-blatt h2,.sr-blatt h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;margin:0;color:#1b1915;letter-spacing:-.005em}
+.sr-blatt h1,.sr-blatt h2,.sr-blatt h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;color:#1b1915;letter-spacing:-.005em}
+:where(.sr-blatt) :is(h1,h2,h3){margin:0}   /* Rücksetzung mit :where (F177) */
 .sr-blatt .sr-b-zeichen{display:block;width:22mm;height:auto;margin:0 auto 4mm;color:#b1996a}
 .sr-blatt .sr-b-zeile{font-size:9pt;letter-spacing:.04em;color:#8a7348;text-align:center;margin:0}
 .sr-blatt .sr-b-titel{font-size:30pt;line-height:1.05;text-align:center;margin:2.5mm 0 0}
@@ -93,7 +95,7 @@ html.sr-fenster-auf{overflow:hidden}
 .sr-blatt .sr-b-satz{text-align:center;max-width:140mm;margin:0 auto;font-size:10.5pt;color:#3b362e}
 .sr-blatt .sr-b-kopfzeile{display:flex;justify-content:space-between;align-items:center;gap:6mm;padding-bottom:3mm;margin-bottom:5mm;border-bottom:.2mm solid rgba(177,153,106,.6);font-size:9pt;color:#8a7348}
 .sr-blatt .sr-b-kopfzeile svg{width:12mm;height:auto;color:#b1996a}
-.sr-blatt p{margin:0}
+:where(.sr-blatt) p{margin:0}
 @media screen{.sr-huelle .sr-stapel{transform-origin:0 0}}
 
 /* ================= Druck: nur die Blätter, A4 ohne Rand ================= */
@@ -116,3 +118,9 @@ html.sr-fenster-auf{overflow:hidden}
 .uw-karte .wo-ag__t>span:not(.uw-kn){font-size:15px;line-height:1.55;color:rgba(243,238,229,.8)}
 .uw-stand{margin-top:6px;font-size:13.5px;color:var(--wo-gold)}
 .uw-kn{margin-top:14px}
+
+/* Auftritt beim Hereinscrollen (F241): nur transform */
+@media screen and (prefers-reduced-motion:no-preference){
+  .sr-auf{transform:translateY(40px);transition:transform .8s cubic-bezier(.22,.61,.36,1)}
+  .sr-auf.sr-da{transform:none}
+}

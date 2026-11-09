@@ -60,7 +60,7 @@ async function grundpruefung(page, name, breite) {
       if (!hatText) return;
       if (+cs.fontWeight >= 600) fett.push(el.tagName + '.' + el.className + ' ' + cs.fontWeight);
       if (cs.fontStyle !== 'normal') kursiv.push(el.tagName + '.' + el.className + ' «' + el.textContent.trim().slice(0, 20) + '»');
-      if (parseFloat(cs.fontSize) < 12) klein.push(el.tagName + '.' + el.className + ' ' + cs.fontSize);
+      if (parseFloat(cs.fontSize) < 13) klein.push(el.tagName + '.' + el.className + ' ' + cs.fontSize);
     });
     const auswahl = document.querySelectorAll('select, input[type=date], input[type=datetime-local], input[type=month], input[type=week], input[type=time], datalist').length;
     const emoji = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(document.body.innerText);
@@ -71,7 +71,7 @@ async function grundpruefung(page, name, breite) {
   pruefe(b.zuBreit.length === 0, t + 'kein Element ragt aus dem Schirm ' + JSON.stringify(b.zuBreit));
   pruefe(b.fett.length === 0, t + 'nichts fett ' + JSON.stringify(b.fett));
   pruefe(b.kursiv.length === 0, t + 'nichts kursiv ' + JSON.stringify(b.kursiv));
-  pruefe(b.klein.length === 0, t + 'keine Schrift unter 12 px ' + JSON.stringify(b.klein));
+  pruefe(b.klein.length === 0, t + 'keine Schrift unter 13 px (F01) ' + JSON.stringify(b.klein));
   pruefe(b.auswahl === 0, t + 'kein select und kein Datumsfeld');
   pruefe(!b.emoji, t + 'keine Emojis');
 }
@@ -98,7 +98,7 @@ async function blaetterSauber(page, huelle) {
 }
 
 async function ansichten(browser, name, datei, wege) {
-  for (const breite of [1440, 390]) {
+  for (const breite of [1440, 1000, 390, 320]) {
     const { ctx, page, meldungen } = await neueSeite(browser, breite);
     await page.goto(BASIS + datei + '?von=uebersicht', { waitUntil: 'load' });
     await bereit(page);
@@ -186,6 +186,9 @@ async function lauf(browser, bname) {
     await page.click('[data-gehe="beispiel"] >> nth=0'); await warte(400);
     pruefe(await page.$$eval('#ub-huelle .ub-uebung', x => x.length) === 6, t + 'Beispiel mit sechs Übungen in zwei Abschnitten');
     pruefe((await page.textContent('#leiste')).includes('Beispiel, nicht gespeichert'), t + 'Leiste sagt beim Beispiel «nicht gespeichert»');
+    pruefe(!/Beispiel/.test(await page.textContent('#ub-huelle')), t + 'die Kennzeichnung «Beispiel» steht nie auf dem Blatt (F184)');
+    const fotos = await page.$$eval('#ub-huelle .ub-foto img', x => x.map(i => i.getAttribute('src')));
+    pruefe(fotos.every((f, i) => i === 0 || f !== fotos[i - 1]), t + 'kein Foto zweimal direkt untereinander auf dem Blatt (F120)');
     /* neuer Plan */
     await rk(page, '#rand [data-gehe="neu"]'); await warte(300);
     await page.fill('[data-f="patient"]', 'Erika Muster');

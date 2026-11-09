@@ -45,3 +45,6 @@
 /* Link-Knöpfe mit langer Aufschrift brechen am Handy um statt über den Rand zu laufen */
 .pt-links-kn .wo-kn{max-width:100%;height:auto;min-height:48px;white-space:normal;text-align:left;line-height:1.3;padding-top:6px;padding-bottom:6px}
 .pt-links-kn .wo-kn span{min-width:0;overflow-wrap:anywhere}
+/* 320 px: Felder der Skizze brechen um statt über den Rand zu laufen (F49, F151) */
+.pt-sk__feld,.pt-sk__karte{flex-wrap:wrap}
+.pt-sk__feld span{min-width:0;overflow-wrap:anywhere}

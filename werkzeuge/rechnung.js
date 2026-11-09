@@ -43,7 +43,7 @@
       return '<div class="re-zeile"><span>' + esc(p.datum) + '</span><span>' + esc(p.leistung) + '</span><span class="z">' + esc(p.anzahl) + '</span><span class="z">' + euro.format(zahl(p.preis)) + '</span><span class="z">' + euro.format(betrag(p)) + '</span></div>';
     }) : ['<div class="re-zeile re-zeile--leer"><span>Noch keine Leistung eingetragen.</span></div>'];
     var schluss = '<footer class="re-schluss"><div class="re-summe"><span>Summe</span><b>' + euro.format(summe()) + '</b></div>'
-      + '<p class="re-ust">Umsatzsteuerfrei nach § 4 Nr. 14 UStG.</p><p class="re-bitte">Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer.</p>'
+      + '<p class="re-ust">Umsatzsteuerfrei nach § 4 Nr. 14 UStG.</p><p class="re-bitte">Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer.</p><p class="re-gruss">Mit freundlichen Grüßen<span>Sylvia Sroka</span></p>'   /* gestalteter Schluss (F95) */
       + '<div class="re-unten"><div><p class="sr-b-zeile">Steuernummer</p>' + (z.steuernummer.trim() ? '<p>' + esc(z.steuernummer.trim()) + '</p>' : '<span class="re-luecke"></span>') + '</div>'
       + '<div><p class="sr-b-zeile">Bankverbindung</p>' + (z.bank.trim() ? '<p>' + esc(z.bank.trim()) + '</p>' : '<span class="re-luecke"></span><span class="re-luecke"></span>') + '</div>'
       + '<div><p class="sr-b-zeile">Kontakt</p><p>Telefon ' + esc(s.tel) + '\n' + esc(MAIL) + '</p></div></div></footer>';
@@ -96,7 +96,7 @@
         + '<div class="sr-arbeit"><div class="sr-arbeit__eingabe">'
         + '<section class="sr-karte"><div class="sr-karte__kopf"><div><h2>Standort und Patient</h2><p>Der Standort bestimmt Absender und Kontakt auf dem Blatt.</p></div></div><div class="sr-felder">'
         + '<div class="wo-feld sr-breit"><span>Standort</span><div class="wo-wahl" role="group">' + ['hannover', 'hemmingen'].map(function (k) { return '<button type="button" data-standort="' + k + '" aria-pressed="' + (z.standort === k) + '">' + S[k].ort + '</button>'; }).join('') + '</div></div>'
-        + feld('patient', 'Patientin oder Patient', { platz: 'Vor- und Nachname', breit: true }) + feld('anschrift', 'Anschrift', { mehr: true, zeilen: 2, platz: 'Strasse und Hausnummer\nPostleitzahl und Ort', breit: true })
+        + feld('patient', 'Patientin oder Patient', { platz: 'Vor- und Nachname', breit: true }) + feld('anschrift', 'Anschrift', { mehr: true, zeilen: 2, platz: 'Straße und Hausnummer\nPostleitzahl und Ort', breit: true })
         + feld('nummer', 'Rechnungsnummer', { platz: 'zum Beispiel 2026-014' }) + '<div class="wo-feld"><span>Rechnungsdatum</span><div class="re-mit"><input data-feld="datum" value="' + esc(z.datum) + '" inputmode="numeric" autocomplete="off" aria-label="Rechnungsdatum"><button type="button" class="sr-rund re-heute" data-akt="heute" title="Heute" aria-label="Heute">' + WO.ic('uhr') + '</button></div></div>'
         + feld('zusatz', 'Zusatz (freiwillig)', { platz: 'zum Beispiel Behandlungszeitraum', breit: true })
         + '</div></section>'
@@ -156,6 +156,6 @@
   WZ.kopf({ werkzeug: 'rechnung', unter: 'Rechnungen', titel: 'Rechnung', stand: 'Rechnungen', marke: function () { zeige('rechnung'); } });
   WZ.druckQuelle(function () { return document.querySelectorAll('#re-huelle .sr-blatt'); });
   zeige(WZ.ansichtLesen('rechnung') === 'angaben' ? 'angaben' : 'rechnung');
-  if (!WZ.speicher.ok) WZ.meldung('Nur für diese Sitzung', 'Dieser Browser lässt nichts ablegen. Die Eingaben gehen beim Schliessen verloren.', { fehler: true });
+  if (!WZ.speicher.ok) WZ.meldung('Nur für diese Sitzung', 'Dieser Browser lässt nichts ablegen. Die Eingaben gehen beim Schließen verloren.', { fehler: true });
   window.__srBereit = true;
 })();

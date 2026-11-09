@@ -33,10 +33,16 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - Bilder und PDFs angesehen (Übersicht, Übungsplan, Rechnung, Profiltexte, Drucksachen, 1440/390). Behoben: Zeichen im Kopf fehlte (# im data:-URI), Leiste beim Beispiel. Werkstatt-PDFs aller 5 Beispiele im Prüfskript (Format + 3 mm Beschnitt, keine fehlenden Zeichen).
 - Unteragent prüft das Fehlerbuch 10a Punkt für Punkt (nur lesen, Bericht an diese Sitzung).
 
+- Fehlerbuch 10a geprüft (Unteragent, 166 Punkte, 18 Funde). In den Werkzeugen behoben (Commit 86bf169): Bibliothek je Gruppe ein Foto + Zeilen, Bibliotheksübungen bekommen das Gruppenfoto nur als erste, Beispiel heisst «Frau Muster» (Kennzeichnung nur in der Leiste), Schrift ab 13 px, 320 px ohne Überragen, Zahl im Rand mittig, Ziffernkreis wächst, Gruss auf der Rechnung, Auftritt beim Scrollen, :where-Rücksetzungen, .catch, addEventListener, deutsche Schreibung, praxis.js/werkzeuge.css entfernt. Prüfskript jetzt bei 1440/1000/390/320: 508 Punkte grün.
+- Unteragent behebt die Drucksachen-Funde (Feld der Startseite 900–1240 px, «Fünf Entwürfe» → «Passende Vorlagen», Varone-Farben in lib/auswahl.css, Schriften der Prüfseite, ausLivre-Platzhalter, ß-Schreibung, Hilfe-Film).
+
 ## Nächster genauer Schritt
-Bericht des Fehlerbuch-Unteragenten abarbeiten (falls die Sitzung abbricht: selbst `pruefen/fehlerbuch-10a.md` gegen die Werkzeuge prüfen); danach Prüfskript laufen lassen und «Fertig.» schreiben. Früherer Schritt (erledigt): Bilder und PDFs der Prüfung ansehen (Ordner im Scratchpad, neu erzeugen mit dem Prüfskript), Fehlerbuch 10a (`pruefen/fehlerbuch-10a.md`) Punkt für Punkt gegen die Werkzeuge abhaken, Funde beheben, dann «Fertig.».
+Bericht des Drucksachen-Unteragenten abwarten und prüfen (falls Abbruch: die Punkte oben selbst in `werkzeuge/drucksachen/` beheben), dann Prüfskript laufen lassen, Drucksachen ansehen, «Fertig.» schreiben (Schlusstext liegt im Scratchpad `schluss.md`, sonst neu schreiben).
 
 ## Entscheidungen der Nacht
+- Übersicht: Startbild als «buehne» (kleiner), Kacheln bleiben zweispaltig: vier Spalten ergäben unter 300 px Textbreite (F205 geht vor F112).
+- Rechnung bekommt «Mit freundlichen Grüßen, Sylvia Sroka» als gestalteten Schluss (F95).
+- `werkzeuge/erzeugen.py` und `werkzeuge/qr/` bleiben: erzeugen zeichen.js und uebungen-daten.js; qr/ ist deren Ausgabe.
 - WebKit: Download in der Cloud gesperrt (Download failure), geprüft nur mit Chromium; das Prüfskript nimmt WebKit mit `PRUEF_WEBKIT=1` dazu, wo es installiert ist (am Mac).
 - Verborgene native select der Werkstatt (`hwahl-nativ`, mit eigenem Wahlknopf darüber) bleiben: so baut es die Vorlage, sichtbar ist nur der gestaltete Knopf.
 - (Folgesitzung 09.11. abends) Kein Unteragent mehr offen: Recherche Profiltexte liegt in `pruefen/quellen-profiltexte.md`, alle Bauschritte sind committet. Nichts neu zu starten.

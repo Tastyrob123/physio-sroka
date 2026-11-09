@@ -1,0 +1,587 @@
+:root{
+  --nacht:#0e0d0b;
+  --nacht2:#191714;
+  --licht:#f3eee5;
+  --licht2:#e9e1d4;
+  --gold:#b1996a;
+  --gold-hell:#cdb78b;
+  --text:#1b1915;
+  --leise:#6d665b;
+  --ecke:clamp(22px,2.6vw,40px);
+  --rand:clamp(20px,4.4vw,72px);
+  --takt:1.25s;
+  --kurve:cubic-bezier(.25,.62,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--nacht);color:var(--text);font-family:Manrope,system-ui,sans-serif;font-weight:400;font-size:clamp(17px,1.2vw,20px);line-height:1.6;overflow-x:hidden}
+body.wartet{visibility:hidden}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:-.01em;line-height:.98}
+
+/* Tapete aus ihrem Zeichen */
+.tapete-dunkel{background-color:var(--nacht);background-image:url(media/tapete-dunkel.png);background-size:360px 360px}
+.tapete-hell{background-color:var(--licht2);background-image:url(media/tapete-hell.png);background-size:360px 360px}
+
+/* Leiste */
+.leiste{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px var(--rand);color:var(--licht);transition:transform .7s var(--kurve)}
+.leiste.weg{transform:translateY(-110%)}
+.leiste .marke{display:flex;align-items:center;gap:12px;font-family:"Cormorant Garamond",serif;font-size:22px;letter-spacing:.01em}
+.leiste .marke svg{width:46px;color:var(--gold)}
+.leiste nav{display:flex;align-items:center;gap:6px;padding:5px;border-radius:999px;background:var(--nacht2);border:1px solid rgba(177,153,106,.4)}
+.leiste nav a{font-size:15px;letter-spacing:.03em;padding:8px 16px;border-radius:999px}
+.leiste nav a.ruf{background:var(--gold);color:var(--nacht)}
+.leiste nav a.hier{color:var(--gold-hell)}
+.leiste.hell nav{background:var(--licht);border-color:rgba(27,25,21,.16);color:var(--text)}
+.leiste.hell{color:var(--text)}
+
+/* Knöpfe */
+.knoepfe{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(26px,4vh,44px)}
+.knopf{display:inline-flex;align-items:center;gap:14px;padding:12px 12px 12px 24px;border-radius:999px;font-size:16px;letter-spacing:.02em;background:var(--gold);color:var(--nacht);box-shadow:0 14px 30px -18px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.35)}
+.knopf .knauf{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--nacht);color:var(--gold-hell);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+.knopf.zweit{background:transparent;color:var(--licht);border:1px solid rgba(205,183,139,.5);box-shadow:none}
+.knopf.zweit .knauf{background:var(--nacht2)}
+.hellgrund .knopf.zweit,.sandgrund .knopf.zweit,.tapete-hell .knopf.zweit{color:var(--text);border-color:rgba(27,25,21,.25)}
+.knopf svg{width:16px;height:16px}
+
+/* Auftakt */
+.auftakt{min-height:100svh;color:var(--licht);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,3vw,56px);align-items:center;padding:clamp(96px,11vh,130px) var(--rand) clamp(40px,6vh,72px)}
+.auftakt .zeichen{width:clamp(110px,10vw,170px);color:var(--gold);margin-bottom:clamp(18px,3vh,34px)}
+.auftakt h1{font-size:clamp(60px,7.6vw,150px)}
+.auftakt h1 .z2{color:var(--gold-hell)}
+.auftakt p.satz{max-width:32ch;margin-top:clamp(20px,3vh,34px);font-size:clamp(18px,1.35vw,22px);font-weight:300;color:#d9d2c5}
+.buehne{position:relative;height:min(80svh,840px);border-radius:var(--ecke);overflow:hidden;background:var(--nacht2)}
+.buehne img,.buehne video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* Fenster: Bild und Satz stehen fest, die Seite läuft darüber */
+.standbild{position:relative;height:190svh;background:var(--nacht)}
+.standbild .fest{position:sticky;top:0;height:100svh;overflow:hidden}
+.standbild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.standbild .hof{position:absolute;inset:0;background:radial-gradient(ellipse 75% 70% at 22% 78%,rgba(14,13,11,.78),rgba(14,13,11,.35) 55%,rgba(14,13,11,0) 85%)}
+.standbild .text{position:absolute;left:var(--rand);bottom:clamp(60px,14vh,160px);max-width:min(900px,86vw);color:var(--licht)}
+.standbild h2{font-size:clamp(46px,6.6vw,118px)}
+.standbild p{margin-top:22px;max-width:40ch;font-size:clamp(18px,1.35vw,22px);font-weight:300;color:#ece6da}
+.wahl{position:fixed;left:50%;bottom:22px;z-index:30;transform:translate(-50%,160%);display:flex;align-items:center;gap:6px;padding:6px;border-radius:999px;background:var(--nacht);color:var(--licht);font-size:15px;letter-spacing:.02em;box-shadow:0 18px 40px -20px rgba(0,0,0,.8);border:1px solid rgba(177,153,106,.4);transition:transform .6s var(--kurve)}
+.wahl.sichtbar{transform:translate(-50%,0)}
+.wahl span{min-width:240px;text-align:center}
+.wahl button{width:38px;height:38px;border-radius:50%;border:0;background:var(--nacht2);color:var(--gold-hell);font-size:20px;cursor:pointer}
+
+/* Abschnitte mit runden Ecken */
+.abschnitt{position:relative;z-index:2;margin-top:calc(var(--ecke) * -1);border-radius:var(--ecke) var(--ecke) 0 0;padding:clamp(70px,10vh,120px) var(--rand)}
+.hellgrund{background:var(--licht);color:var(--text)}
+.sandgrund{background:var(--licht2);color:var(--text)}
+.dunkelgrund{background:var(--nacht);color:var(--licht)}
+.tapete-dunkel{color:var(--licht)}
+.tapete-hell{color:var(--text)}
+.kopf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(20px,4vw,80px);align-items:end;margin-bottom:clamp(36px,5vh,60px)}
+.kopf h2{font-size:clamp(48px,6.2vw,108px)}
+.kopf p{font-size:clamp(18px,1.3vw,21px);color:var(--leise);max-width:38ch}
+.dunkelgrund .kopf p,.tapete-dunkel .kopf p{color:#cfc7b8}
+
+/* Zahlen auf der Tapete */
+.zahlen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.zahl{background:var(--nacht2);border:1px solid rgba(177,153,106,.22);border-radius:calc(var(--ecke) * .8);padding:clamp(26px,3vw,48px)}
+.zahl b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(84px,9vw,160px);line-height:.9;color:var(--gold-hell)}
+.zahl span{display:block;margin-top:14px;color:#d6cfc2;max-width:26ch}
+
+/* Ablauf für alle, die zum ersten Mal kommen */
+.ablauf .gitter{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(30px,5vw,90px);align-items:start}
+.ablauf .links{position:sticky;top:clamp(90px,12vh,130px)}
+.ablauf h2{font-size:clamp(48px,5.6vw,100px)}
+.ablauf .einfuehrung{margin-top:26px;max-width:34ch;font-size:clamp(18px,1.3vw,21px);color:var(--leise)}
+.ablauf .hilft{margin-top:22px;max-width:24ch;font-family:"Cormorant Garamond",serif;font-size:clamp(28px,2.3vw,40px);line-height:1.12}
+.ablauf .mitbringen{margin-top:30px;background:var(--nacht);color:var(--licht);border-radius:calc(var(--ecke) * .8);padding:clamp(22px,2.2vw,34px);max-width:440px}
+.ablauf .mitbringen h3{font-size:clamp(28px,2.2vw,38px);color:var(--gold-hell)}
+.ablauf .mitbringen p{margin-top:8px;color:#d6cfc2;font-size:clamp(16px,1.1vw,18px)}
+.schritte{display:grid;gap:12px}
+.schritt{background:var(--licht);border-radius:calc(var(--ecke) * .8);overflow:hidden;display:grid;grid-template-columns:1.15fr 1fr;min-height:clamp(240px,26vw,380px);box-shadow:0 30px 60px -44px rgba(40,30,15,.5)}
+.schritt .bild{position:relative;overflow:hidden}
+.schritt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.schritt .wort{padding:clamp(24px,2.6vw,44px);display:flex;flex-direction:column;justify-content:center}
+.schritt h3{font-size:clamp(36px,3.2vw,58px)}
+.schritt p{margin-top:12px;color:var(--leise);font-size:clamp(16px,1.1vw,18px);max-width:32ch}
+
+/* Schwerpunkte: eine grosse Tafel, zwei daneben */
+.flaeche{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto;gap:12px}
+.tafel{background:#fff;border-radius:calc(var(--ecke) * .8);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 60px -40px rgba(40,30,15,.45)}
+.tafel.gross{grid-row:1 / span 2}
+.tafel .bild{position:relative;overflow:hidden;flex:1;min-height:280px}
+.tafel.gross .bild{min-height:560px}
+.tafel img,.tafel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tafel .unten{padding:clamp(22px,2.2vw,34px) clamp(22px,2.4vw,38px);display:grid;grid-template-columns:auto 1fr;gap:6px 28px;align-items:baseline}
+.tafel h3{font-size:clamp(34px,3.2vw,56px);color:var(--text)}
+.tafel p{font-size:clamp(16px,1.1vw,18px);color:var(--leise);max-width:40ch}
+.tafel .linie{grid-column:1 / -1;height:1px;background:var(--gold);width:64px;margin-top:10px}
+
+/* Neurologie im Detail */
+.nerven{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:center}
+.nerven .bild{position:relative;height:min(78svh,780px);border-radius:var(--ecke);overflow:hidden}
+.nerven .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.nerven h2{font-size:clamp(48px,5.4vw,96px)}
+.nerven .bilder-satz{margin-top:28px;font-family:"Cormorant Garamond",serif;font-size:clamp(30px,2.8vw,50px);line-height:1.12;color:var(--gold-hell)}
+.nerven .bilder-satz span{color:var(--licht)}
+.nerven p.lese{margin-top:24px;max-width:44ch;color:#d6cfc2}
+.ziele{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ziel{background:var(--nacht2);border:1px solid rgba(177,153,106,.22);border-radius:18px;padding:18px 20px}
+.ziel h3{font-size:clamp(24px,1.9vw,32px);color:var(--gold-hell)}
+.ziel p{margin-top:4px;font-size:clamp(15px,1vw,17px);color:#cfc7b8}
+
+/* Körper und Seele */
+.seele .gitter{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:12px}
+.seele .bild{position:relative;border-radius:calc(var(--ecke) * .8);overflow:hidden;min-height:320px}
+.seele .bild.hoch{grid-row:1 / span 2;min-height:640px}
+.seele .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.seele .platte{background:var(--licht);border-radius:calc(var(--ecke) * .8);padding:clamp(26px,2.8vw,46px);box-shadow:0 30px 60px -44px rgba(40,30,15,.5)}
+.seele .platte h3{font-size:clamp(32px,2.8vw,50px)}
+.seele .platte ul{list-style:none;margin-top:18px;display:grid;gap:14px}
+.seele .platte li{padding-left:26px;position:relative;color:#3b3730}
+.seele .platte li::before{content:"";position:absolute;left:0;top:.75em;width:14px;height:1px;background:var(--gold)}
+
+/* Zu Ihnen / Angehörige */
+.zuhause .reihe{display:grid;grid-template-columns:1.7fr 1fr;gap:12px}
+.zuhause .bild{position:relative;border-radius:calc(var(--ecke) * .8);overflow:hidden;background:var(--nacht2);min-height:min(64svh,640px)}
+.zuhause .bild img,.zuhause .bild video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.zuhause .platte{background:var(--nacht2);border-radius:calc(var(--ecke) * .8);padding:clamp(26px,2.8vw,46px);border:1px solid rgba(177,153,106,.2);display:flex;flex-direction:column;justify-content:space-between;gap:26px}
+.zuhause .platte h3{font-size:clamp(32px,2.8vw,50px);color:var(--gold-hell)}
+.zuhause .platte p{margin-top:12px;color:#d6cfc2}
+.zuhause .platte .klein{font-size:15px;color:#a99f8f}
+
+/* Persönlich: Foto und Geschichte */
+.person{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,90px);align-items:center}
+.person .foto{position:relative;aspect-ratio:4/5;border-radius:var(--ecke);overflow:hidden;background:var(--licht2)}
+.person .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.person h2{font-size:clamp(48px,5.6vw,100px)}
+.person blockquote{margin-top:26px;font-family:"Cormorant Garamond",serif;font-size:clamp(30px,2.8vw,50px);line-height:1.1}
+.person p.lese{margin-top:22px;max-width:46ch;color:var(--leise)}
+
+/* Stimme */
+.stimme{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,72px);align-items:center}
+.stimme blockquote{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(40px,4.6vw,84px);line-height:1.04;letter-spacing:-.01em}
+.stimme cite{display:block;margin-top:26px;font-style:normal;font-size:16px;letter-spacing:.04em;color:var(--leise)}
+.stimme .zeichen{width:120px;color:var(--gold);margin-bottom:26px}
+.stimme .bild{position:relative;height:min(62svh,620px);border-radius:calc(var(--ecke) * .8);overflow:hidden;background:var(--licht2)}
+.stimme .bild img,.stimme .bild video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* Kontakt */
+.standorte{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.standort{background:var(--licht);border-radius:calc(var(--ecke) * .8);padding:clamp(28px,3vw,52px);box-shadow:0 30px 60px -44px rgba(40,30,15,.5)}
+.standort h3{font-size:clamp(40px,4vw,72px)}
+.standort .name{margin-top:6px;color:var(--leise)}
+.standort dl{margin-top:26px;display:grid;grid-template-columns:auto 1fr;gap:8px 22px}
+.standort dt{color:var(--leise);font-size:15px;letter-spacing:.04em;padding-top:2px}
+.standort dd a{border-bottom:1px solid rgba(177,153,106,.6)}
+.standort .knopf{margin-top:30px;color:var(--nacht)}
+.zeiten{margin-top:12px;background:var(--nacht);color:var(--licht);border-radius:calc(var(--ecke) * .8);padding:clamp(28px,3vw,52px);display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,70px);align-items:center}
+.zeiten .zeichen{width:96px;color:var(--gold)}
+.zeiten h3{font-size:clamp(36px,3.4vw,60px)}
+.zeiten p{color:#d6cfc2;margin-top:6px}
+.zeiten .gross{font-family:"Cormorant Garamond",serif;font-size:clamp(40px,4vw,74px);color:var(--gold-hell);white-space:nowrap}
+
+/* Über mich: Werdegang und Ausbildungen */
+.weg{position:relative;display:grid;gap:12px}
+.station{display:grid;grid-template-columns:minmax(150px,.35fr) minmax(0,1fr);gap:clamp(20px,4vw,70px);align-items:start;background:var(--licht);border-radius:calc(var(--ecke) * .8);padding:clamp(26px,3vw,48px);box-shadow:0 30px 60px -44px rgba(40,30,15,.5)}
+.station .jahr{font-family:"Cormorant Garamond",serif;font-size:clamp(64px,6.4vw,118px);line-height:.85;color:var(--gold)}
+.station h3{font-size:clamp(32px,2.8vw,50px)}
+.station p{margin-top:10px;color:var(--leise);max-width:52ch}
+.ausbildungen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ausbildung{background:var(--nacht2);border:1px solid rgba(177,153,106,.22);border-radius:calc(var(--ecke) * .8);padding:clamp(24px,2.6vw,40px);min-height:200px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.ausbildung svg{width:70px;color:var(--gold)}
+.ausbildung h3{font-size:clamp(28px,2.4vw,42px);color:var(--licht)}
+.ausbildung.breit{grid-column:span 2}
+.geschichte{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,5vw,90px);align-items:start}
+.geschichte .links{position:sticky;top:clamp(90px,12vh,130px)}
+.geschichte h2{font-size:clamp(48px,5.6vw,100px)}
+.geschichte .absatz{font-size:clamp(19px,1.45vw,24px);line-height:1.6;color:#2c2924}
+.geschichte .absatz+.absatz{margin-top:28px}
+.geschichte .gross{font-family:"Cormorant Garamond",serif;font-size:clamp(34px,3.2vw,58px);line-height:1.08;color:var(--text)}
+
+/* Fuss */
+.fuss{position:relative;z-index:2;margin-top:calc(var(--ecke) * -1);border-radius:var(--ecke) var(--ecke) 0 0;background:var(--nacht);color:#bdb5a7;padding:clamp(40px,6vh,64px) var(--rand);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;font-size:15px}
+.fuss .marke{display:flex;align-items:center;gap:14px;color:var(--licht);font-family:"Cormorant Garamond",serif;font-size:24px}
+.fuss .marke svg{width:52px;color:var(--gold)}
+.fuss nav{display:flex;flex-wrap:wrap;gap:26px}
+
+/* Bewegung: Reinfliegen, aus dem Schlitz, leicht zoomen, einmal pulsieren */
+.js .flieg{transform:translate3d(0,90px,0)}
+.js .flieg.da{transform:none;transition:transform var(--takt) var(--kurve)}
+.js .schlitz .z{display:block;overflow:hidden;padding-bottom:.08em}
+.js .schlitz .z>span{display:block;transform:translate3d(0,108%,0)}
+.js .schlitz.da .z>span{transform:none;transition:transform var(--takt) var(--kurve)}
+.js .schlitz.da .z:nth-child(2)>span{transition-delay:.09s}
+.js .schlitz.da .z:nth-child(3)>span{transition-delay:.18s}
+.js .zoom>video,.js .zoom>img{transform:scale(1.14)}
+.js .zoom.da>video,.js .zoom.da>img{transform:none;transition:transform 1.7s var(--kurve)}
+.js .puls.gepulst{animation:puls .7s var(--kurve) 1}
+@keyframes puls{0%{transform:none}45%{transform:scale(1.012)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .js .flieg,.js .schlitz .z>span,.js .zoom>video,.js .zoom>img{transform:none!important;transition:none!important}
+}
+
+/* Handy */
+@media (max-width:900px){
+  .auftakt{grid-template-columns:1fr;padding-top:104px}
+  .auftakt h1{font-size:clamp(56px,15.5vw,96px)}
+  .buehne{height:66svh}
+  .leiste nav a:not(.ruf){display:none}
+  .leiste .marke span{display:none}
+  .kopf{grid-template-columns:1fr;align-items:start}
+  .standbild h2{font-size:clamp(40px,11vw,64px)}
+  .wahl span{min-width:0}
+  .zahlen{grid-template-columns:1fr}
+  .ablauf .gitter,.geschichte{grid-template-columns:1fr}
+  .ablauf .links,.geschichte .links{position:static}
+  .schritt{grid-template-columns:1fr}
+  .schritt .bild{height:56vw}
+  .flaeche{grid-template-columns:1fr}
+  .tafel.gross{grid-row:auto}
+  .tafel.gross .bild{min-height:380px}
+  .tafel .unten{grid-template-columns:1fr}
+  .nerven{grid-template-columns:1fr}
+  .nerven .bild{height:70vw}
+  .ziele{grid-template-columns:1fr}
+  .seele .gitter{grid-template-columns:1fr}
+  .seele .bild.hoch{grid-row:auto;min-height:420px}
+  .zuhause .reihe{grid-template-columns:1fr}
+  .zuhause .bild{min-height:60vw}
+  .person{grid-template-columns:1fr}
+  .stimme{grid-template-columns:1fr}
+  .standorte{grid-template-columns:1fr}
+  .zeiten{grid-template-columns:1fr}
+  .zeiten .gross{white-space:normal}
+  .station{grid-template-columns:1fr}
+  .ausbildungen{grid-template-columns:1fr}
+  .ausbildung.breit{grid-column:auto}
+}
+
+/* ===== Stand 09.11. nachmittags: Fenster, Fassungen, ruhigere Darstellung ===== */
+.zahl b,.station .jahr,.z-band b,.z-satz b,.z-gross b{font-variant-numeric:lining-nums}
+
+/* Fenster: Bild steht, sobald es den Bildschirm füllt, läuft der nächste Abschnitt darüber */
+.standbild{height:200svh}
+.standbild + .abschnitt,.standbild + .huelle{margin-top:-100svh}
+.standbild .text{bottom:clamp(90px,22vh,240px)}
+
+/* Ablauf: linke Spalte passt immer in den Bildschirm */
+.ablauf h2{font-size:clamp(44px,4.4vw,82px)}
+.ablauf .hilft{font-size:clamp(24px,1.9vw,32px)}
+.schritt.dunkel{background:var(--nacht);color:var(--licht);grid-template-columns:1fr;min-height:0}
+.schritt.dunkel h3{color:var(--gold-hell)}
+.schritt.dunkel p{color:#d6cfc2;max-width:52ch}
+@media (max-height:760px){.ablauf .links{position:static}}
+
+/* Fassungen zum Durchklicken */
+.huelle{position:relative;z-index:2}
+.huelle > .fassung:not(.an){display:none!important}
+.fassbar{position:fixed;left:50%;bottom:22px;z-index:40;transform:translate(-50%,160%);display:flex;align-items:center;gap:6px;padding:6px;border-radius:999px;background:var(--nacht);color:var(--licht);font-size:15px;letter-spacing:.02em;box-shadow:0 18px 40px -20px rgba(0,0,0,.8);border:1px solid rgba(177,153,106,.5);transition:transform .6s var(--kurve)}
+.fassbar.sichtbar{transform:translate(-50%,0)}
+.fassbar span{min-width:260px;text-align:center}
+.fassbar button{width:38px;height:38px;border-radius:50%;border:0;background:var(--nacht2);color:var(--gold-hell);font-size:20px;cursor:pointer}
+
+/* Gemeinsame feine Liste mit Goldlinie */
+.feinliste{list-style:none;border-top:1px solid rgba(177,153,106,.45)}
+.feinliste li{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:clamp(14px,1.6vw,22px) 0;border-bottom:1px solid rgba(177,153,106,.45);font-family:"Cormorant Garamond",serif;font-size:clamp(26px,2.4vw,42px);line-height:1.1}
+.feinliste li small{font-family:Manrope,sans-serif;font-size:clamp(14px,1vw,16px);color:inherit;opacity:.7;text-align:right;max-width:30ch;line-height:1.4}
+.vier{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,48px)}
+.vier > div{border-top:1px solid var(--gold);padding-top:20px}
+.vier h3{font-size:clamp(26px,2.2vw,38px)}
+.vier p{margin-top:10px;font-size:clamp(15px,1.05vw,17px);opacity:.78}
+
+/* Hero 1: Vollbild */
+.h-voll{position:relative;min-height:100svh;overflow:hidden;color:var(--licht);background:var(--nacht)}
+.h-voll .grund{position:absolute;inset:0}
+.h-voll .grund img{width:100%;height:100%;object-fit:cover}
+.h-voll .hof{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,13,11,.86) 0%,rgba(14,13,11,.55) 38%,rgba(14,13,11,0) 70%)}
+.h-voll .inhalt{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:140px var(--rand) clamp(60px,10vh,110px);max-width:1100px}
+.h-voll .zeichen{width:clamp(100px,8vw,140px);color:var(--gold);margin-bottom:24px}
+.h-voll h1{font-size:clamp(70px,9.6vw,184px)}
+.h-voll h1 .z2{color:var(--gold-hell)}
+.h-voll p.satz{max-width:36ch;margin-top:26px;font-size:clamp(18px,1.4vw,22px);font-weight:300;color:#e6dfd2}
+
+/* Hero 2: Titel über breitem Bild */
+.h-breit{color:var(--licht);padding:clamp(110px,13vh,150px) var(--rand) clamp(36px,5vh,60px);min-height:100svh;display:flex;flex-direction:column}
+.h-breit .oben{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,70px);align-items:end}
+.h-breit h1{font-size:clamp(72px,9.4vw,180px)}
+.h-breit h1 .z2{color:var(--gold-hell)}
+.h-breit p.satz{font-size:clamp(18px,1.35vw,22px);font-weight:300;color:#d9d2c5;max-width:34ch}
+.h-breit .band{position:relative;flex:1;min-height:38svh;margin-top:clamp(26px,4vh,46px);border-radius:var(--ecke);overflow:hidden}
+.h-breit .band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+
+/* Hero 3: Mit ihrem Foto */
+.h-foto{color:var(--licht);min-height:100svh;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:clamp(30px,5vw,90px);align-items:center;padding:clamp(100px,12vh,140px) var(--rand) clamp(40px,6vh,70px)}
+.h-foto h1{font-size:clamp(66px,8.2vw,160px)}
+.h-foto h1 .z2{color:var(--gold-hell)}
+.h-foto p.satz{max-width:34ch;margin-top:26px;font-size:clamp(18px,1.35vw,22px);font-weight:300;color:#d9d2c5}
+.h-foto .zeichen{width:clamp(100px,8vw,140px);color:var(--gold);margin-bottom:24px}
+.h-foto .bilder{display:grid;grid-template-rows:1.4fr 1fr;gap:12px;height:min(80svh,820px)}
+.h-foto .bilder div{position:relative;border-radius:var(--ecke);overflow:hidden}
+.h-foto .bilder img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* Hero 4: Mittig */
+.h-mitte{color:var(--licht);min-height:100svh;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(120px,15vh,170px) var(--rand) 0;overflow:hidden}
+.h-mitte .zeichen{width:clamp(110px,9vw,160px);color:var(--gold);margin-bottom:20px}
+.h-mitte h1{font-size:clamp(72px,10vw,196px)}
+.h-mitte h1 .z2{color:var(--gold-hell)}
+.h-mitte p.satz{max-width:44ch;margin:24px auto 0;font-size:clamp(18px,1.35vw,22px);font-weight:300;color:#d9d2c5}
+.h-mitte .knoepfe{justify-content:center}
+.h-mitte .streifen{position:relative;width:100%;flex:1;min-height:30svh;margin-top:clamp(36px,5vh,60px);border-radius:var(--ecke) var(--ecke) 0 0;overflow:hidden}
+.h-mitte .streifen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+
+/* Zahlen 1: Band mit Linien */
+.z-band{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.z-band > div{display:flex;align-items:center;gap:clamp(16px,2vw,30px);padding:clamp(10px,2vh,24px) clamp(20px,3vw,48px);border-left:1px solid rgba(177,153,106,.5)}
+.z-band > div:first-child{border-left:0;padding-left:0}
+.z-band b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(90px,9vw,170px);line-height:.85;color:var(--gold-hell)}
+.z-band span{color:#d6cfc2;max-width:20ch}
+/* Zahlen 2: Ein Satz */
+.z-satz{font-family:"Cormorant Garamond",serif;font-size:clamp(40px,4.8vw,92px);line-height:1.12;max-width:20ch}
+.z-satz b{font-weight:500;color:var(--gold-hell);font-size:1.5em;line-height:.8}
+.z-satz small{display:block;margin-top:28px;font-family:Manrope,sans-serif;font-size:clamp(16px,1.15vw,19px);color:#cfc7b8;max-width:60ch;line-height:1.6}
+/* Zahlen 3: Grosse Ziffern */
+.z-gross{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,4vw,70px)}
+.z-gross b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(150px,17vw,320px);line-height:.8;color:var(--gold-hell)}
+.z-gross span{display:block;margin-top:22px;padding-top:18px;border-top:1px solid rgba(177,153,106,.5);color:#d6cfc2;max-width:26ch}
+
+/* Neurologie 1: Karte */
+.n-karte .kopfzeile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(24px,5vw,90px);align-items:end;margin-bottom:clamp(40px,6vh,70px)}
+.n-karte h2{font-size:clamp(52px,6vw,110px)}
+.n-karte .kopfzeile p{color:#cfc7b8;max-width:44ch}
+.n-karte .gitter{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,70px);align-items:stretch}
+.n-karte .feinliste li{color:var(--licht)}
+.n-karte .feinliste li small{color:var(--gold-hell);opacity:1}
+.n-karte .bild{position:relative;border-radius:var(--ecke);overflow:hidden;min-height:520px}
+.n-karte .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.n-karte .vier{margin-top:clamp(50px,7vh,90px);color:var(--licht)}
+.n-karte .vier h3{color:var(--gold-hell)}
+/* Neurologie 2: Bild gross mit Platte */
+.n-platte .buehne2{position:relative;height:min(86svh,860px);border-radius:var(--ecke);overflow:hidden}
+.n-platte .buehne2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.n-platte .platte{position:absolute;right:clamp(16px,3vw,48px);bottom:clamp(16px,3vw,48px);width:min(620px,calc(100% - 32px));background:var(--licht);color:var(--text);border-radius:calc(var(--ecke) * .8);padding:clamp(26px,3vw,50px)}
+.n-platte .platte h2{font-size:clamp(42px,4.4vw,80px)}
+.n-platte .platte p{margin-top:16px;font-family:"Cormorant Garamond",serif;font-size:clamp(24px,2vw,34px);line-height:1.15;color:#5a4a2c}
+.n-platte .platte p.klein{font-family:Manrope,sans-serif;font-size:clamp(15px,1.05vw,17px);color:var(--leise);line-height:1.6}
+.n-platte .vier{margin-top:clamp(50px,7vh,90px);color:var(--licht)}
+.n-platte .vier h3{color:var(--gold-hell)}
+/* Neurologie 3: Wortsäule */
+.n-saeule{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,90px);align-items:start}
+.n-saeule .bild{position:sticky;top:clamp(90px,12vh,120px);height:calc(100svh - 160px);border-radius:var(--ecke);overflow:hidden}
+.n-saeule .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.n-saeule h2{font-size:clamp(52px,5.6vw,104px)}
+.n-saeule .worte{margin-top:34px;font-family:"Cormorant Garamond",serif;font-size:clamp(40px,4.4vw,84px);line-height:1.02;color:var(--gold-hell)}
+.n-saeule .worte span{display:block}
+.n-saeule p.lese{margin-top:34px;color:#cfc7b8;max-width:46ch}
+.n-saeule .feinliste{margin-top:34px;color:var(--licht)}
+
+/* Seele 1: Bild randlos */
+.s-rand{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:100svh;padding:0}
+.s-rand .bild{position:relative;border-radius:var(--ecke) 0 0 0;overflow:hidden;min-height:60svh}
+.s-rand .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s-rand .text{padding:clamp(70px,10vh,120px) var(--rand);display:flex;flex-direction:column;justify-content:center}
+.s-rand h2{font-size:clamp(52px,5.6vw,104px)}
+.s-rand .einleitung{margin-top:22px;color:var(--leise);max-width:42ch}
+.s-rand .feinliste{margin-top:36px}
+.s-rand .feinliste li{font-size:clamp(24px,2vw,36px)}
+/* Seele 2: Drei Bilder */
+.s-drei .reihe{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px;height:min(62svh,620px);margin-bottom:clamp(40px,6vh,70px)}
+.s-drei .reihe div{position:relative;border-radius:calc(var(--ecke) * .8);overflow:hidden}
+.s-drei .reihe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s-drei .unten{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,90px);align-items:start}
+.s-drei h2{font-size:clamp(52px,5.6vw,104px)}
+.s-drei .einleitung{margin-top:20px;color:var(--leise);max-width:40ch}
+/* Seele 3: Dunkel mit Satz */
+.s-dunkel{text-align:center}
+.s-dunkel .zeichen{width:120px;color:var(--gold);margin:0 auto 26px}
+.s-dunkel blockquote{font-family:"Cormorant Garamond",serif;font-size:clamp(46px,5.4vw,104px);line-height:1.04;max-width:18ch;margin:0 auto}
+.s-dunkel .zeile{margin:22px auto 0;color:#cfc7b8;max-width:58ch}
+.s-dunkel .gitter{margin-top:clamp(46px,7vh,80px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,70px);text-align:left;align-items:stretch}
+.s-dunkel .bild{position:relative;border-radius:var(--ecke);overflow:hidden;min-height:480px}
+.s-dunkel .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s-dunkel .feinliste li{color:var(--licht)}
+
+/* Betroffene 1: Bild randlos */
+.b-rand{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:100svh;padding:0}
+.b-rand .bild{position:relative;border-radius:var(--ecke) 0 0 0;overflow:hidden;min-height:60svh}
+.b-rand .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.b-rand .text{padding:clamp(70px,10vh,120px) var(--rand);display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,4vh,44px)}
+.b-rand h2{font-size:clamp(50px,5.2vw,96px)}
+.b-rand .teil{border-top:1px solid rgba(177,153,106,.5);padding-top:22px}
+.b-rand .teil h3{font-size:clamp(30px,2.6vw,46px);color:var(--gold-hell)}
+.b-rand .teil p{margin-top:10px;color:#d6cfc2;max-width:44ch}
+/* Betroffene 2: Ihr Satz */
+.b-satz blockquote{font-family:"Cormorant Garamond",serif;font-size:clamp(44px,5vw,96px);line-height:1.05;max-width:20ch}
+.b-satz blockquote em{font-style:normal;color:var(--gold-hell)}
+.b-satz .band{position:relative;height:min(60svh,600px);margin-top:clamp(40px,6vh,70px);border-radius:var(--ecke);overflow:hidden}
+.b-satz .band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.b-satz .zwei{margin-top:clamp(40px,6vh,70px);display:grid;grid-template-columns:1fr 1fr auto;gap:clamp(24px,4vw,70px);align-items:end}
+.b-satz .zwei h3{font-size:clamp(30px,2.6vw,46px);color:var(--gold-hell);border-top:1px solid rgba(177,153,106,.5);padding-top:20px}
+.b-satz .zwei p{margin-top:10px;color:#d6cfc2}
+/* Betroffene 3: Hell */
+.b-hell{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(30px,5vw,90px);align-items:center}
+.b-hell h2{font-size:clamp(50px,5.2vw,96px)}
+.b-hell .einleitung{margin-top:20px;color:var(--leise);max-width:42ch}
+.b-hell .teil{margin-top:28px;border-top:1px solid rgba(138,117,80,.5);padding-top:20px}
+.b-hell .teil h3{font-size:clamp(30px,2.6vw,46px)}
+.b-hell .teil p{margin-top:8px;color:var(--leise);max-width:46ch}
+.b-hell .bild{position:relative;height:min(84svh,840px);border-radius:var(--ecke);overflow:hidden}
+.b-hell .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+@media (max-width:900px){
+  .fassbar span{min-width:0}
+  .h-breit .oben,.h-foto,.n-karte .kopfzeile,.n-karte .gitter,.n-saeule,.s-rand,.s-drei .unten,.s-dunkel .gitter,.b-rand,.b-hell{grid-template-columns:1fr}
+  .h-foto .bilder{height:auto;grid-template-rows:none;grid-template-columns:1fr 1fr}
+  .h-foto .bilder div{aspect-ratio:3/4}
+  .z-band,.z-gross{grid-template-columns:1fr;gap:26px}
+  .z-band > div{border-left:0;padding-left:0;border-top:1px solid rgba(177,153,106,.5);padding-top:20px}
+  .z-band > div:first-child{border-top:0}
+  .vier{grid-template-columns:1fr 1fr}
+  .n-platte .buehne2{height:auto;min-height:0;display:flex;flex-direction:column}
+  .n-platte .buehne2 img{position:relative;height:60vw}
+  .n-platte .platte{position:relative;right:auto;bottom:auto;width:100%;border-radius:0}
+  .n-saeule .bild{position:relative;top:auto;height:70vw}
+  .n-karte .bild{min-height:70vw}
+  .s-rand .bild,.b-rand .bild{border-radius:var(--ecke) var(--ecke) 0 0}
+  .s-drei .reihe{grid-template-columns:1fr 1fr;height:auto}
+  .s-drei .reihe div{aspect-ratio:3/4}
+  .s-drei .reihe div:first-child{grid-column:1 / -1;aspect-ratio:4/3}
+  .b-satz .zwei{grid-template-columns:1fr}
+  .b-hell .bild{height:80vw}
+  .feinliste li{flex-direction:column;gap:6px}
+  .feinliste li small{text-align:left}
+}
+
+/* Über mich: Ausbildungen */
+.a-liste{color:var(--licht)}
+.a-liste li small{color:var(--gold-hell);opacity:1}
+.a-bild{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,90px);align-items:center}
+.a-bild .bild{position:relative;height:min(84svh,820px);border-radius:var(--ecke);overflow:hidden}
+.a-bild .bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.a-bild h2{font-size:clamp(52px,5.4vw,100px)}
+.a-bild .einleitung{margin:20px 0 34px;color:#cfc7b8;max-width:44ch}
+.a-worte{text-align:center;color:var(--licht)}
+.a-worte .a-titel{font-size:clamp(52px,5.6vw,104px);margin-bottom:clamp(40px,6vh,70px)}
+.a-worte .wort{font-family:"Cormorant Garamond",serif;font-size:clamp(40px,5vw,96px);line-height:1.04;max-width:18ch;margin:0 auto}
+.a-worte .wort.gold{color:var(--gold-hell)}
+.a-worte .trenner{width:64px;margin:clamp(18px,3vh,30px) auto;color:var(--gold)}
+@media (max-width:900px){.a-bild{grid-template-columns:1fr}.a-bild .bild{height:80vw}}
+.z-tafel{background:var(--nacht2);border:1px solid rgba(177,153,106,.28);border-radius:var(--ecke);padding:clamp(34px,4.4vw,72px)}
+.z-tafel .z-satz{max-width:24ch}
+@media (max-width:900px){
+  .h-voll h1,.h-breit h1,.h-foto h1,.h-mitte h1{font-size:clamp(48px,14.2vw,90px)}
+  .h-voll .inhalt{padding-bottom:110px}
+  .h-breit{min-height:0}
+  .h-breit .band{min-height:56vw;flex:none}
+}
+@media (max-width:900px){.h-voll .hof{background:linear-gradient(0deg,rgba(14,13,11,.9) 0%,rgba(14,13,11,.6) 55%,rgba(14,13,11,.2) 100%)}}
+
+/* ===== Ruhiger beim Scrollen (09.11. abends) ===== */
+/* ein Stück trägt nur eine Bewegung: was hereinfliegt, zoomt nicht zusätzlich */
+.js .flieg.zoom>img,.js .flieg.zoom>video,.js .flieg .zoom>img,.js .flieg .zoom>video{transform:none!important;transition:none!important}
+/* Fliesstext steht, es fliegen nur Bilder, Kacheln und Tafeln; Überschriften kommen aus dem Schlitz */
+.js p.flieg,.js cite.flieg,.js blockquote.flieg,.js ul.flieg,.js .knoepfe.flieg,.js .zeichen.flieg,.js .trenner.flieg{transform:none!important;transition:none!important}
+/* kein Pulsieren ganzer Raster mit Bildern */
+.js .puls.gepulst{animation:none}
+/* keine weichen Schatten an Flächen, die sich bewegen */
+.tafel,.schritt,.standort,.station,.seele .platte{box-shadow:none}
+.tafel,.schritt,.standort,.station{border:1px solid rgba(138,117,80,.18)}
+
+/* ===== Über mich: Ausbildungs-Kacheln mit mehr Wirkung ===== */
+.ausbildung{position:relative;overflow:hidden;justify-content:space-between}
+.ausbildung p{margin-top:10px;color:#bfb6a6;font-size:clamp(15px,1.05vw,17px)}
+.ausbildung::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(205,183,139,0) 35%,rgba(205,183,139,.16) 50%,rgba(205,183,139,0) 65%);transform:translateX(-120%);pointer-events:none}
+.ausbildung.glanz::after{transform:translateX(120%);transition:transform 1.5s cubic-bezier(.3,.6,.3,1)}
+.ausbildung .goldstrich{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left}
+.ausbildung.glanz .goldstrich{transform:scaleX(1);transition:transform 1.3s var(--kurve) .2s}
+.js .staffel>*{transform:translate3d(0,80px,0)}
+.js .staffel>.da{transform:none;transition:transform 1.1s var(--kurve)}
+.js .staffel>.da:hover{transform:translate3d(0,-6px,0);transition:transform 2.8s var(--kurve)}
+.ausbildung:hover{border-color:rgba(205,183,139,.55)}
+
+/* ===== Zahlen: neue Darstellungen ===== */
+.z-zeit-oben{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,70px);align-items:end}
+.z-zeit-gross{display:flex;align-items:baseline;gap:22px;font-family:"Cormorant Garamond",serif}
+.z-zeit-gross b{font-weight:500;font-size:clamp(130px,13vw,240px);line-height:.8;color:var(--gold-hell);font-variant-numeric:lining-nums}
+.z-zeit-gross span{font-size:clamp(30px,2.8vw,52px);color:var(--licht)}
+.z-zeit-neben{color:#d6cfc2;max-width:30ch;justify-self:end;font-size:clamp(17px,1.25vw,20px)}
+.z-zeit-neben b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:1.8em;color:var(--gold-hell);line-height:.8}
+.strahl{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:clamp(40px,6vh,70px);padding-top:34px}
+.strahl .linie{position:absolute;top:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left}
+.z-zeit.da .strahl .linie{transform:scaleX(1);transition:transform 1.8s var(--kurve) .3s}
+.strahl .punkt{position:relative}
+.strahl .punkt i{position:absolute;top:-42px;left:0;width:2px;height:16px;background:var(--gold-hell)}
+.strahl .punkt b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(34px,3vw,54px);color:var(--licht);font-variant-numeric:lining-nums}
+.strahl .punkt span{display:block;margin-top:4px;color:#bfb6a6;font-size:clamp(15px,1.05vw,17px)}
+
+.z-hell{background:var(--licht);color:var(--text);border-radius:var(--ecke);padding:clamp(20px,2.4vw,40px) clamp(28px,4vw,64px)}
+.z-hell .zeile{display:grid;grid-template-columns:minmax(150px,.3fr) 1fr auto;gap:clamp(20px,4vw,70px);align-items:center;padding:clamp(18px,2.6vh,30px) 0;border-bottom:1px solid rgba(138,117,80,.35)}
+.z-hell .zeile:last-child{border-bottom:0}
+.z-hell b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(90px,8.4vw,160px);line-height:.85;color:#8a7550;font-variant-numeric:lining-nums}
+.z-hell h3{font-size:clamp(32px,2.8vw,52px)}
+.z-hell p{margin-top:6px;color:var(--leise)}
+.z-hell svg{width:70px;color:var(--gold)}
+
+.z-eins{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1fr) minmax(0,.8fr);gap:clamp(24px,4vw,70px);align-items:center}
+.z-eins .foto{position:relative;aspect-ratio:4/5;border-radius:calc(var(--ecke) * .8);overflow:hidden}
+.z-eins .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.z-eins .mitte b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(170px,19vw,340px);line-height:.78;color:var(--gold-hell);font-variant-numeric:lining-nums}
+.z-eins .mitte p{margin-top:18px;color:#d6cfc2;max-width:24ch;font-size:clamp(17px,1.3vw,21px)}
+.z-eins .seite{display:grid;gap:22px}
+.z-eins .seite div{border-top:1px solid rgba(177,153,106,.5);padding-top:18px}
+.z-eins .seite b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(70px,6.4vw,120px);line-height:.85;color:var(--licht);font-variant-numeric:lining-nums}
+.z-eins .seite span{display:block;margin-top:8px;color:#bfb6a6}
+
+.z-bilder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.z-bild{position:relative;height:min(64svh,620px);border-radius:var(--ecke);overflow:hidden}
+.z-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.z-bild .hof{position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,13,11,.86) 0%,rgba(14,13,11,.35) 45%,rgba(14,13,11,0) 70%)}
+.z-bild .wort{position:absolute;left:clamp(22px,2.4vw,38px);right:clamp(22px,2.4vw,38px);bottom:clamp(22px,2.4vw,38px);color:var(--licht)}
+.z-bild b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(110px,10vw,190px);line-height:.8;color:var(--gold-hell);font-variant-numeric:lining-nums}
+.z-bild span{display:block;margin-top:12px;max-width:22ch}
+
+@media (max-width:900px){
+  .z-zeit-oben,.z-eins,.z-bilder{grid-template-columns:1fr}
+  .z-zeit-neben{justify-self:start}
+  .strahl{grid-template-columns:1fr 1fr;row-gap:40px}
+  .z-hell .zeile{grid-template-columns:auto 1fr}
+  .z-hell svg{display:none}
+  .z-bild{height:90vw}
+  .z-eins .foto{aspect-ratio:4/3}
+}
+/* Textblöcke stehen ruhig, Weg kürzer, Ebene bleibt während des Flugs fest */
+.js .teil.flieg,.js .vier>.flieg,.js .ziel.flieg,.js .zahl.flieg{transform:none!important;transition:none!important}
+.js .flieg{transform:translate3d(0,60px,0)}
+.js .flieg.unterwegs,.js .staffel>.unterwegs{will-change:transform}
+/* Zeitstrahl: Miniaturbild von ihr neben den Fakten */
+.z-zeit-neben{display:flex;align-items:center;gap:22px;max-width:none}
+.z-zeit-neben p{max-width:28ch}
+.z-zeit-neben .mini{position:relative;flex:none;width:clamp(84px,7vw,112px);aspect-ratio:4/5;border-radius:16px;overflow:hidden;border:1px solid rgba(205,183,139,.45)}
+.z-zeit-neben .mini img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%}
+.z-zeit-neben b{font-variant-numeric:lining-nums}
+/* Ausbildungen zum Aufklappen */
+.ausbildung .auf{margin-top:18px;display:inline-flex;align-items:center;gap:12px;padding:8px 8px 8px 16px;border-radius:999px;border:1px solid rgba(205,183,139,.45);background:transparent;color:var(--gold-hell);font:inherit;font-size:14px;letter-spacing:.03em;cursor:pointer;position:relative;z-index:1}
+.ausbildung .plus{position:relative;width:26px;height:26px;border-radius:50%;background:var(--nacht);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+.ausbildung .plus::before,.ausbildung .plus::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:1.5px;background:var(--gold-hell);transform:translate(-50%,-50%)}
+.ausbildung .plus::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .5s var(--kurve)}
+.ausbildung.offen .plus::after{transform:translate(-50%,-50%) rotate(0deg)}
+.ausbildung .stich{display:none;list-style:none;margin-top:18px;border-top:1px solid rgba(177,153,106,.35)}
+.ausbildung.offen .stich{display:block}
+.ausbildung .stich li{padding:11px 0 11px 24px;position:relative;border-bottom:1px solid rgba(177,153,106,.2);color:#d6cfc2;font-size:clamp(15px,1.05vw,17px);opacity:0;transform:translate3d(0,14px,0)}
+.ausbildung .stich li::before{content:"";position:absolute;left:0;top:1.25em;width:12px;height:1px;background:var(--gold)}
+.ausbildung.offen .stich li{opacity:1;transform:none;transition:opacity .6s ease,transform .7s var(--kurve)}
+.ausbildung.offen .stich li:nth-child(2){transition-delay:.06s}
+.ausbildung.offen .stich li:nth-child(3){transition-delay:.12s}
+.ausbildung.offen .stich li:nth-child(4){transition-delay:.18s}
+.ausbildungen{align-items:start}
+/* Seitenende steht fest: Hereinfliegendes verlängert die Seite nicht, kein Nachfedern */
+html{overscroll-behavior-y:none}
+main{overflow:clip}
+/* Zeitstrahl: rundes Porträt mit Namen */
+.z-zeit-neben .mini{width:clamp(96px,8vw,128px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(205,183,139,.6)}
+.z-zeit-neben .mini img{object-position:50% 30%}
+.z-zeit-neben .wer .name{font-family:"Cormorant Garamond",serif;font-size:clamp(30px,2.6vw,46px);line-height:1;color:var(--licht)}
+.z-zeit-neben .wer .rolle{margin-top:8px;color:var(--gold-hell);font-size:clamp(15px,1.05vw,17px)}
+.schritt.dunkel .mit-knopf{flex-direction:row;align-items:center;justify-content:space-between;gap:30px}
+.schritt.dunkel .mit-knopf .knopf{flex:none}
+@media (max-width:900px){.schritt.dunkel .mit-knopf{flex-direction:column;align-items:flex-start}}
+/* Ausbildungen: Kacheln einer Reihe gleich hoch, kein Goldstrich */
+.ausbildungen{align-items:stretch}
+.ausbildung .goldstrich{display:none}

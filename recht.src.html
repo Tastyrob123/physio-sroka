@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="media/zeichen-180.png">
+<title>{{TITEL}} · Physiotherapie Sylvia Sroka</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="schrift/schrift.css">
+<style>
+:root{--nacht:#0e0d0b;--nacht2:#191714;--licht:#f3eee5;--licht2:#e9e1d4;--gold:#b1996a;--gold-hell:#cdb78b;--text:#1b1915;--leise:#6d665b;--ecke:clamp(22px,2.6vw,40px);--rand:clamp(20px,4.4vw,72px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overscroll-behavior-y:none}
+main{overflow:clip}
+body{background:var(--nacht);color:var(--text);font-family:Manrope,system-ui,sans-serif;font-size:clamp(17px,1.15vw,19px);line-height:1.65;overflow-x:hidden}
+a{color:inherit}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:-.01em;line-height:1}
+.kopf{color:var(--licht);padding:22px var(--rand) clamp(70px,10vh,110px)}
+.kopf .leiste{display:flex;justify-content:space-between;align-items:center}
+.kopf .marke{display:flex;align-items:center;gap:12px;font-family:"Cormorant Garamond",serif;font-size:22px;text-decoration:none}
+.kopf .marke svg{width:46px;color:var(--gold)}
+.kopf .zurueck{font-size:15px;letter-spacing:.04em;padding:10px 20px;border-radius:999px;background:var(--nacht2);border:1px solid rgba(177,153,106,.45);text-decoration:none}
+.kopf h1{margin-top:clamp(60px,10vh,110px);font-size:clamp(60px,8vw,140px)}
+.inhalt{position:relative;margin-top:calc(var(--ecke) * -1);border-radius:var(--ecke) var(--ecke) 0 0;background:var(--licht);padding:clamp(56px,8vh,96px) var(--rand) clamp(90px,12vh,140px)}
+.spalte{max-width:760px}
+.inhalt h2{font-size:clamp(30px,2.6vw,44px);margin:clamp(40px,6vh,60px) 0 12px}
+.inhalt h2:first-child{margin-top:0}
+.inhalt p{margin-top:10px;color:#3b3730}
+.inhalt ul{margin:10px 0 0 1.1em;color:#3b3730}
+.fuss{margin-top:calc(var(--ecke) * -1);position:relative;border-radius:var(--ecke) var(--ecke) 0 0;background:var(--nacht);color:#bdb5a7;padding:40px var(--rand);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:15px}
+.fuss nav{display:flex;gap:26px}
+.fuss a{text-decoration:none}
+body.wartet{visibility:hidden}
+.js .flieg{transform:translate3d(0,70px,0)}
+.js .flieg.da{transform:none;transition:transform 1.25s cubic-bezier(.25,.62,.3,1)}
+@media (prefers-reduced-motion:reduce){.js .flieg{transform:none!important;transition:none!important}}
+</style>
+</head>
+<body class="wartet">
+<script>document.documentElement.classList.add('js')</script>
+<noscript><style>body.wartet{visibility:visible}</style></noscript>
+<header class="kopf">
+  <div class="leiste">
+    <a class="marke" href="index.html">{{ZEICHEN}}Sylvia Sroka</a>
+    <a class="zurueck" href="index.html">Zur Startseite</a>
+  </div>
+  <h1>{{TITEL}}</h1>
+</header>
+<main class="inhalt"><div class="spalte">
+{{INHALT}}
+</div></main>
+<footer class="fuss">
+  <span>Physiotherapie Sylvia Sroka</span>
+  <nav><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+</footer>
+<script>
+(function(){
+  var b=document.body;
+  document.querySelectorAll('.kopf h1,.inhalt h2,.inhalt p,.inhalt ul').forEach(function(el){ el.classList.add('flieg'); });
+  function zeigen(){ if(!b.classList.contains('wartet'))return; b.classList.remove('wartet');
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('da'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.flieg').forEach(function(el){ io.observe(el); });
+  }
+  (document.fonts?document.fonts.ready:Promise.resolve()).then(zeigen); setTimeout(zeigen,3000);
+})();
+</script>
+</body>
+</html>

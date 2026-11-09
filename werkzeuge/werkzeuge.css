@@ -203,7 +203,7 @@ button.knopf{border:0;font-family:inherit;cursor:pointer;text-align:left}
 .w-vk-hinten .w-vk-kopf{display:flex;align-items:center;gap:2.5mm}
 .w-vk-hinten .w-vk-kopf span{display:block;width:9mm;color:var(--gold)}
 .w-vk-hinten .w-vk-kopf p{font-family:"Cormorant Garamond",serif;font-size:12pt;line-height:1}
-.w-vk-hinten .w-vk-rolle{font-size:6.2pt;color:var(--leise);margin-top:.8mm}
+.w-vk-hinten .w-vk-kopf p.w-vk-rolle{font-family:Manrope,sans-serif;font-size:6.2pt;line-height:1.3;color:var(--leise);margin-top:.8mm}
 .w-vk-orte{display:grid;grid-template-columns:1fr 1fr;gap:3mm;font-size:6.2pt;line-height:1.38}
 .w-vk-orte .w-vk-ort{font-family:"Cormorant Garamond",serif;font-size:9pt;line-height:1.1;color:var(--text)}
 .w-vk-orte p{color:#3b3730}
@@ -238,9 +238,9 @@ button.knopf{border:0;font-family:inherit;cursor:pointer;text-align:left}
 /* Bewertungskarte A6 */
 .w-a6{width:105mm;height:148mm;padding:11mm 10mm 9mm;display:flex;flex-direction:column;align-items:center;text-align:center;font-size:8.6pt;line-height:1.45}
 .w-bw-zeichen{width:22mm;color:var(--gold)}
-.w-a6 h3{margin-top:4mm;font-size:21pt;line-height:1.02}
+.w-a6 h3{margin-top:5mm;font-size:23pt;line-height:1.02}
 .w-a6 .w-bw-satz{margin-top:3mm;color:#3b3730;max-width:72mm}
-.w-a6 .w-bw-qr{margin-top:5mm;width:36mm;height:36mm;padding:2.5mm;background:#fff;border-radius:2mm;box-shadow:0 0 0 .3mm var(--gold)}
+.w-a6 .w-bw-qr{margin-top:7mm;width:44mm;height:44mm;padding:2.5mm;background:#fff;border-radius:2mm;box-shadow:0 0 0 .3mm var(--gold)}
 .w-a6 .w-bw-qr img{width:100%;height:100%}
 .w-a6 .w-bw-wie{margin-top:3mm;font-size:7.4pt;color:var(--leise);max-width:72mm}
 .w-a6 .w-bw-ort{margin-top:auto;padding-top:3mm;border-top:.3mm solid var(--gold);width:100%;font-size:7.4pt;color:#3b3730}

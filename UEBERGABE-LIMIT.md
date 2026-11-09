@@ -21,14 +21,14 @@ Werkzeuge:
 - [werkzeuge/index.html](werkzeuge/index.html) Übersicht
 - [werkzeuge/uebungsplan.html](werkzeuge/uebungsplan.html) Übungsplan (Druck A4 über W.drucken)
 - [werkzeuge/rechnung.html](werkzeuge/rechnung.html) Rechnung (localStorage-Schlüssel sroka-werkzeuge-rechnung, PDF geprüft, 2 Seiten bei 13 Positionen sauber)
+- [werkzeuge/drucksachen.html](werkzeuge/drucksachen.html) Drucksachen (PDF-Grössen geprüft: 85×55 je 2 Seiten, A4 1 Seite, A6 1 Seite; QR mit OpenCV aus PDF dekodiert = richtige Ziele)
 
 ## Offen, in Reihenfolge
-1. drucksachen.html
-2. profiltexte.html
-3. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
+1. profiltexte.html
+2. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
 
 ## Nächster genauer Schritt
-werkzeuge/drucksachen.html bauen.
+werkzeuge/profiltexte.html bauen.
 
 ## Zweig
 `claude/physiotherapie-praxis-werkzeuge-23ggow`

@@ -17,19 +17,18 @@ Werkzeuge:
 5. werkzeuge/profiltexte.html – Google-Profil je Standort, Jameda, Liste für Sylvia
 
 ## Fertig
-- (noch nichts)
+- Gemeinsames: [werkzeuge/werkzeuge.css](werkzeuge/werkzeuge.css), [werkzeuge/praxis.js](werkzeuge/praxis.js) (Praxisdaten, Kopieren, Drucken über #w-druckbereich + dynamisches @page, Massstab per zoom), [werkzeuge/erzeugen.py](werkzeuge/erzeugen.py) → qr/*.svg, zeichen.js, uebungen-daten.js
+- [werkzeuge/index.html](werkzeuge/index.html) Übersicht
 
 ## Offen, in Reihenfolge
-1. Gemeinsames: werkzeuge.css, praxis.js (Zeichen, Pfeil, Daten), QR-SVGs in werkzeuge/qr/
-2. index.html
-3. uebungsplan.html
-4. rechnung.html
-5. drucksachen.html
-6. profiltexte.html
-7. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
+1. uebungsplan.html
+2. rechnung.html
+3. drucksachen.html
+4. profiltexte.html
+5. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
 
 ## Nächster genauer Schritt
-Gemeinsame Dateien anlegen (Schritt 1).
+werkzeuge/uebungsplan.html bauen.
 
 ## Zweig
 `claude/physiotherapie-praxis-werkzeuge-23ggow`

@@ -11,7 +11,7 @@ SITE = os.path.dirname(os.path.dirname(HIER))
 U = json.load(open(os.path.join(SITE, 'daten', 'uebungen.json'), encoding='utf-8'))
 UE = {u['id']: u for g in U['gruppen'] for u in g['uebungen']}
 
-TEL_H, TEL_R, MAIL, WEB = '0511 260 74 14', '0511 234 46 67', 'info@physio-sroka.de', 'physio-sroka.de'
+TEL_H, TEL_R, MAIL = '0511 260 74 14', '0511 234 46 67', 'info@physio-sroka.de'   # keine Webadresse: steht nicht in den Fakten (Gegenprüfung 09.11.2026)
 ZEITEN, TERMINE = 'Mo – Fr · 8 – 19 Uhr', 'Termine nach Vereinbarung, Hausbesuche nach Absprache.'
 HINWEIS = U['hinweis'].replace('mit mir', 'mit Sylvia Sroka')   # die Website spricht in der Ich-Form; auf dem Blatt ebenso möglich, hier neutral für jede Praxis-Hand
 
@@ -47,7 +47,7 @@ BEISPIEL = {
     'kontakt': {'ueber': 'Hannover und Hemmingen', 'text': TERMINE},
     'termine': {'titel': 'Ihre nächsten Termine', 'text': f'Hannover {TEL_H} · Hemmingen {TEL_R}'},
     'brief': {},
-    'umschlag': {'text': f'{WEB} · Hannover und Hemmingen'},
+    'umschlag': {'text': 'Hannover und Hemmingen'},
     'bewertung': {'ueber': 'Privatpraxis Sylvia Sroka · Hannover', 'titel': 'Wie war Ihre Behandlung?', 'text': 'Ihre Meinung hilft anderen, die eine Physiotherapie suchen. Der Code öffnet die Praxis in Google Maps, dort können Sie eine Rezension schreiben.', 'qr': 'qr-hannover', 'unter': 'Dieterichsstraße 25 · 30159 Hannover'},
 }
 BEW_HEM = dict(BEISPIEL['bewertung'], ueber='Physio Rosenpark · Hemmingen', qr='qr-hemmingen', unter='Berliner Straße 16 · 30966 Hemmingen')
@@ -147,7 +147,7 @@ HINWEISE = [
     kv('Öffnungszeiten', 'an der Praxistür', 'a4h', 'aushang', 'dunkel', BEISPIEL['aushang']),
     kv('Zum ersten Termin', 'im Wartebereich', 'a4h', 'aushang', 'hell', ABTEILUNGEN[0]['vorlagen'][3]['inhalt']),
     kv('Hausbesuche', 'an der Praxistür', 'a4h', 'aushang', 'creme', {'ueber': 'Zu Hause behandelt', 'titel': 'Hausbesuche nach Absprache', 'text': 'Wenn der Weg in die Praxis schwerfällt, komme ich nach Absprache zu Ihnen.', 'aktion': TEL_H}),
-    kv('Fragebogen vorab', 'im Wartebereich', 'a4h', 'aushang', 'hell', {'ueber': 'Vor dem ersten Termin', 'titel': 'Fragebogen vorab', 'text': 'Den Fragebogen finden Sie auf der Website. Bringen Sie ihn ausgefüllt mit, dann bleibt mehr Zeit für Sie.', 'aktion': WEB}),
+    kv('Fragebogen vorab', 'im Wartebereich', 'a4h', 'aushang', 'hell', {'ueber': 'Vor dem ersten Termin', 'titel': 'Fragebogen vorab', 'text': 'Den Fragebogen finden Sie auf der Website. Bringen Sie ihn ausgefüllt mit, dann bleibt mehr Zeit für Sie.', 'aktion': TEL_H}),
     kv('Zwei Orte, ein Anruf', 'an beiden Türen', 'a4h', 'aushang', 'dunkel', {'ueber': 'Hannover und Hemmingen', 'titel': 'Zwei Orte, ein Anruf', 'text': f'Hannover {TEL_H}\nHemmingen {TEL_R}\nRufen Sie an oder schreiben Sie mir.', 'aktion': MAIL}),
     kv('Ein Moment Ruhe', 'im Wartebereich', 'a4h', 'buehne', 'dunkel', {'bild': 'echt-ruhe', 'ueber': 'Ein Moment Ruhe', 'titel': 'Vier ein, sechs aus', 'text': 'Atmen Sie eine Minute lang mit, vier Sekunden ein, sechs Sekunden aus.', 'aktion': 'Physiotherapie Sylvia Sroka'}),
 ]

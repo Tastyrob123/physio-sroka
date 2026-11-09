@@ -37,6 +37,7 @@
 .sr-zeile__b img{width:100%;height:100%;object-fit:cover}
 .sr-zeile__b .wo-zeichen{width:54px}
 .sr-zeile__t b{display:block;font:500 21px/1.15 var(--wo-titel)}
+.sr-zeile__t{min-width:0}.sr-zeile__t b,.sr-karte h3{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}   /* lange Wörter wie «Behandlungsschwerpunkte» bei 320 px (Gegenprüfung 09.11.) */
 .sr-zeile__t small{display:block;margin-top:3px;font-size:13.5px;color:var(--wo-leise)}
 .sr-zeile__k{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .sr-rund{width:40px;height:40px;flex:none;display:grid;place-items:center;border:0;border-radius:50%;cursor:pointer;color:var(--wo-tinte);background:transparent;box-shadow:inset 0 0 0 1px var(--wo-linie)}

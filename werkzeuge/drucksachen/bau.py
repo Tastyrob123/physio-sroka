@@ -191,7 +191,7 @@ def sroka():
     marke = dict(
         key='sroka', name='Physiotherapie Sylvia Sroka', voll='Physiotherapie Sylvia Sroka', ort='Hannover', artikel='der Praxis Sylvia Sroka',
         zeile='Privatpraxis für Physio- und Körperpsychotherapie', satz='Erst untersuchen. Dann behandeln.',
-        adr='Dieterichsstraße 25 · 30159 Hannover', tel='0511 260 74 14', mail='info@physio-sroka.de', web='physio-sroka.de',
+        adr='Dieterichsstraße 25 · 30159 Hannover', tel='0511 260 74 14', mail='info@physio-sroka.de', web='',
         standorte=[dict(k='hannover', name='Privatpraxis Sylvia Sroka', strasse='Dieterichsstraße 25', ort='30159 Hannover', tel='0511 260 74 14', fax='0511 260 74 13'),
                    dict(k='hemmingen', name='Physio Rosenpark', strasse='Berliner Straße 16', ort='30966 Hemmingen', tel='0511 234 46 67', fax='0511 655 06 827')],
         farben=F, farbnamen=N,

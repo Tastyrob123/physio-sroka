@@ -3,71 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
+<meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="../favicon.png">
-<title>Ihre Werkzeuge · Physiotherapie Sylvia Sroka</title>
-<link rel="stylesheet" href="werkzeuge.css">
+<title>Deine Werkzeuge · Physiotherapie Sylvia Sroka</title>
+<script>/* Fehlermelder (Werkzeug-Master R03, vor allem anderen): Skriptfehler nach localStorage «sroka-werkzeuge-fehler» (letzte 20), Netzfehler nie, höchstens 20 je Seite.
+   Startfehler-Tür (R04): steht nach 12 s nichts, sagt die Seite es mit Grund. */
+(function () { var n = 0, K = 'sroka-werkzeuge-fehler';
+  function melde(t) { if (n >= 20) return; n++; t = String(t).slice(0, 300); window.__srFehler = t; try { var l = JSON.parse(localStorage.getItem(K) || '[]'); l.push({ z: new Date().toISOString(), w: 'index', t: t }); localStorage.setItem(K, JSON.stringify(l.slice(-20))); } catch (e) {} }
+  addEventListener('error', function (e) { if (e.target && e.target !== window) return; melde((e.message || 'Fehler') + ' @ ' + String(e.filename || '').split('/').pop() + ':' + (e.lineno || 0)); }, true);
+  addEventListener('unhandledrejection', function (e) { var r = e.reason, t = String(r && r.message || r); if (/fetch|network|load failed|abort/i.test(t)) return; melde('Promise: ' + t); });
+  setTimeout(function () { if (window.__srBereit) return; var d = document.createElement('div'); d.setAttribute('role', 'alert'); d.style.cssText = 'position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:#0e0d0b;color:#f3eee5;font:16px/1.5 Manrope,sans-serif;text-align:center;padding:24px';
+    d.innerHTML = '<div><b style="font:500 28px Cormorant Garamond,serif;color:#cdb78b">Die Werkzeuge starten nicht.</b><p></p><a href="" style="color:#cdb78b">Neu laden</a></div>'; d.querySelector('p').textContent = window.__srFehler || 'Die Daten kamen nicht an.'; document.body.appendChild(d); }, 12000);
+})();</script>
+<script src="rahmen/kleid/sroka.js?v=1"></script>
+<link rel="stylesheet" href="rahmen/grund.css?v=1">
+<link rel="stylesheet" href="rahmen/rahmen-buehne.css?v=1">
+<link rel="stylesheet" href="rahmen/kleid/sroka.css?v=1">
+<link rel="stylesheet" href="gemeinsam.css?v=1">
+
+<script src="rahmen/oberflaeche.js?v=1"></script>
+<script src="gemeinsam.js?v=1"></script>
 </head>
-<body class="w-seite">
-<header class="w-kopf tapete-dunkel">
-  <div class="w-leiste">
-    <a class="w-marke" href="../index.html" data-zeichen><span>Sylvia Sroka</span></a>
-    <nav class="w-wege" aria-label="Wege">
-      <a class="hier" href="index.html" aria-current="page">Werkzeuge</a>
-      <a href="../index.html">Zur Website</a>
-    </nav>
-  </div>
-  <h1>Ihre Werkzeuge</h1>
-  <p class="w-satz">Kleine Helfer für den Praxisalltag. Alles läuft hier in Ihrem Browser, nichts wird ins Internet geschickt.</p>
-</header>
-
-<main class="w-inhalt sand">
-  <div class="w-tafeln">
-    <article class="w-tafel">
-      <span class="w-tafel-zeichen" data-zeichen></span>
-      <h2>Übungsplan</h2>
-      <p>Übungen anklicken, Namen und Hinweis eintragen und einen Plan für zu Hause ausdrucken.</p>
-      <span class="linie"></span>
-      <a class="knopf" href="uebungsplan.html" data-pfeil>Öffnen</a>
-    </article>
-    <article class="w-tafel">
-      <span class="w-tafel-zeichen" data-zeichen></span>
-      <h2>Rechnung</h2>
-      <p>Eine Rechnung für Privatpatienten mit Positionen und Summe, fertig zum Drucken oder als PDF.</p>
-      <span class="linie"></span>
-      <a class="knopf" href="rechnung.html" data-pfeil>Öffnen</a>
-    </article>
-    <article class="w-tafel">
-      <span class="w-tafel-zeichen" data-zeichen></span>
-      <h2>Drucksachen</h2>
-      <p>Visitenkarte, Terminkarte, Briefpapier, E-Mail-Signatur und Bewertungskarten in echter Größe.</p>
-      <span class="linie"></span>
-      <a class="knopf" href="drucksachen.html" data-pfeil>Öffnen</a>
-    </article>
-    <article class="w-tafel">
-      <span class="w-tafel-zeichen" data-zeichen></span>
-      <h2>Profiltexte</h2>
-      <p>Fertige Texte für Google und Jameda zum Kopieren, dazu eine kurze Liste, was Sie selbst tun.</p>
-      <span class="linie"></span>
-      <a class="knopf" href="profiltexte.html" data-pfeil>Öffnen</a>
-    </article>
-  </div>
-
-  <section class="w-hinweis-demo">
-    <span class="w-hd-zeichen" data-zeichen></span>
-    <div>
-      <h2>Eine Vorschau</h2>
-      <p>Diese Werkzeuge sind eine Demo. Sie funktionieren ohne Internet und ohne Konto. Was Sie in der Rechnung eintragen, merkt sich nur dieser Browser auf diesem Gerät.</p>
-    </div>
-  </section>
-</main>
-
-<footer class="w-fuss">
-  <a class="w-marke" href="../index.html" data-zeichen>Physiotherapie Sylvia Sroka</a>
-  <nav><a href="../index.html">Zur Website</a><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a></nav>
-</footer>
-
-<script src="zeichen.js"></script>
-<script src="praxis.js"></script>
+<body class="wo-app">
+<header class="wo-kopf" id="kopf"></header>
+<nav class="wo-rand" id="rand" aria-label="Bereiche"></nav>
+<main class="wo-raum" id="raum"></main>
+<footer class="wo-leiste" id="leiste"></footer>
+<script src="uebersicht.js?v=1"></script>
 </body>
 </html>

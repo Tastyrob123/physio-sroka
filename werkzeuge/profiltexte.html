@@ -3,169 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
+<meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="../favicon.png">
-<title>Profiltexte · Werkzeuge · Sylvia Sroka</title>
-<link rel="stylesheet" href="werkzeuge.css">
+<title>Profiltexte · Physiotherapie Sylvia Sroka</title>
+<script>/* Fehlermelder (Werkzeug-Master R03, vor allem anderen): Skriptfehler nach localStorage «sroka-werkzeuge-fehler» (letzte 20), Netzfehler nie, höchstens 20 je Seite.
+   Startfehler-Tür (R04): steht nach 12 s nichts, sagt die Seite es mit Grund. */
+(function () { var n = 0, K = 'sroka-werkzeuge-fehler';
+  function melde(t) { if (n >= 20) return; n++; t = String(t).slice(0, 300); window.__srFehler = t; try { var l = JSON.parse(localStorage.getItem(K) || '[]'); l.push({ z: new Date().toISOString(), w: 'profiltexte', t: t }); localStorage.setItem(K, JSON.stringify(l.slice(-20))); } catch (e) {} }
+  addEventListener('error', function (e) { if (e.target && e.target !== window) return; melde((e.message || 'Fehler') + ' @ ' + String(e.filename || '').split('/').pop() + ':' + (e.lineno || 0)); }, true);
+  addEventListener('unhandledrejection', function (e) { var r = e.reason, t = String(r && r.message || r); if (/fetch|network|load failed|abort/i.test(t)) return; melde('Promise: ' + t); });
+  setTimeout(function () { if (window.__srBereit) return; var d = document.createElement('div'); d.setAttribute('role', 'alert'); d.style.cssText = 'position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:#0e0d0b;color:#f3eee5;font:16px/1.5 Manrope,sans-serif;text-align:center;padding:24px';
+    d.innerHTML = '<div><b style="font:500 28px Cormorant Garamond,serif;color:#cdb78b">Die Profiltexte starten nicht.</b><p></p><a href="" style="color:#cdb78b">Neu laden</a></div>'; d.querySelector('p').textContent = window.__srFehler || 'Die Daten kamen nicht an.'; document.body.appendChild(d); }, 12000);
+})();</script>
+<script src="rahmen/kleid/sroka.js?v=1"></script>
+<link rel="stylesheet" href="rahmen/grund.css?v=1">
+<link rel="stylesheet" href="rahmen/rahmen-buehne.css?v=1">
+<link rel="stylesheet" href="rahmen/kleid/sroka.css?v=1">
+<link rel="stylesheet" href="gemeinsam.css?v=1">
+<link rel="stylesheet" href="profiltexte.css?v=1">
+<script src="rahmen/oberflaeche.js?v=1"></script>
+<script src="gemeinsam.js?v=1"></script>
 </head>
-<body class="w-seite">
-<header class="w-kopf tapete-dunkel">
-  <div class="w-leiste">
-    <a class="w-marke" href="../index.html" data-zeichen><span>Sylvia Sroka</span></a>
-    <nav class="w-wege" aria-label="Wege">
-      <a href="index.html">Alle Werkzeuge</a>
-      <a href="../index.html">Zur Website</a>
-    </nav>
-  </div>
-  <h1>Profiltexte</h1>
-  <p class="w-satz">Fertige Texte für Google und Jameda. Jeder Text lässt sich mit einem Klick kopieren und im Profil einfügen.</p>
-</header>
-
-<main class="w-inhalt sand">
-
-  <h2 class="w-abschnitt-titel">Google, Hannover</h2>
-  <p class="w-abschnitt-satz">Für das Unternehmensprofil der Privatpraxis in der Dieterichsstraße.</p>
-  <div class="w-texte">
-    <article class="w-text">
-      <div class="w-text-kopf"><div><h3>Beschreibung</h3><p class="w-leise">Höchstens 750 Zeichen</p></div><button type="button" class="knopf klein" data-kopiere="g-hannover-text" data-pfeil><span class="wort">Kopieren</span></button></div>
-      <div class="w-textkoerper" id="g-hannover-text" data-zaehlen="750">Ich bin Sylvia Sroka, Physiotherapeutin seit 1986 und Heilpraktikerin für Physiotherapie und Psychotherapie. In meiner Privatpraxis in der Dieterichsstraße 25 in Hannover behandle ich ausschließlich Privatpatienten. Mein Schwerpunkt sind neurologisch schwer und schwerst betroffene Menschen, etwa nach einem Schlaganfall, bei Parkinson, MS, ALS, Querschnitt oder Wachkoma. Ich arbeite unter anderem mit Bobath, CranioSacral-Therapie und Massagen. Außerdem biete ich Körperpsychotherapie und Gespräche an und begleite Menschen bei Überforderung, zum Beispiel bei der Pflege eines Angehörigen. Termine nach Vereinbarung, Montag bis Freitag 8 bis 19 Uhr, Hausbesuche nach Absprache. Ich spreche Deutsch, Englisch und Spanisch.</div>
-      <p class="w-zaehler"></p>
-    </article>
-    <div class="w-zwei">
-      <article class="w-text">
-        <div class="w-text-kopf"><div><h3>Kategorien</h3><p class="w-leise">Vorschlag, in Google die nächstliegende wählen</p></div><button type="button" class="knopf klein" data-kopiere="g-hannover-kat" data-pfeil><span class="wort">Kopieren</span></button></div>
-        <div class="w-textkoerper" id="g-hannover-kat">Hauptkategorie: Physiotherapeut
-Weitere Kategorien: Heilpraktiker, Massagetherapeut</div>
-      </article>
-      <article class="w-text">
-        <div class="w-text-kopf"><div><h3>Öffnungszeiten</h3><p class="w-leise">So im Profil eintragen</p></div><button type="button" class="knopf klein" data-kopiere="g-hannover-zeit" data-pfeil><span class="wort">Kopieren</span></button></div>
-        <div class="w-textkoerper" id="g-hannover-zeit">Montag bis Freitag: 08:00 bis 19:00
-Samstag und Sonntag: geschlossen
-Termine nach Vereinbarung, Hausbesuche nach Absprache</div>
-      </article>
-    </div>
-    <article class="w-text">
-      <div class="w-text-kopf"><div><h3>Leistungen</h3><p class="w-leise">Einzeln im Bereich Leistungen anlegen</p></div><button type="button" class="knopf klein" data-kopiere="g-hannover-leist" data-pfeil><span class="wort">Kopieren</span></button></div>
-      <div class="w-textkoerper" id="g-hannover-leist">Physiotherapie
-Neurologische Physiotherapie
-Bobath
-CranioSacral-Therapie
-Massage
-Hausbesuche
-Körperpsychotherapie
-Gesprächstherapie
-Begleitung bei Überforderung, zum Beispiel bei der Pflege eines Angehörigen
-Stressmanagement und Entspannung
-Achtsamkeitstraining</div>
-    </article>
-  </div>
-
-  <h2 class="w-abschnitt-titel">Google, Hemmingen</h2>
-  <p class="w-abschnitt-satz">Für das Unternehmensprofil des Physio Rosenpark in der Berliner Straße.</p>
-  <div class="w-texte">
-    <article class="w-text">
-      <div class="w-text-kopf"><div><h3>Beschreibung</h3><p class="w-leise">Höchstens 750 Zeichen</p></div><button type="button" class="knopf klein" data-kopiere="g-hemmingen-text" data-pfeil><span class="wort">Kopieren</span></button></div>
-      <div class="w-textkoerper" id="g-hemmingen-text" data-zaehlen="750">Seit 2009 führe ich den Physio Rosenpark in Hemmingen, eine Praxis für Physio- und Körperpsychotherapie in der Berliner Straße 16. Ich bin Sylvia Sroka, Physiotherapeutin seit 1986 und Heilpraktikerin für Physiotherapie und Psychotherapie, und behandle ausschließlich Privatpatienten. Mein Schwerpunkt sind neurologisch schwer und schwerst betroffene Menschen. Dazu kommen Bobath, CranioSacral-Therapie, Massagen sowie Körperpsychotherapie und Gesprächstherapie. Als Stressmanagement- und Entspannungstherapeutin und Achtsamkeitstrainerin biete ich Seminare und Prävention an, auch zur Betreuung von Mitarbeitern. Termine nach Vereinbarung, Montag bis Freitag 8 bis 19 Uhr, Hausbesuche nach Absprache. Ich spreche Deutsch, Englisch und Spanisch.</div>
-      <p class="w-zaehler"></p>
-    </article>
-    <div class="w-zwei">
-      <article class="w-text">
-        <div class="w-text-kopf"><div><h3>Kategorien</h3><p class="w-leise">Vorschlag, in Google die nächstliegende wählen</p></div><button type="button" class="knopf klein" data-kopiere="g-hemmingen-kat" data-pfeil><span class="wort">Kopieren</span></button></div>
-        <div class="w-textkoerper" id="g-hemmingen-kat">Hauptkategorie: Physiotherapeut
-Weitere Kategorien: Heilpraktiker, Massagetherapeut</div>
-      </article>
-      <article class="w-text">
-        <div class="w-text-kopf"><div><h3>Öffnungszeiten</h3><p class="w-leise">So im Profil eintragen</p></div><button type="button" class="knopf klein" data-kopiere="g-hemmingen-zeit" data-pfeil><span class="wort">Kopieren</span></button></div>
-        <div class="w-textkoerper" id="g-hemmingen-zeit">Montag bis Freitag: 08:00 bis 19:00
-Samstag und Sonntag: geschlossen
-Termine nach Vereinbarung, Hausbesuche nach Absprache</div>
-      </article>
-    </div>
-    <article class="w-text">
-      <div class="w-text-kopf"><div><h3>Leistungen</h3><p class="w-leise">Einzeln im Bereich Leistungen anlegen</p></div><button type="button" class="knopf klein" data-kopiere="g-hemmingen-leist" data-pfeil><span class="wort">Kopieren</span></button></div>
-      <div class="w-textkoerper" id="g-hemmingen-leist">Physiotherapie
-Neurologische Physiotherapie
-Bobath
-CranioSacral-Therapie
-Massage
-Hausbesuche
-Körperpsychotherapie
-Gesprächstherapie
-Begleitung bei Überforderung, zum Beispiel bei der Pflege eines Angehörigen
-Stressmanagement und Entspannung
-Achtsamkeitstraining
-Seminare und Prävention
-Betreuung von Mitarbeitern</div>
-    </article>
-  </div>
-
-  <h2 class="w-abschnitt-titel">Jameda</h2>
-  <p class="w-abschnitt-satz">Neue Texte für die Felder «Über mich» und «Behandlungsschwerpunkte».</p>
-  <div class="w-texte">
-    <article class="w-text">
-      <div class="w-text-kopf"><div><h3>Über mich</h3></div><button type="button" class="knopf klein" data-kopiere="j-ueber" data-pfeil><span class="wort">Kopieren</span></button></div>
-      <div class="w-textkoerper" id="j-ueber">Ich bin Physiotherapeutin seit 1986. Mein Schwerpunkt sind Menschen, die neurologisch schwer und schwerst betroffen sind. In diesem Bereich bilde ich mich laufend fort, zu Wachkoma, Bandscheibenvorfall, Schlaganfall, Parkinson, MS, ALS und Querschnitt.
-
-Außerdem bin ich Heilpraktikerin für Physiotherapie und Psychotherapie, CranioSacral-Therapeutin, Stressmanagement- und Entspannungstherapeutin und Achtsamkeitstrainerin. Neben der Physiotherapie biete ich deshalb auch Körperpsychotherapie und Gesprächstherapie an. Ich begleite Menschen, die überfordert sind, zum Beispiel bei der Pflege eines Angehörigen.
-
-Ich behandle in meiner Privatpraxis in Hannover und im Physio Rosenpark in Hemmingen, dessen Inhaberin ich seit 2009 bin. Freiberuflich arbeite ich außerdem für The Balance Luxury Rehab auf Mallorca.
-
-Ich behandle ausschließlich Privatpatienten, eine Abrechnung über die gesetzliche Krankenversicherung ist nicht möglich. Termine gibt es nach Vereinbarung, Hausbesuche nach Absprache. Ich spreche Deutsch, Englisch und Spanisch.</div>
-    </article>
-    <article class="w-text">
-      <div class="w-text-kopf"><div><h3>Behandlungsschwerpunkte</h3></div><button type="button" class="knopf klein" data-kopiere="j-schwer" data-pfeil><span class="wort">Kopieren</span></button></div>
-      <div class="w-textkoerper" id="j-schwer">Neurologische Physiotherapie für schwer und schwerst betroffene Menschen
-Schlaganfall, Parkinson, Multiple Sklerose, ALS, Querschnitt, Wachkoma
-Bandscheibenvorfall
-Bobath
-CranioSacral-Therapie
-Massagen
-Körperpsychotherapie und Gesprächstherapie
-Begleitung bei Überforderung, zum Beispiel bei der Pflege eines Angehörigen
-Stressmanagement, Entspannung und Achtsamkeit
-Seminare, Prävention und Betreuung von Mitarbeitern
-Hausbesuche nach Absprache</div>
-    </article>
-  </div>
-
-  <h2 class="w-abschnitt-titel">Was Sie selbst tun</h2>
-  <p class="w-abschnitt-satz">Diese Schritte gehen nur mit Ihrem eigenen Zugang.</p>
-  <ul class="w-aufgaben">
-    <li><span data-zeichen></span><div><h3>Profile beanspruchen</h3><p>Bei Google die Einträge für Hannover und Hemmingen beanspruchen oder bestätigen. Google schickt dafür meist einen Code per Post, Telefon oder E-Mail. Bei Jameda mit Ihrem Zugang anmelden.</p></div></li>
-    <li><span data-zeichen></span><div><h3>Texte einfügen</h3><p>Beschreibung, Kategorien, Leistungen und Öffnungszeiten von dieser Seite kopieren und im jeweiligen Profil einsetzen.</p></div></li>
-    <li><span data-zeichen></span><div><h3>Fotos hochladen</h3><p>Eigene Fotos von Eingang, Behandlungsraum und ein Porträt. Keine Patienten zeigen, außer sie haben schriftlich zugestimmt.</p></div></li>
-    <li><span data-zeichen></span><div><h3>Bewertungskarte auslegen</h3><p>Die Karten unter Drucksachen drucken und am Empfang auslegen oder nach der Behandlung mitgeben. Für Bewertungen keine Gegenleistung anbieten, das erlaubt Google nicht.</p></div></li>
-    <li><span data-zeichen></span><div><h3>Auf Bewertungen antworten</h3><p>Kurz und freundlich antworten, ohne Angaben zur Behandlung. Auch dort gilt die Schweigepflicht.</p></div></li>
-  </ul>
-
-</main>
-
-<footer class="w-fuss">
-  <a class="w-marke" href="../index.html" data-zeichen>Physiotherapie Sylvia Sroka</a>
-  <nav><a href="index.html">Alle Werkzeuge</a><a href="../index.html">Zur Website</a></nav>
-</footer>
-
-<script src="zeichen.js"></script>
-<script src="praxis.js"></script>
-<script>
-(function () {
-  'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('[data-zaehlen]').forEach(function (el) {
-      var grenze = +el.getAttribute('data-zaehlen');
-      var n = el.textContent.trim().length;
-      var z = el.parentNode.querySelector('.w-zaehler');
-      z.textContent = n + ' von ' + grenze + ' Zeichen';
-      z.classList.toggle('zu-lang', n > grenze);
-    });
-    document.querySelectorAll('[data-kopiere]').forEach(function (k) {
-      k.addEventListener('click', function () {
-        var text = document.getElementById(k.getAttribute('data-kopiere')).textContent.trim();
-        W.kopieren(text).then(function () { W.melden(k, 'Kopiert'); }, function () { W.melden(k, 'Bitte von Hand kopieren'); });
-      });
-    });
-  });
-})();
-</script>
+<body class="wo-app">
+<header class="wo-kopf" id="kopf"></header>
+<nav class="wo-rand" id="rand" aria-label="Bereiche"></nav>
+<main class="wo-raum" id="raum"></main>
+<footer class="wo-leiste" id="leiste"></footer>
+<script src="zeichen.js?v=1"></script>
+<script src="profiltexte.js?v=1"></script>
 </body>
 </html>

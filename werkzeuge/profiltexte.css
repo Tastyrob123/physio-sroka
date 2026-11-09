@@ -1,0 +1,44 @@
+/* profiltexte.css · Textkarten mit Wohin, Weg, Link, Zeichengrenze, Skizze der Stelle und Quelle. Vorsilbe pt-. */
+.pt-text .sr-karte__kopf .wo-mk{margin-bottom:6px}
+.pt-oben{margin-bottom:18px}
+.pt-wohin{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:28px;align-items:start}
+.pt-wohin__bild{margin:0}
+.pt-wohin__bild .pt-sk{margin-top:8px}
+@media (max-width:1100px){.pt-wohin{grid-template-columns:minmax(0,1fr)}}
+.pt-wortlaut{margin:0;padding:20px 22px;border-radius:var(--wo-r2);background:linear-gradient(180deg,var(--wo-papier2),var(--wo-papier));box-shadow:inset 0 2px 5px -2px rgba(0,0,0,.14),inset 0 0 0 1px var(--wo-linie);
+  white-space:pre-wrap;word-break:normal;overflow-wrap:break-word;font:15.5px/1.6 var(--wo-sans);color:var(--wo-tinte)}
+.pt-zaehler{margin:10px 0 0;font-size:14px;color:var(--wo-leise);line-height:1.5}
+.pt-zaehler--zu{color:var(--wo-punkt)}
+.pt-wohin{padding:20px 22px;border-radius:var(--wo-r2);background:var(--wo-weiss);box-shadow:inset 0 0 0 1px var(--wo-linie)}
+.pt-feld{margin:6px 0 12px;font:500 23px/1.2 var(--wo-titel)}
+.pt-weg{margin:0;padding-left:22px;font-size:15px;line-height:1.55}
+.pt-weg li+li{margin-top:5px}
+.pt-weg li::marker{color:var(--wo-akzent)}
+.pt-links-kn{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pt-hinweis{margin:14px 0 0;padding-left:12px;border-left:2px solid var(--wo-g3);font-size:14.5px;color:var(--wo-leise);line-height:1.5}
+.pt-quelle{margin:14px 0 0;font-size:13.5px;color:var(--wo-leise);line-height:1.55}
+.pt-quelle a,.pt-qliste a{color:var(--wo-akzent);text-decoration:underline;text-underline-offset:3px}
+.pt-satz{margin:0;font-size:15.5px;line-height:1.6}
+.pt-selbst{gap:18px}
+.pt-qliste{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.pt-qliste small{display:block;color:var(--wo-leise);font-size:13px;word-break:break-all}
+.pt-nicht{margin:0;padding-left:20px;font-size:15px;line-height:1.6}
+
+/* Skizze der Stelle: nachgezeichnet, keine Bildschirmfotos; nur Bezeichnungen aus der Hilfe */
+.pt-sk{margin-top:18px;padding:16px;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px var(--wo-linie);font:13px/1.35 var(--wo-sans);color:#3c4043}
+.pt-sk__suche{height:36px;border-radius:18px;box-shadow:inset 0 0 0 1px #dadce0;display:flex;align-items:center;padding:0 16px;color:#5f6368;margin-bottom:12px}
+.pt-sk__karte{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:10px;box-shadow:inset 0 0 0 1px #e3e3e3;margin-bottom:10px}
+.pt-sk__karte b{font-weight:500;color:#202124}
+.pt-sk__knopf{display:inline-block;padding:7px 12px;border-radius:16px;box-shadow:inset 0 0 0 1px #dadce0;white-space:nowrap}
+.pt-sk__fenster{padding:10px 12px;border-radius:10px;box-shadow:inset 0 0 0 1px #e3e3e3;display:grid;gap:6px}
+.pt-sk__reiter{display:flex;gap:14px;padding-bottom:6px;border-bottom:1px solid #e3e3e3;margin-bottom:2px}
+.pt-sk__feld{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:8px;background:#f8f9fa}
+.pt-sk__feld i{font-style:normal;color:var(--wo-tief);background:var(--wo-g2);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.pt-sk__an{box-shadow:0 0 0 2px var(--wo-g3)!important;background:#fffaf0!important}
+.pt-sk--jameda{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px}
+.pt-sk__menue{display:flex;flex-direction:column;gap:6px}
+.pt-sk__menue span{padding:7px 10px;border-radius:8px;background:#f4f6f8}
+.pt-sk__seite{display:grid;gap:6px}
+.pt-sk__seite b{font-weight:500;color:#202124;margin-bottom:2px}
+.pt-sk__seite .pt-sk__knopf{justify-self:end;margin-top:4px}
+@media (max-width:520px){.pt-sk--jameda{grid-template-columns:minmax(0,1fr)}.pt-sk__menue{flex-direction:row;flex-wrap:wrap}}

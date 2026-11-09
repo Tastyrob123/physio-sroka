@@ -107,3 +107,12 @@ html.sr-fenster-auf{overflow:hidden}
   #sr-druckbereich .sr-blatt{box-shadow:none;border-radius:0;break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   #sr-druckbereich .sr-blatt:last-child{break-after:auto;page-break-after:auto}
 }
+
+/* Übersicht der Werkzeuge */
+.uw-raster{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:760px){.uw-raster{grid-template-columns:minmax(0,1fr)}}
+.uw-karte .wo-ag__b{aspect-ratio:16/8}
+.uw-karte .wo-ag__t b{font:500 30px/1.1 var(--wo-titel)}
+.uw-karte .wo-ag__t>span:not(.uw-kn){font-size:15px;line-height:1.55;color:rgba(243,238,229,.8)}
+.uw-stand{margin-top:6px;font-size:13.5px;color:var(--wo-gold)}
+.uw-kn{margin-top:14px}

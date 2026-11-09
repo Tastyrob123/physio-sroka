@@ -1,4 +1,15 @@
-In Prüfung.
+Fertig. Geprüft. Gegenprüfung durch eine zweite Sitzung in der Nacht vom 09.11.2026: jeder Auftragspunkt selbst bedient, `timeout 1500 node pruefen/werkzeuge.js <ordner>` mit 578 von 578 bestanden (vorher 508; dazu die neue Signatur), Bilder und PDFs angesehen bei 1440 und 390 (Prüfskript zusätzlich 1000 und 320). Nicht geprüft: WebKit (Download in der Cloud gesperrt, am Mac mit `PRUEF_WEBKIT=1`).
+
+## Belege je Auftragspunkt (AUFTRAG.md und Roberts Umbau-Auftrag)
+- **Rahmen**: nur statische Dateien in `werkzeuge/` und `pruefen/`; `git diff origin/main` lässt index.html, index.src.html, ueber-mich.*, seite.css, seite.js, bau.py und `_vorlage/` unberührt. Nichts veröffentlicht, keine externen Dienste, GitHub Pages nicht angefasst.
+- **Stil**: Prüfskript auf allen Seiten bei 1440/1000/390/320: kein Überlauf, nichts fett oder kursiv, keine Schrift unter 13 px, kein sichtbares select oder Datumsfeld, keine Emojis, keine Konsolenfehler; Bilder angesehen.
+- **1. Übersicht** `werkzeuge/index.html`: vier Karten (Fotos der Website, keine Bildschirmfotos), Name, ein Satz, Knopf «… öffnen», «Zur Website» nach ../index.html; im Prüfskript geklickt.
+- **2. Übungsplan** `werkzeuge/uebungsplan.html`: Bibliothek aus daten/uebungen.json je Gruppe, Patient, Datum, Ziel, Notiz, Menge und Häufigkeit je Übung änderbar, eigene Übungen und Fotos, Abschnitte; PDF A4, 3 Seiten, Zeichen im Kopf, Praxisdaten des Standorts, Schritte, Hinweis aus der JSON-Datei (Bild angesehen). «Drucken oder als PDF sichern» ruft das Druckfenster.
+- **3. Rechnung** `werkzeuge/rechnung.html`: Standort als eigene Knöpfe, Positionen hinzufügen/entfernen, Summe 1.060,60 € geprüft, keine Preise vorbelegt, Steuernummer/Bank leer zum Ausfüllen, «Umsatzsteuerfrei nach § 4 Nr. 14 UStG», localStorage mit try/catch (auch gesperrt geprüft), PDF A4 2 Seiten mit wiederholtem Tabellenkopf. Neu: Fusszeile bricht nicht mehr mitten in der E-Mail-Adresse.
+- **4. Drucksachen** `werkzeuge/drucksachen/` (Kopie der Werkstatt, Haus sroka, ohne KI): selbst als PDF erzeugt und angesehen: Visitenkarte und Terminkarte 85 × 55 mm vorne/hinten (Terminkarte vorne Zeichen und Name, hinten Terminzeilen), Briefpapier 210 × 297 mm mit beiden Standorten im Fuss, Umschlag DL, Bewertungskarte A6 je Standort; QR-Codes beider Karten aus dem PDF mit OpenCV gelesen, Ziele wortgleich mit dem Auftrag; QR lokal erzeugt. Jedes Stück druckt als PDF in seinem Format + 3 mm Beschnitt. **E-Mail-Signatur neu** (fehlte): `werkzeuge/signatur.html`, Eintrag «E-Mail-Signatur» im Rand der Werkstatt, Standort wählbar, «Signatur kopieren» legt text/html und Text in die Zwischenablage, «HTML-Code kopieren» kopiert genau den Code (Prüfskript).
+- **5. Profiltexte** `werkzeuge/profiltexte.html`: Google Hannover und Hemmingen (Beschreibung unter 750 Zeichen, Kategorien, Leistungen, Öffnungszeiten), jameda «Über mich», **«Behandlungsschwerpunkte» wieder da** (war gestrichen), behandelte Erkrankungen, Sprachen; je Text Feld, Weg, Link, Zeichengrenze, Skizze, Quelle; «Was du selbst tust» (Profil beanspruchen, Fotos, Bewertungskarte); 12 Kopier-Knöpfe kopieren genau den Wortlaut; keine Werbewörter, keine Heilversprechen.
+- **Nur Fakten**: erfundene Webadresse «physio-sroka.de» aus Briefpapier, Umschlag, Aushang und Marke entfernt; alle Texte der Werkstatt stehen so auf der Website (stichprobenweise gegen index.html geprüft).
+- **file://** (Doppelklick): alle fünf Seiten starten ohne Fehler.
 
 ## Die Werkzeuge (Pfade im Repo, Website im Stamm)
 - Übersicht «Deine Werkzeuge»: `werkzeuge/index.html` (+ `uebersicht.js`): vier Karten mit Foto der Website, ein Satz, Stand aus dem Browser, Knopf «… öffnen», Rückweg zur Website.
@@ -6,6 +17,7 @@ In Prüfung.
 - Drucksachen: `werkzeuge/drucksachen/index.html` (Weiterleitung aus `werkzeuge/drucksachen.html`): Werkstatt aus der Vorlage, Haus sroka, 74 Vorlagen, 5 Beispiele, PDF im Browser, ohne KI. Prüfseite `werkzeuge/drucksachen/pruefung.html`.
 - Rechnungen: `werkzeuge/rechnung.html|js|css`: Standort, Patient, Positionen, Summe, Steuernummer/Bank unter «Angaben der Praxis», § 4 Nr. 14 UStG, keine Preise vorbelegt, localStorage `sroka-werkzeuge-rechnung`.
 - Profiltexte: `werkzeuge/profiltexte.html|js|css`: 11 Texte (Google Hannover, Google Hemmingen, jameda) mit Feld, Weg, Link, Zeichengrenze, Skizze, Quelle; «Was du selbst tust»; Quellen (`pruefen/quellen-profiltexte.md`).
+- E-Mail-Signatur: `werkzeuge/signatur.html|js|css` (gehört zu den Drucksachen, Eintrag im Rand der Werkstatt).
 - Gemeinsam: `werkzeuge/gemeinsam.js|css`, Rahmen `werkzeuge/rahmen/` (Kopie der Vorlage, Kleid `kleid/sroka.*`).
 
 ## Geprüft
@@ -48,10 +60,10 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - Belegt: QR-Codes beider Bewertungskarten aus dem PDF gelesen, Ziele wortgleich mit dem Auftrag. Briefpapier 210 × 297, Bewertung 105 × 148, Visiten-/Terminkarte 85 × 55, Umschlag DL, je + 3 mm Beschnitt.
 
 ## Offen, in Reihenfolge
-- Voller Prüflauf nach den Änderungen, Bilder und PDFs ansehen (Übungsplan, Rechnung, Profiltexte jameda, Signatur), dann «Fertig. Geprüft.» mit Belegen.
+- nichts
 
 ## Nächster genauer Schritt
-`timeout 1500 node pruefen/werkzeuge.js <ordner>` laufen lassen, Fehler beheben, Bilder ansehen.
+Nichts offen. Auf Roberts Wort warten (Durchsicht, Zusammenführen in main).
 
 ## Entscheidungen der Nacht
 - Übersicht: Startbild als «buehne» (kleiner), Kacheln bleiben zweispaltig: vier Spalten ergäben unter 300 px Textbreite (F205 geht vor F112).
@@ -67,7 +79,7 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - (Gegenprüfung) WebKit: Download erneut versucht, in der Cloud gesperrt; bleibt für den Mac.
 
 ## Wartet auf Roberts Wort
-- Durchsicht der Werkzeuge und Zusammenführen des Zweigs in main (kein PR angelegt).
+- Durchsicht der Werkzeuge und Zusammenführen des Zweigs in main (kein PR angelegt). Gleicher Stand liegt auf `claude/sroka-werkzeuge-umbau-6cdhaj` und `claude/sroka-werkzeuge-umbau-pruefung-kxix7e`.
 - WebKit-Prüfung am Mac.
 
 ## Zweig

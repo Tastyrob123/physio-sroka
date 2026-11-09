@@ -105,6 +105,7 @@ async function ansichten(browser, name, datei, wege) {
     for (const w of wege) {
       if (w.klick) { await rk(page, w.klick); await warte(400); }
       await page.evaluate(() => document.fonts.ready);
+      await warte(1300);   /* Auftritte beim Laden abwarten, sonst schneidet das Bild sie mitten in der Bewegung */
       await grundpruefung(page, name + ' · ' + w.n, breite);
       await page.screenshot({ path: path.join(AUS, 'ansicht-' + name + '-' + w.n.replace(/\W+/g, '_') + '-' + breite + '.png'), fullPage: true });
     }
@@ -145,6 +146,7 @@ async function lauf(browser, bname) {
     const karten = await page.$$eval('.uw-karte', ks => ks.map(k => ({ href: k.getAttribute('href'), name: k.querySelector('b').textContent, img: !!k.querySelector('img') })));
     pruefe(karten.length === 4, 'Übersicht: vier Werkzeuge ' + JSON.stringify(karten.map(k => k.name)));
     for (const k of karten) { const r = await page.request.get(new URL(k.href, BASIS + 'index.html').href); pruefe(r.ok(), 'Übersicht: Ziel ' + k.href + ' erreichbar'); }
+    pruefe(await page.evaluate(() => !/#/.test(WO_HAUS.zeichen) && getComputedStyle(document.querySelector('.wo-marke-w .wo-zeichen')).webkitMaskImage.length > 100), 'Übersicht: Zeichen im Kopf (data:-Adresse ohne #, sonst schneidet der Browser das SVG ab)');
     const bilder = await page.$$eval('.uw-karte img', is => is.map(i => i.naturalWidth > 0 && /\/media\//.test(i.src)));
     pruefe(bilder.length === 4 && bilder.every(Boolean), 'Übersicht: Fotos der Website, keine Bildschirmfotos');
     const web = await page.$$eval('a:not(.uw-karte)', as => as.filter(a => /Website/.test(a.textContent)).map(a => a.href));
@@ -165,6 +167,7 @@ async function lauf(browser, bname) {
     /* Beispiel */
     await page.click('[data-gehe="beispiel"] >> nth=0'); await warte(400);
     pruefe(await page.$$eval('#ub-huelle .ub-uebung', x => x.length) === 6, t + 'Beispiel mit sechs Übungen in zwei Abschnitten');
+    pruefe((await page.textContent('#leiste')).includes('Beispiel, nicht gespeichert'), t + 'Leiste sagt beim Beispiel «nicht gespeichert»');
     /* neuer Plan */
     await rk(page, '#rand [data-gehe="neu"]'); await warte(300);
     await page.fill('[data-f="patient"]', 'Erika Muster');

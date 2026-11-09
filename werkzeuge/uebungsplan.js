@@ -117,8 +117,8 @@
   function zeichneLeiste() {
     var n = WZ.offen(), p = ST.offen && ST.ansicht === 'plan';
     WZ.leiste({
-      titel: n ? (n === 1 ? '1 Änderung nicht gespeichert' : n + ' Änderungen nicht gespeichert') : p ? 'Plan gespeichert' : 'Alles gespeichert',
-      satz: n ? 'Speichern legt den Plan in diesem Browser ab.' : 'Pläne bleiben nur in diesem Browser.',
+      titel: n ? (n === 1 ? '1 Änderung nicht gespeichert' : n + ' Änderungen nicht gespeichert') : p && !ST.gespeichert ? (ST.offen.beispiel ? 'Beispiel, nicht gespeichert' : 'Noch nicht gespeichert') : p ? 'Plan gespeichert' : 'Alles gespeichert',
+      satz: n || (p && !ST.gespeichert) ? 'Speichern legt den Plan in diesem Browser ab.' : 'Pläne bleiben nur in diesem Browser.',
       knoepfe: p ? WO.knopf('Kopie', 'kopie', 'glas', { id: 'l-kopie', klein: true }) + WO.knopf('Drucken oder PDF', 'druck', 'glas', { id: 'l-druck', klein: true }) : '',
       speichern: !!p || !!n
     });

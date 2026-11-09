@@ -173,6 +173,7 @@ button.knopf{border:0;font-family:inherit;cursor:pointer;text-align:left}
 .w-r-tabelle tfoot td{border-bottom:0;padding-top:3mm}
 .w-r-tabelle tfoot .w-r-summe{font-family:"Cormorant Garamond",serif;font-size:16pt;border-top:.3mm solid var(--text)}
 .w-r-leer td{color:var(--leise);text-align:center;padding:6mm}
+.w-r-schluss{break-inside:avoid;page-break-inside:avoid}
 .w-r-ust{margin-top:6mm}
 .w-r-unten{margin-top:10mm;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6mm;font-size:8.5pt;padding-top:4mm;border-top:.2mm solid rgba(27,25,21,.2);break-inside:avoid;page-break-inside:avoid}
 .w-r-unten h4{font-size:11pt;line-height:1.1;margin-bottom:1mm}
@@ -279,9 +280,9 @@ button.knopf{border:0;font-family:inherit;cursor:pointer;text-align:left}
   .w-wege a{padding:8px 12px;font-size:14px}
   .w-felder{grid-template-columns:1fr}
   .w-position{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .w-position .w-feld.leistung{grid-column:1 / -1}
-  .w-position .w-betrag{grid-column:1 / 2;align-self:center}
-  .w-position .w-entfernen{justify-self:end}
+  .w-position .w-feld.leistung,.w-position .w-feld.datum{grid-column:1 / -1}
+  .w-position .w-betrag{grid-column:1 / 2;align-self:center;order:5}
+  .w-position .w-entfernen{justify-self:end;order:6}
   .w-hinweis-demo{grid-template-columns:1fr}
   .w-gruppe summary{grid-template-columns:52px minmax(0,1fr) auto;gap:12px}
   .w-gruppe summary img{width:52px;height:52px}

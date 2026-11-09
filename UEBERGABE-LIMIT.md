@@ -20,15 +20,15 @@ Werkzeuge:
 - Gemeinsames: [werkzeuge/werkzeuge.css](werkzeuge/werkzeuge.css), [werkzeuge/praxis.js](werkzeuge/praxis.js) (Praxisdaten, Kopieren, Drucken über #w-druckbereich + dynamisches @page, Massstab per zoom), [werkzeuge/erzeugen.py](werkzeuge/erzeugen.py) → qr/*.svg, zeichen.js, uebungen-daten.js
 - [werkzeuge/index.html](werkzeuge/index.html) Übersicht
 - [werkzeuge/uebungsplan.html](werkzeuge/uebungsplan.html) Übungsplan (Druck A4 über W.drucken)
+- [werkzeuge/rechnung.html](werkzeuge/rechnung.html) Rechnung (localStorage-Schlüssel sroka-werkzeuge-rechnung, PDF geprüft, 2 Seiten bei 13 Positionen sauber)
 
 ## Offen, in Reihenfolge
-1. rechnung.html
-2. drucksachen.html
-3. profiltexte.html
-4. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
+1. drucksachen.html
+2. profiltexte.html
+3. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
 
 ## Nächster genauer Schritt
-werkzeuge/rechnung.html bauen.
+werkzeuge/drucksachen.html bauen.
 
 ## Zweig
 `claude/physiotherapie-praxis-werkzeuge-23ggow`

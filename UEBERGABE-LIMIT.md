@@ -11,7 +11,9 @@ Oberste Regel: kopieren und umkleiden aus `_vorlage/` (Rahmen `_vorlage/oberflae
 Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 
 ## Fertig
-- (noch nichts)
+- Vorlage gelesen; Fehlerbuch 10a verdichtet: `pruefen/fehlerbuch-10a.md` (250 Zeilen, 166 betreffen diese Werkzeuge).
+- Rahmen: `werkzeuge/rahmen/` = Kopie `_vorlage/oberflaeche` (einzige Code-Änderung: `WO_HAUS.reihe`), Kleid `kleid/sroka.js|css|-zeichen.svg`, Wege relativ aus der Lage der Datei (GitHub Pages). Muster: `werkzeuge/rahmen/muster.html`.
+- Recherche Menüwege Google/Jameda läuft in einem Unteragenten → `pruefen/quellen-profiltexte.md`.
 
 ## Offen, in Reihenfolge
 1. Vorlage lesen (Master 4.7, 8, 9, 10a; Werkstatt-Übergabe; HAUS-GV; Rahmen UMSTELLUNG.md)
@@ -21,7 +23,7 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 5. Prüfskript erweitern, prüfen, Bilder ansehen
 
 ## Nächster genauer Schritt
-Vorlage lesen.
+Werkstatt kopieren nach `werkzeuge/drucksachen/` (ohne api, serve.py, mail), Haus `sroka` mit `bau.py` (Schriften als feste TTF aus schrift/*.woff2, Zeichen aus media/zeichen.svg, nur Fotos, die auf der Website stehen).
 
 ## Zweig
 `claude/sroka-werkzeuge-umbau-6cdhaj`

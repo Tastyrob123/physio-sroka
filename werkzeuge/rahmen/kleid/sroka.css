@@ -1,0 +1,115 @@
+/* kleid/sroka.css · Physiotherapie Sylvia Sroka · Marke der Website (seite.css :root):
+   Nacht #0e0d0b, Holz #191714 als dunkle Fläche, Gold #b1996a (hell #cdb78b) als Linie und Zeichen, Licht #f3eee5 und Sand #e9e1d4 als helle Fläche,
+   Schrift #1b1915, leise #6d665b. Titel Cormorant Garamond 500, Text Manrope (beide lokal aus schrift/). Nichts fett, nichts kursiv, keine Versalien
+   (die Website setzt keine). Eigene Form des Hauses: grosse runde Ecken, Knöpfe als Pille in Gold mit rundem dunklem Knauf wie «.knopf» der Website,
+   Tapete aus dem Zeichen (media/tapete-dunkel.png). Umgekleidet aus _vorlage/oberflaeche/kleid/varone.css (Aufbau gleich, Werte des Hauses).
+   Keine Schrift unter 13 px (Auftrag 09.11.2026, Fehlerbuch F01): alle kleinen Zeilen des Pakets werden hier angehoben. Rahmen: Die Bühne. */
+@import url('../../../schrift/schrift.css');
+:root{
+  --wo-sans:Manrope,system-ui,-apple-system,'Segoe UI',sans-serif; --wo-mono:Manrope,system-ui,sans-serif;
+  --wo-e1:cubic-bezier(.16,1,.3,1); --wo-e2:cubic-bezier(.32,.72,0,1);
+  --wo-nacht:#191714; --wo-nacht2:#24211c; --wo-tief:#0e0d0b;
+  --wo-g1:#e6d9bc; --wo-g2:#cdb78b; --wo-g3:#b1996a;
+  --wo-gold:#cdb78b; --wo-akzent:#8a7348;
+  --wo-papier:#f3eee5; --wo-papier2:#e9e1d4; --wo-blatt:#f8f4ec; --wo-weiss:#fffdf8;
+  --wo-tinte:#1b1915; --wo-leise:#6d665b; --wo-linie:rgba(27,25,21,.13); --wo-linie-d:rgba(177,153,106,.36);
+  --wo-punkt:#a3452f; --wo-gut:#5d7a4e;
+  --wo-titel:'Cormorant Garamond',Georgia,serif; --wo-titel-g:500; --wo-titel-ls:-.005em;
+  --wo-r1:26px; --wo-r2:18px; --wo-r3:12px; --wo-rk:999px;
+  --sr-fuge:rgba(177,153,106,.5);
+}
+
+/* ================= Sylvia Sroka · Nacht, Gold, Licht ================= */
+.wo-sb__h,.wo-zw{font-weight:500;letter-spacing:-.005em}
+.wo-sb__h em,.wo-zw em{font-style:normal;font-weight:500;color:var(--wo-akzent)}
+.wo-zw{font-size:clamp(30px,2.6vw,40px);line-height:1.05}
+
+/* Kleine Zeilen: Manrope in normaler Schreibung, leicht gesperrt, nie unter 13 px */
+.wo-mk,.wo-feld>span,.wo-sb__zier,.wo-kopf__mitte small,.wo-marke-w small,.wo-rand .wo-mk,.wo-seg button b,.wo-marke,.wo-sp,
+.wo-sb__foto figcaption span{font-family:var(--wo-sans)!important;text-transform:none!important;letter-spacing:.04em!important;font-size:13px!important}
+.wo-mk{color:var(--wo-akzent)}
+.wo-sb__zier{color:var(--wo-gold)}
+.wo-kopf__mitte small{color:var(--wo-gold);margin-top:3px}
+.wo-marke{font-size:13px!important;padding:6px 11px;border-radius:999px}
+
+/* Knöpfe: Pille in Gold mit rundem Knauf in Nacht, Schrift normal wie «.knopf» der Website */
+.wo-kn{font-family:var(--wo-sans);text-transform:none;letter-spacing:.02em;font-size:15px;padding-left:24px}
+.wo-kn--klein{font-size:14px;padding-left:20px}
+.wo-kn--rund{padding:0}
+.wo-kn--gold{background:linear-gradient(180deg,#d6c299 0%,#c4ac7c 52%,#b1996a 100%);color:var(--wo-tief);text-shadow:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(60,45,20,.25),0 14px 30px -18px rgba(0,0,0,.8)}
+.wo-kn--gold i,.wo-kn--hell i{background:var(--wo-tief);color:var(--wo-gold);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+.wo-kn>span,.wo-re>span,.wo-kopf__ber>span{text-box:trim-both cap alphabetic}
+@supports not (text-box:trim-both cap alphabetic){.wo-kn>span,.wo-re>span,.wo-kopf__ber>span{position:relative;top:.04em}}
+
+/* Felder, Wahl, Segmente: runde Kuhlen wie die Formulare der Website */
+.wo-feld input,.wo-feld textarea,.wo-such input{font-size:16px;border-radius:14px}
+.wo-wahl button,.wo-seg button{font-size:14px;font-weight:400;border-radius:999px}
+.wo-seg{border-radius:999px}
+
+/* Rand: Einträge 15 px, gewählt in Holz mit Goldkante; Zahlen mit Innenabstand (F181) */
+.wo-re{font-size:15px}
+.wo-re .wo-zahl{min-width:28px;padding:5px 9px;font-size:13px;border-radius:999px;display:inline-block;text-align:center}
+.wo-re.wo-an,.wo-re[aria-current="true"],.wo-re[aria-current="page"]{background:linear-gradient(180deg,#24211c,#0e0d0b);color:var(--wo-weiss);box-shadow:inset 2px 0 0 var(--wo-g3)}
+.wo-rand__wege a{font-size:14px}
+
+/* Die Bühne: Nacht mit der Tapete aus dem Zeichen, Foto rechts mit weichem Übergang, Goldfuge unter dem Kopf */
+[data-wo-rahmen="buehne"] .wo-sb{position:relative;overflow:hidden;background:var(--wo-tapete)}
+[data-wo-rahmen="buehne"] .wo-kopf{border-bottom:1px solid var(--sr-fuge)}
+.wo-sb__satz{font-size:16px!important;color:rgba(243,238,229,.82)}
+.wo-sb .wo-sb__h em,[data-wo-rahmen] .wo-sb .wo-sb__h em,body .wo-sb .wo-sb__h em{color:var(--wo-gold)}
+.wo-sb__foto{border-radius:var(--wo-r1)}
+.wo-ag__b,.wo-bk__b{box-shadow:0 0 0 1px rgba(177,153,106,.4)}
+.wo-bk__t small,.wo-mk{color:var(--wo-akzent)}
+.wo-lg .wo-mk{color:var(--wo-gold)}
+.wo-lg p,.wo-lg .wo-lk{font-size:14px}
+
+/* Ecke oben links (M24): das Zeichen in Gold auf Nacht in runder Fassung, darunter Werkzeug · Praxis */
+.wo-marke-w{position:relative;display:flex;align-items:center;gap:12px;padding-left:62px!important;min-height:48px;color:var(--wo-weiss)}
+.wo-marke-w::before{content:'';position:absolute;left:0;top:50%;width:48px;height:48px;margin-top:-24px;border-radius:50%;
+  background:linear-gradient(180deg,#24211c,#0e0d0b);box-shadow:inset 0 0 0 1px rgba(205,183,139,.7),inset 0 0 0 4px rgba(14,13,11,.6),0 6px 14px -8px rgba(0,0,0,.8)}
+.wo-marke-w .wo-zeichen{position:absolute;left:9px;top:50%;width:30px;height:auto;max-width:none;margin-top:-10px;color:var(--wo-gold)}
+.wo-marke-w b{font:500 22px/1.05 var(--wo-titel);display:block}
+.wo-marke-w small{color:rgba(205,183,139,.9)!important;display:block}
+
+/* Auftritt der Bühne: Foto aus 40 px und Skala 1,06, Titel, Satz, Knöpfe folgen gestaffelt; nur transform (R17, F114) */
+@keyframes woAufFoto{from{translate:0 40px;scale:1.06}}
+@keyframes woAuf{from{translate:0 40px}}
+@media screen and (prefers-reduced-motion:no-preference){
+  html:not(.still) .wo-sb__foto{animation:woAufFoto .85s cubic-bezier(.22,.61,.36,1) both}
+  html:not(.still) :is(.wo-sb__zier,.wo-sb__h,.wo-sb__satz,.wo-sb__kn){animation:woAuf .85s cubic-bezier(.22,.61,.36,1) both}
+  html:not(.still) .wo-sb__zier{animation-delay:.12s}
+  html:not(.still) .wo-sb__h{animation-delay:.24s}
+  html:not(.still) .wo-sb__satz{animation-delay:.36s}
+  html:not(.still) .wo-sb__kn{animation-delay:.48s}
+}
+
+/* Untere Leiste: Titel bricht nie um, Satz darunter 13 px */
+.wo-leiste__t b{white-space:nowrap;font:500 19px/1.1 var(--wo-titel);color:var(--wo-weiss)}
+.wo-leiste__t small{font-size:13px;color:rgba(243,238,229,.7)}
+.wo-leiste__t{display:flex;align-items:center;gap:12px;min-width:0}
+.wo-leiste__t span{display:flex;flex-direction:column;gap:3px;min-width:0}
+.wo-leiste{display:flex;align-items:center;justify-content:space-between;gap:14px;color:var(--wo-weiss)}
+.wo-leiste__kn{display:flex;gap:8px;flex-wrap:nowrap}
+
+/* Kopf bei wenig Breite (F146): Titel nimmt nur den freien Platz, Website-Knopf nur mit Zeichen */
+@media (min-width:901px) and (max-width:1240px){
+  .wo-kopf{grid-template-columns:auto minmax(0,1fr) auto}
+  .wo-kopf__mitte{min-width:0;max-width:100%}
+  .wo-kopf__mitte b{font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .wo-kopf__mitte small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .wo-kopf .wo-kn--gold.wo-kn--klein>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .wo-kopf .wo-kn--gold.wo-kn--klein{padding:0;gap:0;width:auto}
+}
+.wo-sb__zier{min-width:0;max-width:100%}
+.wo-sb__zier span{min-width:0;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.6}
+@media (max-width:1240px){.wo-sb__zier i{display:none}}
+
+/* Handy: Knopf «Bereiche» als Pille in Gold, Leiste unten zweizeilig erlaubt */
+@media (max-width:900px){
+  .wo-kopf__ber{font-family:var(--wo-sans)!important;text-transform:none!important;letter-spacing:.02em!important;font-size:14px!important;border-radius:999px!important}
+  .wo-marke-w b{font-size:19px}
+  .wo-leiste{flex-wrap:wrap;border-radius:22px}
+  .wo-leiste__t small{display:none}
+  .wo-leiste__kn{flex-wrap:wrap}
+}

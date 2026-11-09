@@ -1,0 +1,98 @@
+/* kleid/varone.css · Restaurant Gilles Varone, Savièse · Marke des Hauses (CHARAKTER.md, Website assets/gv.css :root):
+   Nacht #0b1315 · #111b1d · #070c0d als dunkle Fläche, Gold #C9AB81 (hell #dcc3a0, dunkel #9C7C57, Bronze #755C3A) als Linie und Zeichen,
+   Papier #F7F3EC und Sand #EEE6D8 als helle Fläche, Schrift #0b1315. Titel Gill Sans Nova Book (aus der Wortmarke), kleine Zeilen Caviar Dreams in gesperrten Versalien.
+   Eigene Form des Hauses: das Flechtmuster in Gold als Tapete und als Streifen über der Bühne, die Zierde «xx» (zwei gekreuzte Goldlinien) über Abschnittstiteln,
+   Fotos eckig mit 4-px-Ecke in goldener Fuge, Knöpfe rechteckig in Gold wie «Compris» des Hauses. Nie fett, nie kursiv. Rahmen: Die Bühne. */
+@font-face{font-family:'GV Gill';font-weight:400;font-display:swap;src:url('../../fonts/GillSansNova-Book.woff2') format('woff2')}
+@font-face{font-family:'GV Gill';font-weight:500 800;font-display:swap;src:url('../../fonts/GillSansNova-Medium.woff2') format('woff2')}
+@font-face{font-family:'GV Caviar';font-weight:400 800;font-display:swap;src:url('../../fonts/CaviarDreams.woff2') format('woff2')}
+@font-face{font-family:'W Sans';font-weight:400 600;font-display:swap;src:url('../../fonts/InstrumentSans-normal-400_600.woff2') format('woff2')}
+@font-face{font-family:'W Mono';font-weight:400;font-display:swap;src:url('../../fonts/DMMono-normal-400.woff2') format('woff2')}
+:root{
+  --wo-sans:'GV Gill','W Sans',system-ui,-apple-system,'Segoe UI',sans-serif; --wo-mono:'GV Caviar','W Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --wo-e1:cubic-bezier(.16,1,.3,1); --wo-e2:cubic-bezier(.32,.72,0,1);
+  --wo-nacht:#111b1d; --wo-nacht2:#1a2629; --wo-tief:#0b1315;
+  --wo-g1:#efe0c8; --wo-g2:#dcc3a0; --wo-g3:#b9986c;
+  --wo-gold:#C9AB81; --wo-akzent:#9C7C57;
+  --wo-papier:#F7F3EC; --wo-papier2:#EEE6D8; --wo-blatt:#fbf8f2; --wo-weiss:#fffdf9;
+  --wo-tinte:#0b1315; --wo-leise:#5c5448; --wo-linie:rgba(11,19,21,.12); --wo-linie-d:rgba(201,171,129,.32);
+  --wo-punkt:#b8332a; --wo-gut:#5d7a4e;
+  --wo-titel:'GV Gill',Georgia,serif; --wo-titel-g:400; --wo-titel-ls:.005em;
+  --wo-r1:6px; --wo-r2:4px; --wo-r3:3px; --wo-rk:3px;
+  --wo-tapete:url('/assets/img/geflecht-leise.png') 0 0/131px 157px,var(--wo-tief);
+  --wo-tapete-fein:url('/assets/img/geflecht.png') 0 0/131px 157px;
+  --gv-fuge:rgba(201,171,129,.55);
+}
+
+/* ================= Gilles Varone · Nacht, Gold, Flechtmuster ================= */
+/* Titel wie die Website: Gill Sans Nova Book, ruhig, nie fett; Betonung in Gold, nicht kursiv */
+.wo-sb__h,.wo-zw{font-weight:400;letter-spacing:.005em}
+.wo-sb__h em,.wo-zw em{font-style:normal;font-weight:400;color:var(--wo-akzent)}
+/* Kleine Zeilen wie die Leiste des Hauses: Caviar Dreams, gesperrte Versalien */
+.wo-sb__zier span,.wo-kopf__mitte small,.wo-rand__kopf small,.wo-marke-w small{font-family:var(--wo-mono);letter-spacing:.2em;text-transform:uppercase}
+
+/* Die Bühne: oben ein Streifen Flechtmuster in Gold wie an den Menükarten des Hauses, die Fläche Nacht mit Flechtmuster Ton in Ton */
+[data-wo-rahmen="buehne"] .wo-sb{position:relative;overflow:hidden;background:url('/assets/img/geflecht-leise.png') 0 0/131px 157px,var(--wo-tief)}
+[data-wo-rahmen="buehne"] .wo-sb::after{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:url('/assets/img/geflecht.png') 0 0/131px 157px,var(--wo-tief);opacity:.9;pointer-events:none;z-index:2;box-shadow:0 1px 0 var(--gv-fuge)}
+[data-wo-rahmen="buehne"] .wo-sb .wo-sb__text{position:relative;z-index:1}
+[data-wo-rahmen="buehne"] .wo-kopf{border-bottom:1px solid var(--gv-fuge)}
+.wo-lage,.wo-ag,.wo-det__kopf{border-top:1px solid rgba(201,171,129,.45)}
+/* Über den Abschnittstiteln die Zierde «xx» des Hauses */
+.wo-zw::before{content:'';display:block;width:62px;height:13px;margin-bottom:14px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='62.87' height='13.02' viewBox='0 0 62.87 13.02'%3E%3Cpolyline points='62.55 11.51 31.43 1.5 .31 11.52' fill='none' stroke='%239C7C57' stroke-width='1.5'/%3E%3Cpolyline points='62.56 1.5 31.43 11.51 .31 1.5' fill='none' stroke='%239C7C57' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat 0 0/62px 13px}
+/* Fotos eckig in goldener Fuge, unten leicht in die Nacht */
+.wo-sb__foto{border-radius:var(--wo-r2);box-shadow:0 0 0 1px var(--gv-fuge)}
+.wo-sb__foto::after{background:linear-gradient(0deg,rgba(7,12,13,.5),transparent 55%)}
+.wo-ag__b,.wo-bk__b{box-shadow:0 0 0 1px rgba(201,171,129,.4)}
+.wo-lg__z,.wo-ag__z{border-radius:var(--wo-r3)}
+.wo-bk__t small,.wo-mk{color:var(--wo-akzent)}
+.wo-re.wo-an,.wo-re[aria-current="true"],.wo-re[aria-current="page"]{background:linear-gradient(180deg,#1a2629,#0b1315);box-shadow:inset 2px 0 0 var(--wo-gold)}
+/* Knöpfe rechteckig in Gold mit gesperrten Versalien wie «Compris» des Hauses, mit Lichtkante und weichem Schatten */
+.wo-kn{font-family:var(--wo-mono);letter-spacing:.16em;text-transform:uppercase;font-size:12px}
+.wo-kn--gold{background:linear-gradient(180deg,#dcc3a0 0%,#C9AB81 52%,#b9986c 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(80,58,30,.28),0 14px 26px -14px rgba(11,19,21,.55),0 2px 4px rgba(11,19,21,.12)}
+
+/* Ecke oben links in allen Werkzeugen gleich (M24): das Monogramm GV in Gold auf Nacht, eckig in goldener Fuge, darunter Bereich · Haus */
+.wo-marke-w{position:relative;padding-left:60px!important;min-height:46px}
+.wo-marke-w::before{content:'';position:absolute;left:0;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:var(--wo-r2);
+  background:linear-gradient(180deg,#1a2629,#0b1315);box-shadow:inset 0 0 0 1px rgba(201,171,129,.7),inset 0 0 0 4px rgba(7,12,13,.6),0 6px 14px -8px rgba(0,0,0,.8)}
+.wo-marke-w .wo-zeichen{position:absolute;left:11px;top:50%;width:24px;height:24px;max-width:none;margin-top:-12px;color:var(--wo-gold)}
+.wo-marke-w small{color:rgba(220,195,160,.85)!important}
+
+/* Auftritt der Bühne: das Foto schwebt von unten herein und zoomt von 1,06 auf 1 wie die Fotos der Website, Titel, Satz und Knöpfe folgen 40 px von unten. Nur transform, deckend. */
+@keyframes woAufFoto{from{translate:0 40px;scale:1.06}}
+@keyframes woAuf{from{translate:0 40px}}
+@media screen and (prefers-reduced-motion:no-preference){
+  html:not(.still) .wo-sb__foto{animation:woAufFoto .85s cubic-bezier(.22,.61,.36,1) both}
+  html:not(.still) :is(.wo-sb__zier,.wo-sb__h,.wo-sb__satz,.wo-sb__kn){animation:woAuf .85s cubic-bezier(.22,.61,.36,1) both}
+  html:not(.still) .wo-sb__zier{animation-delay:.12s}
+  html:not(.still) .wo-sb__h{animation-delay:.24s}
+  html:not(.still) .wo-sb__satz{animation-delay:.36s}
+  html:not(.still) .wo-sb__kn{animation-delay:.48s}
+}
+
+/* Zweiter Titelteil (<em>) auf dunkler Fläche immer hell (Fehlerbuch Werkzeug-Master 10a, 20.10.2026): hier im hellen Gold des Hauses */
+.wo-sb .wo-sb__h em,[data-wo-rahmen] .wo-sb .wo-sb__h em,#ansicht .wo-sb .wo-sb__h em,body .wo-sb .wo-sb__h em{color:#efe0c8}
+
+/* Untere Leiste: der Titel bricht nie um (Fehlerbuch 10a, 20.10.2026) */
+.wo-leiste__t b{white-space:nowrap}
+
+/* Kopf bei wenig Breite (Fehlerbuch 10a, 20.10.2026): Titel nimmt nur den freien Platz und überdeckt nie einen Knopf */
+@media (min-width:901px) and (max-width:1240px){
+  .wo-kopf{grid-template-columns:auto minmax(0,1fr) auto}
+  .wo-kopf__mitte{min-width:0;max-width:100%}
+  .wo-kopf__mitte b{font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .wo-kopf__mitte small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .wo-kopf .wo-kn--gold.wo-kn--klein>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .wo-kopf .wo-kn--gold.wo-kn--klein{padding:0;gap:0;width:auto}
+}
+
+/* Zierzeile im Startbild bricht um statt zu kürzen (Demo-Check 21.10.2026) */
+.wo-sb__zier{min-width:0;max-width:100%}
+.wo-sb__zier span{min-width:0;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.6}
+@media (max-width:1240px){.wo-sb__zier i{display:none}}
+
+/* Schrift optisch mittig in Knöpfen und Pillen (Robert 29.10.2026) */
+.wo-kn>span,.wo-re>span,.wo-kopf__ber>span{text-box:trim-both cap alphabetic}
+.wo-re .wo-zahl{display:block;height:auto;padding:7px;line-height:1;text-align:center;text-box:trim-both cap alphabetic}
+.ansicht>button,.wahl3>button{text-box:trim-both cap alphabetic}
+@supports not (text-box:trim-both cap alphabetic){.wo-kn>span,.wo-re>span,.wo-kopf__ber>span{position:relative;top:.05em}}

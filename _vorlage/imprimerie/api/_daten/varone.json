@@ -1,0 +1,226 @@
+{
+"key": "varone",
+"name": "Restaurant Gilles Varone",
+"voll": "Restaurant Gilles Varone",
+"ort": "Savièse",
+"artikel": "des Restaurants Gilles Varone",
+"zeile": "Saint-Germain, Savièse",
+"satz": "Une expérience fine, remarquable et différente.",
+"adr": "Rue du Stade 5B · 1965 Savièse",
+"tel": "027 565 89 20",
+"mail": "info@gillesvarone.ch",
+"web": "www.gillesvarone.ch",
+"farben": {
+"navy": "#0b1315",
+"nacht": "#070c0d",
+"blau": "#111b1d",
+"tinte": "#0b1315",
+"papier": "#f7f3ec",
+"creme": "#eee6d8",
+"weiss": "#f4ecdf",
+"gold": "#c9ab81",
+"taupe": "#9c7c57",
+"messing": "#755c3a",
+"tanne": "#111b1d",
+"kander": "#dcc3a0",
+"laden": "#9c7c57"
+},
+"farbnamen": {
+"navy": "Nuit",
+"nacht": "Nuit profonde",
+"blau": "Nuit claire",
+"tinte": "Encre",
+"papier": "Papier",
+"creme": "Sable",
+"weiss": "Crème",
+"gold": "Or",
+"taupe": "Or foncé",
+"messing": "Bronze",
+"tanne": "Nuit claire",
+"kander": "Or clair",
+"laden": "Or foncé"
+},
+"toene": {
+"dunkel": {
+"grund": "navy",
+"tapete": "dunkel",
+"titel": "weiss",
+"text": "papier",
+"mono": "gold",
+"linie": "gold",
+"zeichen": "gold",
+"schild": "gold",
+"schild_text": "navy"
+},
+"hell": {
+"grund": "papier",
+"tapete": null,
+"titel": "navy",
+"text": "tinte",
+"mono": "taupe",
+"linie": "taupe",
+"zeichen": "taupe",
+"schild": "navy",
+"schild_text": "gold"
+},
+"creme": {
+"grund": "creme",
+"tapete": "hell",
+"titel": "navy",
+"text": "tinte",
+"mono": "messing",
+"linie": "taupe",
+"zeichen": "taupe",
+"schild": "navy",
+"schild_text": "gold"
+}
+},
+"schriften": {
+"titel": {
+"familie": "Gill Sans Nova",
+"datei": "GillSansNova-Book.ttf",
+"wofuer": "Titel, Gill Sans Nova Book 400 wie die Wortmarke GILLES VARONE; nie fett, nie kursiv"
+},
+"kapitale": {
+"familie": "Gill Sans Nova",
+"datei": "GillSansNova-Book.ttf",
+"wofuer": "Namen in Versalien, gesperrt wie die Wortmarke"
+},
+"text": {
+"familie": "Gill Sans Nova",
+"datei": "GillSansNova-Book.ttf",
+"wofuer": "Fliesstext, wie auf der Website"
+},
+"kursiv": {
+"familie": "Gill Sans Nova Medium",
+"datei": "GillSansNova-Medium.ttf",
+"wofuer": "Betonung; das Haus setzt nie kursiv"
+},
+"mono": {
+"familie": "Caviar Dreams",
+"datei": "CaviarDreams.ttf",
+"wofuer": "kleine Zeilen in gesperrten Versalien, wie Leiste und Knöpfe der Website"
+}
+},
+"tapete": {
+"dunkel": "tapete-dunkel.webp",
+"hell": "tapete-hell.webp",
+"rapport_mm": 12
+},
+"gutschein": {
+"titel": "Bon cadeau",
+"felder": [
+"Pour",
+"De",
+"N°"
+]
+},
+"betriebe": [
+[
+"L’expérience en 5 services",
+"Amuse-Bouche – Première Entrée – Deuxième Entrée – Plat Principal – Dessert"
+],
+[
+"L’expérience en 6 services",
+"Amuse-Bouche – Entrée – Poisson – Plat Principal – Pré-Dessert – Dessert"
+],
+[
+"L’expérience en 7 services",
+"Amuse-Bouche – Première Entrée – Deuxième Entrée – Poisson – Plat Principal – Pré-Dessert – Dessert"
+],
+[
+"L’expérience chasse locale",
+"Uniquement durant le mois d’octobre, selon les disponibilités"
+],
+[
+"Les expériences végétariennes",
+"Sur demande préalable uniquement"
+],
+[
+"Pour les groupes",
+"plus de 8 personnes, par le biais de demandes spéciales"
+],
+[
+"Les accords",
+"accords mets et vins et accords mets et créations sans alcool"
+],
+[
+"Bons cadeaux",
+"personnalisés, montants à choix"
+]
+],
+"regeln": [
+"Das Haus spricht Französisch: alles, was ein Gast liest, auf Französisch, im Wortlaut der Website (vous, warm, präzise).",
+"Immer Wertigkeit: der einzelne Gast, der einzelne Teller, Sorgfalt und Handarbeit. Nie Menge, Abfertigung, Stückzahlen als Pointe.",
+"Keine Preise auf Drucksachen der Werkstatt; die Weinkarte ist nicht veröffentlicht, keine Weine nennen.",
+"Zeiten wie auf der Website: «Jeudi 18h30 – 00h00», «Vendredi & Samedi 12h00 – 16h00 · 19h00 – 00h00», «Dimanche 12h00 – 16h00», «Lundi – Mercredi fermé».",
+"Titel kurz, in Gill Sans Nova Book 400, nie fett, nie kursiv. Kleine Zeilen in Caviar Dreams, gesperrte Versalien.",
+"Dunkle Flächen in Nuit mit dem Flechtmuster in Gold; Gold für Zeichen, Zierde «xx», Linien und kleine Zeilen. Rot nur im Zeichen des Guide Michelin.",
+"Zwischen Titel und Text steht die Zierde «xx», nie ein Ausrufezeichen im Titel.",
+"Fotos nur echte Fotos des Hauses; Porträts nie angeschnitten, keine Porträts als Hintergrund.",
+"Das Haus heisst «Restaurant Gilles Varone», Rue du Stade 5B, 1965 Savièse (Saint-Germain). Kein Hotel, keine Zimmer."
+],
+"raus": [
+"chef-fenster",
+"chef-schuerze",
+"chef-weiss",
+"haus",
+"saal-alpen",
+"teller-gross-xl"
+],
+"bilder": [
+"comptoir | quadratisch | Le comptoir face à la cuisine ouverte, le soir",
+"comptoir-2 | quer | Le comptoir face à la cuisine",
+"cuisine | quer | La cuisine ouverte",
+"cuisine-2 | quer | La brigade en cuisine",
+"saal-kueche | quer | La salle du restaurant et la cuisine ouverte, le soir",
+"salle-gv | quer | La salle du restaurant et le monogramme GV",
+"salle-jour | quer | La salle du restaurant",
+"assiette-table | quadratisch | Une assiette sur la table en bois",
+"jus | quadratisch | Le jus coule sur l’assiette",
+"noir-1 | quadratisch | Assiette sur porcelaine noire, vue de dessus",
+"noir-2 | quadratisch | Assiette sur porcelaine noire",
+"poisson | quadratisch | Le poisson et sa purée",
+"soupe | quadratisch | Un bouillon aux fleurs",
+"teller-1 | hoch | Assiette et pain maison",
+"teller-2 | hoch | Assiette dressée par le chef",
+"teller-3 | hoch | Sauce versée",
+"teller-4 | hoch | Sauce versée à table",
+"teller-5 | hoch | Assiette dressée",
+"teller-6 | hoch | Poisson et sauce, verre d’accord",
+"teller-7 | hoch | Assiette de saison, légumes et fleurs de la région",
+"teller-8 | quer | Assiette dressée sur porcelaine blanche",
+"teller-9 | quadratisch | Assiette de saison aux herbes",
+"teller-gross | quer | Assiette signature du chef",
+"bougie-1 | hoch | Un plat à la lumière de la bougie",
+"bougie-2 | hoch | Un plat à la lumière de la bougie",
+"mains | quer | Les mains du chef dressent l’assiette",
+"verse-1 | hoch | La sauce versée sur le dessert",
+"verse-2 | hoch | La sauce versée sur la betterave",
+"verse-3 | hoch | La sauce versée sur l’assiette",
+"verse-4 | quadratisch | La sauce versée sur la betterave",
+"dessert-cuillere | hoch | Le dessert servi à la cuillère",
+"dessert-holz | quer | Dessert sur bois à la lumière du soir",
+"brigade | quer | L’équipe du restaurant",
+"chef-anrichten | quer | La sauce versée sur l’assiette",
+"chef-dunkel | quer | Gilles Varone en veste de cuisine",
+"chef-glas | quer | Le chef et ses conserves maison",
+"chef-herd | quer | Gilles Varone en cuisine",
+"chef-lachen | quer | Le Chef lors de la cérémonie de remise des prix",
+"chef-pass | quer | Gilles Varone au passe, devant la cuisine ouverte",
+"chef-saal | quer | Gilles Varone dans la salle du restaurant",
+"chef-schwarz | quer | Gilles Varone",
+"couple | quadratisch | Gilles et Letizia Varone en cuisine",
+"gilles-letizia | quer | Gilles et Letizia Varone",
+"letizia-saal | quer | Letizia Varone",
+"p-ana | hoch | Ana Suarez",
+"p-andrea | hoch | Andrea Granzarolo",
+"p-gilles | hoch | Gilles Varone",
+"p-letizia | hoch | Letizia Varone",
+"p-lise | hoch | Lise Donier-Meroz",
+"p-wesley | hoch | Wesley Broden",
+"award-zu-dritt | quer | Gilles Varone reçoit le Michelin Young Chef Award 2024",
+"buehne-team | quer | Le chef et son équipe lors de la cérémonie Michelin 2024",
+"plan-saviese | quer | Plan d’accès du restaurant à Saint Germain, Savièse"
+]
+}

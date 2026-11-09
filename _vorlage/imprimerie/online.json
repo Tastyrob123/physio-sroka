@@ -1,0 +1,80 @@
+{
+ "name": "Drucksachen & Feed (Die Werkstatt)",
+ "hinweis": "gv-imprimerie (Drucksachen & Feed), 09.11.2026, umgekleidet aus der Vorlage (Form wie Carlton, Doldenhorn und Ruedihus _werkzeuge/imprimerie/online.json). Oberfläche statisch unter /werkzeuge/imprimerie/, «Markenbuch» (Markenbuch) daneben unter /werkzeuge/livre/ (livre.json, dateien/, Fotos über «fl» = /assets/img/). KI-Funktion api/imprimerie_entwurf.py aus api/entwurf.py (Wissen und Marke als lib); ohne ANTHROPIC_API_KEY am Vercel-Projekt melden nur «Fünf Entwürfe» und Bildtext «nicht erreichbar», Vorlagen, Editor und PDF gehen. Schlüssel nur auf Roberts Wort (Regel 54). Kein Blob-Speicher: die Werkstatt legt alles im Browser des Hauses ab. Die grossen Fotos (haeuser/varone/bilder) gehen nur unter «zusatz» mit (I08): mit «Markenbuch» online braucht sie niemand. Mail-Bilder (haeuser/varone/mail) zeigen in verschickten Mails auf diese Adresse: nach dem ersten Versand nie mehr entfernen (Regel 61, versand_schutz.py merken). Werkzeug-Oberfläche «Die Bühne» (UMSTELLUNG.md): Paket assets/oberflaeche unter statik (geht mit, wie bei jedem umgestellten Werkzeug), Hausschicht haeuser/varone/oberflaeche.*.",
+ "funktionen": {
+  "api/imprimerie_entwurf.py": {
+   "von": "_werkzeuge/imprimerie/api/entwurf.py",
+   "dauer": 60,
+   "includeFiles": "api/_lib/imprimerie/**"
+  }
+ },
+ "lib": {
+  "_werkzeuge/imprimerie/api/_daten": "api/_lib/imprimerie/_daten"
+ },
+ "statik": {
+  "assets/oberflaeche": "assets/oberflaeche",
+  "_werkzeuge/imprimerie/index.html": "werkzeuge/imprimerie/index.html",
+  "_werkzeuge/imprimerie/mail.html": "werkzeuge/imprimerie/mail.html",
+  "_werkzeuge/imprimerie/pruefung.html": "werkzeuge/imprimerie/pruefung.html",
+  "_werkzeuge/imprimerie/satz.js": "werkzeuge/imprimerie/satz.js",
+  "_werkzeuge/imprimerie/eigene.js": "werkzeuge/imprimerie/eigene.js",
+  "_werkzeuge/imprimerie/vorlagen.js": "werkzeuge/imprimerie/vorlagen.js",
+  "_werkzeuge/imprimerie/druck.js": "werkzeuge/imprimerie/druck.js",
+  "_werkzeuge/imprimerie/studio.js": "werkzeuge/imprimerie/studio.js",
+  "_werkzeuge/imprimerie/instagram.js": "werkzeuge/imprimerie/instagram.js",
+  "_werkzeuge/imprimerie/lelivre.js": "werkzeuge/imprimerie/lelivre.js",
+  "_werkzeuge/imprimerie/katalog.js": "werkzeuge/imprimerie/katalog.js",
+  "_werkzeuge/imprimerie/siegel.js": "werkzeuge/imprimerie/siegel.js",
+  "_werkzeuge/imprimerie/start.js": "werkzeuge/imprimerie/start.js",
+  "_werkzeuge/imprimerie/fuehrung.js": "werkzeuge/imprimerie/fuehrung.js",
+  "_werkzeuge/imprimerie/mail.js": "werkzeuge/imprimerie/mail.js",
+  "_werkzeuge/imprimerie/mail-satz.js": "werkzeuge/imprimerie/mail-satz.js",
+  "_werkzeuge/imprimerie/zur-werkbank.js": "werkzeuge/imprimerie/zur-werkbank.js",
+  "_werkzeuge/imprimerie/studio.css": "werkzeuge/imprimerie/studio.css",
+  "_werkzeuge/imprimerie/ms-bureau.css": "werkzeuge/imprimerie/ms-bureau.css",
+  "_werkzeuge/imprimerie/mail.css": "werkzeuge/imprimerie/mail.css",
+  "_werkzeuge/imprimerie/lib": "werkzeuge/imprimerie/lib",
+  "_werkzeuge/imprimerie/haeuser/varone/marke.json": "werkzeuge/imprimerie/haeuser/varone/marke.json",
+  "_werkzeuge/imprimerie/haeuser/varone/druck.json": "werkzeuge/imprimerie/haeuser/varone/druck.json",
+  "_werkzeuge/imprimerie/haeuser/varone/buehne.js": "werkzeuge/imprimerie/haeuser/varone/buehne.js",
+  "_werkzeuge/imprimerie/haeuser/varone/feder.js": "werkzeuge/imprimerie/haeuser/varone/feder.js",
+  "_werkzeuge/imprimerie/haeuser/varone/feder.css": "werkzeuge/imprimerie/haeuser/varone/feder.css",
+  "_werkzeuge/imprimerie/haeuser/varone/hell.css": "werkzeuge/imprimerie/haeuser/varone/hell.css",
+  "_werkzeuge/imprimerie/haeuser/varone/tapete-dunkel.webp": "werkzeuge/imprimerie/haeuser/varone/tapete-dunkel.webp",
+  "_werkzeuge/imprimerie/haeuser/varone/tapete-hell.webp": "werkzeuge/imprimerie/haeuser/varone/tapete-hell.webp",
+  "_werkzeuge/imprimerie/haeuser/varone/tapete-ui-dunkel.webp": "werkzeuge/imprimerie/haeuser/varone/tapete-ui-dunkel.webp",
+  "_werkzeuge/imprimerie/haeuser/varone/tapete-ui-hell.webp": "werkzeuge/imprimerie/haeuser/varone/tapete-ui-hell.webp",
+  "_werkzeuge/imprimerie/haeuser/varone/schriften": "werkzeuge/imprimerie/haeuser/varone/schriften",
+  "_werkzeuge/imprimerie/haeuser/varone/vorlagen": "werkzeuge/imprimerie/haeuser/varone/vorlagen",
+  "_werkzeuge/imprimerie/haeuser/varone/kopf": "werkzeuge/imprimerie/haeuser/varone/kopf",
+  "_werkzeuge/imprimerie/haeuser/varone/mini": "werkzeuge/imprimerie/haeuser/varone/mini",
+  "_werkzeuge/imprimerie/haeuser/varone/mail": "werkzeuge/imprimerie/haeuser/varone/mail",
+  "_werkzeuge/imprimerie/haeuser/varone/oberflaeche.js": "werkzeuge/imprimerie/haeuser/varone/oberflaeche.js",
+  "_werkzeuge/imprimerie/haeuser/varone/oberflaeche.css": "werkzeuge/imprimerie/haeuser/varone/oberflaeche.css"
+ },
+ "zusatz": {
+  "_": "Nur nötig, wenn «Markenbuch» online fehlt. Wie beim Carlton in ein Zusatz-Projekt, falls das Hauptprojekt zu gross wird; Umleitung unten. Name ohne Nummer (-2 bis -4 vergibt die Website-Aufteilung von online.py).",
+  "gilles-varone-werkstatt": {
+   "_werkzeuge/imprimerie/haeuser/varone/bilder": "werkzeuge/imprimerie/haeuser/varone/bilder"
+  }
+ },
+ "umleitungen": [
+  {
+   "source": "/werkzeuge/imprimerie/api/entwurf",
+   "destination": "/api/imprimerie_entwurf"
+  },
+  {
+   "source": "/_werkzeuge/imprimerie/:pfad*",
+   "destination": "/werkzeuge/imprimerie/:pfad*"
+  },
+  {
+   "source": "/werkzeuge/imprimerie/haeuser/varone/bilder/:pfad*",
+   "destination": "https://gilles-varone-werkstatt.vercel.app/werkzeuge/imprimerie/haeuser/varone/bilder/:pfad*"
+  }
+ ],
+ "stand": "",
+ "pruefung": {
+  "weg": "/werkzeuge/imprimerie/",
+  "kurz": true
+ }
+}

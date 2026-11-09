@@ -1,0 +1,41 @@
+/* rechnung.css · was nur die Rechnung braucht: Positionen in der Eingabe und das Rechnungsblatt im Stil der Werkstatt. Vorsilbe re-. */
+.re-pos{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.7fr) minmax(0,1fr) 40px;gap:10px 12px;align-items:end;padding:14px 0;border-bottom:1px solid var(--wo-linie)}
+.re-pos:first-child{padding-top:0}
+.re-pos__x{align-self:end;margin-bottom:5px}
+.re-pos__b{grid-column:1/-1;margin:0;font-size:14px;color:var(--wo-leise);text-align:right}
+.re-pos__b b{font-weight:400;color:var(--wo-tinte)}
+.re-summe-kopf{margin:0;font-size:14px;color:var(--wo-leise);white-space:nowrap}
+.re-summe-kopf b{display:block;font:500 28px/1.1 var(--wo-titel);color:var(--wo-tinte)}
+.re-mit{display:flex;gap:8px;align-items:center}
+.re-mit input{flex:1;min-width:0}
+.re-pos__l{grid-column:1/-1;order:-1}
+@media (max-width:520px){.re-pos{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.re-pos__x{grid-column:2;justify-self:end}}
+
+/* Das Rechnungsblatt */
+.re-blatt .re-marke{display:flex;align-items:center;gap:5mm;margin-bottom:9mm}
+.re-blatt .re-zeichen{width:20mm;height:auto;color:#b1996a;flex:none}
+.re-blatt .re-marke h1{font-size:20pt;line-height:1.05}
+.re-blatt .re-marke p{font-size:9pt;color:#8a7348;letter-spacing:.03em;margin-top:1mm}
+.re-blatt .re-absender{font-size:7.5pt;color:#6d665b;padding-bottom:1mm;border-bottom:.15mm solid rgba(27,25,21,.25);display:inline-block;margin-bottom:3mm}
+.re-blatt .re-oben{display:flex;justify-content:space-between;gap:10mm;margin-bottom:9mm;min-height:28mm}
+.re-blatt .re-an{white-space:pre-line;font-size:10.5pt;line-height:1.5;min-width:70mm}
+.re-blatt .re-daten{display:grid;grid-template-columns:auto auto;gap:1mm 5mm;font-size:9.5pt;margin:0;align-content:start}
+.re-blatt .re-daten dt{color:#8a7348}
+.re-blatt .re-daten dd{margin:0;text-align:right}
+.re-blatt .re-titel{font-size:26pt;line-height:1;margin-bottom:3mm}
+.re-blatt .re-zusatz{font-size:10pt;color:#3b362e;margin-bottom:5mm}
+.re-blatt .re-zeile{display:grid;grid-template-columns:24mm minmax(0,1fr) 16mm 26mm 26mm;gap:3mm;padding:2.2mm 0;border-bottom:.15mm solid rgba(27,25,21,.13);font-size:10pt}
+.re-blatt .re-zeile .z{text-align:right;font-variant-numeric:tabular-nums}
+.re-blatt .re-zeile--kopf{font-size:8.5pt;color:#8a7348;border-bottom:.3mm solid #b1996a;margin-top:4mm}
+.re-blatt .re-zeile--leer span{grid-column:1/-1;color:#6d665b}
+.re-blatt .re-schluss{margin-top:5mm}
+.re-blatt .re-summe{display:flex;justify-content:flex-end;align-items:baseline;gap:8mm;padding-bottom:3mm;border-bottom:.3mm solid #b1996a}
+.re-blatt .re-summe span{font-size:9.5pt;color:#8a7348}
+.re-blatt .re-summe b{font:500 20pt/1 'Cormorant Garamond',Georgia,serif}
+.re-blatt .re-ust{margin-top:5mm;font-size:10pt}
+.re-blatt .re-bitte{font-size:10pt;color:#3b362e;margin-top:1mm}
+.re-blatt .re-unten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6mm;margin-top:10mm}
+.re-blatt .re-unten p{white-space:pre-line;font-size:9.5pt;margin-top:1mm}
+.re-blatt .re-unten .sr-b-zeile{text-align:left}
+.re-blatt .re-luecke{display:block;height:6mm;border-bottom:.2mm solid rgba(27,25,21,.45)}
+.re-blatt .re-luecke--kurz{display:inline-block;width:28mm;height:4mm}

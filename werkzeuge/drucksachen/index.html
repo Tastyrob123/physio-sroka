@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Drucksachen · Physiotherapie Sylvia Sroka</title>
+<link rel="icon" href="../../favicon.png">
+<script>/* Fehlermelder (Werkzeug-Master R03, vor allem anderen, Prüfung 16.10.2026): Skriptfehler nach localStorage «sroka-drucksachen-fehler»
+   (letzte 20, die Prüfseite pruefung.html zeigt sie). Netz- und Ladefehler nie melden, höchstens 20 je Seite. Die Drucksachen haben keinen Dienst
+   für Fehler: alles bleibt im Browser. */
+(function () { var n = 0, K = 'sroka-drucksachen-fehler';
+  function melde(t) { if (n >= 20) return; n++; t = String(t).slice(0, 300); window.__dsFehler = t;
+    try { var l = JSON.parse(localStorage.getItem(K) || '[]'); l.push({ z: new Date().toISOString(), t: t }); localStorage.setItem(K, JSON.stringify(l.slice(-20))); } catch (e) {} }
+  addEventListener('error', function (e) { if (e.target && e.target !== window) return; melde((e.message || 'Fehler') + ' @ ' + String(e.filename || '').split('/').pop() + ':' + (e.lineno || 0)); }, true);
+  addEventListener('unhandledrejection', function (e) { var r = e.reason, t = String(r && r.message || r); if (/fetch|network|load failed|abort/i.test(t)) return; melde('Promise: ' + t); });
+  /* Startfehler-Tür (R04): steht nach 15 s noch nichts, sagt die Seite es mit Grund, statt leer zu bleiben */
+  setTimeout(function () { if (window.DS && DS.M && window.DSStudio) return; var d = document.createElement('div'); d.className = 'startfehler'; d.setAttribute('role', 'alert');
+    var g = window.__dsFehler || (navigator.onLine ? 'Die Daten der Praxis kamen nicht an.' : 'Dieser Rechner ist gerade ohne Internet.');
+    d.innerHTML = '<div><b>Die Drucksachen starten nicht.</b><p></p><a href="">Neu laden</a> <a href="pruefung.html">Prüfung öffnen</a></div>'; d.querySelector('p').textContent = g;
+    document.body.appendChild(d); }, 15000);
+})();</script>
+<style>.startfehler{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#080706;color:#f3eee5;font:15px/1.5 Manrope,system-ui,sans-serif}
+.startfehler>div{max-width:440px;padding:32px;border:1px solid rgba(185,166,128,.5);border-radius:14px;text-align:center}.startfehler b{font:400 22px "Cormorant Garamond",Georgia,serif;color:#b1996a}
+.startfehler a{display:inline-block;margin:6px;padding:9px 18px;border-radius:999px;background:#b1996a;color:#080706;text-decoration:none}</style>
+<script>if(!/[?&](demo|hilfe)/.test(location.search))document.documentElement.classList.add('start-gleich')</script>
+<script>/* Rückfall, falls das Studio nicht startet: die Startseite zeigt sich spätestens nach 5 s (start.js setzt «bereit» sonst selbst, sobald die Fotos da sind) */
+addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=document.getElementById('start');if(s)s.classList.add('bereit')},5000)});</script>
+<link rel="stylesheet" href="lib/auswahl.css?v=36-gv1">
+<link rel="stylesheet" href="studio.css?v=63-gv1">
+<link rel="stylesheet" href="ms-bureau.css?v=6-gv1">
+<script src="../rahmen/kleid/sroka.js?v=1"></script>
+<link rel="stylesheet" href="haeuser/sroka/hell.css?v=1"><link rel="stylesheet" href="haeuser/sroka/feder.css?v=1">
+<script src="haeuser/sroka/buehne.js?v=1" defer></script><script src="haeuser/sroka/feder.js?v=1" defer></script>
+<link rel="stylesheet" href="../rahmen/grund.css?v=1"><link rel="stylesheet" href="../rahmen/rahmen-buehne.css?v=1"><link rel="stylesheet" href="../rahmen/kleid/sroka.css?v=1"><link rel="stylesheet" href="haeuser/sroka/oberflaeche.css?v=1">
+<script src="../rahmen/oberflaeche.js?v=1" defer></script><script src="haeuser/sroka/oberflaeche.js?v=1" defer></script>
+</head>
+<body>
+<header class="kopf">
+  <button class="kopf__marke" id="kopfMarke" type="button" aria-label="Zur Übersicht"><span class="kopf__zeichen" id="kopfZeichen"></span><span><b>Drucksachen</b><small>Drucksachen · <span id="kopfName">Physiotherapie Sylvia Sroka</span></small></span></button>
+  <div class="kopf__mitte"><input class="kopf__name" id="docName" aria-label="Name der Drucksache" spellcheck="false"><span class="kopf__gespeichert" id="gespeichert">Gespeichert</span></div>
+  <div class="kopf__werk">
+    <button class="rund" id="btnZurueck" data-tip="Rückgängig" aria-label="Rückgängig (⌘Z)"><svg viewBox="0 0 24 24"><path d="M9 7 4 12l5 5M4 12h11a5 5 0 0 1 0 10h-3"/></svg></button>
+    <button class="rund" id="btnVor" data-tip="Wiederholen" aria-label="Wiederholen (⇧⌘Z)"><svg viewBox="0 0 24 24"><path d="m15 7 5 5-5 5M20 12H9a5 5 0 0 0 0 10h3"/></svg></button>
+    <button class="rund" id="btnVerwerfen" data-tip="Verwerfen" aria-label="Entwurf verwerfen"><svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4.5h4V7M7 7l1 13h8l1-13M10.5 11v5.5M13.5 11v5.5"/></svg></button>
+    <span class="kopf__trenn"></span>
+    <button class="kn kn--klein kn--ohne neu" id="btnNeu"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span>Übersicht</span></button>
+    <button class="rund" data-livre="1" data-tip="Das Markenbuch" aria-label="Das Markenbuch im Studio öffnen" hidden><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg></button>
+    <button class="rund hilfe" id="btnHilfe" data-tip="Hilfe" aria-label="Hilfe"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6M12 17.2v.1"/></svg></button>
+    <button class="kn kn--klein kn--ohne pruef" id="btnPruefen"><span class="pruef__zahl" id="pruefZahl">0</span><span class="pruef__t">Druckprüfung</span></button>
+    <div class="ausgabe">
+      <button class="kn" id="btnSpeichern"><span class="nb">Druckfertig speichern</span><span class="nk">Speichern</span><i><svg viewBox="0 0 24 24"><path d="M12 5v12m-5-5 5 5 5-5"/></svg></i></button>
+      <div class="menue" id="menueSpeichern" hidden>
+        <button data-aus="pdf"><i><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 13h5M10 16.5h5"/></svg></i><span><b>PDF für die Druckerei</b><small>Endformat mit 3 mm Beschnitt, Schriften eingebettet, Fotos bis 300 dpi</small></span></button>
+        <button data-aus="marken"><i><svg viewBox="0 0 24 24"><path d="M3 7h3M7 3v3M21 7h-3M17 3v3M3 17h3M7 21v-3M21 17h-3M17 21v-3"/><rect x="8" y="8" width="8" height="8"/></svg></i><span><b>PDF mit Schnittmarken</b><small>Für die Druckerei oder den Copyshop</small></span></button>
+        <button data-aus="png"><i><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="m4 16 5-5 4 4 2.5-2.5L20 17"/><circle cx="15.5" cy="9.5" r="1.4"/></svg></i><span><b>Bild dieser Seite</b><small>PNG, zum Verschicken oder für Instagram</small></span></button>
+        <button data-aus="zip" hidden><i><svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="13" height="13" rx="2"/><path d="M7.5 3.5h11a2 2 0 0 1 2 2v11"/><path d="m4 17 4-4 3 3 2-2 3.5 3.5"/></svg></i><span><b>Alle Bilder des Karussells</b><small>Nummerierte PNGs 1080 × 1350 in einer ZIP-Datei, mit Bildtext</small></span></button>
+        <button data-aus="json"><i><svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/></svg></i><span><b>Arbeitsdatei sichern</b><small>Zum späteren Weiterbearbeiten, auch auf einem anderen Rechner</small></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="studio">
+  <aside class="links">
+    <nav class="reiter" role="tablist"><span class="reiter__gleiter" aria-hidden="true"></span>
+      <button class="an" data-tab="entwerfen">Entwerfen</button>
+      <button data-tab="vorlagen">Vorlagen</button>
+      <button data-tab="fotos">Fotos</button>
+      <button data-tab="ablage">Ablage</button>
+    </nav>
+
+    <section class="tab an" data-tab="entwerfen">
+      <h2>Was soll entstehen?</h2>
+      <p class="leise">Sag es in einem Satz. Auf dieser Seite läuft keine KI: die Werkstatt sucht dazu die passendsten fertigen Vorlagen im Stil der Praxis heraus. Du wählst eine davon und änderst, was du willst.</p>
+      <textarea id="auftrag" rows="5" placeholder="Zum Beispiel: ein Übungsblatt für Rücken und Nacken"></textarea>
+      <div class="zeile2">
+        <label>Format<select id="auftragFormat"></select></label>
+      </div>
+      <label class="haken"><input type="checkbox" id="auftragBasis"> Auf der offenen Drucksache aufbauen</label>
+      <button class="kn knopf--voll glanz-kn" id="btnEntwerfen"><span>Passende Vorlagen zeigen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>
+      <div class="status" id="entwurfStatus" hidden></div>
+      <div class="hinweise" id="entwurfHinweise" hidden></div>
+      <h3>Zum Beispiel</h3>
+      <div class="ideen" id="ideen"></div>
+      <details class="dna">
+        <summary>Was die Werkstatt über die Praxis weiss</summary>
+        <div id="dna"></div>
+      </details>
+    </section>
+
+    <section class="tab" data-tab="vorlagen">
+      <h2>Mit einer Vorlage beginnen</h2>
+      <div class="zeile2">
+        <label>Format<select id="vorlageFormat"></select></label>
+        <label>Grund<select id="vorlageTon"><option value="dunkel">Nacht mit Tapete</option><option value="hell">Licht</option><option value="creme">Sand mit Tapete</option></select></label>
+      </div>
+      <div class="vorlagen" id="vorlagen"></div>
+    </section>
+
+    <section class="tab" data-tab="fotos">
+      <h2>Fotos</h2>
+      <label class="hochladen" id="hochladen"><input type="file" id="fotoDatei" accept="image/*,.heic,.heif" multiple hidden>
+        <span class="hochladen__ic"><svg viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span>
+        <span><b>Eigene Fotos hochladen</b><small>Klicken oder Fotos hierher ziehen. Sie bleiben nur in diesem Browser.</small></span></label>
+      <input type="search" id="fotoSuche" placeholder="Suchen: Behandlung, Übung, Hände …">
+      <div class="filter" id="fotoFilter"></div>
+      <div class="segment segment--klein" id="fotoLage"><button data-lage="alle" class="an">Alle Formen</button><button data-lage="quer">Quer</button><button data-lage="hoch">Hoch</button></div>
+      <p class="leise" id="fotoInfo"></p>
+      <div class="fotos" id="fotos"></div>
+    </section>
+
+    <section class="tab" data-tab="ablage">
+      <h2>Deine Drucksachen</h2>
+      <div class="zeile2">
+        <button class="leicht" id="btnNeuLeer">Leeres Blatt</button>
+        <label class="leicht">Arbeitsdatei öffnen<input type="file" id="dateiLaden" accept=".json,application/json" hidden></label>
+      </div>
+      <div class="ablage" id="ablage"></div>
+    </section>
+  </aside>
+
+  <section class="mitte">
+    <div class="werkzeug" id="werkzeug">
+      <div class="insel">
+        <button data-neu="titel" title="Titel hinzufügen"><svg viewBox="0 0 24 24"><path d="M5 6.5V5h14v1.5M12 5v14M9.5 19h5"/></svg><span>Titel</span></button>
+        <button data-neu="text" title="Text hinzufügen"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 11.5h16M4 16h11"/></svg><span>Text</span></button>
+        <button data-neu="zeile" title="Zeile in Versalien"><svg viewBox="0 0 24 24"><path d="M3 12h3M8 12h3M13 12h3M18 12h3"/></svg><span>Zeile</span></button>
+        <i class="insel__trenn"></i>
+        <button data-neu="bild" title="Foto hinzufügen"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="m4 16 5-5 4 4 2.5-2.5L20 17"/><circle cx="15.5" cy="9.5" r="1.4"/></svg><span>Foto</span></button>
+        <button data-neu="zeichen" title="Zeichen der Praxis"><span class="insel__zeichen" id="inselZeichen"></span><span>Zeichen</span></button>
+        <i class="insel__trenn"></i>
+        <button data-neu="linie" title="Linie"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg><span>Linie</span></button>
+        <button data-neu="flaeche" title="Fläche"><svg viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="12" rx="1.5" fill="currentColor" fill-opacity=".25"/></svg><span>Fläche</span></button>
+        <button data-neu="rahmen" title="Rahmen"><svg viewBox="0 0 24 24"><rect x="4.5" y="5.5" width="15" height="13" rx="2"/><rect x="7" y="8" width="10" height="8" rx="1"/></svg><span>Rahmen</span></button>
+        <i class="insel__trenn"></i>
+        <button data-livre="1" title="Das Markenbuch" hidden><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg><span>Markenbuch</span></button>
+      </div>
+      <div class="seitenwahl" id="seitenwahl"></div>
+    </div>
+    <div class="flaeche" id="flaeche">
+      <div class="wirt" id="wirt"></div>
+    </div>
+    <div class="fussleiste"><div class="insel insel--klein">
+      <span id="formatInfo"></span>
+      <i class="insel__trenn"></i>
+      <label class="schalter"><input type="checkbox" id="zeigeHilfen" checked><b></b><span>Schnittkante</span></label>
+      <i class="insel__trenn"></i>
+      <button class="rund rund--klein" id="zoomAus" aria-label="Kleiner"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button><span id="zoomWert">100 %</span><button class="rund rund--klein" id="zoomEin" aria-label="Grösser"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
+    </div></div>
+  </section>
+
+  <aside class="rechts" id="rechts"></aside>
+</main>
+
+<div class="dialog" id="dialog" hidden><div class="dialog__karte" id="dialogKarte"></div></div>
+<div class="start ms" id="start" hidden>
+  <aside class="ms-leiste">
+    <div class="ms-marke"><span class="ms-zeichen" id="kapitelZeichen"></span><div><b>Physiotherapie Sylvia Sroka</b><small>Drucksachen</small></div></div>
+    <span class="ms-haar"></span>
+    <button class="kn ms-kn-gold glanz-kn" data-akt="neu"><span>Neu erstellen</span><i><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></i></button>
+    <nav class="ms-nav ms-nav--haupt" id="msNav"><span class="ms-gleiter" aria-hidden="true"></span>
+      <button data-ansicht="start"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Übersicht</span></button>
+      <button data-ansicht="events" hidden><svg viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></svg><span>Anlässe & Events</span><em id="evZahl"></em></button>
+      <button data-ansicht="abteilungen"><svg viewBox="0 0 24 24"><path d="M4 21V8l8-5 8 5v13M9 21v-6h6v6M8 10h.01M12 10h.01M16 10h.01"/></svg><span>Bereiche der Praxis</span><em id="abZahl"></em></button>
+      <button data-ansicht="hinweise"><svg viewBox="0 0 24 24"><path d="M12 3 2.5 20h19zM12 10v4.5M12 17.5v.1"/></svg><span>Aushänge</span><em id="hiZahl"></em></button>
+      <button data-ansicht="newsletter" hidden><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg><span>Newsletter & E-Mail</span><em id="nlZahl"></em></button>
+      <span class="ms-trenn"></span>
+      <button data-ansicht="meine"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5"/></svg><span>Meine Drucksachen</span><em id="meineZahl">0</em></button>
+      <button data-ansicht="freigegeben" hidden><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="6"/><path d="m9.5 10 1.8 1.8 3.4-3.6M8.5 15 7 21l5-2.5 5 2.5-1.5-6"/></svg><span>Freigegeben</span><em id="fgZahl">0</em></button>
+      <button data-ansicht="neu"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg><span>Arten und Vorlagen</span><em>9</em></button>
+      <button data-ansicht="fotos"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 16l5-5 4 4 2.5-2.5L20 17M15.5 8.2a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6"/></svg><span>Fotos der Website</span><em id="fotoZahl"></em></button>
+      <button data-ansicht="livre" hidden><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg><span>Das Markenbuch</span></button>
+      <button data-ansicht="marke"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.5-.8 1.5-1.6 0-1.3-1-1.6-1-2.6 0-.8.7-1.3 1.5-1.3H16a5 5 0 0 0 5-5c0-4-4-7.5-9-7.5zM7.5 11.5h.01M10 7.5h.01M15 7.5h.01"/></svg><span>Marke der Praxis</span></button>
+    </nav>
+    <div class="ms-fuss"><button id="startHilfe"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.1-2.4 3.6M12 17.2v.1"/></svg><span>Hilfe und Führung</span></button><span class="ms-wege"><a data-weg="stube" href="../index.html">Deine Werkzeuge</a> · <a data-weg="website" href="../../index.html" target="_blank" rel="noopener">Website</a> · <a href="pruefung.html" target="_blank" rel="noopener">Prüfung</a></span><small>Alles bleibt in diesem Browser gespeichert</small></div>
+  </aside>
+  <header class="ms-kopf">
+    <button class="rund ms-bereiche" id="msBereiche" type="button" aria-label="Bereiche" aria-expanded="false" aria-controls="msNav"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    <span class="ms-kopf-zeichen" id="msKopfZeichen"></span><span class="ms-kopf-name"><b>Drucksachen</b><small>Physiotherapie Sylvia Sroka</small></span>
+    <label class="ms-suche"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input type="search" id="startSuche" placeholder="Suchen …" aria-label="Suchen"><kbd>⌘ K</kbd></label>
+    <span class="ms-frei"></span>
+    <button class="kn kn--klein kn--ohne start__zu" id="startZu" hidden><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg><span>Zurück zur Drucksache</span></button>
+    <a class="rund ms-rund ms-pruef" href="pruefung.html" target="_blank" rel="noopener" data-tip="Prüfung" aria-label="Prüfung: ist alles in Ordnung?"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 8.3 7 10 4-1.7 7-5.6 7-10V6z"/><path d="m9 12 2 2 4-4"/></svg></a>
+    <button class="rund ms-rund" data-ansicht="livre" data-tip="Das Markenbuch" aria-label="Das Markenbuch" hidden><svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-.8 8 1 2.8-1.8 5.4-2 8-1v13c-2.6-1-5.2-.8-8 1-2.8-1.8-5.4-2-8-1z"/><path d="M12 6.5v13"/></svg></button>
+    <button class="kn kn--klein ms-kn-neu" data-akt="neu"><span>Neu</span><i><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></i></button>
+  </header>
+  <div class="start__in ms-haupt">
+    <section class="start__wahl" id="startWahl">
+      <div id="msStart">
+        <div class="ms-gruss">
+          <h1 id="msGruss">Guten Abend</h1>
+          <p id="msSatz">Was soll heute entstehen?</p>
+          <div class="ms-feld">
+            <span class="ms-feld__ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+            <textarea id="startFrei" rows="1" placeholder="Zum Beispiel: Aushang mit den Öffnungszeiten" aria-label="Beschreiben, was entstehen soll"></textarea>
+            <button class="kn knopf--voll glanz-kn" data-st="frei"><span>Vorlagen finden</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>
+          </div>
+          <button class="ms-lnk ms-lnk--alle" data-ansicht="neu" id="msAlle" hidden><span></span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+        </div>
+        <div class="ms-zeile" hidden><h2>Anlässe</h2></div>
+        <div class="ms-wochen" id="startWochen" hidden></div>
+        <div class="ms-zeile"><h2>Bereiche der Praxis</h2><button class="ms-lnk" data-ansicht="abteilungen"><span>Alle Bereiche</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        <div class="ms-wochen ms-wochen--abt" id="startAbteilungen"></div>
+        <div class="ms-zeile"><h2>Zuletzt bearbeitet</h2><button class="ms-lnk" data-ansicht="meine"><span>Alle Drucksachen</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        <div class="ms-raster" id="startZuletzt"></div>
+      </div>
+      <div id="msEvents" hidden>
+        <div class="ms-titel"><h1>Anlässe & Events</h1><span class="ms-leise">Anlässe gibt es in dieser Werkstatt nicht.</span></div>
+        
+        <div id="evListe"></div>
+        <div class="vb__alle" id="evAlle"></div>
+      </div>
+      <div id="msAbteilungen" hidden>
+        <div class="ms-titel"><h1>Bereiche der Praxis</h1><span class="ms-leise">Vom Empfang bis zum Brief: was jeder Bereich der Praxis an Drucksachen braucht, fertig gesetzt im Stil der Website.</span></div>
+        <div class="ms-wochen" id="abListe"></div>
+        <div class="vb__alle" id="abAlle"></div>
+      </div>
+      <div id="msHinweise" hidden>
+        <div class="ms-titel"><h1>Aushänge</h1><span class="ms-leise">Öffnungszeiten, erster Termin, Hausbesuche: fertig im Stil der Praxis, anpassen und aushängen.</span></div>
+        <div class="ms-raster" id="hiRaster"></div>
+        <div class="vb__alle" id="hiAlle"></div>
+      </div>
+      <div id="msNewsletter" hidden><div class="ms-raster" id="nlRaster"></div></div>
+      <div id="msDetail" hidden></div>
+      <div id="msFotos" hidden>
+        <div class="ms-titel"><h1>Fotos der Website</h1><span class="ms-leise" id="fotoSatz"></span></div>
+        <div class="ms-chips" id="fotoGruppen"></div>
+        <div class="ms-fotos" id="fotoRaster"></div>
+      </div>
+      <div id="msMarke" hidden></div>
+      <div id="msLivre" hidden></div>
+      <div id="msFreigegeben" hidden>
+        <div class="ms-titel"><h1>Sofort verwendbar</h1><span class="ms-leise">Diese Drucksachen sind freigegeben: Jede genannte Abteilung darf sie ohne Rückfrage drucken und aushängen, auch wenn gerade niemand zur Hand ist. Daten in [Klammern] vorher ersetzen.</span></div>
+        <div id="fgListe"></div>
+      </div>
+      <div id="msMeine" hidden>
+        <div class="ms-titel"><h1>Meine Drucksachen</h1><span class="ms-leise" id="meineSatz"></span></div>
+        <div class="ms-raster" id="bibliothek"></div>
+      </div>
+      <div id="msNeu" class="ms-buehne" hidden>
+        <h1>Was möchtest du erstellen?</h1>
+        <p class="start__satz">Beschreib in einem Satz, was entstehen soll, und die Werkstatt zeigt die passendsten Vorlagen. Oder wähl unten eine Art.</p>
+        <div class="start__direkt">
+          <span class="start__direkt-ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+          <textarea id="startDirekt" rows="1" placeholder="Zum Beispiel: eine Karte für Bewertungen" aria-label="Beschreiben, was entstehen soll"></textarea>
+          <button class="kn knopf--voll glanz-kn" data-st="direkt"><span>Vorlagen finden</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>
+        </div>
+        <p class="start__fehler" id="startDirektFehler" hidden>Dazu passt keine Vorlage. Wähl unten eine Art.</p>
+        <div class="start__filter"><div class="start__gruppen" id="startGruppen"></div></div>
+        <div class="atelier" id="arten"></div>
+      </div>
+      <p class="start__nichts" id="startNichts" hidden>Nichts gefunden.</p>
+    </section>
+    <section class="start__weg ms-buehne" id="startWeg" hidden></section>
+  </div>
+</div>
+<div class="meldung" id="meldung" role="status" aria-live="polite" hidden></div>
+<div class="lader" id="lader" hidden><div class="lader__in"><span class="lader__zeichen" id="laderZeichen"></span><b id="laderText">Die Werkstatt sucht</b><small id="laderZeile">Passende Vorlagen im Stil der Praxis</small><span class="lader__band"><i></i></span></div></div>
+
+<script src="lib/pdf-lib.min.js"></script>
+<script src="lib/fontkit.umd.min.js"></script>
+<script src="lib/auswahl.js?v=35-gv1"></script>
+<script src="satz.js?v=42-gv1"></script>
+<script src="eigene.js?v=36-gv1"></script>
+<script src="vorlagen.js?v=38-gv1-sp2810"></script>
+<script src="druck.js?v=40-gv1"></script>
+<script src="studio.js?v=55-gv1-sp2810"></script>
+<script src="instagram.js?v=37-gv1"></script>
+<script src="lelivre.js?v=c1-gv1"></script>
+<script src="katalog.js?v=35-gv1"></script>
+<script src="siegel.js?v=1-gv1"></script>
+<script src="start.js?v=61-gv1"></script>
+<script src="fuehrung.js?v=35-gv1-s12"></script>
+<script>/* Handy (R07, Prüfung 16.10.2026): die Seitenleiste mit den Bereichen war unter 900 px ganz weg. Der Knopf «Bereiche» klappt sie als Fach auf,
+   nach der Wahl schliesst sie sich; Escape und Tippen daneben schliessen auch. */
+(function(){var k=document.getElementById('msBereiche'),s=document.getElementById('start');if(!k||!s)return;
+function zu(){s.classList.remove('leiste-auf');k.setAttribute('aria-expanded','false');}
+k.addEventListener('click',function(e){e.stopPropagation();var auf=!s.classList.contains('leiste-auf');s.classList.toggle('leiste-auf',auf);k.setAttribute('aria-expanded',String(auf));});
+s.addEventListener('click',function(e){if(!s.classList.contains('leiste-auf'))return;if(e.target.closest('.ms-leiste [data-ansicht],.ms-leiste [data-akt],.ms-leiste .ms-fuss button'))return setTimeout(zu,0);if(!e.target.closest('.ms-leiste'))zu();});
+addEventListener('keydown',function(e){if(e.key==='Escape')zu();});})();</script>
+<script>/* «Zur Werkbank» (R19): nur wenn aus der Werkbank geöffnet. Online liegt Drucksachen & Feed auf der Adresse des Hauses (werkzeuge/imprimerie/),
+   lokal auf eigenem Server: dann data-fremd, die Werkbank-Adresse kommt aus dem Link. */
+(function(){var s=document.createElement('script');s.src='zur-werkbank.js?v=1-gv1-rw1108';s.defer=true;s.setAttribute('data-ueber','.ms-fuss');document.body.appendChild(s);})();</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-Fertig. Praxis-Werkzeuge (Demo) für Sylvia Sroka in `werkzeuge/` gebaut, geprüft, committet und gepusht (09.11.2026).
+In Prüfung.
 
 ## Werkzeuge
 - [werkzeuge/index.html](werkzeuge/index.html) – Übersicht «Ihre Werkzeuge»: eine Tafel je Werkzeug (Name, ein Satz, Knopf «Öffnen»), Rückweg zur Website (../index.html).

@@ -399,6 +399,27 @@ async function lauf(browser, bname) {
     await ctx.close();
   }
 
+  /* Übungsplan: eigenes Foto hochladen, bleibt im Browser (IndexedDB) und steht nach dem Neuladen wieder auf dem Blatt */
+  {
+    const { ctx, page, meldungen } = await neueSeite(browser, 1440);
+    await page.goto(BASIS + 'uebungsplan.html?von=uebersicht', { waitUntil: 'load' }); await bereit(page);
+    await rk(page, '#rand [data-gehe="neu"]'); await warte(300);
+    await page.fill('[data-f="patient"]', 'Foto Probe');
+    await page.click('[data-eigene]'); await warte(200);
+    await page.fill('#ue-name', 'Mit eigenem Foto');
+    await page.setInputFiles('#ue-datei', path.join(STAMM, 'media/echt-hero-a.jpg')); await warte(1500);
+    const gewaehlt = await page.$eval('#ue-fotos [aria-pressed="true"]', e => e.dataset.foto);
+    await page.click('#ue-ok'); await warte(500);
+    const vorher = await page.$eval('#ub-huelle .ub-foto img', e => e.naturalWidth).catch(() => 0);
+    await page.click('#l-sp'); await warte(400);
+    await page.reload(); await bereit(page);
+    await page.click('#raum [data-oeffne] >> nth=0'); await warte(800);
+    const nachher = await page.$eval('#ub-huelle .ub-foto img', e => /^data:image\/jpeg/.test(e.src) ? e.naturalWidth : 0).catch(() => 0);
+    pruefe(/^eigen:/.test(gewaehlt) && vorher > 0 && nachher > 0 && nachher <= 1200, 'Übungsplan: eigenes Foto hochgeladen, verkleinert (' + nachher + ' px) und nach Neuladen noch auf dem Blatt');
+    pruefe(meldungen.length === 0, 'Übungsplan: keine Fehler beim Foto ' + JSON.stringify(meldungen.slice(0, 3)));
+    await ctx.close();
+  }
+
   /* 6. Öffnen per Doppelklick (file://) */
   for (const s of ['index.html', 'uebungsplan.html', 'rechnung.html', 'profiltexte.html']) {
     const { ctx, page, meldungen } = await neueSeite(browser, 1440);

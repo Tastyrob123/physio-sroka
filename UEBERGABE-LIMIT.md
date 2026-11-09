@@ -1,4 +1,10 @@
-In Prüfung.
+In Prüfung. Gegenprüfung durch eine zweite Sitzung läuft (09.11.2026). Auftrag steht jetzt in AUFTRAG.md.
+
+## Gegenprüfung: nächster genauer Schritt
+Prüfskript pruefen/werkzeuge.js schreiben und laufen lassen (1440/390, alle Knöpfe, PDFs, QR), Bilder ansehen, Mängel beheben.
+
+## Entscheidungen der Nacht
+- AUFTRAG.md fehlte im Repo; der Wortlaut wurde aus der ersten Sitzung übernommen und als AUFTRAG.md abgelegt.
 
 ## Werkzeuge
 - [werkzeuge/index.html](werkzeuge/index.html) – Übersicht «Ihre Werkzeuge»: eine Tafel je Werkzeug (Name, ein Satz, Knopf «Öffnen»), Rückweg zur Website (../index.html).

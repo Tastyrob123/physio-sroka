@@ -136,7 +136,7 @@ def bilder():
 
 def mail(f, basis):
     """basis: Adresse der Website, relativ aus dem Ordner der Mail (Vorschau) oder voll (Versand)."""
-    zeilen = ''.join(f'<tr><td style="padding:12px 0;border-top:1px solid rgba(177,153,106,.3);font:400 10.5px/1.3 {KLEIN};letter-spacing:.2em;text-transform:uppercase;color:{GOLD};width:38%;vertical-align:top">{e(k)}</td>'
+    zeilen = ''.join(f'<tr><td style="padding:12px 0;border-top:1px solid rgba(177,153,106,.3);font:500 13px/1.3 {KLEIN};letter-spacing:.2em;text-transform:uppercase;color:{GOLD};width:38%;vertical-align:top">{e(k)}</td>'
                      f'<td style="padding:11px 0;border-top:1px solid rgba(177,153,106,.3);font:400 16px/1.4 {SANS};color:{BLATT}">{e(v)}</td></tr>' for k, v in f['karte'][1])
     absaetze = f'<p style="margin:0 0 14px;font:500 22px/1.3 {SERIF};color:{TINTE}">{e(f["text"][0])}</p>' + ''.join(
         f'<p style="margin:0 0 14px;font:400 16.5px/1.62 {SANS};color:#2e2b25">{e(t)}</p>' for t in f['text'][1:])
@@ -149,16 +149,16 @@ def mail(f, basis):
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:{BLATT};border-radius:18px;overflow:hidden;box-shadow:0 0 0 1px rgba(177,153,106,.35),0 30px 60px -30px rgba(0,0,0,.9)">
   <tr><td align="center" style="background:{NACHT};padding:36px 30px 32px;border-bottom:1px solid {GOLD}">
     <img src="../img/logo.png" width="150" alt="Sylvia Sroka" style="display:block;border:0;width:150px;height:auto;margin:0 auto 12px">
-    <div style="font:400 10.5px/1.2 {KLEIN};letter-spacing:.3em;text-transform:uppercase;color:{HELL}">Physiotherapie · Hannover und Hemmingen</div>
+    <div style="font:500 13px/1.3 {KLEIN};letter-spacing:.3em;text-transform:uppercase;color:{HELL}">Physiotherapie · Hannover und Hemmingen</div>
     <h1 style="margin:28px 0 0;font:500 clamp(30px,8vw,40px)/1.1 {SERIF};color:{BLATT}">{e(f['titel'][0])}<br><span style="color:{GOLD}">{e(f['titel'][1])}</span></h1>
   </td></tr>
   <tr><td style="padding:34px clamp(22px,6vw,40px) 8px">{absaetze}</td></tr>
   <tr><td style="padding:6px 28px 6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{SAND};border-radius:6px"><tr><td style="padding:8px">
     <img src="../img/{f['foto'][0]}.jpg" width="528" alt="{e(f['foto'][1])}" style="display:block;border:0;width:100%;height:auto;border-radius:4px;box-shadow:0 0 0 1px {GOLD}"></td></tr></table></td></tr>
   <tr><td style="padding:14px 28px 6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{NACHT};border-radius:10px;box-shadow:inset 0 1px 0 rgba(205,183,139,.35)">
-    <tr><td style="padding:22px 26px 12px"><div style="font:400 10.5px/1.2 {KLEIN};letter-spacing:.24em;text-transform:uppercase;color:{HELL};padding-bottom:12px">{e(f['karte'][0])} · Beispiel</div>
+    <tr><td style="padding:22px 26px 12px"><div style="font:500 13px/1.3 {KLEIN};letter-spacing:.24em;text-transform:uppercase;color:{HELL};padding-bottom:12px">{e(f['karte'][0])} · Beispiel</div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">{zeilen}</table></td></tr></table></td></tr>
-  <tr><td align="center" style="padding:26px 30px 8px"><a href="{basis}{f['knopf'][1]}" style="display:inline-block;padding:8px 8px 8px 26px;border-radius:999px;background:{GOLD};background-image:linear-gradient(180deg,#d8c49c,{GOLD} 55%,#9c8457);font:500 12px/30px {KLEIN};letter-spacing:.14em;text-transform:uppercase;color:{TINTE};text-decoration:none">{e(f['knopf'][0])}&nbsp;&nbsp;&nbsp;<span style="display:inline-block;width:30px;height:30px;border-radius:50%;background:{NACHT};color:{GOLD};text-align:center;font:400 14px/30px Arial,sans-serif;vertical-align:middle">→</span></a></td></tr>
+  <tr><td align="center" style="padding:26px 30px 8px"><a href="{basis}{f['knopf'][1]}" style="display:inline-block;padding:8px 8px 8px 26px;border-radius:999px;background:{GOLD};background-image:linear-gradient(180deg,#d8c49c,{GOLD} 55%,#9c8457);font:500 13px/30px {KLEIN};letter-spacing:.14em;text-transform:uppercase;color:{TINTE};text-decoration:none">{e(f['knopf'][0])}&nbsp;&nbsp;&nbsp;<span style="display:inline-block;width:30px;height:30px;border-radius:50%;background:{NACHT};color:{GOLD};text-align:center;font:400 14px/30px Arial,sans-serif;vertical-align:middle">→</span></a></td></tr>
   <tr><td style="padding:16px 40px 30px"><p style="margin:0;font:400 15px/1.6 {SANS};color:#55504a;text-align:center">{e(f['dazu'])}</p>
     <img src="../img/{SIGNATUR[0]}.jpg" width="520" alt="{e(SIGNATUR[1])}" style="display:block;border:0;width:100%;max-width:520px;height:auto;margin:26px auto 0;border-radius:4px">
     <p style="margin:16px 0 0;font:400 17px/1.45 {SERIF};color:{TINTE};text-align:center">Herzliche Grüße<br>{e(GRUSS)}</p></td></tr>
@@ -210,13 +210,13 @@ main{{padding:0 0 clamp(60px,8vw,120px)}}
 .mb-ueber__t{{display:flex;flex-direction:column;gap:5px;min-width:0}}
 .mb-ueber__t b{{font:500 1.4rem/1.2 'Cormorant Garamond',Georgia,serif}}
 .mb-ueber__t small{{font-size:.86rem;line-height:1.4;color:rgba(243,238,229,.74)}}
-.mb-ueber__t small span{{display:inline-block;min-width:5.4em;font:500 10px/1.4 Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:{GOLD}}}
+.mb-ueber__t small span{{display:inline-block;min-width:5.4em;font:500 12.5px/1.4 Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:{GOLD}}}
 .mb-blatt{{position:relative;height:640px;border-radius:20px;overflow:hidden;background:{NACHT};box-shadow:0 0 0 1px rgba(177,153,106,.3),0 40px 50px -30px rgba(0,0,0,.9);-webkit-mask-image:linear-gradient(#000 68%,transparent);mask-image:linear-gradient(#000 68%,transparent)}}
 .mb.auf .mb-blatt{{-webkit-mask-image:none;mask-image:none}}
 .mb-in{{position:relative}}.mb-in table{{max-width:100%}}
 .mb-ganz{{position:relative;margin:-30px 0 0;text-align:center}}
 .mb.auf .mb-ganz{{margin-top:22px}}
-.mb-kn{{display:inline-flex;align-items:center;gap:12px;padding:8px 8px 8px 22px;border:0;border-radius:999px;cursor:pointer;font:500 11.5px/1 Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:{TINTE};
+.mb-kn{{display:inline-flex;align-items:center;gap:12px;padding:8px 8px 8px 22px;border:0;border-radius:999px;cursor:pointer;font:500 13px/1 Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:{TINTE};
   background:linear-gradient(180deg,#d8c49c,{GOLD} 55%,#9c8457);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 14px 22px -12px rgba(0,0,0,.8)}}
 .mb-kn i{{display:grid;place-items:center;width:30px;height:30px;flex:none;border-radius:50%;color:{GOLD};background:{NACHT};box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}}
 .mb-kn svg{{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}}

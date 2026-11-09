@@ -1053,7 +1053,18 @@ body.kino-offen{overflow:hidden}
 .zt,.t1,.t2,.t3,.wfen__t,.ins-t h3,.rgw .wfa__texte h3,.sbf-text h3,.hs2-ww+small{font-weight:400!important}
 .zt{letter-spacing:.005em}
 .zt em,em{font-style:normal}
-.kap--z span,.kap--k>span{font-family:'Manrope',var(--mono)!important;font-weight:400!important;font-size:12px!important;letter-spacing:.2em;text-transform:uppercase}
+.kap--z>span:not(.kap__geist),.kap--k>span:not(.kap__geist){font-family:'Manrope',var(--mono)!important;font-weight:500!important;font-size:clamp(13px,1vw,15px)!important;letter-spacing:.22em;text-transform:uppercase}
+/* Sylvia Sroka (Robert 09.11.2026: «kleine Schriften, die da irgendwo mittig hängen»): «Kapitel V» lesbar, die grosse Kapitelziffer wieder gross im Hintergrund, kein Loch zwischen zwei Kapiteln */
+.kap__nr{font-size:clamp(13px,1vw,15px)!important;letter-spacing:.3em!important}
+.kap__geist{opacity:.1!important}
+section#k5{padding-bottom:clamp(36px,3.6vw,60px)!important}section#register{padding-top:clamp(56px,5vw,84px)!important}section#brief{padding-bottom:clamp(56px,5vw,80px)!important}section.stueck{padding-top:clamp(56px,5.4vw,88px)!important;padding-bottom:clamp(56px,5.4vw,88px)!important}section#papier{padding-top:clamp(48px,4.4vw,72px)!important}
+/* Keine Schrift unter 13 px (Robert 09.11.2026: «solchen kleinen Schriften … mit denen keiner was anfangen kann»): kleine Zeilen, Etiketten, Knöpfe */
+.fb__w small,.ins-r small,.bf-name span,.hs2-chip small,.hs2-gr,.hs2-her figcaption small,.hs2-marke dt,.hs2-schrift small,.brett .hd small,.hd small,.fen__k span,
+.sag-w__r span,.mn-ende span,.rh-gruss__n span,.insel__m,.bf-horizont small,.sbf-wo b,.sbf-sinn dt,.hs2-tafel small,.gb-blatt header p,.gb-blatt footer span,.gb-f figcaption,
+.sag-reg a,.sag-reg a span,.sag-w__n small,.mn-gang span,.hs2-etik span,.vgl__e,.vh-was__k,.brett-f,.wechsel .k,.ins-t__r,.sag-k,.mn-haus,.wfa__texte .rgc-t__k{font-size:13px!important;line-height:1.4}
+.kn--klein,.glanz,.papier .pk .kn,.wahl button,.vh-wahl button,.mn-pdf .kn{font-size:12.5px!important}
+.sbf-z{font-size:13px!important}
+html body .insel__m,html body .insel__m span,html body .hs2-gr p,html body p.hs2-gr,html body figcaption,html body .stueck__f,html body .etk small,html body .gb-f>figcaption,html body .fbs b+small,html body .fbs div>small{font-size:13px!important}
 h2,h3,.wege__t,.gb-blatt header h3,.rgw .wfa__texte h3,.fbz__n{font-weight:400!important}
 b,strong{font-weight:500}
 .wf .wege__t,.gb-blatt header h3{font-family:var(--serif);letter-spacing:.02em}

@@ -1,4 +1,4 @@
-Fertig. Umbau der vier Werkzeuge nach der Vorlage der sieben Werkzeuge ist gebaut und geprüft (Zweig `claude/sroka-werkzeuge-umbau-6cdhaj`). Nicht geprüft: WebKit (Download in der Cloud gesperrt; am Mac mit `PRUEF_WEBKIT=1` nachholen).
+In Prüfung.
 
 ## Die Werkzeuge (Pfade im Repo, Website im Stamm)
 - Übersicht «Deine Werkzeuge»: `werkzeuge/index.html` (+ `uebersicht.js`): vier Karten mit Foto der Website, ein Satz, Stand aus dem Browser, Knopf «… öffnen», Rückweg zur Website.

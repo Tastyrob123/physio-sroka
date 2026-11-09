@@ -30,8 +30,11 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - Drucksachen: Reste der Vorlage entfernt (Prüfseite auf Haus sroka, Fotogruppen aus den Fotos der Praxis, Werkbank-Weg relativ, Texte), Commit 8ced6ea.
 - Prüfskript neu: `timeout 900 node pruefen/werkzeuge.js <ordner>`, 316 Prüfpunkte grün (Ansichten 1440/390, Bedienung aller Werkzeuge, PDFs A4 mit Seitenumbruch, gesperrter Speicher, file://). Dabei behoben: Planliste zeigte ab dem zweiten Plan «Beispiel ansehen», Quittung fett, Link-Knöpfe der Profiltexte am Handy zu breit, Zeichen unter file:// (jetzt data:-Adresse im Kleid).
 
+- Bilder und PDFs angesehen (Übersicht, Übungsplan, Rechnung, Profiltexte, Drucksachen, 1440/390). Behoben: Zeichen im Kopf fehlte (# im data:-URI), Leiste beim Beispiel. Werkstatt-PDFs aller 5 Beispiele im Prüfskript (Format + 3 mm Beschnitt, keine fehlenden Zeichen).
+- Unteragent prüft das Fehlerbuch 10a Punkt für Punkt (nur lesen, Bericht an diese Sitzung).
+
 ## Nächster genauer Schritt
-Bilder und PDFs der Prüfung ansehen (Ordner im Scratchpad, neu erzeugen mit dem Prüfskript), Fehlerbuch 10a (`pruefen/fehlerbuch-10a.md`) Punkt für Punkt gegen die Werkzeuge abhaken, Funde beheben, dann «Fertig.».
+Bericht des Fehlerbuch-Unteragenten abarbeiten (falls die Sitzung abbricht: selbst `pruefen/fehlerbuch-10a.md` gegen die Werkzeuge prüfen); danach Prüfskript laufen lassen und «Fertig.» schreiben. Früherer Schritt (erledigt): Bilder und PDFs der Prüfung ansehen (Ordner im Scratchpad, neu erzeugen mit dem Prüfskript), Fehlerbuch 10a (`pruefen/fehlerbuch-10a.md`) Punkt für Punkt gegen die Werkzeuge abhaken, Funde beheben, dann «Fertig.».
 
 ## Entscheidungen der Nacht
 - WebKit: Download in der Cloud gesperrt (Download failure), geprüft nur mit Chromium; das Prüfskript nimmt WebKit mit `PRUEF_WEBKIT=1` dazu, wo es installiert ist (am Mac).

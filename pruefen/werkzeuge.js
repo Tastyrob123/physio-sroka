@@ -139,6 +139,24 @@ async function lauf(browser, bname) {
     await ctx.close();
   }
 
+  /* Drucksachen: jede Beispiel-Drucksache der Werkstatt als PDF (pdf-lib im Browser), Format mit 3 mm Beschnitt, keine fehlenden Zeichen, keine Prüfmeldung */
+  {
+    const { ctx, page, meldungen } = await neueSeite(browser, 1440);
+    await page.goto(BASIS + 'drucksachen/index.html', { waitUntil: 'load' });
+    await page.waitForFunction(() => window.DSStudio && window.__ST && window.__ST.M, null, { timeout: 20000 }); await warte(1500);
+    const docs = await page.evaluate(() => Object.keys(DSStudio.alleDocs()));
+    pruefe(docs.length >= 5, 'Drucksachen: Beispiele der Praxis liegen bereit (' + docs.length + ')');
+    for (const k of docs) {
+      const r = await page.evaluate(async k => { const doc = DSStudio.alleDocs()[k]; const pr = DS.pruefe(__ST.M, doc); const o = await DS.pdf(__ST.M, doc); let s = ''; const by = o.bytes; for (let i = 0; i < by.length; i += 8192) s += String.fromCharCode.apply(null, by.subarray(i, i + 8192)); return { name: doc.name, b: doc.format.b, h: doc.format.h, n: doc.seiten.length, b64: btoa(s), fehlend: o.fehlend, pruef: pr.length }; }, k);
+      const datei = path.join(AUS, 'werkstatt-' + k + '.pdf'); fs.writeFileSync(datei, Buffer.from(r.b64, 'base64'));
+      const info = execFileSync('pdfinfo', [datei]).toString(); const m = /Page size:\s+([\d.]+) x ([\d.]+)/.exec(info); const seiten = +(/Pages:\s+(\d+)/.exec(info) || [0, 0])[1];
+      const mm = x => x * 25.4 / 72;
+      pruefe(seiten === r.n && Math.abs(mm(+m[1]) - (r.b + 6)) < 0.6 && Math.abs(mm(+m[2]) - (r.h + 6)) < 0.6 && !r.fehlend.length && !r.pruef, 'Drucksachen: PDF «' + r.name + '» ' + r.b + ' × ' + r.h + ' mm + Beschnitt, ' + seiten + ' Seite(n), fehlende Zeichen ' + r.fehlend.length + ', Prüfmeldungen ' + r.pruef);
+    }
+    pruefe(meldungen.length === 0, 'Drucksachen: keine Fehler beim PDF ' + JSON.stringify(meldungen.slice(0, 3)));
+    await ctx.close();
+  }
+
   /* 2. Übersicht: vier Werkzeuge, Wege */
   {
     const { ctx, page, meldungen } = await neueSeite(browser, 1440);

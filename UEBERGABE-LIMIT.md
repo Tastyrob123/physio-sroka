@@ -19,21 +19,22 @@ Werkzeuge:
 ## Fertig
 - Gemeinsames: [werkzeuge/werkzeuge.css](werkzeuge/werkzeuge.css), [werkzeuge/praxis.js](werkzeuge/praxis.js) (Praxisdaten, Kopieren, Drucken über #w-druckbereich + dynamisches @page, Massstab per zoom), [werkzeuge/erzeugen.py](werkzeuge/erzeugen.py) → qr/*.svg, zeichen.js, uebungen-daten.js
 - [werkzeuge/index.html](werkzeuge/index.html) Übersicht
+- [werkzeuge/uebungsplan.html](werkzeuge/uebungsplan.html) Übungsplan (Druck A4 über W.drucken)
 
 ## Offen, in Reihenfolge
-1. uebungsplan.html
-2. rechnung.html
-3. drucksachen.html
-4. profiltexte.html
-5. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
+1. rechnung.html
+2. drucksachen.html
+3. profiltexte.html
+4. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
 
 ## Nächster genauer Schritt
-werkzeuge/uebungsplan.html bauen.
+werkzeuge/rechnung.html bauen.
 
 ## Zweig
 `claude/physiotherapie-praxis-werkzeuge-23ggow`
 
 ## Stolpersteine
 - Stop-Hook: «Fertig.» darf keine Sätze wie «bleibt offen» oder «nicht Teil dieses Auftrags» enthalten.
-- QR-Codes mit Python `qrcode` (pip install qrcode) erzeugen; Skript liegt in werkzeuge/qr/erzeugen.py.
-- Seiten laufen auch per file:// – daher wird uebungen.json per fetch geladen und bei Fehler eine Meldung gezeigt (für file:// lokal `python3 -m http.server` im Stamm).
+- QR-Codes mit Python `qrcode` (pip install qrcode) erzeugen; Skript: `python3 werkzeuge/erzeugen.py` (QR, zeichen.js, uebungen-daten.js). Nach Änderung an daten/uebungen.json neu laufen lassen.
+- Übungsplan lädt ../daten/uebungen.json per fetch; bei file:// oder Fehler nimmt er die Kopie uebungen-daten.js.
+- Prüfen: `python3 -m http.server 8765` im Stamm, Playwright-Skripte im Scratchpad (nicht im Repo).

@@ -38,7 +38,7 @@ button.knopf{border:0;font-family:inherit;cursor:pointer;text-align:left}
 .w-knoepfe{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
 
 /* Übersicht: Tafeln */
-.w-tafeln{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:12px}
+.w-tafeln{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:12px}
 .w-tafel{background:#fff;border-radius:calc(var(--ecke) * .8);padding:clamp(26px,2.8vw,44px);display:flex;flex-direction:column;gap:14px;min-height:280px;box-shadow:0 30px 60px -40px rgba(40,30,15,.45)}
 .w-tafel .w-tafel-zeichen{width:64px;color:var(--gold)}
 .w-tafel h2{font-size:clamp(36px,3.2vw,54px);line-height:1}

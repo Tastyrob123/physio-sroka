@@ -1,4 +1,19 @@
-In Arbeit. Umbau der vier Werkzeuge nach der Vorlage der sieben Werkzeuge (Auftrag Robert 09.11.2026, siehe unten).
+Fertig. Umbau der vier Werkzeuge nach der Vorlage der sieben Werkzeuge ist gebaut und geprüft (Zweig `claude/sroka-werkzeuge-umbau-6cdhaj`). Nicht geprüft: WebKit (Download in der Cloud gesperrt; am Mac mit `PRUEF_WEBKIT=1` nachholen).
+
+## Die Werkzeuge (Pfade im Repo, Website im Stamm)
+- Übersicht «Deine Werkzeuge»: `werkzeuge/index.html` (+ `uebersicht.js`): vier Karten mit Foto der Website, ein Satz, Stand aus dem Browser, Knopf «… öffnen», Rückweg zur Website.
+- Übungspläne: `werkzeuge/uebungsplan.html|js|css`: Pläne je Patient (localStorage `sroka-uebungsplaene`, eigene Fotos in IndexedDB), Abschnitte, eigene Übungen, Bibliothek der Website als Ausgang, Ziel, Notiz, Standort, Blatt A4 gemessen gesetzt, Drucken/PDF.
+- Drucksachen: `werkzeuge/drucksachen/index.html` (Weiterleitung aus `werkzeuge/drucksachen.html`): Werkstatt aus der Vorlage, Haus sroka, 74 Vorlagen, 5 Beispiele, PDF im Browser, ohne KI. Prüfseite `werkzeuge/drucksachen/pruefung.html`.
+- Rechnungen: `werkzeuge/rechnung.html|js|css`: Standort, Patient, Positionen, Summe, Steuernummer/Bank unter «Angaben der Praxis», § 4 Nr. 14 UStG, keine Preise vorbelegt, localStorage `sroka-werkzeuge-rechnung`.
+- Profiltexte: `werkzeuge/profiltexte.html|js|css`: 11 Texte (Google Hannover, Google Hemmingen, jameda) mit Feld, Weg, Link, Zeichengrenze, Skizze, Quelle; «Was du selbst tust»; Quellen (`pruefen/quellen-profiltexte.md`).
+- Gemeinsam: `werkzeuge/gemeinsam.js|css`, Rahmen `werkzeuge/rahmen/` (Kopie der Vorlage, Kleid `kleid/sroka.*`).
+
+## Geprüft
+- `timeout 900 node pruefen/werkzeuge.js <ordner>` (Playwright Chromium), letzter Lauf 508 von 508 grün: alle Ansichten bei 1440, 1000, 390 und 320 px ohne Überlauf, nichts fett/kursiv, keine Schrift unter 12 px, kein select/Datumsfeld, keine Emojis, keine Konsolenfehler; jedes Werkzeug bedient (Pläne anlegen, Bibliothek, eigene Übung, eigenes Foto, verschieben, entfernen und rückgängig, speichern, neu laden, Kopie, löschen; Rechnung mit Summen, Entfernen, Angaben, Neue Rechnung; Kopieren aller 11 Profiltexte); PDFs A4 mit sauberem Seitenumbruch (Übungsplan 3 Seiten, Rechnung 2 Seiten), Werkstatt-PDFs aller 5 Beispiele im Format mit 3 mm Beschnitt; gesperrter Speicher; Öffnen per file://.
+- Tastatur: Escape schliesst Fenster, Strg/Cmd+S speichert (Übungsplan, Rechnung).
+- Bilder und PDFs angesehen.
+- Fehlerbuch 10a gegen die Werkzeuge geprüft (166 Punkte, 18 Funde, alle behoben; Drucksachen-Funde Commit da3bd3b: Feld der Startseite, «Passende Vorlagen», Farben, Schriften der Prüfseite, ß, Hilfe-Film `drucksachen/hilfe/demo.webm`).
+
 
 ## Auftrag (Kurzfassung, Wortlaut in der Sitzung)
 Robert nach der ersten Fassung: «Übungsplan … noch individueller gestalten und nicht ein Vorlagendeck … Drucksachen sehen auch nicht so aus, wie wir das normalerweise auf unseren Seiten machen. Und Profiltexte, okay, aber da fehlt der Bezug zu wo.»
@@ -18,11 +33,7 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - Recherche Menüwege (fertig, `pruefen/quellen-profiltexte.md`; Netz zu support.google.com/jameda gesperrt, Belege aus Suchtreffern) Google/Jameda läuft in einem Unteragenten → `pruefen/quellen-profiltexte.md`.
 
 ## Offen, in Reihenfolge
-1. Vorlage lesen (Master 4.7, 8, 9, 10a; Werkstatt-Übergabe; HAUS-GV; Rahmen UMSTELLUNG.md)
-2. Rahmen-Kleid «sroka» anlegen (werkzeuge/rahmen/)
-3. Werkstatt kopieren nach werkzeuge/werkstatt/, Haus sroka, Vorlagen
-4. Übungsplan, Rechnung, Profiltexte, Übersicht in den Rahmen
-5. Prüfskript erweitern, prüfen, Bilder ansehen
+- nichts
 
 - Rechnung im Rahmen (`werkzeuge/rechnung.html|js|css`, Commit 5d5fd83).
 - Profiltexte mit Bezug und Übersicht im Rahmen (`werkzeuge/profiltexte.*`, `werkzeuge/index.html`, `uebersicht.js`, Commit b796d07).
@@ -37,7 +48,7 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - Unteragent behebt die Drucksachen-Funde (Feld der Startseite 900–1240 px, «Fünf Entwürfe» → «Passende Vorlagen», Varone-Farben in lib/auswahl.css, Schriften der Prüfseite, ausLivre-Platzhalter, ß-Schreibung, Hilfe-Film).
 
 ## Nächster genauer Schritt
-Bericht des Drucksachen-Unteragenten abwarten und prüfen (falls Abbruch: die Punkte oben selbst in `werkzeuge/drucksachen/` beheben), dann Prüfskript laufen lassen, Drucksachen ansehen, «Fertig.» schreiben (Schlusstext liegt im Scratchpad `schluss.md`, sonst neu schreiben).
+Nichts offen. Auf Roberts Wort warten (Durchsicht, ggf. Zusammenführen in main).
 
 ## Entscheidungen der Nacht
 - Übersicht: Startbild als «buehne» (kleiner), Kacheln bleiben zweispaltig: vier Spalten ergäben unter 300 px Textbreite (F205 geht vor F112).
@@ -48,7 +59,8 @@ Bericht des Drucksachen-Unteragenten abwarten und prüfen (falls Abbruch: die Pu
 - (Folgesitzung 09.11. abends) Kein Unteragent mehr offen: Recherche Profiltexte liegt in `pruefen/quellen-profiltexte.md`, alle Bauschritte sind committet. Nichts neu zu starten.
 
 ## Wartet auf Roberts Wort
-- nichts
+- Durchsicht der Werkzeuge und Zusammenführen des Zweigs in main (kein PR angelegt).
+- WebKit-Prüfung am Mac.
 
 ## Zweig
 `claude/sroka-werkzeuge-umbau-6cdhaj`

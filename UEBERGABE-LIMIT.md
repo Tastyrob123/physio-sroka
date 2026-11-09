@@ -31,21 +31,16 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - Werkstatt kopiert nach `werkzeuge/drucksachen/` (ohne api/serve/mail). Haus `sroka`: `bau.py` (Schriften TTF, Zeichen, Tapete, 23 Website-Fotos, 2 QR) und `inhalte.py` (EINE Quelle aller Texte: Arten, Beispiele, Bereiche, Aushänge, 74 Vorlagen). Neue Aufbauten in `vorlagen.js`: visite, kontakt, termine, brief, umschlag, bewertung; Formate visit, dl. Ohne KI: `DSStart.ohneKi` (start.js) statt `api/entwurf`. Farben einmalig umgerechnet (Skript im Scratchpad, nicht wiederholen).
 - Übungspläne neu: `werkzeuge/uebungsplan.html|js|css` im Rahmen, gemeinsame Teile `werkzeuge/gemeinsam.js|css` (Kopf, Rand, Leiste, Speichern, Quittung, Fenster, Blätter A4 gemessen gesetzt, Druck). `drucksachen.html` leitet in `drucksachen/index.html`.
 - Recherche Menüwege (fertig, `pruefen/quellen-profiltexte.md`; Netz zu support.google.com/jameda gesperrt, Belege aus Suchtreffern) Google/Jameda läuft in einem Unteragenten → `pruefen/quellen-profiltexte.md`.
+- Rechnung im Rahmen (`werkzeuge/rechnung.html|js|css`, Commit 5d5fd83).
+- Profiltexte mit Bezug und Übersicht im Rahmen (`werkzeuge/profiltexte.*`, `werkzeuge/index.html`, `uebersicht.js`, Commit b796d07).
+- Drucksachen: Reste der Vorlage entfernt (Prüfseite auf Haus sroka, Fotogruppen aus den Fotos der Praxis, Werkbank-Weg relativ, Texte), Commit 8ced6ea.
+- Prüfskript neu: `timeout 900 node pruefen/werkzeuge.js <ordner>`, 316 Prüfpunkte grün (Ansichten 1440/390, Bedienung aller Werkzeuge, PDFs A4 mit Seitenumbruch, gesperrter Speicher, file://). Dabei behoben: Planliste zeigte ab dem zweiten Plan «Beispiel ansehen», Quittung fett, Link-Knöpfe der Profiltexte am Handy zu breit, Zeichen unter file:// (jetzt data:-Adresse im Kleid).
+- Bilder und PDFs angesehen (Übersicht, Übungsplan, Rechnung, Profiltexte, Drucksachen, 1440/390). Behoben: Zeichen im Kopf fehlte (# im data:-URI), Leiste beim Beispiel. Werkstatt-PDFs aller 5 Beispiele im Prüfskript (Format + 3 mm Beschnitt, keine fehlenden Zeichen).
+- Fehlerbuch 10a geprüft (Unteragent, 166 Punkte, 18 Funde). In den Werkzeugen behoben (Commit 86bf169): Bibliothek je Gruppe ein Foto + Zeilen, Bibliotheksübungen bekommen das Gruppenfoto nur als erste, Beispiel heisst «Frau Muster» (Kennzeichnung nur in der Leiste), Schrift ab 13 px, 320 px ohne Überragen, Zahl im Rand mittig, Ziffernkreis wächst, Gruss auf der Rechnung, Auftritt beim Scrollen, :where-Rücksetzungen, .catch, addEventListener, deutsche Schreibung, praxis.js/werkzeuge.css entfernt. Prüfskript jetzt bei 1440/1000/390/320: 508 Punkte grün.
+- Drucksachen-Funde des Fehlerbuchs behoben (Commit da3bd3b). Letzter Prüflauf 508 von 508 grün.
 
 ## Offen, in Reihenfolge
 - nichts
-
-- Rechnung im Rahmen (`werkzeuge/rechnung.html|js|css`, Commit 5d5fd83).
-- Profiltexte mit Bezug und Übersicht im Rahmen (`werkzeuge/profiltexte.*`, `werkzeuge/index.html`, `uebersicht.js`, Commit b796d07).
-
-- Drucksachen: Reste der Vorlage entfernt (Prüfseite auf Haus sroka, Fotogruppen aus den Fotos der Praxis, Werkbank-Weg relativ, Texte), Commit 8ced6ea.
-- Prüfskript neu: `timeout 900 node pruefen/werkzeuge.js <ordner>`, 316 Prüfpunkte grün (Ansichten 1440/390, Bedienung aller Werkzeuge, PDFs A4 mit Seitenumbruch, gesperrter Speicher, file://). Dabei behoben: Planliste zeigte ab dem zweiten Plan «Beispiel ansehen», Quittung fett, Link-Knöpfe der Profiltexte am Handy zu breit, Zeichen unter file:// (jetzt data:-Adresse im Kleid).
-
-- Bilder und PDFs angesehen (Übersicht, Übungsplan, Rechnung, Profiltexte, Drucksachen, 1440/390). Behoben: Zeichen im Kopf fehlte (# im data:-URI), Leiste beim Beispiel. Werkstatt-PDFs aller 5 Beispiele im Prüfskript (Format + 3 mm Beschnitt, keine fehlenden Zeichen).
-- Unteragent prüft das Fehlerbuch 10a Punkt für Punkt (nur lesen, Bericht an diese Sitzung).
-
-- Fehlerbuch 10a geprüft (Unteragent, 166 Punkte, 18 Funde). In den Werkzeugen behoben (Commit 86bf169): Bibliothek je Gruppe ein Foto + Zeilen, Bibliotheksübungen bekommen das Gruppenfoto nur als erste, Beispiel heisst «Frau Muster» (Kennzeichnung nur in der Leiste), Schrift ab 13 px, 320 px ohne Überragen, Zahl im Rand mittig, Ziffernkreis wächst, Gruss auf der Rechnung, Auftritt beim Scrollen, :where-Rücksetzungen, .catch, addEventListener, deutsche Schreibung, praxis.js/werkzeuge.css entfernt. Prüfskript jetzt bei 1440/1000/390/320: 508 Punkte grün.
-- Unteragent behebt die Drucksachen-Funde (Feld der Startseite 900–1240 px, «Fünf Entwürfe» → «Passende Vorlagen», Varone-Farben in lib/auswahl.css, Schriften der Prüfseite, ausLivre-Platzhalter, ß-Schreibung, Hilfe-Film).
 
 ## Nächster genauer Schritt
 Nichts offen. Auf Roberts Wort warten (Durchsicht, ggf. Zusammenführen in main).

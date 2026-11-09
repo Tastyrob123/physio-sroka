@@ -121,6 +121,7 @@ async function lauf(browser, bname) {
   await ansichten(browser, 'uebungsplan', 'uebungsplan.html', [{ n: 'start' }, { n: 'beispiel', klick: '[data-gehe="beispiel"] >> nth=0' }, { n: 'bibliothek', klick: '#rand [data-gehe="bib"]' }]);
   await ansichten(browser, 'rechnung', 'rechnung.html', [{ n: 'rechnung' }, { n: 'angaben', klick: '#rand [data-gehe="angaben"]' }]);
   await ansichten(browser, 'profiltexte', 'profiltexte.html', ['start', 'hannover', 'hemmingen', 'jameda', 'selbst', 'quellen'].map((k, i) => ({ n: k, klick: i ? '#rand [data-gehe="' + k + '"]' : null })));
+  await ansichten(browser, 'signatur', 'signatur.html', [{ n: 'beide' }, { n: 'hannover', klick: '#rand [data-wahl="hannover"]' }]);
   /* Drucksachen: Werkstatt (eigene Oberfläche), Weiterleitung aus drucksachen.html */
   for (const breite of [1440, 390]) {
     const { ctx, page, meldungen } = await neueSeite(browser, breite);
@@ -344,7 +345,7 @@ async function lauf(browser, bname) {
     await ctx.close();
   }
   /* gesperrter Speicher (privates Fenster) */
-  for (const datei of ['rechnung.html', 'uebungsplan.html', 'index.html', 'profiltexte.html']) {
+  for (const datei of ['rechnung.html', 'uebungsplan.html', 'index.html', 'profiltexte.html', 'signatur.html']) {
     const { ctx, page, meldungen } = await neueSeite(browser, 1440);
     await page.addInitScript(() => { Object.defineProperty(window, 'localStorage', { get() { throw new Error('gesperrt'); } }); });
     await page.goto(BASIS + datei + '?von=uebersicht', { waitUntil: 'load' });
@@ -385,7 +386,7 @@ async function lauf(browser, bname) {
       }
       await grundpruefung(page, 'Profiltexte · ' + b + ' (nach Kopieren)', 1440);
     }
-    pruefe(karten === 11, 'Profiltexte: elf Texte (' + karten + ')');
+    pruefe(karten === 12, 'Profiltexte: zwölf Texte (' + karten + ')');
     if (browser === global.__chromium) pruefe(kopiert === karten, 'Profiltexte: jeder Knopf kopiert genau den angezeigten Wortlaut (' + kopiert + ' von ' + karten + ')');
     pruefe(grenzenOk === karten, 'Profiltexte: jeder Text in seiner Zeichengrenze (' + grenzenOk + ' von ' + karten + ')');
     pruefe(wegOk === karten, 'Profiltexte: zu jedem Text Feld, Weg, Link, Quelle und Skizze (' + wegOk + ' von ' + karten + ')');
@@ -399,6 +400,34 @@ async function lauf(browser, bname) {
     const extern = await page.$$eval('#raum a[href^="http"]', as => as.filter(a => a.target !== '_blank').length);
     pruefe(extern === 0, 'Profiltexte: fremde Seiten öffnen in neuem Reiter');
     pruefe(meldungen.length === 0, 'Profiltexte: keine Konsolenfehler beim Bedienen ' + JSON.stringify(meldungen.slice(0, 4)));
+    await ctx.close();
+  }
+
+  /* 4b. E-Mail-Signatur (Auftrag Punkt 4): Standortwahl, Kopieren als HTML-Signatur und als Code, Weg aus der Werkstatt */
+  {
+    const { ctx, page, meldungen } = await neueSeite(browser, 1440, browser === global.__chromium ? { permissions: ['clipboard-read', 'clipboard-write'] } : {});
+    await page.goto(BASIS + 'drucksachen/index.html', { waitUntil: 'load' }); await warte(2500);
+    const nav = await page.$('.ms-nav-sig');
+    pruefe(!!nav && await nav.isVisible(), 'Signatur: Eintrag «E-Mail-Signatur» in der Werkstatt sichtbar');
+    if (nav) { await nav.click(); await page.waitForURL(/signatur\.html/, { timeout: 8000 }).catch(() => {}); }
+    pruefe(/signatur\.html/.test(page.url()), 'Signatur: Eintrag führt zur Seite der Signatur');
+    await bereit(page);
+    const v = await page.textContent('#sg-vorschau');
+    pruefe(['Sylvia Sroka', 'Dieterichsstraße 25', '30159 Hannover', '0511 260 74 14', '0511 260 74 13', 'Physio Rosenpark', 'Berliner Straße 16', '30966 Hemmingen', '0511 234 46 67', '0511 655 06 827', 'info@physio-sroka.de'].every(x => v.includes(x)), 'Signatur: beide Standorte mit Telefon, Fax und E-Mail');
+    pruefe(await page.$$eval('#sg-vorschau img', x => x.length) === 0, 'Signatur: ohne Bild');
+    if (browser === global.__chromium) {
+      await page.click('.sg-kn [data-kopiere="signatur"]'); await warte(300);
+      const c = await page.evaluate(async () => { const o = {}; for (const i of await navigator.clipboard.read()) for (const t of i.types) o[t] = await (await i.getType(t)).text(); return o; });
+      pruefe(/<table/.test(c['text/html'] || '') && /Hemmingen/.test(c['text/html']) && /Sylvia Sroka/.test(c['text/plain'] || ''), 'Signatur: «Signatur kopieren» legt HTML und Text in die Zwischenablage');
+      await page.click('.sg-wahl [data-wahl="hannover"]'); await warte(200);
+      await page.click('[data-kopiere="code"]'); await warte(300);
+      const code = await page.evaluate(() => navigator.clipboard.readText());
+      pruefe(code.startsWith('<table') && code.includes('Hannover') && !code.includes('Hemmingen') && code === await page.inputValue('#sg-code'), 'Signatur: «Nur Hannover» und «HTML-Code kopieren» kopiert genau den Code');
+    }
+    await page.click('.sg-wahl [data-wahl="hemmingen"]'); await warte(200);
+    const v2 = await page.textContent('#sg-vorschau');
+    pruefe(v2.includes('Hemmingen') && !v2.includes('Dieterichsstraße'), 'Signatur: «Nur Hemmingen» zeigt nur Hemmingen');
+    pruefe(meldungen.length === 0, 'Signatur: keine Konsolenfehler beim Bedienen ' + JSON.stringify(meldungen.slice(0, 4)));
     await ctx.close();
   }
 
@@ -424,7 +453,7 @@ async function lauf(browser, bname) {
   }
 
   /* 6. Öffnen per Doppelklick (file://) */
-  for (const s of ['index.html', 'uebungsplan.html', 'rechnung.html', 'profiltexte.html']) {
+  for (const s of ['index.html', 'uebungsplan.html', 'rechnung.html', 'profiltexte.html', 'signatur.html']) {
     const { ctx, page, meldungen } = await neueSeite(browser, 1440);
     await page.goto('file://' + path.join(STAMM, 'werkzeuge', s), { waitUntil: 'load' });
     let gestartet = true; try { await bereit(page); } catch (e) { gestartet = false; }

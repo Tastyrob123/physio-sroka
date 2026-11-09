@@ -1,0 +1,18 @@
+/* signatur.css · E-Mail-Signatur: Standortwahl, Vorschau in einer angedeuteten E-Mail, Kopier-Knöpfe, HTML-Code, Wege je E-Mail-Programm. Vorsilbe sg-. */
+.sg-karte{margin-bottom:8px}
+.sg-wahl{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.sg-post{padding:20px 24px 26px;border-radius:var(--wo-r2);background:#fff;box-shadow:inset 0 0 0 1px var(--wo-linie),0 18px 40px -30px rgba(0,0,0,.4);overflow-x:auto}
+.sg-post__kopf{display:grid;gap:6px;padding-bottom:12px;margin-bottom:16px;border-bottom:1px solid var(--wo-linie);font-size:14px;color:var(--wo-leise)}
+.sg-post__gruss{margin:0 0 14px;font:14px/1.55 Arial,Helvetica,sans-serif;color:#1b1915}
+.sg-vorschau{min-width:0}
+.sg-vorschau table{max-width:100%}
+.sg-vorschau td{overflow-wrap:anywhere}
+.sg-kn{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.sg-leise{margin:14px 0 0;font-size:14.5px;line-height:1.55;color:var(--wo-leise)}
+.sg-code{display:block;width:100%;box-sizing:border-box;margin-top:12px;padding:14px 16px;border:0;border-radius:var(--wo-r2);resize:vertical;
+  background:linear-gradient(180deg,var(--wo-papier2),var(--wo-papier));box-shadow:inset 0 2px 5px -2px rgba(0,0,0,.14),inset 0 0 0 1px var(--wo-linie);
+  font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;color:var(--wo-tinte)}
+.sg-weg{margin:0;padding-left:22px;font-size:15px;line-height:1.55}
+.sg-weg li+li{margin-top:5px}
+.sg-weg li::marker{color:var(--wo-akzent)}
+@media (max-width:520px){.sg-post{padding:16px 16px 20px}.sg-kn .wo-kn{width:100%;justify-content:space-between}}

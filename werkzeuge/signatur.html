@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../favicon.png">
+<title>E-Mail-Signatur · Physiotherapie Sylvia Sroka</title>
+<script>/* Fehlermelder (Werkzeug-Master R03, vor allem anderen): Skriptfehler nach localStorage «sroka-werkzeuge-fehler» (letzte 20), Netzfehler nie, höchstens 20 je Seite.
+   Startfehler-Tür (R04): steht nach 12 s nichts, sagt die Seite es mit Grund. */
+(function () { var n = 0, K = 'sroka-werkzeuge-fehler';
+  function melde(t) { if (n >= 20) return; n++; t = String(t).slice(0, 300); window.__srFehler = t; try { var l = JSON.parse(localStorage.getItem(K) || '[]'); l.push({ z: new Date().toISOString(), w: 'signatur', t: t }); localStorage.setItem(K, JSON.stringify(l.slice(-20))); } catch (e) {} }
+  addEventListener('error', function (e) { if (e.target && e.target !== window) return; melde((e.message || 'Fehler') + ' @ ' + String(e.filename || '').split('/').pop() + ':' + (e.lineno || 0)); }, true);
+  addEventListener('unhandledrejection', function (e) { var r = e.reason, t = String(r && r.message || r); if (/fetch|network|load failed|abort/i.test(t)) return; melde('Promise: ' + t); });
+  setTimeout(function () { if (window.__srBereit) return; var d = document.createElement('div'); d.setAttribute('role', 'alert'); d.style.cssText = 'position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:#0e0d0b;color:#f3eee5;font:16px/1.5 Manrope,sans-serif;text-align:center;padding:24px';
+    d.innerHTML = '<div><b style="font:500 28px Cormorant Garamond,serif;color:#cdb78b">Die E-Mail-Signatur startet nicht.</b><p></p><a href="" style="color:#cdb78b">Neu laden</a></div>'; d.querySelector('p').textContent = window.__srFehler || 'Die Daten kamen nicht an.'; document.body.appendChild(d); }, 12000);
+})();</script>
+<script src="rahmen/kleid/sroka.js?v=1"></script>
+<link rel="stylesheet" href="rahmen/grund.css?v=1">
+<link rel="stylesheet" href="rahmen/rahmen-buehne.css?v=1">
+<link rel="stylesheet" href="rahmen/kleid/sroka.css?v=1">
+<link rel="stylesheet" href="gemeinsam.css?v=1">
+<link rel="stylesheet" href="signatur.css?v=1">
+<script src="rahmen/oberflaeche.js?v=1"></script>
+<script src="gemeinsam.js?v=1"></script>
+</head>
+<body class="wo-app">
+<header class="wo-kopf" id="kopf"></header>
+<nav class="wo-rand" id="rand" aria-label="Bereiche"></nav>
+<main class="wo-raum" id="raum"></main>
+<footer class="wo-leiste" id="leiste"></footer>
+<script src="zeichen.js?v=1"></script>
+<script src="signatur.js?v=1"></script>
+</body>
+</html>

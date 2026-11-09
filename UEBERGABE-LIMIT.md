@@ -22,13 +22,13 @@ Werkzeuge:
 - [werkzeuge/uebungsplan.html](werkzeuge/uebungsplan.html) Übungsplan (Druck A4 über W.drucken)
 - [werkzeuge/rechnung.html](werkzeuge/rechnung.html) Rechnung (localStorage-Schlüssel sroka-werkzeuge-rechnung, PDF geprüft, 2 Seiten bei 13 Positionen sauber)
 - [werkzeuge/drucksachen.html](werkzeuge/drucksachen.html) Drucksachen (PDF-Grössen geprüft: 85×55 je 2 Seiten, A4 1 Seite, A6 1 Seite; QR mit OpenCV aus PDF dekodiert = richtige Ziele)
+- [werkzeuge/profiltexte.html](werkzeuge/profiltexte.html) Profiltexte (Beschreibungen 708 und 730 von 750 Zeichen)
 
 ## Offen, in Reihenfolge
-1. profiltexte.html
-2. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
+1. Prüfen mit Playwright (scratchpad-Skript), PDFs ansehen, 1440/390 px, Konsole
 
 ## Nächster genauer Schritt
-werkzeuge/profiltexte.html bauen.
+Gesamtprüfung mit Playwright: jede Funktion klicken, PDFs, 1440/390, Konsole, kein fett/kursiv/select.
 
 ## Zweig
 `claude/physiotherapie-praxis-werkzeuge-23ggow`

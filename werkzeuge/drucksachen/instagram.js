@@ -154,7 +154,7 @@
         </span>
       </div>
       <div class="ig-platte">
-        <button class="rund ig-zu" data-ig="zu" aria-label="Schliessen" data-tip="Schliessen">${IC.zu}</button>
+        <button class="rund ig-zu" data-ig="zu" aria-label="Schließen" data-tip="Schließen">${IC.zu}</button>
         <h2>${story ? 'Text zur Story' : 'Bildtext'}</h2>
         <p class="leise">${story ? 'Zeilen zum Teilen der Story, mit Hashtags.' : 'Die Zeilen unter dem Beitrag, mit Hashtags.'} Im Ton des Hauses, Angaben nur aus den Unterlagen. Danach frei bearbeiten und mit einem Klick kopieren.</p>
         <div class="ig-zeile"><label>Sprache<select id="igSprache">${SPRACHEN.map(([k, t]) => `<option value="${k}" ${(bt.sprache || 'fr') === k ? 'selected' : ''}>${t}</option>`).join('')}</select></label>

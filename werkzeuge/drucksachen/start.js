@@ -16,7 +16,7 @@
     {"key": "uebungsblatt", "name": "Übungsblatt", "satz": "Übungen für zu Hause, mit Schritten und Menge", "format": "a4h", "formate": ["a4h", "a5h"], "vorlagen": [["karte", "hell"], ["karte", "creme"], ["buehne", "hell"]], "beispiel": "Ein Übungsblatt für Rücken und Nacken"},
     {"key": "aushang", "name": "Aushang an der Tür", "satz": "Öffnungszeiten, Termine, Hausbesuche", "format": "a4h", "formate": ["a4h", "a5h", "a3h"], "vorlagen": [["aushang", "hell"], ["aushang", "dunkel"], ["aushang", "creme"], ["buehne", "dunkel"]], "beispiel": "Ein Aushang mit den Öffnungszeiten"},
     {"key": "faltblatt", "name": "Faltblatt", "satz": "Sechs Seiten DIN lang: Behandlung, Schwerpunkte, Kontakt", "format": "dlh", "formate": ["dlh"], "vorlagen": [["buehne", "dunkel"], ["fenster", "creme"], ["deckel", "dunkel"]], "beispiel": "Ein Faltblatt über die Praxis", "rueck": "kontakt", "innen": [{"vorlage": "programm", "ton": "hell", "inhalt": {"ueber": "Was in der Physiotherapie passiert", "titel": "So läuft eine Behandlung ab", "termine": [{"wann": "Ankommen", "was": "Sie erzählen, was Sie belastet und was Sie sich wünschen. Das erste Gespräch ist unverbindlich.", "wo": ""}, {"wann": "Untersuchen", "was": "Ich sehe mir Haltung und Bewegung genau an und suche, woher die Beschwerden kommen.", "wo": ""}, {"wann": "Behandeln", "was": "Mit den Händen und gezielten Griffen werden Verspannungen gelöst.", "wo": ""}, {"wann": "Weiter üben", "was": "Übungen für zu Hause helfen, dass das Erreichte im Alltag bleibt.", "wo": ""}]}}, {"vorlage": "karte", "ton": "hell", "inhalt": {"ueber": "Meine Schwerpunkte", "titel": "Bewegung und Funktion wiederherstellen", "text": "Dafür arbeite ich vor allem mit drei Verfahren.", "liste": [{"name": "Neurologie", "detail": "Physiotherapie bei Erkrankungen des Nervensystems, etwa nach einem Schlaganfall oder bei Parkinson.", "preis": ""}, {"name": "Bobath", "detail": "Ein Behandlungskonzept, das gestörte Bewegungsabläufe Schritt für Schritt neu anbahnt.", "preis": ""}, {"name": "Craniosacral", "detail": "Eine sanfte Behandlung mit den Händen, vor allem an Kopf, Nacken und Rücken.", "preis": ""}]}}, {"vorlage": "karte", "ton": "creme", "inhalt": {"ueber": "Wenn das Nervensystem betroffen ist", "titel": "Neurologie", "text": "Seit 1986 behandle ich vor allem neurologisch schwer und schwerst betroffene Menschen.", "liste": [{"name": "Bewegung neu lernen", "detail": "Abläufe, die verloren gingen, werden Schritt für Schritt wieder angebahnt.", "preis": ""}, {"name": "Spannung regulieren", "detail": "Zu feste oder zu schwache Muskeln kommen wieder ins Gleichgewicht.", "preis": ""}, {"name": "Sicher stehen und gehen", "detail": "Gleichgewicht und Gehen werden gezielt geübt.", "preis": ""}, {"name": "Alltag zurückgewinnen", "detail": "Anziehen, Greifen, Aufstehen: das Ziel ist mehr Selbstständigkeit.", "preis": ""}]}}, {"vorlage": "fenster", "ton": "dunkel", "inhalt": {"bild": "echt-gespraech", "ueber": "Körper und Seele", "titel": "Stress zeigt sich oft zuerst im Körper", "unter": "Physiotherapie Sylvia Sroka", "text": "Deshalb verbinde ich Physiotherapie mit Entspannung, Achtsamkeit und Gesprächen."}}]},
-    {"key": "briefpapier", "name": "Briefpapier", "satz": "A4 nach DIN 5008, beide Standorte im Fuss", "format": "a4h", "formate": ["a4h"], "vorlagen": [["brief", "hell"], ["brief", "creme"]], "beispiel": "Briefpapier der Praxis"},
+    {"key": "briefpapier", "name": "Briefpapier", "satz": "A4 nach DIN 5008, beide Standorte im Fuß", "format": "a4h", "formate": ["a4h"], "vorlagen": [["brief", "hell"], ["brief", "creme"]], "beispiel": "Briefpapier der Praxis"},
     {"key": "umschlag", "name": "Umschlag", "satz": "DL für Briefe, mit Absender und Zeichen", "format": "dl", "formate": ["dl"], "vorlagen": [["umschlag", "hell"], ["umschlag", "creme"], ["umschlag", "dunkel"]], "beispiel": "Ein Umschlag zum Briefpapier"},
     {"key": "bewertung", "name": "Karte für Bewertungen, Hannover", "satz": "Mit QR-Code zur Praxis in Google Maps", "format": "a6h", "formate": ["a6h", "a6q"], "vorlagen": [["bewertung", "hell"], ["bewertung", "dunkel"], ["bewertung", "creme"]], "beispiel": "Eine Karte für Bewertungen in Hannover"},
     {"key": "bewertung-hemmingen", "name": "Karte für Bewertungen, Hemmingen", "satz": "Mit QR-Code zum Physio Rosenpark in Google Maps", "format": "a6h", "formate": ["a6h", "a6q"], "vorlagen": [["bewertung", "hell"], ["bewertung", "dunkel"], ["bewertung", "creme"]], "beispiel": "Eine Karte für Bewertungen in Hemmingen"},
@@ -571,7 +571,7 @@
         <div class="wo kd__bild"><span class="wo__k"><span class="wo__bild" style="background-image:url('${DS.bildUrl(DS.M, foto, false)}')"></span><span class="wo__licht"></span>${ev ? `<span class="wo__datum">${esc(a.z)}</span>` : ''}</span></div>
         <div class="kd__text">${ev ? `<em class="kd__wo">${WO[a.wo]} · ${esc(a.ort)}</em>` : ''}<h1>${esc(a.t)}</h1><p>${esc(a.satz)}</p>
           <div class="kd__zahl"><b>${zahlDE(liste.length + mehr)}</b><span>${ev ? 'Motive, fertig gesetzt im Stil der Praxis: Plakat, Flyer, Aushang, Aufsteller, Karte, Beitrag, Story und E-Mail-Kopf' : 'Vorlagen für diese Abteilung, fertig gesetzt im Stil der Praxis'}</span></div>
-          <div class="ms-feld ms-feld--klein"><span class="ms-feld__ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/></svg></span><textarea id="kampFrei" rows="1" placeholder="Etwas anderes für ${esc(a.t)} …"></textarea><button class="kn knopf--voll glanz-kn" data-st="kfrei"><span>Fünf Entwürfe</span><i>${PFEIL_SVG}</i></button></div></div>
+          <div class="ms-feld ms-feld--klein"><span class="ms-feld__ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/></svg></span><textarea id="kampFrei" rows="1" placeholder="Etwas anderes für ${esc(a.t)} …"></textarea><button class="kn knopf--voll glanz-kn" data-st="kfrei"><span>Passende Vorlagen</span><i>${PFEIL_SVG}</i></button></div></div>
       </div>
       <div class="ms-zeile"><h2>${ev ? 'Die Motive' : 'Die Vorlagen'}</h2><span class="ms-leise">Antippen öffnet die Vorlage in der Werkstatt, Texte in [Klammern] vor dem Druck ersetzen</span></div>
       <div class="ms-raster" id="detailRaster"></div>
@@ -692,7 +692,7 @@
     }
   }
 
-  /* ---------- Zweiter Schritt: Art gewählt. Oben beschreiben (fünf Entwürfe), darunter die 100 Vorlagen dieser Art ---------- */
+  /* ---------- Zweiter Schritt: Art gewählt. Oben beschreiben (passende Vorlagen), darunter die 100 Vorlagen dieser Art ---------- */
   const BIB = {}; let IDX = null;   // geladene Vorlagen je Art
   async function ladeBibliothek(art) {
     if (BIB[art] !== undefined) return BIB[art];
@@ -733,7 +733,7 @@
       ${wahl.leer || wahl.alle ? '' : `<div class="start__direkt start__direkt--weg">
         <span class="start__direkt-ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
         <textarea id="startAuftrag" rows="1" placeholder="Zum Beispiel: ${esc(wahl.beispiel)}"></textarea>
-        <button class="kn knopf--voll glanz-kn" data-st="entwerfen"><span>Fünf Entwürfe</span>${PFEIL}</button>
+        <button class="kn knopf--voll glanz-kn" data-st="entwerfen"><span>Passende Vorlagen</span>${PFEIL}</button>
       </div><p class="start__fehler" id="startFehler" hidden></p>`}
       <div class="vb__kopf" id="vbKopf"></div>
       <div class="vb__liste" id="startVorlagen"></div>
@@ -940,7 +940,7 @@
       <p class="start__satz">«${esc(text)}» · ${esc(f.name)}. Wähl die Vorlage, die dir am besten gefällt. Darin änderst du danach jeden Text, jedes Foto und jede Farbe.</p>
       ${r.hinweise.length ? `<div class="start__hinweise"><b>Bitte noch ansehen</b><ul>${r.hinweise.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
       <div class="atelier atelier--entwuerfe" id="startEntwuerfe"></div>
-      <div class="start__nochmal"><button class="kn kn--klein kn--ohne" data-st="nochmal"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg><span>Fünf neue Entwürfe</span></button></div>`;
+      <div class="start__nochmal"><button class="kn kn--klein kn--ohne" data-st="nochmal"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg><span>Noch einmal suchen</span></button></div>`;
     const box = w.querySelector('#startEntwuerfe');
     r.docs.forEach((d, i) => {
       const b = document.createElement('button'); b.className = 'stueck stueck--entwurf'; b.dataset.entwurf = i;
@@ -1064,12 +1064,12 @@
     document.documentElement.classList.remove('start-gleich');
   }
   /* Aus «Markenbuch» hinüber (?foto=<key>&art=insta|story&x=&y=): fünf Gestaltungen mit diesem Foto und dem Ausschnitt aus «Markenbuch»,
-     sofort und ohne KI; «Fünf neue Entwürfe» lässt danach die KI Texte dazu schreiben. */
+     sofort und ohne KI; «Noch einmal suchen» lässt danach die KI Texte dazu schreiben. */
   function ausLivre(q) {
     const k = q.get('foto'), b = DS.M.bildIndex[k]; if (!b) return false;
     const fmt = q.get('art') === 'story' ? 'story' : 'insta', x = Math.min(1, Math.max(0, +q.get('x') || .5)), y = Math.min(1, Math.max(0, +q.get('y') || .5));
-    const inh = { bild: k, ueber: DS.M.name, titel: '[Titel]', text: '[Ein Satz zum Bild]', aktion: '', fuss: '' };
-    const arten = [['buehne', 'dunkel', 'Foto gross, Nuit'], ['buehne', 'hell', 'Foto gross, Papier'], ['fenster', 'creme', 'Im Rahmen, Sable'], ['ansicht', 'dunkel', 'Foto randlos'], ['fenster', 'dunkel', 'Im Rahmen, Nuit']];
+    const inh = { bild: k, ueber: DS.M.name, titel: b.alt, text: DS.M.zeile || DS.M.voll, aktion: '', fuss: '' };   // keine Klammern: Titel aus der Bildbeschreibung, Satz aus der Marke
+    const arten = [['buehne', 'dunkel', 'Foto groß, Nacht'], ['buehne', 'hell', 'Foto groß, Licht'], ['fenster', 'creme', 'Im Rahmen, Sand'], ['ansicht', 'dunkel', 'Foto randlos'], ['fenster', 'dunkel', 'Im Rahmen, Nacht']];
     const docs = arten.map(([v, t, titel]) => {
       const d = DS.dokument(DS.M, { name: (fmt === 'story' ? 'Story · ' : 'Beitrag · ') + b.alt, format: fmt, seiten: [{ vorlage: v, ton: t, inhalt: v === 'ansicht' ? { bild: k, titel: DS.M.ort, unter: DS.M.name } : inh }] });
       d.seiten.forEach(s => s.el.forEach(e => { if (e.typ === 'bild' && e.bild === k) { e.fx = x; e.fy = y; } }));

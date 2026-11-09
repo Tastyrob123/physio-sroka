@@ -133,7 +133,7 @@
   };
 
   V.buehne = {
-    name: 'Bild oben', wofuer: 'Flyer und Aushang mit grossem Foto oben, Text darunter; das Zeichen sitzt auf der Naht',
+    name: 'Bild oben', wofuer: 'Flyer und Aushang mit großem Foto oben, Text darunter; das Zeichen sitzt auf der Naht',
     slots: ['bild*', 'ueber', 'titel*', 'text', 'aktion', 'fuss'],
     bau(c, i, seite) {
       grund(c, seite);
@@ -428,7 +428,7 @@
 
   /* Türhänger (12.10.2026): oben das Loch für die Klinke als Schnittlinie, darunter Zeichen, grosser Titel, Zeile in zweiter Sprache, kurzer Text */
   V.tuer = {
-    name: 'Türhänger', wofuer: 'Türhänger mit Loch für die Klinke: grosser Titel, Zeile in zweiter Sprache, kurzer Text',
+    name: 'Türhänger', wofuer: 'Türhänger mit Loch für die Klinke: großer Titel, Zeile in zweiter Sprache, kurzer Text',
     slots: ['ueber', 'titel*', 'unter', 'text', 'aktion'],
     bau(c, i, seite) {
       grund(c, seite); const r = rahmen(c);
@@ -467,7 +467,7 @@
   };
 
   V.kartengruss = {
-    name: 'Postkarten-Rückseite', wofuer: 'Rückseite einer Ansichtskarte: links Platz für den Gruss, rechts Markenfeld und Adresszeilen',
+    name: 'Postkarten-Rückseite', wofuer: 'Rückseite einer Ansichtskarte: links Platz für den Gruß, rechts Markenfeld und Adresszeilen',
     slots: ['titel', 'text'],
     bau(c, i, seite) {
       grund(c, seite, c.ton === 'dunkel' ? 'papier' : c.T.grund, null);
@@ -563,7 +563,7 @@
   /* Briefpapier A4 nach DIN 5008 Form B: Kopf mit Zeichen und Namen, Rücksendezeile über dem Anschriftfeld (45 mm), Falzmarken bei 105 und 210 mm,
      Lochmarke bei 148,5 mm, im Fuss beide Standorte in zwei Spalten */
   V.brief = {
-    name: 'Briefpapier', wofuer: 'Briefbogen A4 mit Kopf, Rücksendezeile, Falz- und Lochmarken und beiden Standorten im Fuss',
+    name: 'Briefpapier', wofuer: 'Briefbogen A4 mit Kopf, Rücksendezeile, Falz- und Lochmarken und beiden Standorten im Fuß',
     slots: ['text'],
     bau(c, i, seite) {
       grund(c, seite); const M = c.M, S = standorte(c), x0 = 25, rw = c.w - x0 - 20;

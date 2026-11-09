@@ -180,7 +180,7 @@
   let rechtsSchluessel = '', eTextVor = null, eTextT = 0;
   /* Gestalten als Seitenmenü (Entscheid 16.10.2026 für alle Werkzeuge): offen, sobald ein Element gewählt ist oder die Seite angetippt wird;
      zu mit ×, Esc oder Klick neben das Blatt. Die Grösse des Blatts bleibt dabei gleich, es rückt nur zur Seite. */
-  const ZU_KNOPF = '<button class="rechts__zu" data-tu="zu" aria-label="Schliessen (Esc)" title="Schliessen (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
+  const ZU_KNOPF = '<button class="rechts__zu" data-tu="zu" aria-label="Schließen (Esc)" title="Schließen (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
   function rechtsOffen(offen) {
     const st = document.querySelector('.studio'); if (!st || st.classList.contains('rechts-zu') === !offen) return;
     st.classList.toggle('rechts-zu', !offen);
@@ -212,7 +212,7 @@
     const masseZeile = (felder) => `<div class="gruppe"><label>Lage in mm</label>${masse(el, felder)}</div>`;
     if (el.typ === 'text') {
       h += `<div class="gruppe gestalten"><label>Schrift</label><div class="segment segment--schrift">${SCHRIFTEN.filter(([k]) => M.schriften[k]).map(([k, t]) => `<button data-rolle="${k}" class="${(el.rolle === 'kursiv' ? 'text' : el.rolle) === k ? 'an' : ''}" style="font-family:'DS-${k}'">${esc(M.schriften[k].familie || t)}</button>`).join('')}</div></div>
-        <div class="gruppe"><label>Grösse</label><div class="groesse"><button data-grschritt="-1" aria-label="Kleiner">−</button><input type="number" min="4" max="400" step="0.5" data-grpt="1" value="${r2(el.gr * PT)}"><span>pt</span><button data-grschritt="1" aria-label="Grösser">+</button></div>
+        <div class="gruppe"><label>Größe</label><div class="groesse"><button data-grschritt="-1" aria-label="Kleiner">−</button><input type="number" min="4" max="400" step="0.5" data-grpt="1" value="${r2(el.gr * PT)}"><span>pt</span><button data-grschritt="1" aria-label="Grösser">+</button></div>
           ${regler('gr', el.gr, .8, Math.max(40, el.gr), .05, r2(el.gr * PT) + ' pt')}</div>
         <div class="gruppe"><label>Textart</label><div class="segment">${[['normal', 'Normal'], ['kursiv', 'Betont'], ['versal', 'Versalien gesperrt']].map(([k, t]) => `<button data-textart="${k}" class="${textart(el) === k ? 'an' : ''}" ${k === 'kursiv' && !kursivGeht(el) ? 'disabled title="Kursiv gibt es in der Hausschrift nur für Instrument Sans"' : ''}>${t}</button>`).join('')}</div></div>
         <div class="gruppe"><label>Farbe</label>${farbKnoepfe(el.farbe, 'el')}</div>
@@ -224,7 +224,7 @@
         ${masseZeile([['x', 'Links'], ['y', 'Oben'], ['w', 'Breite']])}`;
     } else if (el.typ === 'bild') {
       const b = M.bildIndex[el.bild];
-      h += `<div class="gruppe"><label>Grösse in mm</label>${masse(el, [['w', 'Breite'], ['h', 'Höhe']])}<div class="knoepfe" style="margin-top:10px"><button data-tu="randlos">Randlos</button></div></div>
+      h += `<div class="gruppe"><label>Größe in mm</label>${masse(el, [['w', 'Breite'], ['h', 'Höhe']])}<div class="knoepfe" style="margin-top:10px"><button data-tu="randlos">Randlos</button></div></div>
         <div class="gruppe"><label>Ausschnitt</label>${regler('zoom', el.zoom || 1, 1, 3, .01, Math.round((el.zoom || 1) * 100) + ' %')}
           ${regler('fx', el.fx ?? .5, 0, 1, .01, 'links/rechts')}${regler('fy', el.fy ?? .5, 0, 1, .01, 'oben/unten')}
           <p class="klein">Oder doppelt auf das Foto klicken und den Ausschnitt mit der Maus schieben.</p></div>
@@ -239,13 +239,13 @@
     } else if (el.typ === 'linie' || el.typ === 'rahmen') {
       const senk = el.typ === 'linie' && el.h > el.w;
       h += `<div class="gruppe"><label>Stärke</label>${regler('staerke', el.staerke, .1, 2, .05, r2(el.staerke * PT * 10) / 10 + ' pt')}</div>
-        <div class="gruppe"><label>${el.typ === 'rahmen' ? 'Grösse in mm' : 'Länge in mm'}</label>${masse(el, el.typ === 'rahmen' ? [['w', 'Breite'], ['h', 'Höhe']] : senk ? [['h', 'Länge']] : [['w', 'Länge']])}</div>
+        <div class="gruppe"><label>${el.typ === 'rahmen' ? 'Größe in mm' : 'Länge in mm'}</label>${masse(el, el.typ === 'rahmen' ? [['w', 'Breite'], ['h', 'Höhe']] : senk ? [['h', 'Länge']] : [['w', 'Länge']])}</div>
         <div class="gruppe"><label>Farbe</label>${farbKnoepfe(el.farbe, 'el')}</div>
         <div class="gruppe"><label>Deckkraft</label>${regler('deck', el.deck ?? 1, .1, 1, .01, Math.round((el.deck ?? 1) * 100) + ' %')}
           ${el.typ === 'rahmen' ? `<label class="unter">Ecken</label>${regler('r', el.r || 0, 0, 20, .5, r2(el.r || 0) + ' mm')}` : ''}</div>
         ${masseZeile([['x', 'Links'], ['y', 'Oben']])}`;
     } else if (el.typ === 'zeichen') {
-      h += `<div class="gruppe"><label>Grösse in mm</label>${masse(el, [['w', 'Breite']])}</div>
+      h += `<div class="gruppe"><label>Größe in mm</label>${masse(el, [['w', 'Breite']])}</div>
         <div class="gruppe"><label>Farbe</label>${farbKnoepfe(el.farbe, 'el')}</div>
         <div class="gruppe"><label>Deckkraft</label>${regler('deck', el.deck ?? 1, .05, 1, .01, Math.round((el.deck ?? 1) * 100) + ' %')}</div>
         ${masseZeile([['x', 'Links'], ['y', 'Oben']])}`;
@@ -752,8 +752,8 @@
     const lader = $('#lader'), fl = $('#flaeche').getBoundingClientRect();
     Object.assign(lader.style, { left: fl.left + 'px', top: fl.top + 'px', width: fl.width + 'px', height: fl.height + 'px' });
     const ZEILEN = ['Den Auftrag lesen', 'Format und Aufbau wählen', 'Fotos der Website aussuchen', 'Texte im Ton der Praxis schreiben', 'Fakten mit den Unterlagen abgleichen', 'Nach den Regeln der Praxis setzen'];
-    $('#laderText').textContent = o.varianten ? 'Fünf Entwürfe entstehen' : 'Die Werkstatt entwirft';
-    if (o.varianten) ZEILEN.splice(1, 0, 'Fünf verschiedene Gestaltungen anlegen');
+    $('#laderText').textContent = o.varianten ? 'Passende Vorlagen werden gesucht' : 'Die Werkstatt entwirft';
+    if (o.varianten) ZEILEN.splice(1, 0, 'Passende Gestaltungen anlegen');
     let zi = 0; $('#laderZeile').textContent = ZEILEN[0]; lader.hidden = false;
     const zuhr = setInterval(() => { const z = $('#laderZeile'); z.style.opacity = 0; setTimeout(() => { zi = (zi + 1) % ZEILEN.length; z.textContent = ZEILEN[zi]; z.style.opacity = 1; }, 450); }, 3000);
     const basis = !o.auftrag && $('#auftragBasis').checked && ST.doc && !ST.doc.platzhalter ? { name: ST.doc.name, format: ST.doc.formatKey, seiten: ST.doc.seiten.map(s => s.quelle || { vorlage: 'frei', inhalt: ausSeiteInhalt(s) }) } : null;
@@ -815,7 +815,7 @@
     if (!p.length) { if (!fuer) melde('Alles druckbereit: keine offenen Punkte.'); return true; }
     const rot = p.some(x => x.stufe === 'rot');
     const a = await dialog(`<h2>${rot ? 'Vor dem Druck noch ansehen' : 'Hinweise zum Druck'}</h2><p class="leise">Ein Klick auf einen Punkt zeigt die Stelle.</p><ul>${p.map(x => `<li class="${x.stufe}" data-id="${x.id}" data-seite="${x.seite}">${esc(x.text)}</li>`).join('')}</ul>`,
-      fuer ? [{ t: 'Zurück zum Blatt', v: false }, { t: 'Trotzdem speichern', v: true, haupt: true }] : [{ t: 'Schliessen', v: false }]);
+      fuer ? [{ t: 'Zurück zum Blatt', v: false }, { t: 'Trotzdem speichern', v: true, haupt: true }] : [{ t: 'Schließen', v: false }]);
     if (a && a.springe) { ST.seite = a.seite; ST.sel = a.springe; zeichne(); return false; }
     return a;
   }

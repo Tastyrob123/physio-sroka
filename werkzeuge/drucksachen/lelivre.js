@@ -19,7 +19,7 @@
     ab: '<svg viewBox="0 0 24 24"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>',
     pfeil: '<svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>',
   };
-  const ZEICHEN_N = { gold: 'Gold', taupe: 'Taupe', tinte: 'Tinte', weiss: 'Weiss', nacht: 'Nacht', goldd: 'Gold dunkel', terroir: 'Le terroir', 'haute-cuisine': 'La haute cuisine', partage: 'Le partage',
+  const ZEICHEN_N = { gold: 'Gold', taupe: 'Taupe', tinte: 'Tinte', weiss: 'Weiß', nacht: 'Nacht', goldd: 'Gold dunkel', terroir: 'Le terroir', 'haute-cuisine': 'La haute cuisine', partage: 'Le partage',
     michelin: 'Guide Michelin', 'michelin-rond': 'Guide Michelin, rund', gaultmillau: 'GaultMillau', 'young-chef': 'Young Chef Award', monogramm: 'Monogramm', wortmarke: 'Wortmarke', flechtmuster: 'Flechtmuster', alle: 'Alle', papier: 'Papier' };
   const NAME = { zeichen: 'Zeichen', wortmarke: 'Wortmarke', name: 'Wortmarke', logo: 'Logo', quer: 'Logo quer', tapete: 'Tapete', zierde: 'Zierde «xx»', zeichnungen: 'Zeichnungen', ehre: 'Auszeichnungen', farben: 'Farben', schriften: 'Schriften', website: 'Original der Website' };
   /* Tapeten des Markenbuchs (nacht, papier, dunkel) → die zwei, die das Studio setzt (dunkel, hell), je eine */
@@ -81,7 +81,7 @@
   }
   function baueFach() {
     fach = document.createElement('aside'); fach.className = 'lf'; fach.hidden = true; fach.setAttribute('aria-label', 'Das Markenbuch');
-    fach.innerHTML = `<div class="lf__kopf"><span class="lf__z">${DS.zeichenSvg(DS.M, 'currentColor')}</span><div><b>Das Markenbuch</b><small>Klicken setzt ein, Ziehen legt ab</small></div><button class="rund rund--klein" data-lf="zu" aria-label="Fach schliessen">${IC.zu}</button></div>
+    fach.innerHTML = `<div class="lf__kopf"><span class="lf__z">${DS.zeichenSvg(DS.M, 'currentColor')}</span><div><b>Das Markenbuch</b><small>Klicken setzt ein, Ziehen legt ab</small></div><button class="rund rund--klein" data-lf="zu" aria-label="Fach schließen">${IC.zu}</button></div>
       <div class="segment segment--klein lf__reiter">${[['fotos', 'Fotos'], ['marke', 'Logo & Zeichen'], ['farben', 'Farben']].map(([k, t]) => `<button data-lfreiter="${k}">${t}</button>`).join('')}</div>
       <div class="lf__in" id="lfIn"></div>
       <div class="lf__fuss"><button class="kn knopf--voll glanz-kn lf__pruef" data-lf="pruefen"><span>Mit dem Markenbuch prüfen</span><i>${IC.pruef}</i></button><small>Die Prüfung nutzt die KI. Vorher fragt das Studio nach.</small></div>`;
@@ -200,7 +200,7 @@
     const sonder = [m.schwarz > .01 ? `Reines Schwarz auf ${pr(m.schwarz)} % der Fläche. Geschrieben wird in Tinte #0e0d0b.` : '', m.tuerkis > .01 ? `Türkis auf ${pr(m.tuerkis)} % der Fläche.` : '', m.rot > .02 ? `Schirmrot auf ${pr(m.rot)} % der Fläche, nur sparsam.` : ''].filter(Boolean);
     if (!platte) { platte = document.createElement('aside'); platte.className = 'lp'; $('.studio').appendChild(platte); platte.addEventListener('click', e => { const b = e.target.closest('[data-lp]'); if (!b) return; if (b.dataset.lp === 'zu') platte.hidden = true; if (b.dataset.lp === 'nochmal') pruefen(); }); }
     const zahl = { passt: 0, achten: 0, passt_nicht: 0 }; punkte.forEach(p => zahl[p.urteil] = (zahl[p.urteil] || 0) + 1);
-    platte.innerHTML = `<div class="lp__kopf"><div><p class="mono">Markenprüfung · Das Markenbuch${k.art ? ' · ' + esc(k.art) : ''}</p><h3>Ergebnis</h3></div><button class="rund rund--klein" data-lp="zu" aria-label="Schliessen">${IC.zu}</button></div>
+    platte.innerHTML = `<div class="lp__kopf"><div><p class="mono">Markenprüfung · Das Markenbuch${k.art ? ' · ' + esc(k.art) : ''}</p><h3>Ergebnis</h3></div><button class="rund rund--klein" data-lp="zu" aria-label="Schließen">${IC.zu}</button></div>
       ${j.ki_fehler ? `<p class="lp__hinweis">Die KI konnte nicht prüfen (${esc(j.ki_fehler)}). Die Farbmessung steht unten.</p>` : `<p class="lp__gesamt">${esc(k.gesamt || '')}</p>
       <div class="lp__zahlen">${['passt_nicht', 'achten', 'passt'].map(u => `<span class="lp__z lp__z--${u}"><b>${zahl[u] || 0}</b>${URTEIL[u]}</span>`).join('')}</div>
       <ol class="lp__punkte">${punkte.map((p, i) => `<li class="lp__p lp__p--${esc(p.urteil)}" style="--i:${i}"><span class="lp__m"><em>${esc(URTEIL[p.urteil] || p.urteil)}</em><small>${esc(BEREICH[p.bereich] || p.bereich)}</small></span><span><b>${esc(p.titel)}</b>${esc(p.text)}</span></li>`).join('')}</ol>

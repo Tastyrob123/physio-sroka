@@ -141,7 +141,7 @@ def sroka():
     V = dict(re.findall(r'--([a-z0-9-]+):(#[0-9a-fA-F]{6})', css[css.index(':root{'):css.index('}', css.index(':root{'))]))
     F = dict(navy=V['nacht'], nacht='#080706', blau=V['nacht2'], tinte=V['text'], papier=V['licht'], creme=V['licht2'], weiss='#f8f4ec',
              gold=V['gold'], taupe='#8a7348', messing='#6b5a38', tanne=V['nacht2'], kander=V['gold-hell'], laden=V['leise'])
-    N = dict(navy='Nacht', nacht='Tiefe Nacht', blau='Holz', tinte='Schrift', papier='Licht', creme='Sand', weiss='Weiss', gold='Gold',
+    N = dict(navy='Nacht', nacht='Tiefe Nacht', blau='Holz', tinte='Schrift', papier='Licht', creme='Sand', weiss='Weiß', gold='Gold',
              taupe='Gold dunkel', messing='Bronze', tanne='Holz', kander='Gold hell', laden='Leise')
 
     SD = os.path.join(SITE, 'schrift')
@@ -153,7 +153,7 @@ def sroka():
     SCHRIFTEN = {
         'titel': ('Cormorant Garamond', 'Cormorant-500.ttf', 'Titel, Cormorant Garamond 500 wie die Website; nie fett, nie kursiv'),
         'kapitale': ('Cormorant Garamond', 'Cormorant-500.ttf', 'Namen, ruhig gesetzt'),
-        'text': ('Manrope', 'Manrope-400.ttf', 'Fliesstext, wie auf der Website'),
+        'text': ('Manrope', 'Manrope-400.ttf', 'Fließtext, wie auf der Website'),
         'kursiv': ('Manrope', 'Manrope-500.ttf', 'Betonung; die Praxis setzt nie kursiv'),
         'mono': ('Manrope', 'Manrope-400.ttf', 'kleine Zeilen, leicht gesperrt, in normaler Schreibung wie auf der Website'),
     }

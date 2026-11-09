@@ -12,7 +12,11 @@
 
   /* ---------- Schritte der Führung ---------- */
   /* Physio Sroka: Wortlaut in der Du-Form (Sylvia nutzt die Werkstatt selbst), ohne KI. Filme je Schritt nur, wenn sie in hilfe/ liegen (FILME), sonst ohne. */
-  const FILME = window.DS_FILME || {};
+  /* 09.11.2026: hilfe/demo.webm (27 s, 1280 × 800, VP9) mit Playwright an der eigenen Werkstatt aufgenommen: Übersicht → «Visitenkarte» → Vorlage → Text ändern → PDF.
+     Filme je Schritt (hilfe/schritt-*.webm) gibt es noch nicht; ein Eintrag hier schaltet sie frei. */
+  window.DS_FILME = window.DS_FILME || { demo: true, kapitel: [
+    { t: 0, titel: 'Die Übersicht' }, { t: 6, titel: 'Passende Vorlagen' }, { t: 10, titel: 'Die Visitenkarte' }, { t: 16, titel: 'Text ändern' }, { t: 22, titel: 'PDF speichern' }] };
+  const FILME = window.DS_FILME;
   const SCHRITTE = [
     { ziel: '#btnNeu', film: 'schritt-neu', titel: 'Übersicht und neue Drucksache',
       text: 'Über «Übersicht» kommst du zur Startseite. Dort liegen alle deine Drucksachen zum Öffnen, Umbenennen, Kopieren oder als PDF, dazu alle Arten: Visitenkarte, Terminkarte, Übungsblatt, Aushang, Faltblatt, Briefpapier, Umschlag und die Karten für Bewertungen.' },
@@ -24,7 +28,7 @@
     { ziel: '#wirt', film: 'schritt-3', titel: 'Das Blatt',
       text: 'Hier liegt deine Drucksache. Einmal klicken wählt einen Teil aus, mit gedrückter Maus verschiebst du ihn, er rastet an Mitte und Kanten ein. Doppelklick auf einen Text, und du schreibst direkt hinein. Der dunkle Rand ist der Beschnitt: Was dort liegt, schneidet die Druckerei ab.' },
     { ziel: '#rechts', film: 'schritt-4', titel: 'Anpassen',
-      text: 'Rechts änderst du, was du ausgewählt hast: Schrift, Grösse, Farbe oder das Foto. Ist nichts ausgewählt, stellst du hier Format, Aufbau und Grund der ganzen Seite um. Es gibt nur die Farben und Schriften der Website, so bleibt alles im Stil.' },
+      text: 'Rechts änderst du, was du ausgewählt hast: Schrift, Größe, Farbe oder das Foto. Ist nichts ausgewählt, stellst du hier Format, Aufbau und Grund der ganzen Seite um. Es gibt nur die Farben und Schriften der Website, so bleibt alles im Stil.' },
     { ziel: '#werkzeug', film: 'schritt-5', titel: 'Etwas hinzufügen',
       text: 'Ein neuer Titel, ein Text, ein Foto, das Zeichen der Praxis oder eine Linie: ein Klick, und es liegt auf dem Blatt. Oben rechts in dieser Leiste wechselst du zwischen den Seiten.' },
     { ziel: '.reiter', film: 'schritt-6', titel: 'Vorlagen, Fotos und Ablage',
@@ -168,7 +172,7 @@
     kapitel = FILME.kapitel || [];
     const fmt = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
     schicht(`<div class="hk hk--video" role="dialog" aria-modal="true" aria-label="Demo-Video">
-      <div class="hk__kopf"><h2>So arbeitet die Werkstatt</h2><button class="hk__x" data-hk="los" aria-label="Schliessen"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <div class="hk__kopf"><h2>So arbeitet die Werkstatt</h2><button class="hk__x" data-hk="los" aria-label="Schließen"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
       <video src="hilfe/demo.webm" controls playsinline preload="metadata"></video>
       ${kapitel.length ? `<div class="hk__kapitel">${kapitel.map(k => `<button data-hk="kapitel" data-t="${k.t}"><b>${k.titel}</b><span>${fmt(k.t)}</span></button>`).join('')}</div>` : ''}
       <div class="hk__knoepfe hk__knoepfe--zeile"><button class="leicht" data-hk="fuehrung">Führung starten</button><button class="knopf" data-hk="los">Selbst ausprobieren${PFEIL}</button></div>
@@ -182,7 +186,7 @@
   /* ---------- Hilfe-Menü ---------- */
   function hilfeMenue() {
     schicht(`<div class="hk hk--menue" role="dialog" aria-modal="true" aria-label="Hilfe">
-      <div class="hk__kopf"><h2>Hilfe</h2><button class="hk__x" data-hk="los" aria-label="Schliessen"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <div class="hk__kopf"><h2>Hilfe</h2><button class="hk__x" data-hk="los" aria-label="Schließen"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
       ${FILME.demo ? `<button class="hk__zeile" data-hk="video"><span class="hk__ic">${PLAY}</span><span><b>Demo-Video ansehen</b><small>Eine Visitenkarte vom Öffnen bis zum PDF</small></span></button>` : ''}
       <button class="hk__zeile" data-hk="fuehrung"><span class="hk__ic"><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span><span><b>Führung in der Werkstatt</b><small>Zehn kurze Schritte, direkt an den Knöpfen</small></span></button>
       <h3>Auf der Tastatur</h3>

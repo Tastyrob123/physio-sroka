@@ -82,7 +82,7 @@ ARTEN = [
          vorlagen=[['aushang', 'hell'], ['aushang', 'dunkel'], ['aushang', 'creme'], ['buehne', 'dunkel']], beispiel='Ein Aushang mit den Öffnungszeiten'),
     dict(key='faltblatt', name='Faltblatt', satz='Sechs Seiten DIN lang: Behandlung, Schwerpunkte, Kontakt', format='dlh', formate=['dlh'],
          vorlagen=[['buehne', 'dunkel'], ['fenster', 'creme'], ['deckel', 'dunkel']], beispiel='Ein Faltblatt über die Praxis', rueck='kontakt', innen=FALT_INNEN),
-    dict(key='briefpapier', name='Briefpapier', satz='A4 nach DIN 5008, beide Standorte im Fuss', format='a4h', formate=['a4h'],
+    dict(key='briefpapier', name='Briefpapier', satz='A4 nach DIN 5008, beide Standorte im Fuß', format='a4h', formate=['a4h'],
          vorlagen=[['brief', 'hell'], ['brief', 'creme']], beispiel='Briefpapier der Praxis'),
     dict(key='umschlag', name='Umschlag', satz='DL für Briefe, mit Absender und Zeichen', format='dl', formate=['dl'],
          vorlagen=[['umschlag', 'hell'], ['umschlag', 'creme'], ['umschlag', 'dunkel']], beispiel='Ein Umschlag zum Briefpapier'),

@@ -14,7 +14,7 @@
     a3h: { name: 'A3 hoch', b: 297, h: 420, art: 'Plakat' },
     dlh: { name: 'DL hoch', b: 99, h: 210, art: 'Faltblatt schmal, Programm, Flyer lang' },
     dlq: { name: 'DL quer', b: 210, h: 99, art: 'Gutschein, Ticket' },
-    q148: { name: 'Quadrat', b: 148, h: 148, art: 'Grusskarte, Einladung' },
+    q148: { name: 'Quadrat', b: 148, h: 148, art: 'Grußkarte, Einladung' },
     insta: { name: 'Instagram 4:5', b: 108, h: 135, art: 'Beitrag für Instagram', digital: true, px: [1080, 1350] },
     tuer: { name: 'Türhänger', b: 90, h: 230, art: 'Bitte nicht stören, Behandlung läuft' },
     a7q: { name: 'A7 quer', b: 105, h: 74, art: 'Terminkarte, Namenskarte, kleine Hinweiskarte' },
@@ -89,7 +89,7 @@
   DS.livreDateien = M => (M.livre ? M.livre.dateien : []).filter(d => ['logo', 'quer', 'wortmarke', 'name'].includes(d.k) && d.var).flatMap(d => {
     const vb0 = (d.vb || '0 0 4 3').split(' ').map(Number), N = { logo: 'Logo', quer: 'Logo quer', wortmarke: 'Wortmarke', name: 'Wortmarke' }[d.k];
     return d.var.map(v => { const vb = v.px ? [0, 0, v.px[0], v.px[1]] : vb0, svg0 = v.dateien.find(x => x.endsWith('.svg')), png = v.dateien.find(x => x.endsWith('.png')) || svg0, svg = svg0 || png;   // manche Fassungen gibt es nur als SVG
-      return { key: 'livre-' + png.replace(/\.(png|svg)$/, ''), alt: `${N} (${{ gold: 'Gold', goldd: 'Gold dunkel', nacht: 'Nacht', tinte: 'Tinte', weiss: 'Weiss', hell: 'für helle Flächen', dunkel: 'für dunkle Flächen', taupe: 'Taupe' }[v.k] || v.k})`,
+      return { key: 'livre-' + png.replace(/\.(png|svg)$/, ''), alt: `${N} (${{ gold: 'Gold', goldd: 'Gold dunkel', nacht: 'Nacht', tinte: 'Tinte', weiss: 'Weiß', hell: 'für helle Flächen', dunkel: 'für dunkle Flächen', taupe: 'Taupe' }[v.k] || v.k})`,
         w: vb[2], h: vb[3], url: DS.livreUrl('dateien/' + png), miniUrl: DS.livreUrl('dateien/' + svg), datei: true, art: d.k, grund: v.grund, farbe: v.farbe }; });
   });
   DS.ladeLivre = async function () {

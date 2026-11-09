@@ -8,35 +8,35 @@
 <link rel="icon" href="../../favicon.png">
 <!-- Eigene Prüfseite der Drucksachen, Praxis Sylvia Sroka (umgekleidet aus der Vorlage, Werkzeug-Master R23). Läuft ohne das Werkzeug: prüft Browser, Dateien der Praxis,
      die Ablage im Browser, zeigt die mitgeschriebenen Skriptfehler, erklärt jede Meldung (Lexikon) und bietet Reparaturen mit Doppelklick. -->
+<link rel="stylesheet" href="../../schrift/schrift.css">
 <style>
-@font-face{font-family:"LB";src:url(haeuser/sroka/schriften/Cormorant-500.ttf)}
 :root{--marine:#0e0d0b;--nacht:#080706;--papier:#f3eee5;--creme:#e9e1d4;--gold:#b1996a;--gold2:#6b5a38;--tinte:#0e0d0b;--rot:#8a7348;--gruen:#3b362d}
-*{box-sizing:border-box}body{margin:0;background:var(--papier);color:var(--tinte);font:15px/1.55 "Instrument Sans",system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--papier);color:var(--tinte);font:15px/1.55 "Manrope",system-ui,-apple-system,sans-serif}
 header{background:linear-gradient(rgba(11,10,9,.5),rgba(11,10,9,.5)),url(haeuser/sroka/tapete-ui-dunkel.webp) 50% 0/360px auto,var(--nacht);color:var(--papier);padding:36px 24px 30px}
 header .in,main{max-width:980px;margin:0 auto}header small{letter-spacing:.22em;text-transform:none;color:var(--gold);font-size:13px}
-h1{font:400 34px/1.15 "LB",Georgia,serif;margin:8px 0 6px}h1 em{color:var(--gold)}header p{margin:0;opacity:.85;max-width:620px}
-header a{color:var(--gold)}main{padding:24px 16px 60px}h2{font:400 21px "LB",Georgia,serif;margin:34px 0 10px}
+h1{font:500 34px/1.15 "Cormorant Garamond",Georgia,serif;margin:8px 0 6px}h1 em{color:var(--gold)}header p{margin:0;opacity:.85;max-width:620px}
+header a{color:var(--gold)}main{padding:24px 16px 60px}h2{font:500 21px "Cormorant Garamond",Georgia,serif;margin:34px 0 10px}
 .platte{background:#faf8f3;border-radius:14px;box-shadow:0 1px 0 rgba(18,17,14,.06),0 10px 30px -18px rgba(18,17,14,.35);padding:6px 18px}
 .z{display:grid;grid-template-columns:22px 1fr auto;gap:10px;padding:11px 0;border-bottom:1px solid rgba(18,17,14,.08);align-items:start}.z:last-child{border:0}
 .z i{width:12px;height:12px;border-radius:50%;margin-top:5px;background:#c5c0b6}.z.ok i{background:var(--gruen)}.z.gelb i{background:#917d55}.z.rot i{background:var(--rot)}
-.z b{font-weight:500}.z span{color:#746c5b;font-size:13.5px}.z code{font:13px "DM Mono",ui-monospace,monospace;background:var(--creme);padding:1px 5px;border-radius:4px}
+.z b{font-weight:500}.z span{color:#746c5b;font-size:13.5px}.z code{font:13px ui-monospace,monospace;background:var(--creme);padding:1px 5px;border-radius:4px}
 .lex dt{font-weight:500;margin-top:14px}.lex dd{margin:4px 0 0;color:#26231c}.lex dd b{color:var(--tinte);font-weight:500}
 button{font:inherit;border:0;border-radius:999px;padding:9px 16px;background:var(--marine);color:var(--papier);cursor:pointer}button.scharf{background:var(--rot)}
-.fehler{font:13px/1.5 "DM Mono",ui-monospace,monospace;white-space:pre-wrap;word-break:break-word;margin:10px 0}
+.fehler{font:13px/1.5 ui-monospace,monospace;white-space:pre-wrap;word-break:break-word;margin:10px 0}
 .rep{display:flex;flex-wrap:wrap;gap:10px;padding:14px 0}.leise{color:#746c5b;font-size:13.5px}
 @media (max-width:600px){h1{font-size:27px}.z{grid-template-columns:18px 1fr}.z>:last-child{grid-column:2}}
 </style>
 </head>
 <body>
 <header><div class="in"><small>Sroka · Drucksachen</small><h1>Ist alles <em>in Ordnung?</em></h1>
-<p>Diese Seite prüft Drucksachen, ohne sie zu öffnen. Sie liest nur, ausser du löst unten eine Reparatur mit Doppelklick aus. <a href="./">Zu Drucksachen</a></p></div></header>
+<p>Diese Seite prüft Drucksachen, ohne sie zu öffnen. Sie liest nur, außer du löst unten eine Reparatur mit Doppelklick aus. <a href="./">Zu Drucksachen</a></p></div></header>
 <main>
 <h2>Prüfungen</h2><div class="platte" id="liste"><div class="z"><i></i><div><b>Prüfe …</b></div></div></div>
 <h2>Mitgeschriebene Fehler</h2><div class="platte"><div id="fehler" class="fehler leise">Keine.</div></div>
 <h2>Reparaturen</h2><div class="platte"><div class="rep">
   <button data-rep="sichern">Alle Drucksachen als Datei sichern</button>
   <button data-rep="fehler" class="scharf">Fehlerliste leeren</button>
-  <button data-rep="begruessung">Begrüssung und Führung wieder zeigen</button>
+  <button data-rep="begruessung">Begrüßung und Führung wieder zeigen</button>
 </div><p class="leise" id="repText">Reparaturen mit Doppelklick. «Sichern» legt eine Datei mit allen Drucksachen dieses Browsers auf den Rechner; in Drucksachen unter «Ablage → Arbeitsdatei öffnen» liest sie alle wieder ein (auch in einem anderen Browser).</p></div>
 <h2>Lexikon der Meldungen</h2><div class="platte"><dl class="lex" id="lexikon"></dl></div>
 </main>
@@ -52,7 +52,7 @@ button{font:inherit;border:0;border-radius:999px;padding:9px 16px;background:var
   (async () => {
     // Browser
     try { localStorage.setItem('ds-probe', '1'); localStorage.removeItem('ds-probe'); z('Speicher im Browser', 'ok', 'Drucksachen lassen sich ablegen.'); }
-    catch (e) { z('Speicher im Browser', 'rot', 'Der Browser lässt keine Ablage zu (privates Fenster oder gesperrte Website-Daten). Drucksachen gehen beim Schliessen verloren.'); }
+    catch (e) { z('Speicher im Browser', 'rot', 'Der Browser lässt keine Ablage zu (privates Fenster oder gesperrte Website-Daten). Drucksachen gehen beim Schließen verloren.'); }
     try { await new Promise((ok, nein) => { const r = indexedDB.open('ds-' + HAUS + '-fotos', 1); r.onupgradeneeded = () => r.result.createObjectStore('fotos', { keyPath: 'key' }); r.onsuccess = () => { const n = r.result.transaction('fotos').objectStore('fotos').count(); n.onsuccess = () => { z('Eigene Fotos', 'ok', n.result + ' eigene Fotos in diesem Browser.'); r.result.close(); ok(); }; n.onerror = nein; }; r.onerror = () => nein(r.error); }); }
     catch (e) { z('Eigene Fotos', 'gelb', 'Eigene Fotos lassen sich in diesem Browser nicht ablegen: ' + (e && e.message || e)); }
     const cv = document.createElement('canvas'); cv.width = cv.height = 4; z('Bilder rechnen (PDF, PNG)', cv.getContext('2d') && cv.toBlob ? 'ok' : 'rot', cv.toBlob ? 'Der Browser kann Fotos und Tapete für das PDF rechnen.' : 'Der Browser kann keine Bilder rechnen, PDF und PNG gehen nicht.');
@@ -73,11 +73,11 @@ button{font:inherit;border:0;border-radius:999px;padding:9px 16px;background:var
       z('Schriften fürs PDF', fehlt.length ? 'rot' : 'ok', fehlt.length ? 'Es fehlen: ' + fehlt.join(', ') : (tt.length ? tt.length + ' Schriftdateien erreichbar, sie werden ins PDF eingebettet.' : 'Schriften stehen in marke.json.'));
     }
     try { const dr = await hol(B + 'druck.json'), k = Object.keys(dr); let ok = 0; for (const x of k.slice(0, 3)) { try { await hol(B + 'druck/' + x + '.jpg', 'kopf'); ok++; } catch (e) { } }
-      z('Druckfassungen der Fotos', ok === Math.min(3, k.length) ? 'ok' : 'gelb', !k.length ? 'Gedruckt wird jedes Foto in der grössten Fassung der eigenen Kopie; die Druckprüfung nennt die Auflösung je Format.' : ok ? `${k.length} Fotos haben eine Fassung für 300 dpi.` : 'Die Druckfassungen sind nicht erreichbar. PDFs entstehen mit den Fotos der Website, die Druckprüfung nennt dann die tiefere Auflösung.'); }
+      z('Druckfassungen der Fotos', ok === Math.min(3, k.length) ? 'ok' : 'gelb', !k.length ? 'Gedruckt wird jedes Foto in der größten Fassung der eigenen Kopie; die Druckprüfung nennt die Auflösung je Format.' : ok ? `${k.length} Fotos haben eine Fassung für 300 dpi.` : 'Die Druckfassungen sind nicht erreichbar. PDFs entstehen mit den Fotos der Website, die Druckprüfung nennt dann die tiefere Auflösung.'); }
     catch (e) { z('Druckfassungen der Fotos', 'gelb', 'druck.json fehlt: PDFs nehmen die Fotos der Website.'); }
     // Praxis Sylvia Sroka: kein Markenbuch und kein KI-Dienst neben den Drucksachen (statische Website), deshalb keine Abfrage (sonst 404)
     z('Fotos', 'ok', 'Drucksachen nimmt ihre eigene Kopie der Fotos der Website (kein Markenbuch daneben).');
-    z('Entwürfe («Fünf Entwürfe»)', 'ok', 'Die Entwürfe entstehen im Browser aus den Vorlagen, ohne KI-Dienst. Vorlagen, Editor und PDF gehen ohne ihn.');
+    z('Entwürfe («Passende Vorlagen»)', 'ok', 'Die Entwürfe entstehen im Browser aus den Vorlagen, ohne KI-Dienst. Vorlagen, Editor und PDF gehen ohne ihn.');
     // Fehler
     let f = []; try { f = JSON.parse(localStorage.getItem('sroka-drucksachen-fehler') || '[]'); } catch (e) { }
     $('#fehler').textContent = f.length ? f.map(x => new Date(x.z).toLocaleString('de-CH') + '  ' + x.t).join('\n') : 'Keine.';
@@ -85,10 +85,10 @@ button{font:inherit;border:0;border-radius:999px;padding:9px 16px;background:var
   })();
   // Lexikon: Sehen · Grund · Tun
   const LEX = [
-    ['Der Browser-Speicher ist voll.', 'Ein Browser legt je Website rund 5 MB ab. Grosse Drucksachen mit vielen Seiten füllen ihn.', 'Ältere Drucksachen in Meine Drucksachen löschen oder unten «Alle Drucksachen als Datei sichern».'],
+    ['Der Browser-Speicher ist voll.', 'Ein Browser legt je Website rund 5 MB ab. Große Drucksachen mit vielen Seiten füllen ihn.', 'Ältere Drucksachen in Meine Drucksachen löschen oder unten «Alle Drucksachen als Datei sichern».'],
     ['KONFLIKT · Diese Drucksache wurde in einem anderen Fenster geändert.', 'Dieselbe Drucksache war in zwei Fenstern offen, im anderen wurde zuerst gespeichert.', 'Nichts ist verloren: Deine Fassung steht als Kopie «(zweites Fenster)» in Meine Drucksachen. Die passende behalten, die andere löschen.'],
-    ['KI-FREIGABE · Die KI ist für dieses Haus noch nicht freigeschaltet.', 'Am Online-Projekt ist kein Schlüssel für die KI hinterlegt (das gibt nur Robert frei).', 'Mit einer Vorlage weiterarbeiten. Für «Fünf Entwürfe» Tasty Studios melden.'],
-    ['KI-Guthaben aufgebraucht.', 'Das Guthaben für die KI ist leer.', 'Mit einer Vorlage geht es ohne KI weiter. Für «Fünf Entwürfe» Tasty Studios melden.'],
+    ['KI-FREIGABE · Die KI ist für dieses Haus noch nicht freigeschaltet.', 'Am Online-Projekt ist kein Schlüssel für die KI hinterlegt (das gibt nur Robert frei).', 'Mit einer Vorlage weiterarbeiten. Für Entwürfe mit KI Tasty Studios melden.'],
+    ['KI-Guthaben aufgebraucht.', 'Das Guthaben für die KI ist leer.', 'Mit einer Vorlage geht es ohne KI weiter. Für Entwürfe mit KI Tasty Studios melden.'],
     ['HERKUNFT · Anfragen nur von der Seite von Drucksachen.', 'Eine fremde Seite wollte die KI der Praxis benutzen.', 'Nichts. Wer Drucksachen normal öffnet, sieht diese Meldung nie.'],
     ['GRENZE · Zu viele Entwürfe in kurzer Zeit.', 'Höchstens 40 Entwürfe je Stunde und Rechner, damit niemand das Guthaben leert.', 'Eine Stunde warten oder mit einer Vorlage weiterarbeiten.'],
     ['GROESSE · Anfrage zu gross.', 'Ein Auftrag mit sehr viel Text (über 60 KB).', 'Kürzer beschreiben.'],
@@ -96,8 +96,8 @@ button{font:inherit;border:0;border-radius:999px;padding:9px 16px;background:var
     ['Hochladen hat nicht geklappt: Dieses Bildformat kann der Browser nicht lesen.', 'Die Datei ist kein Bild oder in einem Format, das der Browser nicht kennt.', 'Als JPG oder PNG speichern und noch einmal hochladen.'],
     ['Diese Zeichen fehlen in der Hausschrift und wurden weggelassen.', 'Emoji oder Sonderzeichen gibt es in den Schriften der Praxis nicht.', 'Im Text ersetzen oder weglassen, das PDF zeigt sie nicht.'],
     ['Druckprüfung: Platzhalter in [Klammern].', 'Die Vorlage lässt Stellen offen, die die Praxis pro Fall einträgt (Name, Datum, Code).', 'Doppelklick auf den Text und eintragen.'],
-    ['Druckprüfung: Foto mit wenig Auflösung (dpi).', 'Das Foto ist für die Grösse auf dem Blatt zu klein.', 'Kleiner setzen, ein grösseres Foto wählen oder ein kleineres Format nehmen.'],
-    ['Druckprüfung: Text zu nah am Rand oder ausserhalb.', 'Die Druckerei schneidet am Rand bis 3 mm ungenau.', 'Text mindestens 4 mm vom Rand weg schieben oder kürzen.'],
+    ['Druckprüfung: Foto mit wenig Auflösung (dpi).', 'Das Foto ist für die Größe auf dem Blatt zu klein.', 'Kleiner setzen, ein größeres Foto wählen oder ein kleineres Format nehmen.'],
+    ['Druckprüfung: Text zu nah am Rand oder außerhalb.', 'Die Druckerei schneidet am Rand bis 3 mm ungenau.', 'Text mindestens 4 mm vom Rand weg schieben oder kürzen.'],
     ['Drucksachen startet nicht.', 'Die Dateien der Praxis kamen nicht an (kein Internet, Seite gerade neu ausgeliefert).', 'Neu laden. Bleibt es, diese Prüfseite öffnen und die roten Punkte an Tasty Studios melden.'],
   ];
   $('#lexikon').innerHTML = LEX.map(([s, g, t]) => `<dt>${esc(s)}</dt><dd><b>Grund:</b> ${esc(g)}<br><b>Tun:</b> ${esc(t)}</dd>`).join('');
@@ -105,7 +105,7 @@ button{font:inherit;border:0;border-radius:999px;padding:9px 16px;background:var
   document.addEventListener('dblclick', e => {
     const b = e.target.closest('[data-rep]'); if (!b) return; const r = b.dataset.rep, txt = $('#repText');
     if (r === 'fehler') { try { localStorage.removeItem('sroka-drucksachen-fehler'); } catch (x) { } $('#fehler').textContent = 'Keine.'; txt.textContent = 'Fehlerliste geleert.'; }
-    if (r === 'begruessung') { try { localStorage.removeItem('ds-' + HAUS + '-willkommen'); localStorage.removeItem('ds-' + HAUS + '-rundgang'); } catch (x) { } txt.textContent = 'Beim nächsten Öffnen zeigt Drucksachen die Begrüssung und die Führung.'; }
+    if (r === 'begruessung') { try { localStorage.removeItem('ds-' + HAUS + '-willkommen'); localStorage.removeItem('ds-' + HAUS + '-rundgang'); } catch (x) { } txt.textContent = 'Beim nächsten Öffnen zeigt Drucksachen die Begrüßung und die Führung.'; }
     if (r === 'sichern') { const roh = localStorage.getItem('ds-' + HAUS + '-docs') || '{}'; const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([roh], { type: 'application/json' })); a.download = 'sroka-alle-drucksachen-' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); txt.textContent = 'Datei angelegt.'; }
   });
   document.addEventListener('click', e => { if (e.target.closest('[data-rep]')) $('#repText').textContent = 'Zum Ausführen doppelt klicken.'; });

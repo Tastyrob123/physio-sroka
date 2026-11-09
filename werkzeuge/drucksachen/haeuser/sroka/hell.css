@@ -5,7 +5,7 @@
    nach studio.css und ms-bureau.css; entfernen = vorheriger Stand (Raum Marine). Bühne und Maison-Knopf setzt haeuser/sroka/buehne.js. */
 :root{
   --raum:#f4eee5;
-  --platte:linear-gradient(180deg,#fdfcfb,#f9f6f1 60%,#f5f0e7);
+  --platte:linear-gradient(180deg,#fdfcfb,#f8f4ec 60%,#f5f0e7);
   --platte-s:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(139,123,92,.22),0 1px 0 rgba(49,45,37,.14),0 28px 50px -34px rgba(18,17,14,.38),0 10px 22px -16px rgba(18,17,14,.2);
   --mb-platte:var(--platte);--mb-platte-s:var(--platte-s);
   --blau-k:radial-gradient(120% 90% at 50% 0%,rgba(205,189,156,.26),transparent 58%),linear-gradient(165deg,#25221c 0%,#1a1813 46%,#080706 100%);
@@ -53,7 +53,7 @@ body{background:var(--raum)}
 
 /* Übersicht: Begrüssung mit Feld */
 .ms-gruss.ms-bue{margin-bottom:50px}
-.ms-gruss.ms-bue .ms-feld{width:min(820px,100%);max-width:72%;margin-top:28px;box-shadow:0 0 0 1px rgba(185,166,128,.5),0 20px 34px -18px rgba(0,0,0,.7)}
+.ms-gruss.ms-bue .ms-feld{width:min(820px,100%);max-width:100%;margin-top:28px;box-shadow:0 0 0 1px rgba(185,166,128,.5),0 20px 34px -18px rgba(0,0,0,.7)}
 .ms-gruss.ms-bue .ms-lnk--alle{margin-top:14px;color:var(--goldhell)}
 .ms-gruss.ms-bue .ms-lnk--alle:hover{color:#fff}
 

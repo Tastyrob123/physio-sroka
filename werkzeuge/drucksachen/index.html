@@ -26,13 +26,13 @@
 <script>if(!/[?&](demo|hilfe)/.test(location.search))document.documentElement.classList.add('start-gleich')</script>
 <script>/* Rückfall, falls die Werkstatt nicht startet: die Startseite zeigt sich spätestens nach 5 s (start.js setzt «bereit» sonst selbst, sobald die Fotos da sind) */
 addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=document.getElementById('start');if(s)s.classList.add('bereit')},5000)});</script>
-<link rel="stylesheet" href="lib/auswahl.css?v=36-gv1">
-<link rel="stylesheet" href="studio.css?v=63-gv1">
+<link rel="stylesheet" href="lib/auswahl.css?v=36-gv1-s0911">
+<link rel="stylesheet" href="studio.css?v=63-gv1-s0911">
 <link rel="stylesheet" href="ms-bureau.css?v=6-gv1">
 <script src="../rahmen/kleid/sroka.js?v=1"></script>
-<link rel="stylesheet" href="haeuser/sroka/hell.css?v=1"><link rel="stylesheet" href="haeuser/sroka/feder.css?v=1">
+<link rel="stylesheet" href="haeuser/sroka/hell.css?v=2"><link rel="stylesheet" href="haeuser/sroka/feder.css?v=1">
 <script src="haeuser/sroka/buehne.js?v=1" defer></script><script src="haeuser/sroka/feder.js?v=1" defer></script>
-<link rel="stylesheet" href="../rahmen/grund.css?v=1"><link rel="stylesheet" href="../rahmen/rahmen-buehne.css?v=1"><link rel="stylesheet" href="../rahmen/kleid/sroka.css?v=1"><link rel="stylesheet" href="haeuser/sroka/oberflaeche.css?v=1">
+<link rel="stylesheet" href="../rahmen/grund.css?v=1"><link rel="stylesheet" href="../rahmen/rahmen-buehne.css?v=1"><link rel="stylesheet" href="../rahmen/kleid/sroka.css?v=1"><link rel="stylesheet" href="haeuser/sroka/oberflaeche.css?v=2">
 <script src="../rahmen/oberflaeche.js?v=1" defer></script><script src="haeuser/sroka/oberflaeche.js?v=1" defer></script>
 </head>
 <body>
@@ -84,7 +84,7 @@ addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=docum
       <h3>Zum Beispiel</h3>
       <div class="ideen" id="ideen"></div>
       <details class="dna">
-        <summary>Was die Werkstatt über die Praxis weiss</summary>
+        <summary>Was die Werkstatt über die Praxis weiß</summary>
         <div id="dna"></div>
       </details>
     </section>
@@ -146,7 +146,7 @@ addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=docum
       <i class="insel__trenn"></i>
       <label class="schalter"><input type="checkbox" id="zeigeHilfen" checked><b></b><span>Schnittkante</span></label>
       <i class="insel__trenn"></i>
-      <button class="rund rund--klein" id="zoomAus" aria-label="Kleiner"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button><span id="zoomWert">100 %</span><button class="rund rund--klein" id="zoomEin" aria-label="Grösser"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
+      <button class="rund rund--klein" id="zoomAus" aria-label="Kleiner"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button><span id="zoomWert">100 %</span><button class="rund rund--klein" id="zoomEin" aria-label="Größer"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
     </div></div>
   </section>
 
@@ -261,17 +261,17 @@ addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=docum
 <script src="lib/pdf-lib.min.js"></script>
 <script src="lib/fontkit.umd.min.js"></script>
 <script src="lib/auswahl.js?v=35-gv1"></script>
-<script src="satz.js?v=42-gv1"></script>
+<script src="satz.js?v=42-gv1-s0911"></script>
 <script src="eigene.js?v=36-gv1"></script>
-<script src="vorlagen.js?v=38-gv1-sp2810"></script>
-<script src="druck.js?v=40-gv1"></script>
-<script src="studio.js?v=55-gv1-sp2810"></script>
-<script src="instagram.js?v=37-gv1"></script>
-<script src="lelivre.js?v=c1-gv1"></script>
+<script src="vorlagen.js?v=38-gv1-s0911"></script>
+<script src="druck.js?v=40-gv1-s0911"></script>
+<script src="studio.js?v=55-gv1-s0911"></script>
+<script src="instagram.js?v=37-gv1-s0911"></script>
+<script src="lelivre.js?v=c1-gv1-s0911"></script>
 <script src="katalog.js?v=35-gv1"></script>
 <script src="siegel.js?v=1-gv1"></script>
-<script src="start.js?v=61-gv1"></script>
-<script src="fuehrung.js?v=35-gv1-s12"></script>
+<script src="start.js?v=61-gv1-s0911"></script>
+<script src="fuehrung.js?v=35-gv1-s13"></script>
 <script>/* Handy (R07, Prüfung 16.10.2026): die Seitenleiste mit den Bereichen war unter 900 px ganz weg. Der Knopf «Bereiche» klappt sie als Fach auf,
    nach der Wahl schliesst sie sich; Escape und Tippen daneben schliessen auch. */
 (function(){var k=document.getElementById('msBereiche'),s=document.getElementById('start');if(!k||!s)return;

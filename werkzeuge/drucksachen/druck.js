@@ -234,18 +234,18 @@
         if ((el.typ === 'bild' || el.typ === 'flaeche') && !digital) {
           const zuKurz = (a, b) => a > -B + .05 && a < .6 && b > 0;   // berührt den Rand, reicht aber nicht in den Beschnitt
           if (zuKurz(el.x, el.w) || zuKurz(el.y, h) || zuKurz(f.b - (el.x + el.w), el.w) || zuKurz(f.h - (el.y + h), h))
-            out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}${kurz} endet am Rand, ohne 3 mm in den Beschnitt zu reichen (weisser Blitzer möglich)` });
+            out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}${kurz} endet am Rand, ohne 3 mm in den Beschnitt zu reichen (weißer Blitzer möglich)` });
         }
         if (el.typ === 'bild') {
           const b = M.bildIndex[el.bild];
           if (!b) { out.push({ stufe: 'rot', id: el.id, seite: i, text: `${seite}Foto fehlt` }); continue; }
           const px = b.druck || b, a = DS.ausschnitt(el, px.w, px.h), dpi = (px.w / a.bw) * 25.4;
           const plakat = Math.min(f.b, f.h) >= 297;   // ab A3: Plakat, wird aus Abstand gesehen, 150 dpi genügen (so sagt es der gelbe Hinweis selbst)
-          if (dpi < 150) out.push({ stufe: 'rot', id: el.id, seite: i, text: `${seite}Foto «${b.key}» hat im Druck nur ${Math.round(dpi)} dpi und wird unscharf (kleiner ziehen oder weniger vergrössern)` });
+          if (dpi < 150) out.push({ stufe: 'rot', id: el.id, seite: i, text: `${seite}Foto «${b.key}» hat im Druck nur ${Math.round(dpi)} dpi und wird unscharf (kleiner ziehen oder weniger vergrößern)` });
           else if (dpi < 220 && !digital && !plakat) out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}Foto «${b.key}» hat ${Math.round(dpi)} dpi: für Plakate aus Abstand gut, für Karten aus der Nähe knapp` });
         }
         if (el.x > f.b + B || el.y > f.h + B || el.x + el.w < -B || el.y + h < -B)
-          out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}${kurz} liegt ausserhalb der Seite` });
+          out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}${kurz} liegt außerhalb der Seite` });
       }
     });
     return out;

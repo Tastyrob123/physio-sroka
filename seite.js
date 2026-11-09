@@ -122,9 +122,61 @@
     k.addEventListener('click',function(){
       var t=k.closest('.ausbildung'), offen=!t.classList.contains('offen');
       t.classList.toggle('offen',offen); k.setAttribute('aria-expanded',offen);
-      k.firstChild.nodeValue=offen?'Weniger ':'Mehr erfahren ';
+      k.firstChild.nodeValue=offen?W.weniger:W.mehr;
       if(offen) requestAnimationFrame(function(){ t.classList.add('offen'); });
     });
+  });
+
+  // Texte, die erst beim Bedienen erscheinen, in der Sprache der Seite
+  var SP=(document.documentElement.lang||'de').slice(0,2);
+  var W={de:{bereit:'Bereit',minute:'eine Minute',start:'Eine Minute mitatmen ',halt:'Anhalten ',ein:'Einatmen',aus:'Ausatmen',fertig:'Schön.',gut:'Gut gemacht',noch:'noch ',sek:' Sekunden',mehr:'Mehr erfahren ',weniger:'Weniger '},
+         en:{bereit:'Ready',minute:'one minute',start:'Breathe along for one minute ',halt:'Stop ',ein:'Breathe in',aus:'Breathe out',fertig:'Lovely.',gut:'Well done',noch:'',sek:' seconds left',mehr:'Learn more ',weniger:'Less '},
+         es:{bereit:'Listo',minute:'un minuto',start:'Respirar un minuto ',halt:'Parar ',ein:'Inspire',aus:'Espire',fertig:'Muy bien.',gut:'Bien hecho',noch:'quedan ',sek:' segundos',mehr:'Saber más ',weniger:'Menos '}}[SP]||null;
+  if(!W) W={bereit:'Bereit',minute:'eine Minute',start:'Eine Minute mitatmen ',halt:'Anhalten ',ein:'Einatmen',aus:'Ausatmen',fertig:'Schön.',gut:'Gut gemacht',noch:'noch ',sek:' Sekunden',mehr:'Mehr erfahren ',weniger:'Weniger '};
+
+  // Ein Moment Ruhe: vier Sekunden ein, sechs aus, eine Minute lang
+  document.querySelectorAll('.atem-feld').forEach(function(feld){
+    var kugel=feld.querySelector('.atem-kugel'), wort=feld.querySelector('.atem-wort'), zeit=feld.querySelector('.atem-zeit');
+    var knopf=feld.parentNode.parentNode.querySelector('.atem-start'), lauf=null, ende=0;
+    function stop(){ clearTimeout(lauf); lauf=null; kugel.className='atem-kugel'; wort.textContent=W.bereit; zeit.textContent=W.minute; knopf.firstChild.nodeValue=W.start; }
+    function ein(){ if(Date.now()>ende){ stop(); wort.textContent=W.fertig; zeit.textContent=W.gut; return; } kugel.className='atem-kugel ein'; wort.textContent=W.ein; rest(); lauf=setTimeout(aus,4000); }
+    function aus(){ kugel.className='atem-kugel aus'; wort.textContent=W.aus; rest(); lauf=setTimeout(ein,6000); }
+    function rest(){ zeit.textContent=W.noch+Math.max(0,Math.ceil((ende-Date.now())/1000))+W.sek; }
+    knopf.addEventListener('click',function(){ if(lauf){ stop(); return; } ende=Date.now()+60000; knopf.firstChild.nodeValue=W.halt; ein(); });
+  });
+
+  // Auswahlknöpfe: einzeln oder mehrfach
+  document.querySelectorAll('.wahlreihe').forEach(function(r){
+    r.addEventListener('click',function(e){
+      var k=e.target.closest('.wahlknopf'); if(!k)return;
+      if(r.hasAttribute('data-mehrfach')){ k.setAttribute('aria-pressed',k.getAttribute('aria-pressed')==='true'?'false':'true'); }
+      else { [].forEach.call(r.querySelectorAll('.wahlknopf'),function(x){ x.setAttribute('aria-pressed',x===k?'true':'false'); }); }
+    });
+  });
+  function gewaehlt(r){ return r?[].map.call(r.querySelectorAll('.wahlknopf[aria-pressed="true"]'),function(x){ return x.textContent.trim(); }).join(', '):''; }
+
+  // Terminanfrage: öffnet die E-Mail mit allen Angaben, es wird nichts gespeichert
+  var anfrage=document.getElementById('terminanfrage');
+  if(anfrage) anfrage.addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=anfrage.elements, z=[];
+    z.push('Name: '+f.name.value); z.push('Telefon: '+f.telefon.value); if(f.email.value)z.push('E-Mail: '+f.email.value);
+    z.push('Ort: '+(gewaehlt(anfrage.querySelector('[data-feld="ort"]'))||'egal'));
+    z.push('Wunschzeit: '+(gewaehlt(anfrage.querySelector('[data-feld="zeit"]'))||'egal'));
+    z.push(''); z.push(f.anliegen.value);
+    location.href='mailto:info@physio-sroka.de?subject='+encodeURIComponent('Terminanfrage von '+f.name.value)+'&body='+encodeURIComponent(z.join('\n'));
+  });
+
+  // Fragebogen (Demo): zeigt eine Zusammenfassung zum Ausdrucken, sendet und speichert nichts
+  var bogen=document.getElementById('fragebogen');
+  if(bogen) bogen.addEventListener('submit',function(e){
+    e.preventDefault();
+    var dl=document.querySelector('.zusammenfassung dl'); dl.innerHTML='';
+    [].forEach.call(bogen.querySelectorAll('[data-titel]'),function(feld){
+      var wert=feld.classList.contains('wahlreihe')?gewaehlt(feld):feld.value; if(!wert)return;
+      var dt=document.createElement('dt'), dd=document.createElement('dd'); dt.textContent=feld.dataset.titel; dd.textContent=wert; dl.appendChild(dt); dl.appendChild(dd);
+    });
+    var z=document.querySelector('.zusammenfassung'); z.classList.add('da'); z.scrollIntoView({behavior:'smooth',block:'start'});
   });
 
   // Leiste verschwindet beim Runterscrollen und kommt beim Hochscrollen wieder

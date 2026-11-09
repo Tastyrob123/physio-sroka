@@ -15,15 +15,7 @@
 <body class="wartet">
 <script>document.documentElement.classList.add('js')</script>
 
-<header class="leiste" id="leiste">
-  <a class="marke" href="index.html">{{ZEICHEN}}<span>Sylvia Sroka</span></a>
-  <nav>
-    <a href="#ablauf">Behandlung</a>
-    <a href="ueber-mich.html">Über mich</a>
-    <a href="#kontakt">Kontakt</a>
-    <a class="ruf" href="tel:+495112607414">0511 260 74 14</a>
-  </nav>
-</header>
+{{LEISTE:start}}
 
 <main>
   <!-- Auftakt: Fassungen zum Durchklicken, 0 ist der bisherige Stand -->
@@ -94,7 +86,7 @@
           <div class="wort"><h3>Weiter üben</h3><p>Übungen für zu Hause helfen, dass das Erreichte im Alltag bleibt.</p></div>
         </article>
         <article class="schritt dunkel flieg">
-          <div class="wort mit-knopf"><div><h3>Zum ersten Termin</h3><p>Bequeme Kleidung, ein großes Handtuch und, falls vorhanden, ärztliche Befunde oder eine Verordnung.</p></div><a class="knopf" href="tel:+495112607414">Termin vereinbaren {{PFEIL}}</a></div>
+          <div class="wort mit-knopf"><div><h3>Zum ersten Termin</h3><p>Bequeme Kleidung, ein großes Handtuch und, falls vorhanden, ärztliche Befunde oder eine Verordnung.</p></div><div class="knoepfe" style="margin-top:0"><a class="knopf" href="tel:+495112607414">Termin vereinbaren {{PFEIL}}</a><a class="knopf zweit" href="anamnese.html">Fragebogen vorab {{PFEIL}}</a></div></div>
         </article>
       </div>
     </div>
@@ -174,6 +166,17 @@
     </div>
   </section>
 
+  <section class="abschnitt tapete-dunkel" id="ruhe-minute">
+    <div class="atem">
+      <div>
+        <h2 class="schlitz"><span class="z"><span>Ein Moment</span></span><span class="z"><span>Ruhe</span></span></h2>
+        <p class="lese">Probieren Sie es gleich aus: Atmen Sie eine Minute lang mit, vier Sekunden ein, sechs Sekunden aus. Der Kreis zeigt Ihnen den Takt.</p>
+        <div class="knoepfe"><button type="button" class="knopf atem-start">Eine Minute mitatmen {{PFEIL}}</button><a class="knopf zweit" href="uebungen.html#atem">Mehr Atemübungen {{PFEIL}}</a></div>
+      </div>
+      <div class="atem-feld"><div class="atem-ring"></div><div class="atem-kugel"></div><div class="atem-mitte">{{ZEICHEN}}<p class="atem-wort">Bereit</p><p class="atem-zeit">eine Minute</p></div></div>
+    </div>
+  </section>
+
   <section class="standbild" id="pflege" aria-label="Pflege">
     <div class="fest">
       <img src="media/echt-haende-halten.jpg" alt="Zwei Hände halten einander" loading="lazy">
@@ -193,6 +196,18 @@
       <div class="teil flieg"><h3>Hausbesuche</h3><p>Wenn der Weg in die Praxis schwerfällt, komme ich nach Absprache zu Ihnen. Dort, wo der Alltag stattfindet, lässt er sich auch am besten üben.</p></div>
       <div class="teil flieg"><h3>Für Angehörige</h3><p>Ich weiß aus eigener Erfahrung, was es heißt, einen Menschen zu pflegen. Auch Angehörige finden bei mir Begleitung und Entlastung.</p></div>
       <div class="knoepfe flieg"><a class="knopf zweit" href="ueber-mich.html">Meine Geschichte {{PFEIL}}</a></div>
+    </div>
+  </section>
+
+  <section class="abschnitt sandgrund" id="mehr">
+    <div class="kopf">
+      <h2 class="schlitz"><span class="z"><span>Mehr</span></span><span class="z"><span>für Sie</span></span></h2>
+      <p class="flieg">Übungen für zu Hause, Begleitung für Angehörige und Antworten auf die häufigsten Fragen.</p>
+    </div>
+    <div class="z-bilder mehr-raster">
+      <a class="z-bild flieg" href="uebungen.html"><img src="media/uebung-nacken.jpg" alt="" loading="lazy"><div class="hof"></div><div class="wort"><b class="mehr-titel">Übungen</b><span>Für Rücken, Nacken, Atem und Gleichgewicht</span></div></a>
+      <a class="z-bild flieg" href="angehoerige.html"><img src="media/echt-haende-halten.jpg" alt="" loading="lazy"><div class="hof"></div><div class="wort"><b class="mehr-titel">Für Angehörige</b><span>Begleitung und Entlastung, wenn Sie pflegen</span></div></a>
+      <a class="z-bild flieg" href="fragen.html"><img src="media/echt-gespraech.jpg" alt="" loading="lazy"><div class="hof"></div><div class="wort"><b class="mehr-titel">Fragen und Kosten</b><span>Termine, Erstattung, Hausbesuche</span></div></a>
     </div>
   </section>
 
@@ -253,13 +268,26 @@
       <div><h3>Öffnungszeiten</h3><p>Termine nach Vereinbarung, Hausbesuche nach Absprache.</p></div>
       <div class="gross">Mo – Fr · 8 – 19 Uhr</div>
     </div>
+    <div class="formtafel flieg" style="margin-top:12px">
+      <h3>Termin anfragen</h3>
+      <p class="unterzeile">Schreiben Sie mir kurz, worum es geht und wann es Ihnen passt. Ich rufe Sie zurück.</p>
+      <form id="terminanfrage">
+        <div class="feldgitter">
+          <label class="feld"><span>Name</span><input name="name" required autocomplete="name"></label>
+          <label class="feld"><span>Telefon</span><input name="telefon" type="tel" required autocomplete="tel"></label>
+          <label class="feld"><span>E-Mail (freiwillig)</span><input name="email" type="email" autocomplete="email"></label>
+          <div class="feld"><span>Wo?</span><div class="wahlreihe" data-feld="ort"><button type="button" class="wahlknopf" aria-pressed="false">Hannover</button><button type="button" class="wahlknopf" aria-pressed="false">Hemmingen</button><button type="button" class="wahlknopf" aria-pressed="false">Hausbesuch</button></div></div>
+          <div class="feld breit"><span>Wann passt es Ihnen?</span><div class="wahlreihe" data-mehrfach data-feld="zeit"><button type="button" class="wahlknopf" aria-pressed="false">Vormittags</button><button type="button" class="wahlknopf" aria-pressed="false">Mittags</button><button type="button" class="wahlknopf" aria-pressed="false">Nachmittags</button><button type="button" class="wahlknopf" aria-pressed="false">Abends</button></div></div>
+          <label class="feld breit"><span>Worum geht es?</span><textarea name="anliegen" required></textarea></label>
+        </div>
+        <button type="submit" class="knopf">Anfrage senden {{PFEIL}}</button>
+        <p class="klein">Ihre Anfrage öffnet sich in Ihrem E-Mail-Programm. Lieber anrufen? <a href="tel:+495112607414">0511 260 74 14</a></p>
+      </form>
+    </div>
   </section>
 </main>
 
-<footer class="fuss">
-  <a class="marke" href="index.html">{{ZEICHEN}}Physiotherapie Sylvia Sroka</a>
-  <nav><a href="ueber-mich.html">Über mich</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
-</footer>
+{{FUSS}}
 
 <div class="wahl" data-ziel="standbild-bild" data-bilder='[["media/echt-fenster-a.jpg","Hände an der Schulter"],["media/echt-fenster-b.jpg","Behandlung im Liegen"]]'>
   <button type="button" data-schritt="-1" aria-label="Vorheriges Bild">‹</button><span>1 · Hände an der Schulter</span><button type="button" data-schritt="1" aria-label="Nächstes Bild">›</button>

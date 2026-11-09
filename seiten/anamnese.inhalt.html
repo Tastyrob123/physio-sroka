@@ -1,0 +1,54 @@
+  <section class="u-auftakt tapete-dunkel" id="oben">
+    <div>
+      <div class="zeichen flieg">{{ZEICHEN}}</div>
+      <h1 class="schlitz"><span class="z"><span>Fragebogen</span></span><span class="z z2"><span>vor dem ersten Termin</span></span></h1>
+      <p class="satz flieg">Wenn Sie möchten, beantworten Sie diese Fragen schon zu Hause. Dann haben wir beim ersten Termin mehr Zeit für Sie.</p>
+      <p class="flieg" style="margin-top:22px"><span class="demo-band">Demo: Ihre Angaben werden nicht gesendet und nicht gespeichert.</span></p>
+    </div>
+    <div class="bild flieg"><img src="media/termin-ankommen.jpg" alt="Ein Gespräch im Sitzen, mit Notizen" decoding="sync" data-erst></div>
+  </section>
+
+  <section class="abschnitt sandgrund" id="bogen">
+    <div class="formtafel">
+      <form id="fragebogen">
+        <h3>Zu Ihrer Person</h3>
+        <div class="feldgitter">
+          <label class="feld"><span>Name</span><input name="name" data-titel="Name" required autocomplete="name"></label>
+          <label class="feld"><span>Geburtsdatum (TT.MM.JJJJ)</span><input name="geburt" data-titel="Geburtsdatum" inputmode="numeric" placeholder="TT.MM.JJJJ"></label>
+          <label class="feld"><span>Telefon</span><input name="telefon" data-titel="Telefon" type="tel" autocomplete="tel"></label>
+          <label class="feld"><span>E-Mail</span><input name="email" data-titel="E-Mail" type="email" autocomplete="email"></label>
+          <div class="feld breit"><span>Versicherung</span><div class="wahlreihe" data-titel="Versicherung"><button type="button" class="wahlknopf" aria-pressed="false">Privat versichert</button><button type="button" class="wahlknopf" aria-pressed="false">Beihilfe</button><button type="button" class="wahlknopf" aria-pressed="false">Selbstzahler</button></div></div>
+        </div>
+        <div class="formteil flieg">
+          <h4>Ihre Beschwerden</h4>
+          <div class="feldgitter">
+            <div class="feld breit"><span>Wo haben Sie Beschwerden?</span><div class="wahlreihe" data-mehrfach data-titel="Bereich"><button type="button" class="wahlknopf" aria-pressed="false">Kopf</button><button type="button" class="wahlknopf" aria-pressed="false">Nacken</button><button type="button" class="wahlknopf" aria-pressed="false">Schultern</button><button type="button" class="wahlknopf" aria-pressed="false">Arme und Hände</button><button type="button" class="wahlknopf" aria-pressed="false">Rücken</button><button type="button" class="wahlknopf" aria-pressed="false">Hüfte</button><button type="button" class="wahlknopf" aria-pressed="false">Knie</button><button type="button" class="wahlknopf" aria-pressed="false">Füße</button><button type="button" class="wahlknopf" aria-pressed="false">Gleichgewicht</button></div></div>
+            <label class="feld"><span>Seit wann?</span><input name="seit" data-titel="Seit wann"></label>
+            <div class="feld"><span>Wie stark, von 0 bis 10?</span><div class="wahlreihe" data-titel="Stärke"><button type="button" class="wahlknopf" aria-pressed="false">0</button><button type="button" class="wahlknopf" aria-pressed="false">2</button><button type="button" class="wahlknopf" aria-pressed="false">4</button><button type="button" class="wahlknopf" aria-pressed="false">6</button><button type="button" class="wahlknopf" aria-pressed="false">8</button><button type="button" class="wahlknopf" aria-pressed="false">10</button></div></div>
+            <label class="feld breit"><span>Was macht es schlimmer, was hilft?</span><textarea name="verlauf" data-titel="Schlimmer und besser"></textarea></label>
+          </div>
+        </div>
+        <div class="formteil flieg">
+          <h4>Ihre Gesundheit</h4>
+          <div class="feldgitter">
+            <div class="feld breit"><span>Ist Ihnen etwas davon bekannt?</span><div class="wahlreihe" data-mehrfach data-titel="Bekannte Erkrankungen"><button type="button" class="wahlknopf" aria-pressed="false">Herz und Kreislauf</button><button type="button" class="wahlknopf" aria-pressed="false">Bluthochdruck</button><button type="button" class="wahlknopf" aria-pressed="false">Diabetes</button><button type="button" class="wahlknopf" aria-pressed="false">Osteoporose</button><button type="button" class="wahlknopf" aria-pressed="false">Neurologische Erkrankung</button><button type="button" class="wahlknopf" aria-pressed="false">Krebserkrankung</button><button type="button" class="wahlknopf" aria-pressed="false">Schwangerschaft</button></div></div>
+            <label class="feld"><span>Operationen oder Unfälle</span><textarea name="ops" data-titel="Operationen und Unfälle"></textarea></label>
+            <label class="feld"><span>Medikamente</span><textarea name="medikamente" data-titel="Medikamente"></textarea></label>
+          </div>
+        </div>
+        <div class="formteil flieg">
+          <h4>Ihre Ziele</h4>
+          <div class="feldgitter"><label class="feld breit"><span>Was möchten Sie mit der Behandlung erreichen?</span><textarea name="ziele" data-titel="Ziele"></textarea></label></div>
+        </div>
+        <label class="zustimmung"><input type="checkbox" required> <span>Ich bin damit einverstanden, dass meine Angaben für meine Behandlung verwendet werden.</span></label>
+        <button type="submit" class="knopf">Zusammenfassung ansehen {{PFEIL}}</button>
+        <p class="klein">In dieser Demo bleiben Ihre Angaben in Ihrem Browser.</p>
+      </form>
+      <div class="zusammenfassung">
+        <h3>Ihre Angaben</h3>
+        <p class="unterzeile">Drucken Sie diese Seite aus oder speichern Sie sie und bringen Sie sie zum ersten Termin mit.</p>
+        <dl></dl>
+        <div class="knoepfe nicht-drucken"><button type="button" class="knopf" onclick="window.print()" style="border:0;cursor:pointer;font:inherit">Drucken oder als PDF sichern {{PFEIL}}</button></div>
+      </div>
+    </div>
+  </section>

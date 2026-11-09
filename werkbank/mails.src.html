@@ -1,0 +1,29 @@
+{{KOPF:E-Mails}}
+{{WB_LEISTE:mails}}
+<main>
+  <section class="u-auftakt tapete-dunkel" id="oben" style="min-height:62svh">
+    <div>
+      <div class="zeichen flieg">{{ZEICHEN}}</div>
+      <h1 class="schlitz"><span class="z"><span>Fertige</span></span><span class="z z2"><span>E-Mails</span></span></h1>
+      <p class="satz flieg">Zwölf Vorlagen für die Nachrichten, die in der Praxis immer wieder anfallen. Kopieren, Namen und Termin eintragen, absenden.</p>
+    </div>
+    <div class="flieg" style="display:grid;place-items:center"><div class="st st-satz" style="transform:scale(1.3)">Liebe<br><em>Frau Beispiel,</em></div></div>
+  </section>
+
+  <section class="abschnitt sandgrund" id="vorlagen">
+    <div class="mail-liste">{{MAILS}}</div>
+  </section>
+</main>
+{{WB_FUSS}}
+<script src="../seite.js"></script>
+<script>
+document.querySelectorAll('.mail [data-kopieren]').forEach(function(k){
+  k.addEventListener('click',function(){
+    var m=k.closest('.mail'), text='Betreff: '+m.querySelector('.betreff span').textContent+'\n\n'+m.querySelector('pre').textContent;
+    var fertig=function(){ var alt=k.firstChild.nodeValue; k.firstChild.nodeValue='Kopiert '; setTimeout(function(){ k.firstChild.nodeValue=alt; },1600); };
+    if(navigator.clipboard) navigator.clipboard.writeText(text).then(fertig,function(){ alert(text); }); else { alert(text); }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+/* Werkbank für Sylvia: baut auf seite.css auf, eigene Klassen mit wb- */
+.wb-kopf{min-height:100svh;color:var(--licht);display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.15fr);gap:clamp(24px,4vw,70px);align-items:center;padding:clamp(110px,13vh,150px) var(--rand) clamp(50px,7vh,90px)}
+.wb-kopf h1{font-size:clamp(64px,8vw,150px)}
+.wb-kopf h1 .z2{color:var(--gold-hell)}
+.wb-kopf .zeichen{width:clamp(110px,9vw,160px);color:var(--gold);margin-bottom:24px}
+.wb-kopf p.satz{max-width:34ch;margin-top:26px;font-size:clamp(19px,1.45vw,23px);font-weight:300;color:#d9d2c5}
+.wb-geraet{position:relative}
+.wb-geraet img{width:100%;height:auto;display:block}
+.wb-band{position:relative;z-index:3;margin-top:calc(var(--ecke) * -1);background:var(--gold);color:var(--nacht);height:44px;overflow:hidden;display:flex;align-items:center;border-radius:var(--ecke) var(--ecke) 0 0}
+.wb-band__lauf{display:flex;gap:46px;white-space:nowrap;font-family:"Cormorant Garamond",serif;font-size:22px;letter-spacing:.02em;animation:wb-lauf 46s linear infinite;padding-left:46px}
+.wb-band__lauf span{display:inline-flex;align-items:center;gap:46px}
+.wb-band__lauf span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--nacht);opacity:.5}
+@keyframes wb-lauf{to{transform:translate3d(-50%,0,0)}}
+.wb-buehne{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);gap:clamp(24px,4vw,70px);align-items:center}
+.wb-buehne.handy{grid-template-columns:minmax(0,.7fr) minmax(0,1fr)}
+.wb-buehne.handy .wb-geraet{max-width:420px;justify-self:center}
+.wb-schirm{position:relative}
+.wb-schirm a{display:block;position:relative}
+.wb-schirm img.an{display:block}
+.wb-schirm img:not(.an){display:none}
+.wb-klick{position:absolute;left:50%;top:32%;transform:translate(-50%,-50%);background:var(--nacht);color:var(--gold-hell);border:1px solid rgba(205,183,139,.5);border-radius:999px;padding:12px 20px;font-size:15px;letter-spacing:.03em;opacity:0;transition:opacity .5s ease;pointer-events:none}
+.wb-schirm a:hover .wb-klick,.wb-schirm a:focus-visible .wb-klick{opacity:1}
+.wb-minis{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.wb-tafel{background:var(--licht);color:var(--text);border-radius:var(--ecke);padding:clamp(28px,3vw,50px);border:1px solid rgba(138,117,80,.18)}
+.tapete-dunkel .wb-tafel{background:var(--nacht2);color:var(--licht);border-color:rgba(177,153,106,.28)}
+.wb-tafel .rolle{font-size:15px;letter-spacing:.04em;color:#8a7550}
+.tapete-dunkel .wb-tafel .rolle{color:var(--gold-hell)}
+.wb-tafel h2{font-size:clamp(44px,4.6vw,82px);margin-top:8px}
+.wb-tafel > p{margin-top:16px;color:var(--leise);max-width:44ch}
+.tapete-dunkel .wb-tafel > p{color:#cfc7b8}
+.wb-tafel ul{list-style:none;margin-top:22px;border-top:1px solid rgba(138,117,80,.3)}
+.wb-tafel li{padding:12px 0 12px 24px;position:relative;border-bottom:1px solid rgba(138,117,80,.18)}
+.tapete-dunkel .wb-tafel li{border-color:rgba(177,153,106,.22);color:#d6cfc2}
+.wb-tafel li::before{content:"";position:absolute;left:0;top:1.3em;width:12px;height:1px;background:var(--gold)}
+.wb-zahlen{display:flex;gap:clamp(20px,3vw,46px);margin-top:26px;flex-wrap:wrap}
+.wb-zahlen div b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(54px,4.6vw,84px);line-height:.85;color:#8a7550;font-variant-numeric:lining-nums}
+.tapete-dunkel .wb-zahlen div b{color:var(--gold-hell)}
+.wb-zahlen div span{display:block;margin-top:8px;font-size:15px;color:var(--leise)}
+.tapete-dunkel .wb-zahlen div span{color:#bfb6a6}
+.wb-tafel .knoepfe{margin-top:28px}
+.tapete-dunkel .wb-tafel .knopf.zweit{color:var(--licht)}
+.wb-kacheln{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.wb-kachel{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:30px;min-height:min(56svh,520px);border-radius:var(--ecke);overflow:hidden;padding:clamp(24px,2.4vw,38px);color:var(--licht);background:var(--nacht2);border:1px solid rgba(177,153,106,.25)}
+.wb-kachel .vorschau{position:relative;flex:1;border-radius:calc(var(--ecke) * .6);overflow:hidden;background:var(--licht2);display:grid;place-items:center}
+.wb-kachel .vorschau img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wb-kachel h3{font-size:clamp(32px,2.6vw,46px);color:var(--gold-hell)}
+.wb-kachel p{margin-top:8px;color:#cfc7b8;font-size:clamp(15px,1.05vw,17px)}
+.wb-kachel .wb-zahl{font-family:"Cormorant Garamond",serif;font-size:clamp(46px,3.6vw,64px);line-height:.85;color:var(--licht);font-variant-numeric:lining-nums}
+.wb-kachel:hover{border-color:rgba(205,183,139,.6)}
+.wb-schritte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.wb-schritte > div{background:var(--licht);border:1px solid rgba(138,117,80,.18);border-radius:var(--ecke);padding:clamp(26px,2.8vw,44px)}
+.wb-schritte h3{font-size:clamp(30px,2.6vw,46px)}
+.wb-schritte p{margin-top:10px;color:var(--leise)}
+
+/* Sticker */
+.st-bogen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,2.4vw,40px);align-items:center;justify-items:center}
+.st-feld{display:flex;flex-direction:column;align-items:center;gap:14px}
+.st{box-shadow:0 0 0 7px #fff,0 14px 30px -14px rgba(0,0,0,.45);display:grid;place-items:center;text-align:center;font-family:"Cormorant Garamond",serif;font-weight:500;line-height:1.02}
+.st svg{color:currentColor}
+.st-zeichen{width:220px;height:220px;border-radius:44px;background:var(--nacht);color:var(--gold)}
+.st-zeichen svg{width:150px}
+.st-satz{width:260px;height:170px;border-radius:34px;background:var(--nacht);color:var(--licht);font-size:30px;padding:20px}
+.st-satz em{font-style:normal;color:var(--gold-hell)}
+.st-atem{width:270px;height:110px;border-radius:999px;background:var(--licht);color:var(--text);font-size:30px;border:2px solid var(--gold)}
+.st-wort{width:300px;height:96px;border-radius:999px;background:var(--nacht);color:var(--licht);font-size:26px;display:flex;align-items:center;justify-content:center;gap:12px}
+.st-wort svg{width:54px;color:var(--gold)}
+.st-rosen{width:250px;height:160px;border-radius:30px;background:var(--licht2);color:var(--text);font-size:32px;padding:18px}
+.st-rosen small{display:block;font-family:Manrope,sans-serif;font-size:14px;letter-spacing:.12em;color:#8a7550;margin-top:8px}
+.st-seit{width:200px;height:200px;border-radius:40px;background:var(--gold);color:var(--nacht);font-size:30px}
+.st-seit b{display:block;font-weight:500;font-size:74px;line-height:.9;font-variant-numeric:lining-nums}
+.st-ruhe{width:240px;height:240px;border-radius:48px;background:var(--licht);color:var(--text);font-size:34px;padding:20px}
+.st-ruhe svg{width:90px;color:var(--gold);margin:0 auto 10px}
+.st-geatmet{width:250px;height:150px;border-radius:30px;background:var(--nacht2);color:var(--gold-hell);font-size:34px;padding:16px}
+.st-schultern{width:260px;height:120px;border-radius:999px;background:var(--licht);color:var(--text);font-size:30px}
+.st-orte{width:300px;height:80px;border-radius:999px;background:var(--nacht);color:var(--gold-hell);font-family:Manrope,sans-serif;font-weight:400;font-size:17px;letter-spacing:.14em}
+.st-seele{width:220px;height:220px;border-radius:44px;background:var(--nacht);color:var(--licht);font-size:36px}
+.st-seele em{font-style:normal;color:var(--gold-hell);display:block}
+.st-tapete{width:220px;height:220px;border-radius:44px;background:var(--licht2) url(../media/tapete-hell.png) center/180px 180px;color:#8a7550}
+.st-tapete svg{width:120px;background:var(--licht2);padding:10px;border-radius:20px}
+.st-name{font-size:15px;color:var(--leise)}
+.st-feld a{font-size:14px;border-bottom:1px solid rgba(177,153,106,.6)}
+
+/* E-Mails */
+.mail-liste{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.mail{background:var(--licht);border:1px solid rgba(138,117,80,.18);border-radius:var(--ecke);padding:clamp(24px,2.6vw,40px)}
+.mail h3{font-size:clamp(28px,2.3vw,40px)}
+.mail .anlass{margin-top:6px;color:#8a7550;font-size:15px}
+.mail .betreff{margin-top:18px;padding:12px 16px;background:#fff;border-radius:12px;border:1px solid rgba(138,117,80,.2);font-size:15px}
+.mail pre{margin-top:10px;white-space:pre-wrap;font-family:Manrope,sans-serif;font-size:15px;line-height:1.6;color:#3b3730;background:#fff;border-radius:12px;border:1px solid rgba(138,117,80,.2);padding:16px}
+.mail .knoepfe{margin-top:16px}
+.mail button.knopf{border:0;cursor:pointer;font:inherit;font-size:15px}
+
+/* Markenblatt */
+.mb-farben{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.mb-farbe{border-radius:var(--ecke);overflow:hidden;border:1px solid rgba(138,117,80,.2);background:var(--licht)}
+.mb-farbe i{display:block;height:180px}
+.mb-farbe div{padding:16px 18px}
+.mb-farbe b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:28px}
+.mb-farbe span{font-size:14px;color:var(--leise)}
+.mb-schrift{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mb-schrift > div{background:var(--licht);border-radius:var(--ecke);padding:clamp(26px,3vw,48px);border:1px solid rgba(138,117,80,.2)}
+.mb-schrift .gross{font-family:"Cormorant Garamond",serif;font-size:clamp(70px,7vw,130px);line-height:.9}
+.mb-schrift .text{font-size:clamp(40px,4vw,70px);line-height:1}
+.mb-zeichen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mb-zeichen > div{border-radius:var(--ecke);min-height:300px;display:grid;place-items:center}
+.mb-zeichen svg{width:min(60%,260px)}
+.mb-bilder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mb-bilder div{position:relative;height:min(46svh,440px);border-radius:var(--ecke);overflow:hidden}
+.mb-bilder img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+@media (max-width:900px){
+  .wb-kopf,.wb-buehne,.wb-buehne.handy,.wb-schritte,.mail-liste,.mb-schrift,.mb-zeichen,.mb-bilder{grid-template-columns:1fr}
+  .wb-kacheln{grid-template-columns:1fr 1fr}
+  .wb-kachel{min-height:340px}
+  .st-bogen{grid-template-columns:1fr 1fr}
+  .st{transform:scale(.62);transform-origin:center}
+  .st-feld{margin:-30px 0}
+  .mb-farben{grid-template-columns:1fr 1fr}
+  .wb-kopf h1{font-size:clamp(54px,14vw,90px)}
+}
+@media print{
+  .leiste,.fuss,.wb-band,.nicht-drucken{display:none!important}
+  .st-bogen{grid-template-columns:repeat(3,1fr)}
+}
+.st{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.st-wort{flex-direction:row}
+.wb-band{height:calc(44px + var(--ecke));padding-bottom:var(--ecke);box-sizing:border-box}
+.wb-schirm img{width:100%;height:auto}
+.wb-kachel .vorschau img.ganz{object-fit:contain;padding:14px}
+.wb-kachel .vorschau .gross-zeichen{width:58%;color:var(--gold)}
+.wb-buehne.handy .wb-geraet,.wb-buehne.handy .wb-schirm{max-width:min(340px,100%);justify-self:center;width:100%}
+@media (max-width:900px){.wb-kacheln{grid-template-columns:1fr}.wb-kachel{min-height:380px}}

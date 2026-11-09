@@ -55,6 +55,26 @@ for datei, titel, wo, beschreibung in [
 import sprachen
 sprachen.baue(zeichen, PFEIL, PFEIL_RUNTER)
 
+# Werkbank für Sylvia
+wb = hier / "werkbank"
+if wb.exists():
+    import html as _h
+    kopf = (wb / "kopf.vorlage.html").read_text()
+    WBNAV = [("start", "index.html", "Überblick"), ("start#werkzeuge", "index.html#werkzeuge", "Werkzeuge"), ("sticker", "sticker.html", "Sticker"), ("mails", "mails.html", "E-Mails"), ("marke", "marke.html", "Markenblatt")]
+    mails = json.loads((wb / "mails.json").read_text())
+    MAILS = "".join(f'<article class="mail flieg"><h3>{_h.escape(m["titel"])}</h3><p class="anlass">{_h.escape(m["anlass"])}</p><p class="betreff">Betreff: <span>{_h.escape(m["betreff"])}</span></p><pre>{_h.escape(m["text"])}</pre><div class="knoepfe"><button type="button" class="knopf" data-kopieren>Text kopieren {PFEIL}</button></div></article>' for m in mails)
+    for src in sorted(wb.glob("*.src.html")):
+        t = src.read_text()
+        import re as _re
+        titel = _re.search(r"\{\{KOPF:(.*?)\}\}", t).group(1)
+        t = _re.sub(r"\{\{KOPF:.*?\}\}", kopf.replace("{{TITEL}}", titel), t)
+        wo = _re.search(r"\{\{WB_LEISTE:(\w+)\}\}", t).group(1)
+        nav = "".join(f'<a{" class=\"hier\"" if k == wo else ""} href="{h}">{n}</a>' for k, h, n in WBNAV)
+        t = _re.sub(r"\{\{WB_LEISTE:\w+\}\}", f'<header class="leiste" id="leiste">\n  <a class="marke" href="index.html">{zeichen}<span>Werkbank für Sylvia</span></a>\n  <nav>{nav}<a class="ruf" href="../index.html">Zur Website</a></nav>\n</header>', t)
+        t = t.replace("{{WB_FUSS}}", f'<footer class="fuss">\n  <a class="marke" href="index.html">{zeichen}Werkbank für Sylvia Sroka</a>\n  <nav><a href="../index.html">Website</a><a href="../werkzeuge/index.html">Werkzeuge</a><a href="sticker.html">Sticker</a><a href="mails.html">E-Mails</a><a href="marke.html">Markenblatt</a></nav>\n</footer>')
+        t = t.replace("{{MAILS}}", MAILS).replace("{{ZEICHEN}}", zeichen).replace("{{PFEIL}}", PFEIL).replace("{{PFEIL_RUNTER}}", PFEIL_RUNTER)
+        (wb / src.name.replace(".src.html", ".html")).write_text(t)
+
 rechts = (hier / "recht.src.html").read_text()
 for datei, titel in [("impressum", "Impressum"), ("datenschutz", "Datenschutz")]:
     inhalt = (hier / f"{datei}.inhalt.html").read_text()

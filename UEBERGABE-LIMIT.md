@@ -27,10 +27,15 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - Rechnung im Rahmen (`werkzeuge/rechnung.html|js|css`, Commit 5d5fd83).
 - Profiltexte mit Bezug und Übersicht im Rahmen (`werkzeuge/profiltexte.*`, `werkzeuge/index.html`, `uebersicht.js`, Commit b796d07).
 
+- Drucksachen: Reste der Vorlage entfernt (Prüfseite auf Haus sroka, Fotogruppen aus den Fotos der Praxis, Werkbank-Weg relativ, Texte), Commit 8ced6ea.
+- Prüfskript neu: `timeout 900 node pruefen/werkzeuge.js <ordner>`, 316 Prüfpunkte grün (Ansichten 1440/390, Bedienung aller Werkzeuge, PDFs A4 mit Seitenumbruch, gesperrter Speicher, file://). Dabei behoben: Planliste zeigte ab dem zweiten Plan «Beispiel ansehen», Quittung fett, Link-Knöpfe der Profiltexte am Handy zu breit, Zeichen unter file:// (jetzt data:-Adresse im Kleid).
+
 ## Nächster genauer Schritt
-Prüfskript `pruefen/werkzeuge.js` auf die neue Fassung umschreiben (alte Fassung prüft alte Wähler), Chromium + WebKit, 1440/390, dann laufen lassen, Fehler beheben, Bilder ansehen, Fehlerbuch 10a abhaken.
+Bilder und PDFs der Prüfung ansehen (Ordner im Scratchpad, neu erzeugen mit dem Prüfskript), Fehlerbuch 10a (`pruefen/fehlerbuch-10a.md`) Punkt für Punkt gegen die Werkzeuge abhaken, Funde beheben, dann «Fertig.».
 
 ## Entscheidungen der Nacht
+- WebKit: Download in der Cloud gesperrt (Download failure), geprüft nur mit Chromium; das Prüfskript nimmt WebKit mit `PRUEF_WEBKIT=1` dazu, wo es installiert ist (am Mac).
+- Verborgene native select der Werkstatt (`hwahl-nativ`, mit eigenem Wahlknopf darüber) bleiben: so baut es die Vorlage, sichtbar ist nur der gestaltete Knopf.
 - (Folgesitzung 09.11. abends) Kein Unteragent mehr offen: Recherche Profiltexte liegt in `pruefen/quellen-profiltexte.md`, alle Bauschritte sind committet. Nichts neu zu starten.
 
 ## Wartet auf Roberts Wort

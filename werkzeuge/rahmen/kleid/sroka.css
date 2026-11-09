@@ -113,3 +113,5 @@
   .wo-leiste__t small{display:none}
   .wo-leiste__kn{flex-wrap:wrap}
 }
+/* Nie fett (Auftrag): die Vorlage lässt <b> in der Quittung beim Browser-Standard 700 */
+:where(.wo-app) :where(b,strong){font-weight:500}

@@ -149,7 +149,7 @@
       + '<div class="wo-lg"><i class="wo-lg__z">' + WO.ic('buch') + '</i><span class="wo-mk">Bibliothek</span><b>' + ST.bib.gruppen.reduce(function (m, g) { return m + g.uebungen.length; }, 0) + ' Übungen</b><p>Aus «Übungen für zu Hause» der Website, zum Umschreiben.</p><a class="wo-lk" href="#" data-gehe="bib">Ansehen</a></div>'
       + '</div>'
       + '<h2 class="wo-zw">Pläne <em>je Patient</em></h2>'
-      + (liste.length ? '<div class="sr-liste" id="ub-plaene">' + liste.map(planZeile).join('') + '</div>'
+      + (liste.length ? '<div class="sr-liste" id="ub-plaene">' + liste.map(function (p) { return planZeile(p, false); }).join('') + '</div>'
         : '<div class="sr-liste">' + planZeile(Object.assign(beispiel(), { id: 'beispiel' }), true) + '</div><p class="sr-leise ub-unter">Noch kein eigener Plan. Das Beispiel oben zeigt einen fertigen Plan mit zwei Abschnitten; «Neuer Plan» beginnt leer.</p>');
   }
   function planZeile(p, istBsp) {

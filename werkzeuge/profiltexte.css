@@ -42,3 +42,6 @@
 .pt-sk__seite b{font-weight:500;color:#202124;margin-bottom:2px}
 .pt-sk__seite .pt-sk__knopf{justify-self:end;margin-top:4px}
 @media (max-width:520px){.pt-sk--jameda{grid-template-columns:minmax(0,1fr)}.pt-sk__menue{flex-direction:row;flex-wrap:wrap}}
+/* Link-Knöpfe mit langer Aufschrift brechen am Handy um statt über den Rand zu laufen */
+.pt-links-kn .wo-kn{max-width:100%;height:auto;min-height:48px;white-space:normal;text-align:left;line-height:1.3;padding-top:6px;padding-bottom:6px}
+.pt-links-kn .wo-kn span{min-width:0;overflow-wrap:anywhere}

@@ -39,11 +39,19 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - Fehlerbuch 10a geprüft (Unteragent, 166 Punkte, 18 Funde). In den Werkzeugen behoben (Commit 86bf169): Bibliothek je Gruppe ein Foto + Zeilen, Bibliotheksübungen bekommen das Gruppenfoto nur als erste, Beispiel heisst «Frau Muster» (Kennzeichnung nur in der Leiste), Schrift ab 13 px, 320 px ohne Überragen, Zahl im Rand mittig, Ziffernkreis wächst, Gruss auf der Rechnung, Auftritt beim Scrollen, :where-Rücksetzungen, .catch, addEventListener, deutsche Schreibung, praxis.js/werkzeuge.css entfernt. Prüfskript jetzt bei 1440/1000/390/320: 508 Punkte grün.
 - Drucksachen-Funde des Fehlerbuchs behoben (Commit da3bd3b). Letzter Prüflauf 508 von 508 grün.
 
+## Gegenprüfung 09.11.2026 nachts (Zweig auch `claude/sroka-werkzeuge-umbau-pruefung-kxix7e`)
+- Prüfskript Ausgangsstand: 508 von 508 grün. Danach Funde gegen AUFTRAG.md:
+- E-Mail-Signatur fehlte ganz (Auftrag Punkt 4). Gebaut: `werkzeuge/signatur.html|js|css` im Rahmen (Drucksachen), Eintrag «E-Mail-Signatur» im Rand der Werkstatt, Standort als eigene Knöpfe, «Signatur kopieren» (text/html + Text), «HTML-Code kopieren», Wege für Apple Mail, Outlook, Gmail. Prüfskript ergänzt.
+- jameda «Behandlungsschwerpunkte» war gestrichen (Auftrag Punkt 5). Wieder da, als Absatz in «Über mich» (eigenes Feld nicht belegt). Jetzt 12 Texte.
+- Erfundene Webadresse «physio-sroka.de» auf Briefpapier, Umschlag, Aushang entfernt (steht nicht in den Fakten; nur die E-Mail).
+- Bei 320 px lief die Übersicht der Profiltexte 14 px über (langes Wort): bricht jetzt.
+- Belegt: QR-Codes beider Bewertungskarten aus dem PDF gelesen, Ziele wortgleich mit dem Auftrag. Briefpapier 210 × 297, Bewertung 105 × 148, Visiten-/Terminkarte 85 × 55, Umschlag DL, je + 3 mm Beschnitt.
+
 ## Offen, in Reihenfolge
-- nichts
+- Voller Prüflauf nach den Änderungen, Bilder und PDFs ansehen (Übungsplan, Rechnung, Profiltexte jameda, Signatur), dann «Fertig. Geprüft.» mit Belegen.
 
 ## Nächster genauer Schritt
-Nichts offen. Auf Roberts Wort warten (Durchsicht, ggf. Zusammenführen in main).
+`timeout 1500 node pruefen/werkzeuge.js <ordner>` laufen lassen, Fehler beheben, Bilder ansehen.
 
 ## Entscheidungen der Nacht
 - Übersicht: Startbild als «buehne» (kleiner), Kacheln bleiben zweispaltig: vier Spalten ergäben unter 300 px Textbreite (F205 geht vor F112).
@@ -52,6 +60,11 @@ Nichts offen. Auf Roberts Wort warten (Durchsicht, ggf. Zusammenführen in main)
 - WebKit: Download in der Cloud gesperrt (Download failure), geprüft nur mit Chromium; das Prüfskript nimmt WebKit mit `PRUEF_WEBKIT=1` dazu, wo es installiert ist (am Mac).
 - Verborgene native select der Werkstatt (`hwahl-nativ`, mit eigenem Wahlknopf darüber) bleiben: so baut es die Vorlage, sichtbar ist nur der gestaltete Knopf.
 - (Folgesitzung 09.11. abends) Kein Unteragent mehr offen: Recherche Profiltexte liegt in `pruefen/quellen-profiltexte.md`, alle Bauschritte sind committet. Nichts neu zu starten.
+
+- (Gegenprüfung) Anrede «du» in den Werkzeugen bleibt, obwohl AUFTRAG.md «Ihre Werkzeuge» sagt: die Werkzeuge sprechen Sylvia an, die Werkbank auf main sagt «Deine Werkzeuge»; was Patienten lesen, bleibt in der Sie-Form.
+- (Gegenprüfung) Die Signatur ist eine eigene Seite neben der Werkstatt, weil die Werkstatt (Kopie der Vorlage) nur Papier setzt und keine Signatur kennt.
+- (Gegenprüfung) Signatur ohne Bild und ohne Webadresse: ein Bild müsste im Netz liegen, eine Webadresse steht nicht in den Fakten.
+- (Gegenprüfung) WebKit: Download erneut versucht, in der Cloud gesperrt; bleibt für den Mac.
 
 ## Wartet auf Roberts Wort
 - Durchsicht der Werkzeuge und Zusammenführen des Zweigs in main (kein PR angelegt).

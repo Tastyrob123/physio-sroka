@@ -14,7 +14,8 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 - Vorlage gelesen; Fehlerbuch 10a verdichtet: `pruefen/fehlerbuch-10a.md` (250 Zeilen, 166 betreffen diese Werkzeuge).
 - Rahmen: `werkzeuge/rahmen/` = Kopie `_vorlage/oberflaeche` (einzige Code-Änderung: `WO_HAUS.reihe`), Kleid `kleid/sroka.js|css|-zeichen.svg`, Wege relativ aus der Lage der Datei (GitHub Pages). Muster: `werkzeuge/rahmen/muster.html`.
 - Werkstatt kopiert nach `werkzeuge/drucksachen/` (ohne api/serve/mail). Haus `sroka`: `bau.py` (Schriften TTF, Zeichen, Tapete, 23 Website-Fotos, 2 QR) und `inhalte.py` (EINE Quelle aller Texte: Arten, Beispiele, Bereiche, Aushänge, 74 Vorlagen). Neue Aufbauten in `vorlagen.js`: visite, kontakt, termine, brief, umschlag, bewertung; Formate visit, dl. Ohne KI: `DSStart.ohneKi` (start.js) statt `api/entwurf`. Farben einmalig umgerechnet (Skript im Scratchpad, nicht wiederholen).
-- Recherche Menüwege Google/Jameda läuft in einem Unteragenten → `pruefen/quellen-profiltexte.md`.
+- Übungspläne neu: `werkzeuge/uebungsplan.html|js|css` im Rahmen, gemeinsame Teile `werkzeuge/gemeinsam.js|css` (Kopf, Rand, Leiste, Speichern, Quittung, Fenster, Blätter A4 gemessen gesetzt, Druck). `drucksachen.html` leitet in `drucksachen/index.html`.
+- Recherche Menüwege (fertig, `pruefen/quellen-profiltexte.md`; Netz zu support.google.com/jameda gesperrt, Belege aus Suchtreffern) Google/Jameda läuft in einem Unteragenten → `pruefen/quellen-profiltexte.md`.
 
 ## Offen, in Reihenfolge
 1. Vorlage lesen (Master 4.7, 8, 9, 10a; Werkstatt-Übergabe; HAUS-GV; Rahmen UMSTELLUNG.md)
@@ -24,7 +25,7 @@ Prüfen: Playwright Chromium + WebKit, 1440/390, Fehlerbuch 10a einzeln.
 5. Prüfskript erweitern, prüfen, Bilder ansehen
 
 ## Nächster genauer Schritt
-Werkstatt: Wortlaut der Oberfläche in Du-Form (start.js, studio.js, fuehrung.js, pruefung.html), Kacheln der Bereiche, Schriften ≥ 13 px, jede Art öffnen und als PDF prüfen. Danach drucksachen.html → Weiterleitung in den Ordner.
+Rechnung in den Rahmen (rechnung.html neu mit gemeinsam.js, Logik aus alter Fassung: Standort, Steuernummer, Bank, Positionen, Summe, localStorage `sroka-werkzeuge-rechnung`), dann Profiltexte, dann index.html, dann Prüfskript.
 
 ## Zweig
 `claude/sroka-werkzeuge-umbau-6cdhaj`

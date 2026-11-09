@@ -169,7 +169,8 @@
       var platz = huelle.clientWidth;
       var z = breite > platz ? platz / breite : 1;
       blatt.style.zoom = z < 1 ? String(Math.floor(z * 1000) / 1000) : '';
-      var hinweis = huelle.parentNode.querySelector('.w-verkleinert');
+      var tisch = huelle.closest('.w-tisch');
+      var hinweis = huelle.parentNode.querySelector('.w-verkleinert') || (tisch && tisch.querySelector(':scope > .w-verkleinert'));
       if (hinweis) hinweis.hidden = !(z < 1);
     });
   }

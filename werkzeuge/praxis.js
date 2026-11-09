@@ -230,3 +230,13 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(massstab);
   });
 })();
+
+// Auftritte wie auf der Website: Tafeln, Karten und Drucksachen kommen beim Scrollen von unten herein
+(function(){
+  if(!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var teile=document.querySelectorAll('.w-tafel, .w-karte, .w-drucksache, .w-text, .w-vorschau, .w-wege > *, .w-hinweis-demo');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(!e.isIntersecting) return; e.target.classList.add('w-da'); io.unobserve(e.target); });
+  },{rootMargin:'0px 0px -6% 0px'});
+  [].forEach.call(teile,function(t){ t.classList.add('w-flieg'); io.observe(t); });
+})();

@@ -303,3 +303,8 @@ button.knopf{border:0;font-family:inherit;cursor:pointer;text-align:left}
   #w-druckbereich .w-a4{width:auto;min-height:0;padding:0;overflow:visible}
   #w-druckbereich .w-karte85{border-radius:0}
 }
+
+/* Auftritte: kommen deckend von unten herein, nur über transform */
+.w-flieg{transform:translate3d(0,60px,0)}
+.w-flieg.w-da{transform:none;transition:transform 1.25s cubic-bezier(.25,.62,.3,1)}
+@media print{.w-flieg{transform:none!important}}

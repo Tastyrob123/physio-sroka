@@ -1,4 +1,4 @@
-/* Hereinschweben nach der Uhr für «Drucksachen & Feed» (Kern Grand Beau-Rivage, hier Restaurant Gilles Varone) (16.10.2026), gehört zu feder.css. Ersetzt schweben.js (Scroll-Zeitachse).
+/* Hereinschweben nach der Uhr für «Drucksachen & Feed» (Praxis Sylvia Sroka, umgekleidet aus der Vorlage) (16.10.2026), gehört zu feder.css. Ersetzt schweben.js (Scroll-Zeitachse).
    Markiert Bühnen, Kacheln, Monatszeilen und Blätter mit data-fd; sobald eines am unteren Rand auftaucht (IntersectionObserver), bekommt es .da.
    Alles, was im selben Augenblick auftaucht, ist eine Gruppe: Staffel 100 ms in Lesereihenfolge. Nach dem Auftritt .gespielt (bleibt ruhig). */
 (function () {

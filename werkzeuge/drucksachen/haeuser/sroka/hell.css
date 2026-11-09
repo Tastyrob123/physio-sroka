@@ -1,4 +1,4 @@
-/* L’Imprimerie des Grand Beau-Rivage: helle Farbwelt mit Bühne, wie die übrigen Werkzeuge des Hauses (Robert 15.10.2026):
+/* Drucksachen der Praxis Sylvia Sroka (umgekleidet aus der Vorlage): helle Farbwelt mit Bühne, wie die übrigen Werkzeuge des Hauses (Robert 15.10.2026):
    «Der Banner oben bleibt dunkelblau, dann der Hintergrund weiss, die Kacheln blau, links weiss lassen.»
    «Heroes richtig schön, geil, luxuriös, edel», Vorbild Le Bureau des Carlton-Europe.
    Gleiche Sprache wie Grand Beau-Rivage/website/studio/hell.css. Nur für dieses Haus geladen (index.html, HAUS_STIL),
@@ -170,7 +170,7 @@ body #startWochen>.wo:not(:first-child) .wo__n b{font-size:19px;overflow-wrap:an
 @keyframes fachAuf{from{transform:translateX(-24px)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){.start.ms.leiste-auf .ms-leiste{animation:none}}
 
-/* Restaurant Gilles Varone (aus der Vorlage 19.10.2026): die Website setzt nie kursiv, Betonung über Farbe */
+/* Praxis Sylvia Sroka (umgekleidet aus der Vorlage): die Website setzt nie kursiv, Betonung über Farbe */
 #start em,#start i:not([class]),.ms-leise em{font-style:normal}
 /* Gill Sans Nova 400 für Titel wie die Wortmarke, leicht gesperrt; Eingabefelder und lange Zeilen in der Lesetype des Hauses */
 #start h1,#start h2,.ms-bue h1,.ms-titel h1{font-weight:400;letter-spacing:.02em}
@@ -197,7 +197,7 @@ textarea::placeholder,input::placeholder{font-style:normal!important}
 .ms-fuss .ms-wege a{color:#8a7348;text-decoration:none;border-bottom:1px solid rgba(185,166,128,.6)}
 .ms-fuss .ms-wege a:hover,.ms-fuss .ms-wege a:focus-visible{color:#0e0d0b;border-color:#6b5a38}
 
-/* Restaurant Gilles Varone: sechs versendbare E-Mails in drei Spalten, die letzte Reihe bleibt voll (HAUS-GV: so viele Spalten, dass die letzte Rasterreihe voll ist) */
+/* Praxis Sylvia Sroka (umgekleidet aus der Vorlage): sechs versendbare E-Mails in drei Spalten, die letzte Reihe bleibt voll (HAUS-GV: so viele Spalten, dass die letzte Rasterreihe voll ist) */
 @media (min-width:901px){#msNewsletter .ms-wochen--abt{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 /* Keine KI in diesem Haus (Auftrag 09.11.2026): «Mit dem Markenbuch prüfen» ruft KI auf, das Feld fällt weg; die Druckprüfung prüft ohne KI */
 .lf__fuss{display:none!important}

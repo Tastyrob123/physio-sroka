@@ -221,7 +221,7 @@
         const h = DS.elHoehe(M, el), kurz = el.typ === 'text' ? `«${el.text.replace(/\s+/g, ' ').slice(0, 34)}${el.text.length > 34 ? '…' : ''}»` : { bild: 'Foto', flaeche: 'Fläche', linie: 'Linie', rahmen: 'Rahmen', zeichen: 'Zeichen' }[el.typ];
         if (el.typ === 'bild' && M.bildIndex[el.bild]) {   // Kennzeichnung wie in «Markenbuch»
           const bi = M.bildIndex[el.bild];
-          if (bi.ki) out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}Foto mit KI erzeugt («${bi.alt}»): zeigt kein echtes Gericht oder Getränk der Praxis. Für Werbung nur mit Hinweis oder nach einem echten Foto.` });
+          if (bi.ki) out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}Foto mit KI erzeugt («${bi.alt}»): zeigt keine echte Szene der Praxis. Für Werbung nur mit Hinweis oder nach einem echten Foto.` });
           else if (bi.herkunft === 'frei') out.push({ stufe: 'gelb', id: el.id, seite: i, text: `${seite}Foto frei lizenziert (${bi.quelle}): Urheber und Lizenz beim Foto oder im Impressum nennen.` });
         }
         if (el.typ === 'text') {

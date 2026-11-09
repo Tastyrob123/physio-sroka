@@ -1,11 +1,14 @@
-/* Drucksachen & Feed (Drucksachen & Feed) · Restaurant Gilles Varone: Kopie aus Website bearbeiten (_werkzeuge/bureau/zur-werkbank.js, 09.11.2026), eingebunden mit data-fremd.
-   Geändert gegenüber der Vorlage nur die Werte des Hauses: Werkbank über den Kette-Server (http://localhost:8978/haus/Gilles%20Varone%20Savi%C3%A8se/werkbank/),
-   eigene Adresse 9717 (Drucksachen & Feed), Schlüssel «varone-wb». Die Werkbank-Adresse kommt sonst aus dem Link (wbo, wbu). */
+/* Drucksachen · Praxis Sylvia Sroka (umgekleidet aus der Vorlage, 09.11.2026), eingebunden von index.html ohne data-fremd.
+   Geändert gegenüber der Vorlage nur die Werte des Hauses: Ziel ist die Werkbank dieses Repos (<Stamm>/werkbank/index.html), errechnet aus der Lage
+   dieser Datei (werkzeuge/drucksachen/zur-werkbank.js → zwei Ordner höher), damit es auch unter einem Unterpfad (GitHub Pages) stimmt; kein fester
+   Kette-Server mehr. Schlüssel «sroka-wb». Lokal gilt ?wbu= nur, wenn die Werkbank ihn mitgibt.
+   Hinweis: der Knopf erscheint nur, wenn die Seite mit ?wb=de (Herkunft Werkbank) geöffnet wurde; die Werkbank des Repos bindet dieses Skript
+   nicht ein und hängt ?wb= nicht an, also bleibt der Knopf beim normalen Öffnen unsichtbar. */
 /* «Zur Werkbank» (Robert 12.10.2026): ein Knopf unten links auf jeder Seite, die man aus der Werkbank heraus öffnet.
    Eine Datei für alle Seiten, sie bringt Aussehen und Verhalten selbst mit (eigener Schattenbaum, kein Stylesheet der Seite greift hinein).
 
    In der Werkbank selbst (werkbank/, werkbank/en/ …) zeigt sie nichts, sondern hängt an jeden Link, der hinausführt, die Herkunft:
-   ?wb=<Sprache>.<Abschnitt>. Die Zielseite merkt sich das für die Sitzung (sessionStorage «varone-wb»), nimmt den Zusatz wieder aus der Adresse
+   ?wb=<Sprache>.<Abschnitt>. Die Zielseite merkt sich das für die Sitzung (sessionStorage «sroka-wb»), nimmt den Zusatz wieder aus der Adresse
    und zeigt den Knopf, auch über alle weiteren Klicks. Ohne diese Herkunft erscheint nichts: ein Gast des Hauses sieht den Knopf nie.
    Eingebettet (Laptop der Werkbank, Vorschau in «Website bearbeiten») erscheint er auch nicht.
 
@@ -47,7 +50,7 @@
   try { var _q = new URLSearchParams(location.search), _u = _q.get('wbu');
     if (_u) { var _x = new URL(_u); if (/^(127\.0\.0\.1|localhost)$/.test(_x.hostname) && /\/$/.test(_x.pathname)) sessionStorage.setItem('ws-wbu', _x.href); }
     WBU = sessionStorage.getItem('ws-wbu'); } catch (e) {}
-  var LOKAL_WERKBANK = WBU || 'http://localhost:8978/haus/Gilles%20Varone%20Savi%C3%A8se/';   // Werkbank des Hauses: <Projektstamm>/werkbank/
+  var LOKAL_WERKBANK = WBU;   // Praxis Sylvia Sroka: ohne ?wbu= gilt der Stamm aus der Lage dieser Datei (WURZEL unten), lokal wie online
   if (window.__zurWerkbank) return; window.__zurWerkbank = 1;
 
   var SPRACHEN = ['de', 'en', 'fr', 'zh', 'ko', 'ar'];
@@ -55,12 +58,12 @@
   var OHNE_SPRACHE = /^(control|_werkzeuge|studio|mission-control|reception|marke|maison|imprimerie|mails|werkbank\/anleitung)\/|^mappe/;   // gibt es nur deutsch: Sprache der Werkbank gilt
   var FREMD_ZIEL = /^https:\/\/[a-z0-9-]+-analyse\.tastystudios\.ch$|^https:\/\/drucksachen-studio\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):(8963|9717)$/;   // Drucksachen & Feed auf eigener Adresse
   var HERKUNFT = /^https:\/\/[a-z0-9-]+\.tastystudios\.ch$|^https:\/\/[a-z0-9-]+\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):\d{2,5}$/;   // von wo eine Werkbank herkommen darf
-  var SCHL = 'varone-wb';
+  var SCHL = 'sroka-wb';
 
   var tag = document.currentScript || document.querySelector('script[src*="zur-werkbank.js"]');
   var src = tag && tag.src || '';
   var fremd = !!(tag && tag.hasAttribute('data-fremd'));
-  var WURZEL = fremd ? null : src.replace(/(?:assets\/js|control|studio|_?werkzeuge\/(?:maison(?:\/online)?|imprimerie)|maison)\/zur-werkbank\.js.*$/, '');   // Adresse des Hauses mit Schrägstrich am Ende
+  var WURZEL = fremd ? null : src.replace(/(?:assets\/js|control|studio|_?werkzeuge\/(?:maison(?:\/online)?|imprimerie|drucksachen)|maison)\/zur-werkbank\.js.*$/, '');   // Adresse des Hauses mit Schrägstrich am Ende
   var hier = location.href.split(/[?#]/)[0];
   var pfad = WURZEL && hier.indexOf(WURZEL) === 0 ? hier.slice(WURZEL.length) : location.pathname.replace(/^\//, '');
 
@@ -130,7 +133,7 @@
   var imPfad = /(?:^|\/)(en|fr|zh|ko|ar)\//.exec(pfad);
   var sp = fremd || OHNE_SPRACHE.test(pfad) ? von.sp : (imPfad ? imPfad[1] : 'de');
   if (sp !== von.sp) { von.sp = sp; merke(von); }
-  if (location.port) basis = LOKAL_WERKBANK;
+  if (location.port && LOKAL_WERKBANK) basis = LOKAL_WERKBANK;
   var ziel = basis + 'werkbank/' + (sp === 'de' ? '' : sp + '/') + 'index.html' + (von.y ? '?y=' + von.y : (von.anker ? '#' + von.anker : ''));
   /* Robert 19.10.2026 01:18: ein Werkzeug öffnet im neuen Tab; «Zur Werkbank» schliesst ihn wieder, die Werkbank steht im ersten Tab noch an derselben Stelle */
   document.addEventListener('click', function (ev) { var w = document.getElementById('zur-werkbank'); if (!w || !ev.composedPath || ev.composedPath().indexOf(w) < 0) return; if (history.length <= 1) { ev.preventDefault(); ev.stopPropagation(); try { window.close(); } catch (x) {} setTimeout(function () { location.href = ziel; }, 400); } }, true);

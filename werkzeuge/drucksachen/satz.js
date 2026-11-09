@@ -6,18 +6,18 @@
   DS.SICHER = 4;     // Abstand vom Rand, in dem Text sicher bleibt
 
   DS.FORMATE = {
-    a6h: { name: 'A6 hoch', b: 105, h: 148, art: 'Karte, kleiner Flyer, Tischaufsteller' },
+    a6h: { name: 'A6 hoch', b: 105, h: 148, art: 'Karte, kleiner Flyer, Aufsteller' },
     a6q: { name: 'A6 quer', b: 148, h: 105, art: 'Postkarte, Ansichtskarte' },
-    a5h: { name: 'A5 hoch', b: 148, h: 210, art: 'Flyer, Menükarte' },
+    a5h: { name: 'A5 hoch', b: 148, h: 210, art: 'Flyer, Infoblatt' },
     a5q: { name: 'A5 quer', b: 210, h: 148, art: 'Einladung, Flyer quer' },
-    a4h: { name: 'A4 hoch', b: 210, h: 297, art: 'Aushang, Speisekarte, Infoblatt' },
+    a4h: { name: 'A4 hoch', b: 210, h: 297, art: 'Aushang, Übungsblatt, Infoblatt' },
     a3h: { name: 'A3 hoch', b: 297, h: 420, art: 'Plakat' },
-    dlh: { name: 'DL hoch', b: 99, h: 210, art: 'Menükarte schmal, Programm, Flyer lang' },
+    dlh: { name: 'DL hoch', b: 99, h: 210, art: 'Faltblatt schmal, Programm, Flyer lang' },
     dlq: { name: 'DL quer', b: 210, h: 99, art: 'Gutschein, Ticket' },
     q148: { name: 'Quadrat', b: 148, h: 148, art: 'Grusskarte, Einladung' },
     insta: { name: 'Instagram 4:5', b: 108, h: 135, art: 'Beitrag für Instagram', digital: true, px: [1080, 1350] },
-    tuer: { name: 'Türhänger', b: 90, h: 230, art: 'Bitte nicht stören, Zimmer reinigen' },
-    a7q: { name: 'A7 quer', b: 105, h: 74, art: 'Tischkarte, Platzkarte, kleine Hinweiskarte' },
+    tuer: { name: 'Türhänger', b: 90, h: 230, art: 'Bitte nicht stören, Behandlung läuft' },
+    a7q: { name: 'A7 quer', b: 105, h: 74, art: 'Terminkarte, Namenskarte, kleine Hinweiskarte' },
     schild: { name: 'Namensschild', b: 90, h: 55, art: 'Namensschild zum Anstecken, Ausweis für Tagungen' },
     story: { name: 'Story 9:16', b: 108, h: 192, art: 'Instagram- und WhatsApp-Story', digital: true, px: [1080, 1920] },
     mail: { name: 'Newsletter 600 px', b: 150, h: 330, art: 'Newsletter als Bild für das E-Mail-Programm', digital: true, px: [1200, 2640] },
@@ -66,6 +66,8 @@
     : M.basis + (mini ? 'mini/' : 'bilder/') + key + '.webp';   // alle Fotos liegen auch in der eigenen Kopie (bau.py übernimmt die des Markenbuchs)
 
   /* ---------- Markenbuch: Markenbuch des Hauses (Fotos, Farben, Dateien) ---------- */
+  /* Praxis Sylvia Sroka (umgekleidet aus der Vorlage): die Namen unten (Zimmer, Küche, Savièse …) stammen aus der Vorlage. Sichtbar nur mit
+     Markenbuch (ST.M.livre); hier ist DS.ALLEIN gesetzt, das Markenbuch wird nie geladen, die Namen erscheinen nicht. */
   DS.LIVRE_TEXT = {
     b: { zimmer: 'Zimmer', restaurants: 'Restaurants', bar: 'Bar', spa: 'Spa', saal: 'Saal', haus: 'Haus', region: 'Region', kueche: 'Küche', teller: 'Teller', equipe: 'Équipe', auszeichnungen: 'Auszeichnungen', ort: 'Savièse' },
     s: { jahr: 'Ganzjährig', sommer: 'Sommer', winter: 'Winter' },

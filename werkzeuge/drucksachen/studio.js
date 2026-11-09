@@ -75,7 +75,7 @@
     const d = ST.doc, gespeichert = !!alleDocs()[d.id];
     const seit = Date.now() - (parseInt(String(d.id).slice(1), 36) || Date.now());
     const lange = gespeichert && (seit > 10 * 60000 || ST.hist.length >= 10);
-    const a = await dialog(`<h2>Diesen Entwurf verwerfen?</h2><p class="leise">${gespeichert ? 'Er wird aus deinen Drucksachen entfernt.' : 'Er ist noch nicht gespeichert und verschwindet einfach.'}${lange ? ' Sie haben länger daran gearbeitet. Wenn Sie ihn noch brauchen könnten, behalten Sie ihn als Kopie.' : ''}</p>`,
+    const a = await dialog(`<h2>Diesen Entwurf verwerfen?</h2><p class="leise">${gespeichert ? 'Er wird aus deinen Drucksachen entfernt.' : 'Er ist noch nicht gespeichert und verschwindet einfach.'}${lange ? ' Du hast länger daran gearbeitet. Wenn du ihn noch brauchen könntest, behalte ihn als Kopie.' : ''}</p>`,
       [{ t: 'Behalten', v: false }, ...(lange ? [{ t: 'Stattdessen als Kopie behalten', v: 'kopie' }] : []), { t: 'Verwerfen', v: true, haupt: true }]);
     if (!a) return;
     const alle = alleDocs();
@@ -201,7 +201,7 @@
         ${q ? `<div class="gruppe"><button class="knopf knopf--voll" data-tu="neuSetzen" style="height:42px">Seite neu setzen<i><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></i></button>
           <p class="klein">Setzt die Seite mit deinen geänderten Texten und Fotos neu, Abstände stimmen danach wieder.</p></div>` : ''}
         <div class="gruppe"><label>Aufbau</label><select id="eVorlage"><option value="">${q ? '' : 'Frei gestaltet'}</option>${Object.entries(DS.VORLAGEN).map(([k, v]) => `<option value="${k}" ${q && q.vorlage === k ? 'selected' : ''}>${v.name}</option>`).join('')}</select></div>
-        <div class="gruppe"><label>Grund</label><div class="segment" id="eTon">${[['dunkel', 'Nuit'], ['hell', 'Papier'], ['creme', 'Sable']].map(([k, t]) => `<button data-ton="${k}" class="${q && q.ton === k ? 'an' : ''}">${t}</button>`).join('')}</div>
+        <div class="gruppe"><label>Grund</label><div class="segment" id="eTon">${[['dunkel', 'Nacht'], ['hell', 'Licht'], ['creme', 'Sand']].map(([k, t]) => `<button data-ton="${k}" class="${q && q.ton === k ? 'an' : ''}">${t}</button>`).join('')}</div>
           <div style="margin-top:10px">${farbKnoepfe(s.grund, 'grund')}</div>
           <label style="margin:14px 0 8px">Tapete</label><div class="segment" id="eTapete">${[['', 'Ohne Tapete'], ['dunkel', 'Dunkel'], ['hell', 'Hell']].map(([k, t]) => `<button data-tapete="${k}" class="${(s.tapete || '') === k ? 'an' : ''}">${t}</button>`).join('')}</div></div>
         <div class="gruppe"><label>Seiten</label><div class="knoepfe">${sozial() ? '' : '<button data-tu="rueckseite">Rückseite anlegen</button>'}<button data-tu="seiteKopie">${sozial() ? 'Bild kopieren' : 'Seite kopieren'}</button>
@@ -608,7 +608,8 @@
       box.appendChild(b);
     }
   }
-  const GRUPPEN = ["Eigene Fotos", "Saal & Küche", "Teller", "Am Tisch", "Desserts", "Team", "Auszeichnungen", "Savièse"];
+  /* Gruppen der Fotos (Praxis Sylvia Sroka, umgekleidet aus der Vorlage): aus den Fotos des Hauses, «Eigene Fotos» zuerst, dann in der Reihenfolge des ersten Auftretens */
+  const GRUPPEN = () => [...new Set(["Eigene Fotos", ...ST.M.bilder.map(b => b.gruppe).filter(Boolean)])];
   const lageVon = b => b.w > b.h * 1.1 ? 'quer' : b.h > b.w * 1.1 ? 'hoch' : 'quadrat';
   function fotoListe() {
     const q = $('#fotoSuche').value.trim().toLowerCase();
@@ -622,7 +623,7 @@
     const zahl = {}; ST.M.bilder.forEach(b => zahl[b.gruppe] = (zahl[b.gruppe] || 0) + 1);
     const g = ST.fotoGruppe || 'alle';
     $('#fotoFilter').innerHTML = `<button data-gruppe="alle" class="${g === 'alle' ? 'an' : ''}">Alle<i>${ST.M.bilder.length}</i></button>` +
-      (ST.M.livre ? [DS.eigene.GRUPPE, ...Object.values(DS.LIVRE_TEXT.b)] : GRUPPEN).filter(x => zahl[x]).map(x => `<button data-gruppe="${esc(x)}" class="${g === x ? 'an' : ''}">${esc(x)}<i>${zahl[x]}</i></button>`).join('');
+      (ST.M.livre ? [DS.eigene.GRUPPE, ...Object.values(DS.LIVRE_TEXT.b)] : GRUPPEN()).filter(x => zahl[x]).map(x => `<button data-gruppe="${esc(x)}" class="${g === x ? 'an' : ''}">${esc(x)}<i>${zahl[x]}</i></button>`).join('');
     $$('#fotoLage button').forEach(b => b.classList.toggle('an', b.dataset.lage === (ST.fotoLage || 'alle')));
     const l = fotoListe();
     $('#fotoInfo').textContent = fotoHinweis(l.length);
@@ -803,7 +804,7 @@
       <div class="dna__farben">${Object.entries(M.farben).map(([k, v]) => `<div><span style="background:${v}"></span>${esc(M.farbnamen[k])}<br>${v}</div>`).join('')}</div>
       ${Object.entries(M.schriften).map(([k, s]) => `<div class="dna__schrift" style="font-family:'DS-${k}';font-size:${k === 'titel' ? 22 : k === 'mono' ? 12 : 15}px;${k === 'mono' || k === 'kapitale' ? 'text-transform:uppercase;letter-spacing:.16em' : ''}">${esc(M.name)}<small style="font-family:'DS-text';text-transform:none;letter-spacing:0">${esc(s.familie)} · ${esc(s.wofuer)}</small></div>`).join('')}
       <ul>${M.regeln.map(r => DS.regelSichtbar(r)).filter(Boolean).map(r => `<li>${esc(r)}</li>`).join('')}</ul>
-      <p class="klein">${M.bilder.length} Fotos der Website mit Beschreibung, dazu der Wortlaut der Website und der Unterlagen (Karten, Treatment-Menü, Veranstaltungen).</p>`;
+      <p class="klein">${M.bilder.length} Fotos der Website mit Beschreibung, dazu der Wortlaut der Website.</p>`;
   }
 
   /* ---------- Speichern als Datei ---------- */

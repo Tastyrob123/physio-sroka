@@ -279,8 +279,8 @@ function zu(){s.classList.remove('leiste-auf');k.setAttribute('aria-expanded','f
 k.addEventListener('click',function(e){e.stopPropagation();var auf=!s.classList.contains('leiste-auf');s.classList.toggle('leiste-auf',auf);k.setAttribute('aria-expanded',String(auf));});
 s.addEventListener('click',function(e){if(!s.classList.contains('leiste-auf'))return;if(e.target.closest('.ms-leiste [data-ansicht],.ms-leiste [data-akt],.ms-leiste .ms-fuss button'))return setTimeout(zu,0);if(!e.target.closest('.ms-leiste'))zu();});
 addEventListener('keydown',function(e){if(e.key==='Escape')zu();});})();</script>
-<script>/* «Zur Werkbank» (R19): nur wenn aus der Werkbank geöffnet. Online liegt Drucksachen auf der Adresse der Praxis (werkzeuge/imprimerie/),
-   lokal auf eigenem Server: dann data-fremd, die Werkbank-Adresse kommt aus dem Link. */
+<script>/* «Zur Werkbank» (R19): nur wenn aus der Werkbank geöffnet (?wb=de). Drucksachen liegt unter werkzeuge/drucksachen/ der Praxis Sylvia Sroka;
+   das Ziel ist ../../werkbank/index.html, errechnet aus der Lage von zur-werkbank.js (umgekleidet aus der Vorlage). */
 (function(){var s=document.createElement('script');s.src='zur-werkbank.js?v=1-gv1-rw1108';s.defer=true;s.setAttribute('data-ueber','.ms-fuss');document.body.appendChild(s);})();</script>
 </body>
 </html>

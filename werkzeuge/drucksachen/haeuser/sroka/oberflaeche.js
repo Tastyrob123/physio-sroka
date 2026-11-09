@@ -1,4 +1,4 @@
-/* Drucksachen & Feed des Restaurants Gilles Varone: Werkzeug-Oberfläche «Die Bühne» (Weg von Drucksachen & Feed des Berghotel Gasterntal 17.10.2026, dort nur gelesen, UMSTELLUNG.md im Stamm, Paket assets/oberflaeche).
+/* Drucksachen der Praxis Sylvia Sroka (umgekleidet aus der Vorlage): Werkzeug-Oberfläche «Die Bühne» (Weg von Drucksachen & Feed des Berghotel Gasterntal 17.10.2026, dort nur gelesen, UMSTELLUNG.md im Stamm, Paket assets/oberflaeche).
    Gleicher Weg wie Drucksachen & Feed des Landgasthof Ruedihus (haeuser/ruedihus/oberflaeche.js dort, nur gelesen und übernommen).
    Drucksachen & Feed hat ein eigenes Gerüst (Übersicht #start mit .ms-leiste/.ms-kopf, Arbeitsfläche mit header.kopf/aside.links); der Kern
    (_Drucksachen-Studio, über Carlton und Doldenhorn) bleibt unberührt. Diese Hausschicht legt nur an, was in allen Werkzeugen des Hauses gleich ist:

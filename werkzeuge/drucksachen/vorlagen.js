@@ -29,7 +29,7 @@
     el.h = DS.mess(el).h;
     return el;
   }
-  /* Zierde des Hauses (marke.json → zierde, Gilles Varone 09.11.2026: die Zierde «xx» zwischen Titel und Text): der kurze waagrechte Trennstrich ohne eigene Stärke wird zur Zierde */
+  /* Zierde des Hauses (marke.json → zierde; Praxis Sylvia Sroka, umgekleidet aus der Vorlage: die Zierde «xx» zwischen Titel und Text): der kurze waagrechte Trennstrich ohne eigene Stärke wird zur Zierde */
   const linie = (c, L, o = {}) => { const el = Object.assign({ id: neueId(), typ: 'linie', x: (c.w - L) / 2, y: 0, w: L, h: 0, staerke: .3, farbe: c.T.linie, deck: 1 }, o);
     if (c.M.zierde && !('staerke' in o) && !('h' in o) && L > 0 && L <= 16 * c.s8) { el.zierde = 1; el.w = +(L * 1.15).toFixed(2); el.x = o.x ?? (c.w - el.w) / 2; el.h = +(el.w * c.M.zierde.verh).toFixed(2); }
     return el; };
@@ -176,7 +176,7 @@
   };
 
   V.karte = {
-    name: 'Karte mit Liste', wofuer: 'Speise-, Getränke-, Behandlungs- oder Preiskarte: Einträge mit Name, Beschreibung, Preis',
+    name: 'Karte mit Liste', wofuer: 'Behandlungs-, Übungs- oder Preisliste: Einträge mit Name, Beschreibung, Preis',
     slots: ['ueber', 'titel*', 'text', 'liste*', 'fuss'],
     bau(c, i, seite) {
       grund(c, seite); const r = rahmen(c);
@@ -330,7 +330,7 @@
   };
 
   V.geteilt = {
-    name: 'Bild und Text geteilt', wofuer: 'Halb Foto, halb Text; quer nebeneinander, hoch übereinander. Für Restaurant, Wellness, Angebot',
+    name: 'Bild und Text geteilt', wofuer: 'Halb Foto, halb Text; quer nebeneinander, hoch übereinander. Für Behandlung, Übung, Angebot',
     slots: ['bild*', 'ueber', 'titel*', 'text', 'aktion', 'fuss'],
     bau(c, i, seite) {
       grund(c, seite);
@@ -408,7 +408,7 @@
   };
 
   V.aushang = {
-    name: 'Aushang', wofuer: 'Hinweis, Schild, Tischaufsteller, Info für Gäste: Titel und gut lesbarer Text',
+    name: 'Aushang', wofuer: 'Hinweis, Schild, Aufsteller, Info für Patienten: Titel und gut lesbarer Text',
     slots: ['ueber', 'titel*', 'text*', 'aktion', 'fuss'],
     bau(c, i, seite) {
       grund(c, seite); const r = rahmen(c);
@@ -656,6 +656,6 @@
     };
   };
 
-  /* Beispielinhalte im Wortlaut des Restaurant Gilles Varone (geprüft in _qa/vorlagen_varone.py, eingesetzt von _qa/varone_anpassen.py) */
+  /* Beispielinhalte im Wortlaut der Praxis Sylvia Sroka (umgekleidet aus der Vorlage, eingesetzt von inhalte.py) */
   DS.BEISPIEL = {"deckel": {"ueber": "Hannover und Hemmingen", "titel": "Physiotherapie Sylvia Sroka", "unter": "Privatpraxis für Physio- und Körperpsychotherapie", "text": "Seit 1986 Physiotherapeutin."}, "buehne": {"bild": "echt-hero-a", "ueber": "Physiotherapie", "titel": "Erst untersuchen. Dann behandeln.", "text": "Nach einer gründlichen Untersuchung besprechen wir gemeinsam, welche Behandlung Ihnen hilft. Ein unverbindliches Erstgespräch ist jederzeit möglich.", "aktion": "Mo – Fr · 8 – 19 Uhr · 0511 260 74 14"}, "ansicht": {"bild": "echt-ruhe", "titel": "Ein Moment Ruhe", "unter": "Physiotherapie Sylvia Sroka"}, "karte": {"ueber": "Meine Schwerpunkte", "titel": "Bewegung und Funktion wiederherstellen", "text": "Dafür arbeite ich vor allem mit drei Verfahren.", "liste": [{"name": "Neurologie", "detail": "Physiotherapie bei Erkrankungen des Nervensystems, etwa nach einem Schlaganfall oder bei Parkinson.", "preis": ""}, {"name": "Bobath", "detail": "Ein Behandlungskonzept, das gestörte Bewegungsabläufe Schritt für Schritt neu anbahnt.", "preis": ""}, {"name": "Craniosacral", "detail": "Eine sanfte Behandlung mit den Händen, vor allem an Kopf, Nacken und Rücken.", "preis": ""}]}, "einladung": {"ueber": "Für Angehörige", "titel": "Begleitung und Entlastung", "wann": "Termine nach Vereinbarung", "wo": "Hannover und Hemmingen", "text": "Ich weiß aus eigener Erfahrung, was es heißt, einen Menschen zu pflegen.", "aktion": "0511 260 74 14"}, "programm": {"ueber": "Physiotherapie Sylvia Sroka", "titel": "So läuft eine Behandlung ab", "termine": [{"wann": "Ankommen", "was": "Sie erzählen, was Sie belastet und was Sie sich wünschen.", "wo": ""}, {"wann": "Untersuchen", "was": "Haltung und Bewegung genau ansehen.", "wo": ""}, {"wann": "Behandeln", "was": "Verspannungen lösen, Muskeln und Gelenke bewegen.", "wo": ""}, {"wann": "Weiter üben", "was": "Übungen für zu Hause.", "wo": ""}]}, "fenster": {"bild": "echt-gespraech", "ueber": "Körper und Seele", "titel": "Stress zeigt sich oft zuerst im Körper", "unter": "Physiotherapie Sylvia Sroka", "text": "Deshalb verbinde ich Physiotherapie mit Entspannung, Achtsamkeit und Gesprächen."}, "geteilt": {"bild": "echt-haende-halten", "ueber": "Für Angehörige", "titel": "Für Betroffene. Und für die, die sie pflegen.", "text": "Hausbesuche nach Absprache und Begleitung für Angehörige.", "aktion": "0511 260 74 14"}, "gutschein": {"titel": "Gutschein", "unter": "Physiotherapie Sylvia Sroka", "wert": "Eine Behandlung", "text": "Hannover und Hemmingen"}, "aushang": {"ueber": "Privatpraxis Sylvia Sroka", "titel": "Termine nach Vereinbarung", "text": "Mo – Fr · 8 – 19 Uhr\nHausbesuche nach Absprache.\nRufen Sie an oder schreiben Sie mir. Ich behandle Privatpatienten.", "aktion": "0511 260 74 14 · info@physio-sroka.de"}, "tuer": {"ueber": "Physiotherapie", "titel": "Bitte klingeln", "unter": "Privatpraxis Sylvia Sroka", "text": "Termine nach Vereinbarung, Hausbesuche nach Absprache.", "aktion": "0511 260 74 14"}, "rueckseite": {"text": "Termine nach Vereinbarung, Hausbesuche nach Absprache."}, "kartengruss": {"titel": "Physiotherapie Sylvia Sroka", "text": "Hannover und Hemmingen"}, "visite": {"titel": "Sylvia Sroka", "unter": "Physiotherapie", "text": "Physiotherapeutin und Heilpraktikerin"}, "kontakt": {"ueber": "Hannover und Hemmingen", "text": "Termine nach Vereinbarung, Hausbesuche nach Absprache."}, "termine": {"titel": "Ihre nächsten Termine", "text": "Hannover 0511 260 74 14 · Hemmingen 0511 234 46 67"}, "brief": {}, "umschlag": {"text": "physio-sroka.de · Hannover und Hemmingen"}, "bewertung": {"ueber": "Privatpraxis Sylvia Sroka · Hannover", "titel": "Wie war Ihre Behandlung?", "text": "Ihre Meinung hilft anderen, die eine Physiotherapie suchen. Der Code öffnet die Praxis in Google Maps, dort können Sie eine Rezension schreiben.", "qr": "qr-hannover", "unter": "Dieterichsstraße 25 · 30159 Hannover"}};
 })();

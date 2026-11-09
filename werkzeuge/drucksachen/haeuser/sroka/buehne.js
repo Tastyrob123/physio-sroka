@@ -1,4 +1,4 @@
-/* Drucksachen & Feed des Restaurants Gilles Varone: Bühne über jeder Ansicht und Knopf zurück zu «Kontrollpanel» (Robert 15.10.2026).
+/* Drucksachen der Praxis Sylvia Sroka (umgekleidet aus der Vorlage): Bühne über jeder Ansicht und Knopf zurück zu «Kontrollpanel» (Robert 15.10.2026).
    «Heroes richtig schön, geil, luxuriös, edel», Vorbild Website bearbeiten der Häuser: blaue Tafel mit Tapete, Goldrahmen innen,
    Foto des Hauses rechts mit weichem Übergang, Titel links. Gleiche Sprache wie Grand Beau-Rivage/website/studio/buehne.js.
    «In allen Tools zurück in die Maison kommen» → runder Knopf mit Haus in beiden Kopfzeilen.

@@ -35,7 +35,7 @@
     const box = $('#msLivre'); if (!box || !L()) return;
     if (!box.dataset.gebaut) {
       box.dataset.gebaut = 1;
-      box.innerHTML = `<div class="ms-titel"><h1>Das Markenbuch</h1><span class="ms-leise">Das Markenbuch des Hauses, hier in Drucksachen & Feed: Fotos, Logo und Dateien, Farben. Was Sie hier sehen, ist dieselbe Quelle wie im Markenbuch.</span></div>
+      box.innerHTML = `<div class="ms-titel"><h1>Das Markenbuch</h1><span class="ms-leise">Das Markenbuch des Hauses, hier in Drucksachen & Feed: Fotos, Logo und Dateien, Farben. Was du hier siehst, ist dieselbe Quelle wie im Markenbuch.</span></div>
         <div class="ll-kopf"><div class="ms-chips ll-reiter">${[['bilder', 'Fotos'], ['dateien', 'Logo und Dateien'], ['farben', 'Farben']].map(([k, t]) => `<button data-llreiter="${k}">${t}</button>`).join('')}</div>
           <a class="ms-lnk" href="${DS.livreSeite()}" target="_blank" rel="noopener"><span>Das Markenbuch öffnen</span>${IC.pfeil}</a></div>
         <div class="ll-fach" data-llfach="bilder"><div id="llBilderPlatz"></div></div>
@@ -99,7 +99,7 @@
     const box = $('#lfIn'), M = DS.M;
     if (fachReiter === 'fotos') {
       const B = M.bilder.filter(b => !b.eigen), gr = Object.entries(T().b).filter(([, g]) => B.some(b => b.gruppe === g));
-      box.innerHTML = `<input type="search" id="lfSuche" placeholder="Suchen: Saal, Teller, Dessert …" autocomplete="off">
+      box.innerHTML = `<input type="search" id="lfSuche" placeholder="Suchen: Behandlung, Übungen, Ruhe …" autocomplete="off">
         <div class="lf__chips">${[['alle', 'Alle'], ...gr.map(([, g]) => [g, g])].map(([k, t]) => `<button data-lfgruppe="${esc(k)}" class="${fGruppe === k ? 'an' : ''}">${esc(t)}</button>`).join('')}</div>
         <div class="lf__chips lf__chips--leise">${[['alle', 'Jede Herkunft'], ...Object.entries(T().h)].map(([k, t]) => `<button data-lfherkunft="${k}" class="${fHerkunft === k ? 'an' : ''}">${esc(t)}</button>`).join('')}</div>
         <div class="lf__fotos" id="lfFotos"></div>`;

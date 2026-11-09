@@ -1,14 +1,14 @@
 /* Drucksachen-Studio · Start wie bei Canva (Robert 11.10.2026: «erst gefragt werden, was möchtest du erstellen»).
-   Schritt 1: Was möchten Sie erstellen? (Arten mit lebendiger Vorschau in der Praxisstil, zuletzt bearbeitet)
-   Schritt 2: Wie möchten Sie beginnen? Beschreiben (die KI entwirft) · eine Vorlage dieser Art · leeres Blatt. Format wählbar. */
+   Schritt 1: Was möchtest du erstellen? (Arten mit lebendiger Vorschau in der Praxisstil, zuletzt bearbeitet)
+   Schritt 2: Wie möchtest du beginnen? Beschreiben (die KI entwirft) · eine Vorlage dieser Art · leeres Blatt. Format wählbar. */
 (function () {
   const DS = window.DS;
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const PFEIL = '<i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i>';
 
-  /* Beispielinhalte je Art im Wortlaut des Restaurant Gilles Varone (die fünf Seiten der Website, französisch; ohne Preise;
-     Sätze und Zahlen geprüft in _qa/vorlagen_varone.py, eingesetzt von _qa/varone_anpassen.py) */
+  /* Beispielinhalte je Art im Wortlaut der Praxis Sylvia Sroka (umgekleidet aus der Vorlage;
+     Texte aus der Website, eingesetzt von inhalte.py) */
   const INHALT = {"visitenkarte": {"visite": {"titel": "Sylvia Sroka", "unter": "Physiotherapie", "text": "Physiotherapeutin und Heilpraktikerin"}}, "terminkarte": {"visite": {"titel": "Ihr nächster Termin", "unter": "Physiotherapie Sylvia Sroka", "text": "Hannover und Hemmingen"}}, "uebungsblatt": {"karte": {"ueber": "Übungen für zu Hause", "titel": "Für Rücken und Nacken", "text": "Übungen für zu Hause helfen, dass das Erreichte im Alltag bleibt.", "liste": [{"name": "Katze und Kuh", "detail": "10 Mal langsam. Gehen Sie in den Vierfüßlerstand, die Hände unter den Schultern, die Knie unter den Hüften. Machen Sie beim Ausatmen den Rücken rund und lassen Sie den Kopf sinken. Lassen Sie beim Einatmen den Rücken sanft durchhängen und heben Sie den Blick.", "preis": ""}, {"name": "Becken kippen", "detail": "10 Mal. Legen Sie sich auf den Rücken und stellen Sie die Beine an. Drücken Sie den unteren Rücken sanft in die Unterlage, indem Sie das Becken kippen. Halten Sie kurz und lassen Sie wieder locker.", "preis": ""}, {"name": "Kinn einziehen", "detail": "10 Mal, je 5 Sekunden. Setzen Sie sich aufrecht hin und schauen Sie geradeaus. Schieben Sie das Kinn waagerecht nach hinten, als wollten Sie ein Doppelkinn machen. Halten Sie kurz und lassen Sie wieder los.", "preis": ""}, {"name": "Schulterkreisen", "detail": "10 Mal rückwärts. Stehen oder sitzen Sie aufrecht. Ziehen Sie die Schultern hoch, nach hinten und lassen Sie sie sinken. Machen Sie die Kreise langsam und groß.", "preis": ""}], "fuss": "Bitte nur nach Absprache mit Sylvia Sroka üben. Bei Schmerzen, Schwindel oder Unwohlsein sofort aufhören."}, "buehne": {"bild": "uebung-ruecken", "ueber": "Übungen für zu Hause", "titel": "Katze und Kuh", "text": "Gehen Sie in den Vierfüßlerstand, die Hände unter den Schultern, die Knie unter den Hüften. Machen Sie beim Ausatmen den Rücken rund und lassen Sie den Kopf sinken. Lassen Sie beim Einatmen den Rücken sanft durchhängen und heben Sie den Blick.", "aktion": "10 Mal langsam", "fuss": "Bitte nur nach Absprache mit Sylvia Sroka üben. Bei Schmerzen, Schwindel oder Unwohlsein sofort aufhören."}}, "aushang": {"aushang": {"ueber": "Privatpraxis Sylvia Sroka", "titel": "Termine nach Vereinbarung", "text": "Mo – Fr · 8 – 19 Uhr\nHausbesuche nach Absprache.\nRufen Sie an oder schreiben Sie mir. Ich behandle Privatpatienten.", "aktion": "0511 260 74 14 · info@physio-sroka.de"}, "buehne": {"bild": "echt-hero-a", "ueber": "Physiotherapie", "titel": "Erst untersuchen. Dann behandeln.", "text": "Nach einer gründlichen Untersuchung besprechen wir gemeinsam, welche Behandlung Ihnen hilft. Ein unverbindliches Erstgespräch ist jederzeit möglich.", "aktion": "Mo – Fr · 8 – 19 Uhr · 0511 260 74 14"}}, "faltblatt": {"buehne": {"bild": "echt-hero-a", "ueber": "Hannover und Hemmingen", "titel": "Physiotherapie Sylvia Sroka", "text": "Seit 1986 Physiotherapeutin. Meine Privatpraxis für Physio- und Körperpsychotherapie liegt in Hannover und Hemmingen.", "aktion": "0511 260 74 14"}, "fenster": {"bild": "echt-hero-a", "ueber": "Hannover und Hemmingen", "titel": "Physiotherapie Sylvia Sroka", "unter": "Seit 1986", "text": "Erst untersuchen. Dann behandeln."}, "deckel": {"ueber": "Hannover und Hemmingen", "titel": "Physiotherapie Sylvia Sroka", "unter": "Privatpraxis für Physio- und Körperpsychotherapie", "text": "Seit 1986 Physiotherapeutin."}}, "briefpapier": {"brief": {}}, "umschlag": {"umschlag": {"text": "physio-sroka.de · Hannover und Hemmingen"}}, "bewertung": {"bewertung": {"ueber": "Privatpraxis Sylvia Sroka · Hannover", "titel": "Wie war Ihre Behandlung?", "text": "Ihre Meinung hilft anderen, die eine Physiotherapie suchen. Der Code öffnet die Praxis in Google Maps, dort können Sie eine Rezension schreiben.", "qr": "qr-hannover", "unter": "Dieterichsstraße 25 · 30159 Hannover"}}, "bewertung-hemmingen": {"bewertung": {"ueber": "Physio Rosenpark · Hemmingen", "titel": "Wie war Ihre Behandlung?", "text": "Ihre Meinung hilft anderen, die eine Physiotherapie suchen. Der Code öffnet die Praxis in Google Maps, dort können Sie eine Rezension schreiben.", "qr": "qr-hemmingen", "unter": "Berliner Straße 16 · 30966 Hemmingen"}}};
   const ARTEN = [
     {"key": "visitenkarte", "name": "Visitenkarte", "satz": "Vorne Zeichen und Name, hinten beide Standorte", "format": "visit", "formate": ["visit"], "vorlagen": [["visite", "dunkel"], ["visite", "hell"], ["visite", "creme"]], "beispiel": "Eine Visitenkarte mit beiden Standorten", "rueck": "kontakt"},
@@ -539,7 +539,7 @@
   function zeigeUmfang(code) {
     if (!Z) return zeigeWeg('alle');
     const [was, k] = code.split(':'); let u = null;
-    if (was === 'abteilung') { const a = K.ABTEILUNGEN.find(x => x.k === k), z = Z.abteilung[k]; if (a && z) u = { titel: a.t, bereiche: z.bereiche, satz: `Alle Vorlagen für ${a.t}. Such nach einem Wort oder grenzen Sie nach Art und Grund ein.` }; }
+    if (was === 'abteilung') { const a = K.ABTEILUNGEN.find(x => x.k === k), z = Z.abteilung[k]; if (a && z) u = { titel: a.t, bereiche: z.bereiche, satz: `Alle Vorlagen für ${a.t}. Such nach einem Wort oder grenz nach Art und Grund ein.` }; }
     if (was === 'anlass') { const a = K.ANLAESSE.find(x => x.k === k), z = Z.anlass[k]; if (a && z) u = { titel: a.t, q: z.q, satz: `Vorlagen aus der Bibliothek, in denen «${z.q}» vorkommt. Das Suchwort lässt sich ändern.` }; }
     if (was === 'hinweise') u = { titel: 'Hinweise in der Praxis', arten: Z.hinweise.arten, satz: 'Störungen, Aushänge, Hinweiskarten und Türhänger für jeden Bereich der Praxis.' };
     if (was === 'anlaesse') u = { titel: 'Festtage und Ausflüge', bereiche: Z.anlaesse.bereiche, satz: 'Vorlagen für die Festtage in der Praxis und für Ausflüge in die Region.' };
@@ -570,7 +570,7 @@
       <div class="kd">
         <div class="wo kd__bild"><span class="wo__k"><span class="wo__bild" style="background-image:url('${DS.bildUrl(DS.M, foto, false)}')"></span><span class="wo__licht"></span>${ev ? `<span class="wo__datum">${esc(a.z)}</span>` : ''}</span></div>
         <div class="kd__text">${ev ? `<em class="kd__wo">${WO[a.wo]} · ${esc(a.ort)}</em>` : ''}<h1>${esc(a.t)}</h1><p>${esc(a.satz)}</p>
-          <div class="kd__zahl"><b>${zahlDE(liste.length + mehr)}</b><span>${ev ? 'Motive, fertig gesetzt im Stil der Praxis: Plakat, Flyer, Aushang, Tischaufsteller, Karte, Beitrag, Story und E-Mail-Kopf' : 'Vorlagen für diese Abteilung, fertig gesetzt im Stil der Praxis'}</span></div>
+          <div class="kd__zahl"><b>${zahlDE(liste.length + mehr)}</b><span>${ev ? 'Motive, fertig gesetzt im Stil der Praxis: Plakat, Flyer, Aushang, Aufsteller, Karte, Beitrag, Story und E-Mail-Kopf' : 'Vorlagen für diese Abteilung, fertig gesetzt im Stil der Praxis'}</span></div>
           <div class="ms-feld ms-feld--klein"><span class="ms-feld__ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/></svg></span><textarea id="kampFrei" rows="1" placeholder="Etwas anderes für ${esc(a.t)} …"></textarea><button class="kn knopf--voll glanz-kn" data-st="kfrei"><span>Fünf Entwürfe</span><i>${PFEIL_SVG}</i></button></div></div>
       </div>
       <div class="ms-zeile"><h2>${ev ? 'Die Motive' : 'Die Vorlagen'}</h2><span class="ms-leise">Antippen öffnet die Vorlage in der Werkstatt, Texte in [Klammern] vor dem Druck ersetzen</span></div>
@@ -707,7 +707,7 @@
      gesetzt, wenn es ins Bild kommt und nicht mehr schnell gescrollt wird; Blöcke weit ausserhalb des Bilds werden geleert und halten nur ihre Höhe. */
   const ALLE = { key: 'alle', name: 'Alle Vorlagen', alle: true, format: 'a5h', formate: [], vorlagen: [] };
   const BEREICHE = ["Empfang", "Expériences", "Accords", "Am Tisch", "Gruppen", "Gutschein", "Zeiten", "Auszeichnungen", "Team", "Savièse", "Feed", "Hinweise in der Praxis", "Anlässe & Events"];
-  const PORTION = 12, TON = { dunkel: 'Nuit', hell: 'Papier', creme: 'Sable' };
+  const PORTION = 12, TON = { dunkel: 'Nacht', hell: 'Licht', creme: 'Sand' };
   let vFilter = { bereich: 'alle', ton: 'alle', art: 'alle', q: '' }, beobachter = null, fern = null, waechter = null, vAlle = [], vTreffer = [], vDa = 0, vLauf = 0;
   async function ladeAlle() {
     const arten = ARTEN.filter(a => !a.leer), listen = await Promise.all(arten.map(a => ladeBibliothek(a.key)));
@@ -728,7 +728,7 @@
     const w = $('#startWeg'); w.hidden = false;
     const fOpt = wahl.formate.map(k => `<option value="${k}" ${k === fk ? 'selected' : ''}>${DS.FORMATE[k].name} · ${DS.FORMATE[k].b} × ${DS.FORMATE[k].h} mm</option>`).join('');
     w.innerHTML = `<button class="start__zurueck" data-st="zurueck"><svg viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></svg>Zurück</button>${mitFotoKopf()}
-      <div class="weg__kopf"><div><h1>${esc(wahl.name)}</h1><p class="start__satz">${wahl.satz ? esc(wahl.satz) : wahl.alle ? 'Alle Vorlagen der Praxis an einem Ort. Such nach einem Wort oder grenzen Sie nach Bereich, Art und Grund ein.' : wahl.leer ? 'Wählen Sie ein Format, dann geht es los.' : 'Beschreiben Sie in einem Satz, was Sie brauchen, oder nehmen Sie unten eine der Vorlagen.'}</p></div>
+      <div class="weg__kopf"><div><h1>${esc(wahl.name)}</h1><p class="start__satz">${wahl.satz ? esc(wahl.satz) : wahl.alle ? 'Alle Vorlagen der Praxis an einem Ort. Such nach einem Wort oder grenz nach Bereich, Art und Grund ein.' : wahl.leer ? 'Wähl ein Format, dann geht es los.' : 'Beschreib in einem Satz, was du brauchst, oder nimm unten eine der Vorlagen.'}</p></div>
         ${wahl.alle ? '' : `<label class="start__format">Format<select id="startFormat">${fOpt}</select></label>`}</div>
       ${wahl.leer || wahl.alle ? '' : `<div class="start__direkt start__direkt--weg">
         <span class="start__direkt-ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
@@ -762,7 +762,7 @@
         <label class="start__suche vb__suche"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input type="search" id="vbSuche" placeholder="In den Vorlagen suchen …" value="${esc(vFilter.q)}"></label></div>
       <div class="vb__wahl">${wahl.alle ? `<label class="start__format vb__feld">Art<select id="vbArt"><option value="alle">Alle Arten</option>${ARTEN.filter(a => arten[a.key]).map(a => `<option value="${a.key}">${esc(a.name)} · ${arten[a.key]}</option>`).join('')}</select></label>` : ''}
         <label class="start__format vb__feld">Bereich der Praxis<select id="vbBereich"></select></label>
-        <div class="vb__toene">${[['alle', 'Jeder Grund'], ['dunkel', 'Nuit'], ['hell', 'Papier'], ['creme', 'Sable']].map(([k, t]) => `<button data-ton="${k}" class="${vFilter.ton === k ? 'an' : ''}">${t}</button>`).join('')}</div></div>`;
+        <div class="vb__toene">${[['alle', 'Jeder Grund'], ['dunkel', 'Nacht'], ['hell', 'Licht'], ['creme', 'Sand']].map(([k, t]) => `<button data-ton="${k}" class="${vFilter.ton === k ? 'an' : ''}">${t}</button>`).join('')}</div></div>`;
     zeichneBereiche();
     const su = kopf.querySelector('#vbSuche'); if (su) { let t; su.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { vFilter.q = su.value; filterVorlagen(); }, 140); }); }
     const sa = kopf.querySelector('#vbArt'); if (sa) sa.addEventListener('change', () => { vFilter.art = sa.value; zeichneBereiche(); filterVorlagen(); });
@@ -949,7 +949,7 @@
       if (d.seiten.length > 1) sa.appendChild(blattDoc(d, GROSS(), 'papier--hinten', 1));
       sa.appendChild(blattDoc(d, GROSS(), 'papier--vorn', 0)); bu.appendChild(sa); b.appendChild(bu);
       const q = d.seiten[0].quelle || {};
-      b.insertAdjacentHTML('beforeend', `<b class="stueck__name">${esc(d.variante || 'Entwurf ' + (i + 1))}</b><em class="stueck__format">${esc(DS.VORLAGEN[q.vorlage]?.name || '')} · ${{ dunkel: 'Nuit', hell: 'Papier', creme: 'Sable' }[q.ton] || ''}${d.seiten.length > 1 ? ' · ' + d.seiten.length + (DS.FORMATE[d.formatKey]?.digital ? ' Bilder' : ' Seiten') : ''}</em><small class="stueck__satztext">Diesen nehmen</small>`);
+      b.insertAdjacentHTML('beforeend', `<b class="stueck__name">${esc(d.variante || 'Entwurf ' + (i + 1))}</b><em class="stueck__format">${esc(DS.VORLAGEN[q.vorlage]?.name || '')} · ${{ dunkel: 'Nacht', hell: 'Licht', creme: 'Sand' }[q.ton] || ''}${d.seiten.length > 1 ? ' · ' + d.seiten.length + (DS.FORMATE[d.formatKey]?.digital ? ' Bilder' : ' Seiten') : ''}</em><small class="stueck__satztext">Diesen nehmen</small>`);
       box.appendChild(b);
     });
     $('#start .ms-haupt').scrollTo({ top: 0 });

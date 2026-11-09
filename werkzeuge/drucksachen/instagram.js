@@ -159,7 +159,7 @@
         <p class="leise">${story ? 'Zeilen zum Teilen der Story, mit Hashtags.' : 'Die Zeilen unter dem Beitrag, mit Hashtags.'} Im Ton des Hauses, Angaben nur aus den Unterlagen. Danach frei bearbeiten und mit einem Klick kopieren.</p>
         <div class="ig-zeile"><label>Sprache<select id="igSprache">${SPRACHEN.map(([k, t]) => `<option value="${k}" ${(bt.sprache || 'fr') === k ? 'selected' : ''}>${t}</option>`).join('')}</select></label>
           <button class="kn knopf--voll glanz-kn ig-schreiben" data-ig="schreiben"><span>${bt.text ? 'Neu schreiben' : story ? 'Text schreiben' : 'Bildtext schreiben'}</span><i>${IC.feder}</i></button></div>
-        <div class="ig-feldtext"><textarea id="igBildtext" rows="11" placeholder="Hier erscheint der Bildtext. Sie können ihn auch selbst schreiben." dir="auto">${esc(bt.text || '')}</textarea>
+        <div class="ig-feldtext"><textarea id="igBildtext" rows="11" placeholder="Hier erscheint der Bildtext. Du kannst ihn auch selbst schreiben." dir="auto">${esc(bt.text || '')}</textarea>
           <span class="ig-schreibt" id="igSchreibt" hidden><span class="ig-schreibt__z">${DS.zeichenSvg(M, 'currentColor')}</span><b>Das Studio schreibt</b><small>im Ton des Hauses</small></span></div>
         <div class="ig-fuss"><span class="ig-zeichen" id="igZeichen"></span><button class="kn kn--klein ig-kopieren" data-ig="kopieren"><span>Kopieren</span><i>${IC.kopie}</i></button></div>
         <div class="hinweise ig-hinweise" id="igHinweise" hidden></div>
@@ -255,7 +255,7 @@
   async function schreiben(btn) {
     const st = S(), doc = st.doc(), feld = $('#igBildtext'), alt = feld.value.trim();
     if (alt && doc.bildtext && doc.bildtext.selbst) {
-      const ok = await st.dialog('<h2>Bildtext neu schreiben?</h2><p class="leise">Ihr bearbeiteter Text wird dabei ersetzt. Kopieren Sie ihn vorher, wenn Sie ihn behalten möchten.</p>',
+      const ok = await st.dialog('<h2>Bildtext neu schreiben?</h2><p class="leise">Dein bearbeiteter Text wird dabei ersetzt. Kopier ihn vorher, wenn du ihn behalten möchten.</p>',
         [{ t: 'Behalten', v: false }, { t: 'Neu schreiben', v: true, haupt: true }]);
       if (!ok) return;
     }

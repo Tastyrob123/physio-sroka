@@ -49,7 +49,7 @@
       + '<div><p class="sr-b-zeile">Kontakt</p><p>Telefon ' + esc(s.tel) + '\n' + esc(MAIL) + '</p></div></div></footer>';
     WZ.blaetter(h.querySelector('.sr-stapel'), { klasse: 're-blatt', kopf: kopf,
       folgekopf: '<div class="sr-b-kopfzeile">' + Z + '<span>Rechnung ' + esc(z.nummer || '') + ' · Fortsetzung</span></div><div class="re-zeile re-zeile--kopf"><span>Datum</span><span>Leistung</span><span class="z">Anzahl</span><span class="z">Einzelpreis</span><span class="z">Betrag</span></div>',
-      bloecke: bloecke, schluss: schluss, fuss: '<span>' + esc(s.name + ' · ' + s.strasse + ' · ' + s.plzOrt + ' · Telefon ' + s.tel + ' · ' + MAIL) + '</span>' });
+      bloecke: bloecke, schluss: schluss, fuss: '<span>' + [s.name, s.strasse, s.plzOrt, 'Telefon ' + s.tel, MAIL].map(function (x) { return '<span class="sr-nw">' + esc(x) + '</span>'; }).join(' · ') + '</span>' });   // Teile brechen nicht in sich (E-Mail-Adresse, Gegenprüfung 09.11.)
     var n = h.querySelectorAll('.sr-blatt').length, sz = $('#re-seiten'); if (sz) sz.textContent = n === 1 ? 'Eine Seite A4' : n + ' Seiten A4';
     var su = $('#re-summe'); if (su) su.textContent = euro.format(summe());
     requestAnimationFrame(function () { WZ.massstab(h); });

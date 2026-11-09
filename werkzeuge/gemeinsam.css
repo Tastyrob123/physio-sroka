@@ -125,3 +125,5 @@ html.sr-fenster-auf{overflow:hidden}
   .sr-auf{transform:translateY(40px);transition:transform .8s cubic-bezier(.22,.61,.36,1)}
   .sr-auf.sr-da{transform:none}
 }
+
+.sr-nw{white-space:nowrap}
